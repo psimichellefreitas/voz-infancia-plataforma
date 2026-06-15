@@ -1,53 +1,40 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   Heart,
-  Brain,
   Stethoscope,
-  Globe,
-  Search,
   ArrowRight,
   Users,
   GraduationCap,
   Church,
   School,
-  Sparkles,
-  ChevronDown,
   BookOpen,
-  FileText,
-  ClipboardCheck,
-  ScrollText,
-  CalendarDays,
-  HelpCircle,
-  Gift,
-  ListChecks,
   Smartphone,
+  Megaphone,
+  ShieldCheck,
+  Lock,
+  Building2,
+  HeartHandshake,
+  Play,
+  AlertTriangle,
+  Wrench,
+  Newspaper,
+  Instagram,
+  Facebook,
+  Youtube,
+  MessageCircle,
+  Mail,
+  Stethoscope as StethoscopeIcon,
+  UserRound,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Progress } from "@/components/ui/progress";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
 import { Reveal } from "@/components/voz/Reveal";
 import { SiteHeader } from "@/components/voz/SiteHeader";
 import { SiteFooter } from "@/components/voz/SiteFooter";
 import { toast } from "sonner";
 import heroImg from "@/assets/hero.jpg";
-import missionImg from "@/assets/mission.jpg";
-import appEmotional from "@/assets/app-emotional.jpg";
-import appDigital from "@/assets/app-digital.jpg";
-import appCommunity from "@/assets/app-community.jpg";
+import videoPoster from "@/assets/video-poster.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -70,95 +57,79 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const SECTION_LABEL =
-  "inline-flex items-center gap-2 rounded-full bg-accent/15 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-accent-foreground";
+const SHELL = "mx-auto max-w-[1400px] px-5 sm:px-8";
 
+/* ----------------------------- HERO ----------------------------- */
 function Hero() {
-  const [offset, setOffset] = useState(0);
-  useEffect(() => {
-    const onScroll = () => setOffset(window.scrollY);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
   return (
-    <section id="top" className="relative min-h-[100svh] w-full overflow-hidden">
+    <section id="top" className="relative overflow-hidden pt-20">
       <div className="absolute inset-0">
         <img
           src={heroImg}
-          alt="Crianças felizes correndo livres em um campo iluminado enquanto uma mão adulta as protege"
+          alt="Criança feliz olhando para a luz dourada do pôr do sol em um campo aberto"
           width={1920}
           height={1080}
-          className="h-[120%] w-full object-cover"
-          style={{ transform: `translateY(${offset * 0.25}px)` }}
+          className="h-full w-full object-cover"
           fetchPriority="high"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-primary/55 via-primary/35 to-primary/90" />
+        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-background/10" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
       </div>
 
-      <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-4xl flex-col items-center justify-center px-5 pb-20 pt-32 text-center sm:px-8">
-        <span className="animate-fade-in rounded-full border border-primary-foreground/30 bg-primary-foreground/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-primary-foreground backdrop-blur-sm">
-          Movimento de proteção à infância
-        </span>
-        <h1 className="mt-7 text-balance font-display text-4xl font-extrabold leading-[1.08] text-primary-foreground sm:text-5xl md:text-6xl">
-          Toda criança merece um adulto que não se cale.
-        </h1>
-        <p className="mt-6 max-w-2xl text-balance text-lg text-primary-foreground/85 sm:text-xl">
-          A proteção começa onde o silêncio termina.
-        </p>
-        <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row">
-          <Button asChild variant="hero" size="xl">
-            <a href="#movimento">🧡 Erga sua voz</a>
-          </Button>
-          <Button asChild variant="heroOutline" size="xl">
-            <a href="#aplicativos">📱 Conheça nossos aplicativos</a>
-          </Button>
-        </div>
-      </div>
-
-      <a
-        href="#missao"
-        className="absolute bottom-7 left-1/2 z-10 -translate-x-1/2 text-primary-foreground/70 transition-colors hover:text-accent"
-        aria-label="Rolar para baixo"
-      >
-        <ChevronDown className="h-7 w-7 animate-bounce" />
-      </a>
-    </section>
-  );
-}
-
-function Mission() {
-  return (
-    <section id="missao" className="bg-background py-24 sm:py-32">
-      <div className="mx-auto grid max-w-6xl items-center gap-14 px-5 sm:px-8 md:grid-cols-2">
+      <div className={`relative z-10 ${SHELL} grid items-center gap-10 py-16 sm:py-24 lg:grid-cols-2 lg:py-28`}>
         <Reveal>
-          <span className={SECTION_LABEL}>
-            <Sparkles className="h-3.5 w-3.5" /> Nossa Missão
-          </span>
-          <h2 className="mt-5 font-display text-3xl font-extrabold leading-tight text-primary sm:text-4xl">
-            Proteger o que Deus planejou para a infância.
-          </h2>
-          <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
-            A missão da proteção é impedir que a dor roube aquilo que Deus planejou
-            para a infância.
+          <h1 className="font-display text-4xl font-extrabold leading-[1.05] text-primary sm:text-5xl lg:text-6xl">
+            Toda criança merece um adulto{" "}
+            <span className="text-accent">que não se cale.</span>
+          </h1>
+          <p className="mt-6 max-w-md text-lg text-foreground/75">
+            Informação, educação e ferramentas para proteger crianças e transformar
+            realidades.
           </p>
-          <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
-            Somos um movimento que une{" "}
-            <span className="font-semibold text-foreground">tecnologia, educação, fé e conscientização</span>{" "}
-            para fortalecer famílias e proteger crianças.
-          </p>
+          <div className="mt-9 flex flex-col gap-4 sm:flex-row">
+            <Button asChild variant="hero" size="lg">
+              <a href="#movimento">Erga sua voz</a>
+            </Button>
+            <Button asChild variant="outline" size="lg">
+              <a href="#aplicativos">Conheça os aplicativos</a>
+            </Button>
+          </div>
         </Reveal>
-        <Reveal delay={150}>
-          <div className="relative">
-            <div className="absolute -inset-4 -z-10 rounded-[2rem] bg-accent/20 blur-2xl" />
-            <img
-              src={missionImg}
-              alt="Ilustração de uma família conectada sob a luz da proteção"
-              width={1024}
-              height={1024}
-              loading="lazy"
-              className="w-full rounded-[2rem] shadow-[var(--shadow-lift)]"
-            />
+
+        <Reveal delay={150} className="hidden lg:block">
+          <div className="ml-auto max-w-md">
+            <div className="overflow-hidden rounded-3xl bg-primary shadow-[var(--shadow-lift)]">
+              <div className="relative aspect-[4/3]">
+                <img
+                  src={videoPoster}
+                  alt="Mãe abraçando carinhosamente a filha sorridente em casa"
+                  width={800}
+                  height={600}
+                  loading="lazy"
+                  className="h-full w-full object-cover"
+                />
+                <div className="absolute inset-0 bg-primary/30" />
+                <div className="absolute left-5 top-5 text-primary-foreground">
+                  <p className="font-display text-sm font-bold">Assista ao vídeo</p>
+                  <p className="text-xs text-primary-foreground/80">e entenda nossa missão</p>
+                </div>
+                <button
+                  aria-label="Assistir vídeo"
+                  className="absolute left-1/2 top-1/2 grid h-16 w-16 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border-2 border-primary-foreground/70 text-primary-foreground backdrop-blur-sm transition-transform hover:scale-110"
+                >
+                  <Play className="h-6 w-6 translate-x-0.5 fill-current" />
+                </button>
+              </div>
+            </div>
+            <div className="mt-4 flex items-center gap-3 rounded-2xl bg-card p-4 shadow-[var(--shadow-soft)]">
+              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-accent/15 text-accent">
+                <HeartHandshake className="h-6 w-6" />
+              </span>
+              <p className="text-sm leading-snug text-muted-foreground">
+                A missão da proteção é impedir que a dor roube aquilo que Deus planejou
+                para a infância.
+              </p>
+            </div>
           </div>
         </Reveal>
       </div>
@@ -166,280 +137,197 @@ function Mission() {
   );
 }
 
+/* -------------------------- PERSONA BAR -------------------------- */
 const PERSONAS = [
-  { icon: Users, emoji: "👨", title: "Pai ou Mãe" },
-  { icon: GraduationCap, emoji: "👩", title: "Educador" },
-  { icon: Stethoscope, emoji: "👩‍⚕️", title: "Profissional da Rede" },
-  { icon: Church, emoji: "⛪", title: "Igreja" },
-  { icon: School, emoji: "🏫", title: "Escola" },
-  { icon: Heart, emoji: "❤️", title: "Quero aprender" },
+  { icon: Users, title: "Sou Pai ou Mãe" },
+  { icon: GraduationCap, title: "Sou Educador" },
+  { icon: Stethoscope, title: "Sou Profissional" },
+  { icon: Church, title: "Sou Igreja" },
+  { icon: School, title: "Sou Escola" },
+  { icon: Smartphone, title: "Conheça nossos Aplicativos" },
 ];
 
-function WhoAreYou() {
+function PersonaBar() {
   return (
-    <section className="bg-beige py-24 sm:py-32">
-      <div className="mx-auto max-w-6xl px-5 sm:px-8">
-        <Reveal className="mx-auto max-w-2xl text-center">
-          <span className={SECTION_LABEL}>Sua jornada</span>
-          <h2 className="mt-5 font-display text-3xl font-extrabold text-primary sm:text-4xl">
-            Quem é você nessa missão?
-          </h2>
-          <p className="mt-4 text-lg text-muted-foreground">
-            Escolha sua jornada e encontre conteúdos preparados para sua realidade.
-          </p>
-        </Reveal>
-
-        <div className="mt-14 grid grid-cols-2 gap-5 md:grid-cols-3">
-          {PERSONAS.map((p, i) => (
-            <Reveal key={p.title} delay={i * 80}>
-              <button className="group flex h-full w-full flex-col items-start gap-4 rounded-3xl border border-border bg-card p-6 text-left shadow-[var(--shadow-soft)] transition-all duration-300 hover:-translate-y-2 hover:border-accent/50 hover:shadow-[var(--shadow-lift)] sm:p-8">
-                <span className="grid h-14 w-14 place-items-center rounded-2xl bg-accent/15 text-accent transition-colors group-hover:bg-accent group-hover:text-accent-foreground">
-                  <p.icon className="h-7 w-7" />
+    <section className="relative z-20 bg-background">
+      <div className={`${SHELL} -mt-6 sm:-mt-12`}>
+        <Reveal className="rounded-3xl border border-border bg-card p-4 shadow-[var(--shadow-lift)] sm:p-6">
+          <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-6">
+            {PERSONAS.map((p) => (
+              <button
+                key={p.title}
+                className="group flex flex-col items-center gap-3 rounded-2xl px-3 py-5 text-center transition-colors hover:bg-beige"
+              >
+                <span className="grid h-12 w-12 place-items-center rounded-xl bg-accent/12 text-accent transition-colors group-hover:bg-accent group-hover:text-accent-foreground">
+                  <p.icon className="h-6 w-6" />
                 </span>
-                <span className="font-display text-lg font-bold text-primary sm:text-xl">
+                <span className="text-xs font-bold leading-tight text-primary sm:text-sm">
                   {p.title}
                 </span>
-                <span className="mt-auto inline-flex items-center gap-1.5 text-sm font-semibold text-accent-foreground/0 transition-colors group-hover:text-accent">
-                  Ver trilha <ArrowRight className="h-4 w-4" />
-                </span>
               </button>
-            </Reveal>
-          ))}
-        </div>
+            ))}
+          </div>
+        </Reveal>
       </div>
     </section>
   );
 }
 
+/* --------------------- APPS + MOVEMENT CARD --------------------- */
 const APPS = [
-  { title: "Erga Sua Voz Pela Infância", summary: "O app central do movimento: denúncia consciente, formação e mobilização.", img: appCommunity },
-  { title: "Meu Filho Protegido", summary: "Acompanhe o bem-estar do seu filho com orientações práticas e diárias.", img: appEmotional },
-  { title: "Proteção Emocional", summary: "Ferramentas para fortalecer o vínculo afetivo e a saúde emocional.", img: appEmotional },
-  { title: "Proteção Digital", summary: "Navegação segura, controle parental e educação digital saudável.", img: appDigital },
-  { title: "Escola Segura", summary: "Protocolos e formação para ambientes escolares protetores.", img: appCommunity },
-  { title: "Igreja Segura", summary: "Capacitação e diretrizes para o cuidado de crianças na comunidade de fé.", img: appCommunity },
-  { title: "Profissionais da Proteção", summary: "Recursos técnicos para a rede de proteção à criança e ao adolescente.", img: appDigital },
+  { title: "Erga Sua Voz Pela Infância", summary: "Jornada gratuita de conscientização e compromisso.", icon: Megaphone, color: "bg-accent/15 text-accent" },
+  { title: "Meu Filho Protegido", summary: "Guia completo para pais protegerem seus filhos.", icon: ShieldCheck, color: "bg-violet-500/15 text-violet-600" },
+  { title: "Proteção Digital", summary: "Ensine seus filhos a se protegerem no mundo digital.", icon: Lock, color: "bg-emerald-500/15 text-emerald-600" },
+  { title: "Escola Segura", summary: "Recursos para construir ambientes escolares seguros.", icon: Building2, color: "bg-sky-500/15 text-sky-600" },
+  { title: "Proteção Emocional", summary: "Recursos para fortalecer a saúde emocional das crianças.", icon: Heart, color: "bg-rose-500/15 text-rose-600" },
+];
+
+const STATS = [
+  { icon: Users, value: "+250 mil", label: "pessoas impactadas" },
+  { icon: School, value: "+900", label: "escolas parceiras" },
+  { icon: GraduationCap, value: "+1.200", label: "profissionais capacitados" },
 ];
 
 function Apps() {
   return (
-    <section id="aplicativos" className="bg-background py-24 sm:py-32">
-      <div className="mx-auto max-w-7xl px-5 sm:px-8">
-        <Reveal className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
-          <div className="max-w-2xl">
-            <span className={SECTION_LABEL}>
-              <Smartphone className="h-3.5 w-3.5" /> Tecnologia que protege
-            </span>
-            <h2 className="mt-5 font-display text-3xl font-extrabold text-primary sm:text-4xl">
-              Aplicativos de Proteção
-            </h2>
-            <p className="mt-4 text-lg text-muted-foreground">
-              Uma vitrine de soluções digitais criadas para cuidar de cada criança.
-            </p>
-          </div>
-          <Button variant="navy" size="lg" className="shrink-0">
-            Ver todos <ArrowRight className="h-4 w-4" />
-          </Button>
-        </Reveal>
-
-        <Reveal className="mt-12">
-          <Carousel opts={{ align: "start", loop: true }} className="w-full">
-            <CarouselContent className="-ml-4">
-              {APPS.map((app) => (
-                <CarouselItem key={app.title} className="pl-4 sm:basis-1/2 lg:basis-1/3">
-                  <article className="group flex h-full flex-col overflow-hidden rounded-3xl border border-border bg-card shadow-[var(--shadow-soft)] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[var(--shadow-lift)]">
-                    <div className="aspect-[4/3] overflow-hidden">
-                      <img
-                        src={app.img}
-                        alt={app.title}
-                        width={800}
-                        height={600}
-                        loading="lazy"
-                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                      />
-                    </div>
-                    <div className="flex flex-1 flex-col p-6">
-                      <h3 className="font-display text-lg font-bold text-primary">{app.title}</h3>
-                      <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">
-                        {app.summary}
-                      </p>
-                      <Button variant="hero" size="default" className="mt-5 w-full">
-                        Conhecer
-                      </Button>
-                    </div>
-                  </article>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <CarouselPrevious className="hidden sm:flex" />
-            <CarouselNext className="hidden sm:flex" />
-          </Carousel>
-        </Reveal>
-      </div>
-    </section>
-  );
-}
-
-const LIBRARY = [
-  { label: "Guias", icon: BookOpen },
-  { label: "Cartilhas", icon: FileText },
-  { label: "E-books", icon: ScrollText },
-  { label: "Checklists", icon: ClipboardCheck },
-  { label: "Materiais Gratuitos", icon: Gift },
-  { label: "Materiais Premium", icon: Sparkles },
-];
-
-function Library() {
-  return (
-    <section id="biblioteca" className="bg-beige py-24 sm:py-32">
-      <div className="mx-auto max-w-6xl px-5 sm:px-8">
-        <Reveal className="mx-auto max-w-2xl text-center">
-          <span className={SECTION_LABEL}>
-            <BookOpen className="h-3.5 w-3.5" /> Conhecimento que cuida
-          </span>
-          <h2 className="mt-5 font-display text-3xl font-extrabold text-primary sm:text-4xl">
-            Biblioteca da Proteção
-          </h2>
-          <p className="mt-4 text-lg text-muted-foreground">
-            Uma estante digital com materiais para informar, preparar e fortalecer.
-          </p>
-        </Reveal>
-
-        <Reveal className="mx-auto mt-10 flex max-w-xl items-center gap-2 rounded-full border border-border bg-card p-2 pl-5 shadow-[var(--shadow-soft)]">
-          <Search className="h-5 w-5 shrink-0 text-muted-foreground" />
-          <Input
-            placeholder="Buscar guias, cartilhas, e-books..."
-            className="border-0 bg-transparent shadow-none focus-visible:ring-0"
-          />
-          <Button variant="hero" size="default" className="shrink-0">
-            Buscar
-          </Button>
-        </Reveal>
-
-        <div className="mt-12 grid grid-cols-2 gap-4 md:grid-cols-3">
-          {LIBRARY.map((cat, i) => (
-            <Reveal key={cat.label} delay={i * 70}>
-              <button className="group flex w-full items-center gap-4 rounded-2xl border border-border bg-card p-5 text-left shadow-[var(--shadow-soft)] transition-all duration-300 hover:-translate-y-1 hover:border-accent/50 hover:shadow-[var(--shadow-lift)]">
-                <span className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-accent/15 text-accent transition-colors group-hover:bg-accent group-hover:text-accent-foreground">
-                  <cat.icon className="h-6 w-6" />
-                </span>
-                <span className="font-display text-base font-bold text-primary">{cat.label}</span>
-              </button>
+    <section id="aplicativos" className="bg-background py-16 sm:py-24">
+      <div className={SHELL}>
+        <div className="grid gap-8 lg:grid-cols-[1fr_320px]">
+          <div>
+            <Reveal className="flex items-end justify-between">
+              <h2 className="font-display text-2xl font-extrabold uppercase tracking-wide text-primary sm:text-3xl">
+                Aplicativos
+              </h2>
+              <a
+                href="#aplicativos"
+                className="inline-flex items-center gap-1.5 text-sm font-semibold text-accent transition-colors hover:text-accent/80"
+              >
+                Ver todos <ArrowRight className="h-4 w-4" />
+              </a>
             </Reveal>
-          ))}
+
+            <div className="mt-7 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-5">
+              {APPS.map((app, i) => (
+                <Reveal key={app.title} delay={i * 70}>
+                  <article className="group flex h-full flex-col rounded-2xl border border-border bg-card p-5 shadow-[var(--shadow-soft)] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[var(--shadow-lift)]">
+                    <span className={`grid h-12 w-12 place-items-center rounded-xl ${app.color}`}>
+                      <app.icon className="h-6 w-6" />
+                    </span>
+                    <h3 className="mt-4 font-display text-sm font-bold leading-tight text-primary">
+                      {app.title}
+                    </h3>
+                    <p className="mt-2 flex-1 text-xs leading-relaxed text-muted-foreground">
+                      {app.summary}
+                    </p>
+                    <button className="mt-4 w-full rounded-full border border-border py-2 text-xs font-semibold text-primary transition-colors group-hover:border-accent group-hover:text-accent">
+                      Acessar
+                    </button>
+                  </article>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+
+          <Reveal delay={120}>
+            <div id="movimento" className="flex h-full flex-col rounded-3xl bg-primary p-7 text-primary-foreground shadow-[var(--shadow-lift)]">
+              <h3 className="font-display text-sm font-bold uppercase tracking-wider text-accent">
+                Junte-se ao Movimento
+              </h3>
+              <div className="mt-6 space-y-5">
+                {STATS.map((s) => (
+                  <div key={s.label} className="flex items-center gap-4">
+                    <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-primary-foreground/10 text-accent">
+                      <s.icon className="h-5 w-5" />
+                    </span>
+                    <div>
+                      <p className="font-display text-xl font-extrabold leading-none">{s.value}</p>
+                      <p className="text-xs text-primary-foreground/70">{s.label}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <p className="mt-7 font-display text-base font-bold leading-snug">
+                Todos unidos pela proteção da infância.
+              </p>
+              <Button variant="hero" size="lg" className="mt-5 w-full">
+                Faça parte
+              </Button>
+            </div>
+          </Reveal>
         </div>
       </div>
     </section>
   );
 }
 
-const SIGNS = [
-  {
-    icon: Heart,
-    emoji: "❤️",
-    title: "Sinais Emocionais",
-    text: "Tristeza persistente, medo excessivo, mudanças bruscas de humor, baixa autoestima, ansiedade ou apego incomum a determinadas pessoas. Acolha sem julgar e observe o padrão.",
-  },
-  {
-    icon: Brain,
-    emoji: "🧠",
-    title: "Sinais Comportamentais",
-    text: "Isolamento, agressividade, regressão (voltar a comportamentos de fases anteriores), queda no rendimento escolar ou resistência em ficar com certas pessoas. Mudanças repentinas merecem atenção.",
-  },
-  {
-    icon: Stethoscope,
-    emoji: "🩺",
-    title: "Sinais Físicos",
-    text: "Alterações no sono e no apetite, queixas frequentes de dores sem causa aparente, cansaço excessivo ou descuido com a higiene. Sempre busque avaliação profissional adequada.",
-  },
-  {
-    icon: Globe,
-    emoji: "🌐",
-    title: "Sinais Digitais",
-    text: "Esconder a tela, contas secretas, mudança de humor após usar o celular, contato com desconhecidos ou uso noturno excessivo. O diálogo aberto é a melhor proteção digital.",
-  },
+/* ---------------------- HIGHLIGHT SECTIONS ---------------------- */
+const HIGHLIGHTS = [
+  { id: "biblioteca", icon: BookOpen, title: "Biblioteca Digital", text: "E-books, guias, cartilhas e materiais gratuitos para você baixar." },
+  { id: "trilhas", icon: GraduationCap, title: "Cursos e Formações", text: "Cursos online para pais, profissionais, escolas e igrejas." },
+  { id: "sinais", icon: AlertTriangle, title: "Sinais de Alerta", text: "Aprenda a identificar sinais de abuso e violência infantil." },
+  { id: "ferramentas", icon: Wrench, title: "Ferramentas Práticas", text: "Checklists, planos, quizzes e recursos para o dia a dia." },
+  { id: "blog", icon: Newspaper, title: "Blog e Artigos", text: "Conteúdos atualizados sobre proteção, educação e infância." },
 ];
 
-function WarningSigns() {
+function Highlights() {
   return (
-    <section className="bg-background py-24 sm:py-32">
-      <div className="mx-auto max-w-4xl px-5 sm:px-8">
-        <Reveal className="text-center">
-          <span className={SECTION_LABEL}>Atenção e cuidado</span>
-          <h2 className="mt-5 font-display text-3xl font-extrabold text-primary sm:text-4xl">
-            Você conhece os sinais de alerta?
-          </h2>
-          <p className="mt-4 text-lg text-muted-foreground">
-            Conhecer é o primeiro passo para proteger. Clique para saber mais.
-          </p>
-        </Reveal>
-
-        <Reveal className="mt-12">
-          <Accordion type="single" collapsible className="space-y-4">
-            {SIGNS.map((s) => (
-              <AccordionItem
-                key={s.title}
-                value={s.title}
-                className="overflow-hidden rounded-2xl border border-border bg-card px-6 shadow-[var(--shadow-soft)]"
-              >
-                <AccordionTrigger className="py-5 hover:no-underline">
-                  <span className="flex items-center gap-4 text-left">
-                    <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-accent/15 text-accent">
-                      <s.icon className="h-6 w-6" />
-                    </span>
-                    <span className="font-display text-lg font-bold text-primary">{s.title}</span>
-                  </span>
-                </AccordionTrigger>
-                <AccordionContent className="pb-6 pl-[3.75rem] text-base leading-relaxed text-muted-foreground">
-                  {s.text}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </Reveal>
+    <section className="bg-background pb-4">
+      <div className={`${SHELL} grid gap-4 sm:grid-cols-2 lg:grid-cols-5`}>
+        {HIGHLIGHTS.map((h, i) => (
+          <Reveal key={h.id} delay={i * 70}>
+            <a
+              href={`#${h.id}`}
+              className="group relative flex h-full min-h-44 flex-col justify-end overflow-hidden rounded-2xl bg-primary p-6 text-primary-foreground shadow-[var(--shadow-soft)] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[var(--shadow-lift)]"
+            >
+              <div className="pointer-events-none absolute -right-8 -top-8 h-32 w-32 rounded-full bg-accent/20 blur-2xl transition-opacity group-hover:opacity-100" />
+              <span className="relative grid h-11 w-11 place-items-center rounded-xl bg-primary-foreground/10 text-accent">
+                <h.icon className="h-6 w-6" />
+              </span>
+              <h3 className="relative mt-4 font-display text-base font-bold uppercase tracking-wide">
+                {h.title}
+              </h3>
+              <p className="relative mt-2 text-xs leading-relaxed text-primary-foreground/70">
+                {h.text}
+              </p>
+              <span className="relative mt-3 inline-flex items-center gap-1 text-xs font-semibold text-accent">
+                Explorar <ArrowRight className="h-3.5 w-3.5" />
+              </span>
+            </a>
+          </Reveal>
+        ))}
       </div>
     </section>
   );
 }
 
-const PATHS = [
-  { title: "Pais", progress: 35, lessons: "12 conteúdos" },
-  { title: "Profissionais", progress: 60, lessons: "18 conteúdos" },
-  { title: "Escolas", progress: 25, lessons: "10 conteúdos" },
-  { title: "Igrejas", progress: 45, lessons: "14 conteúdos" },
+/* --------------------- SPECIFIC CONTENT ------------------------ */
+const AREAS = [
+  { icon: Users, color: "text-accent", title: "Área dos Pais", text: "Dicas, conteúdos e ferramentas para proteger seus filhos." },
+  { icon: Stethoscope, color: "text-violet-600", title: "Área dos Profissionais", text: "Materiais, protocolos e formações para quem atua na proteção." },
+  { icon: Building2, color: "text-sky-600", title: "Área das Escolas", text: "Projetos, palestras e materiais para construir escolas seguras." },
+  { icon: Church, color: "text-emerald-600", title: "Área das Igrejas", text: "Orientações e recursos para ministérios infantis seguros." },
+  { icon: HeartHandshake, color: "text-rose-600", title: "Comunidade", text: "Faça parte da rede de pessoas que erguem a voz." },
 ];
 
-function LearningPaths() {
+function Areas() {
   return (
-    <section id="trilhas" className="bg-beige py-24 sm:py-32">
-      <div className="mx-auto max-w-6xl px-5 sm:px-8">
-        <Reveal className="mx-auto max-w-2xl text-center">
-          <span className={SECTION_LABEL}>
-            <GraduationCap className="h-3.5 w-3.5" /> Aprender para proteger
-          </span>
-          <h2 className="mt-5 font-display text-3xl font-extrabold text-primary sm:text-4xl">
-            Trilhas de Aprendizagem
+    <section className="bg-background py-16 sm:py-20">
+      <div className={SHELL}>
+        <Reveal className="text-center">
+          <h2 className="font-display text-2xl font-extrabold uppercase tracking-wide text-primary sm:text-3xl">
+            Conteúdos específicos para você
           </h2>
-          <p className="mt-4 text-lg text-muted-foreground">
-            Caminhos guiados de formação para cada realidade.
-          </p>
         </Reveal>
-
-        <div className="mt-14 grid gap-6 sm:grid-cols-2">
-          {PATHS.map((p, i) => (
-            <Reveal key={p.title} delay={i * 90}>
-              <div className="group rounded-3xl border border-border bg-card p-7 shadow-[var(--shadow-soft)] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[var(--shadow-lift)]">
-                <div className="flex items-center justify-between">
-                  <h3 className="font-display text-xl font-bold text-primary">{p.title}</h3>
-                  <span className="text-sm font-medium text-muted-foreground">{p.lessons}</span>
-                </div>
-                <Progress value={p.progress} className="mt-5 h-3" />
-                <div className="mt-3 flex items-center justify-between">
-                  <span className="text-sm font-semibold text-accent">{p.progress}% concluído</span>
-                  <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary transition-colors group-hover:text-accent">
-                    Começar trilha <ArrowRight className="h-4 w-4" />
-                  </span>
-                </div>
+        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+          {AREAS.map((a, i) => (
+            <Reveal key={a.title} delay={i * 70}>
+              <div className="group flex h-full flex-col rounded-2xl border border-border bg-card p-6 shadow-[var(--shadow-soft)] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[var(--shadow-lift)]">
+                <a.icon className={`h-8 w-8 ${a.color}`} />
+                <h3 className="mt-4 font-display text-base font-bold text-primary">{a.title}</h3>
+                <p className="mt-2 flex-1 text-xs leading-relaxed text-muted-foreground">{a.text}</p>
+                <span className="mt-4 inline-flex items-center gap-1 text-xs font-semibold text-accent">
+                  Acessar <ArrowRight className="h-3.5 w-3.5" />
+                </span>
               </div>
             </Reveal>
           ))}
@@ -449,124 +337,124 @@ function LearningPaths() {
   );
 }
 
-const TOOLS = [
-  { title: "Manifesto Voz Pela Infância", icon: ScrollText },
-  { title: "Plano Familiar", icon: Users },
-  { title: "Plano de 7 dias", icon: CalendarDays },
-  { title: "Quiz", icon: HelpCircle },
-  { title: "Checklist", icon: ListChecks },
-  { title: "Declaração de Compromisso", icon: FileText },
+/* ---------------------- PROTECTION MAP -------------------------- */
+const MAP_STEPS = [
+  { icon: Users, label: "Pai/Mãe" },
+  { icon: GraduationCap, label: "Educador" },
+  { icon: Church, label: "Pastor" },
+  { icon: StethoscopeIcon, label: "Psicólogo" },
+  { icon: ShieldCheck, label: "Conselheiro Tutelar" },
+  { icon: UserRound, label: "Assistente Social" },
+  { icon: HeartHandshake, label: "Outros" },
 ];
 
-function Tools() {
+function ProtectionMap() {
   return (
-    <section className="bg-background py-24 sm:py-32">
-      <div className="mx-auto max-w-6xl px-5 sm:px-8">
-        <Reveal className="mx-auto max-w-2xl text-center">
-          <span className={SECTION_LABEL}>Mãos à obra</span>
-          <h2 className="mt-5 font-display text-3xl font-extrabold text-primary sm:text-4xl">
-            Ferramentas de Proteção
+    <section className="bg-primary py-16 text-primary-foreground sm:py-20">
+      <div className={`${SHELL} grid items-center gap-12 lg:grid-cols-[1fr_1.3fr]`}>
+        <Reveal>
+          <h2 className="font-display text-2xl font-extrabold uppercase tracking-wide sm:text-3xl">
+            Mapa da Proteção
           </h2>
-          <p className="mt-4 text-lg text-muted-foreground">
-            Recursos práticos para transformar consciência em ação.
+          <p className="mt-5 max-w-sm text-sm leading-relaxed text-primary-foreground/75">
+            Cada pessoa tem um papel importante na proteção da infância.
           </p>
+          <p className="mt-3 max-w-sm text-sm leading-relaxed text-primary-foreground/75">
+            Responda algumas perguntas e receba sua trilha personalizada de conteúdos
+            e ferramentas.
+          </p>
+          <Button variant="hero" size="lg" className="mt-7">
+            Começar agora
+          </Button>
         </Reveal>
 
-        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {TOOLS.map((t, i) => (
-            <Reveal key={t.title} delay={i * 70}>
-              <button className="group flex h-full w-full items-center gap-4 rounded-3xl border border-border bg-card p-6 text-left shadow-[var(--shadow-soft)] transition-all duration-300 hover:-translate-y-1.5 hover:border-accent/50 hover:shadow-[var(--shadow-lift)]">
-                <span className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-primary/10 p-3 text-primary transition-colors group-hover:bg-accent group-hover:text-accent-foreground">
-                  <t.icon className="h-6 w-6" />
+        <Reveal delay={120}>
+          <div className="flex flex-wrap items-start justify-center gap-x-2 gap-y-8 sm:justify-between">
+            {MAP_STEPS.map((s) => (
+              <div key={s.label} className="flex w-20 flex-col items-center gap-3 text-center">
+                <span className="grid h-14 w-14 place-items-center rounded-full border-2 border-primary-foreground/25 text-accent transition-colors hover:border-accent">
+                  <s.icon className="h-6 w-6" />
                 </span>
-                <span className="font-display text-base font-bold text-primary">{t.title}</span>
-              </button>
-            </Reveal>
-          ))}
-        </div>
+                <span className="text-[0.7rem] font-semibold leading-tight text-primary-foreground/80">
+                  {s.label}
+                </span>
+              </div>
+            ))}
+          </div>
+        </Reveal>
       </div>
     </section>
   );
 }
 
-function JoinMovement() {
-  return (
-    <section id="movimento" className="bg-background pb-24 sm:pb-32">
-      <Reveal className="mx-auto max-w-6xl px-5 sm:px-8">
-        <div className="relative overflow-hidden rounded-[2.5rem] bg-primary px-6 py-16 text-center shadow-[var(--shadow-lift)] sm:px-12 sm:py-20">
-          <div className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-accent/25 blur-3xl" />
-          <div className="pointer-events-none absolute -bottom-24 -left-16 h-72 w-72 rounded-full bg-accent/15 blur-3xl" />
-          <div className="relative">
-            <span className="inline-flex items-center gap-2 rounded-full border border-primary-foreground/25 bg-primary-foreground/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-primary-foreground">
-              Junte-se ao movimento
-            </span>
-            <h2 className="mx-auto mt-6 max-w-3xl text-balance font-display text-3xl font-extrabold leading-tight text-primary-foreground sm:text-4xl md:text-5xl">
-              Milhares de pessoas estão decidindo proteger a infância.
-            </h2>
-            <p className="mx-auto mt-5 max-w-xl text-lg text-primary-foreground/80">
-              Sua voz importa. Sua decisão pode mudar a história de uma criança.
-            </p>
-            <Button variant="hero" size="xl" className="mt-10">
-              🧡 Eu decido erguer minha voz
-            </Button>
-          </div>
-        </div>
-      </Reveal>
-    </section>
-  );
-}
+/* ------------------------- NEWSLETTER --------------------------- */
+const SOCIALS = [Instagram, Facebook, Youtube, MessageCircle];
 
 function Newsletter() {
-  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!name.trim() || !email.trim()) {
-      toast.error("Preencha seu nome e email para continuar.");
+    if (!email.trim()) {
+      toast.error("Informe seu e-mail para continuar.");
       return;
     }
     toast.success("Inscrição recebida! Em breve você receberá nossos conteúdos. 🧡");
-    setName("");
     setEmail("");
   };
 
   return (
-    <section className="bg-beige py-24 sm:py-32">
-      <Reveal className="mx-auto max-w-3xl px-5 text-center sm:px-8">
-        <span className={SECTION_LABEL}>Conteúdos exclusivos</span>
-        <h2 className="mt-5 font-display text-3xl font-extrabold text-primary sm:text-4xl">
-          Receba conteúdos exclusivos sobre proteção infantil.
-        </h2>
-        <p className="mt-4 text-lg text-muted-foreground">
-          Materiais, orientações e novidades do movimento direto no seu email.
-        </p>
-        <form
-          onSubmit={submit}
-          className="mx-auto mt-10 flex max-w-xl flex-col gap-3 sm:flex-row"
-        >
-          <Input
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            placeholder="Seu nome"
-            aria-label="Nome"
-            maxLength={80}
-            className="h-12 rounded-full bg-card px-5 shadow-[var(--shadow-soft)]"
-          />
+    <section className="bg-beige py-12">
+      <div className={`${SHELL} flex flex-col items-center justify-between gap-8 lg:flex-row`}>
+        <div className="flex items-center gap-4">
+          <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-accent/15 text-accent">
+            <Mail className="h-6 w-6" />
+          </span>
+          <div>
+            <h2 className="font-display text-lg font-extrabold uppercase tracking-wide text-primary">
+              Receba conteúdos e novidades
+            </h2>
+            <p className="text-sm text-muted-foreground">
+              Inscreva-se e receba materiais exclusivos, dicas e novidades sobre proteção infantil.
+            </p>
+          </div>
+        </div>
+
+        <form onSubmit={submit} className="flex w-full max-w-sm items-center gap-2">
           <Input
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             type="email"
-            placeholder="Seu email"
-            aria-label="Email"
+            placeholder="Seu melhor e-mail"
+            aria-label="E-mail"
             maxLength={120}
-            className="h-12 rounded-full bg-card px-5 shadow-[var(--shadow-soft)]"
+            className="h-11 rounded-full bg-card px-5 shadow-[var(--shadow-soft)]"
           />
           <Button type="submit" variant="hero" size="lg" className="shrink-0">
-            Quero receber
+            Inscrever
           </Button>
         </form>
-      </Reveal>
+
+        <div className="flex flex-col items-center gap-3 lg:items-end">
+          <span className="text-xs font-bold uppercase tracking-wider text-primary">
+            Siga nossas redes
+          </span>
+          <div className="flex gap-2">
+            {SOCIALS.map((Icon, i) => (
+              <a
+                key={i}
+                href="https://instagram.com/michellefreitaspsi"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Rede social"
+                className="grid h-9 w-9 place-items-center rounded-full border border-border bg-card text-primary transition-colors hover:border-accent hover:text-accent"
+              >
+                <Icon className="h-4 w-4" />
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
     </section>
   );
 }
@@ -577,14 +465,11 @@ function Index() {
       <SiteHeader />
       <main>
         <Hero />
-        <Mission />
-        <WhoAreYou />
+        <PersonaBar />
         <Apps />
-        <Library />
-        <WarningSigns />
-        <LearningPaths />
-        <Tools />
-        <JoinMovement />
+        <Highlights />
+        <Areas />
+        <ProtectionMap />
         <Newsletter />
       </main>
       <SiteFooter />
