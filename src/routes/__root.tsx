@@ -77,16 +77,28 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Voz Pela Infância — Proteção e cuidado para cada criança" },
+      {
+        name: "description",
+        content:
+          "Movimento que une tecnologia, educação, fé e conscientização para proteger crianças. Conteúdos gratuitos, aplicativos e trilhas para pais, educadores, escolas e igrejas.",
+      },
+      { name: "author", content: "Instituto Iluminar" },
+      { property: "og:title", content: "Voz Pela Infância" },
+      {
+        property: "og:description",
+        content: "Toda criança merece um adulto que não se cale. Junte-se ao movimento de proteção à infância.",
+      },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..600&family=Sora:wght@400..800&display=swap",
+      },
       {
         rel: "stylesheet",
         href: appCss,
