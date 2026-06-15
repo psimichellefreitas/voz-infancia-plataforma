@@ -390,7 +390,7 @@ function WarningSigns() {
                     <span className="font-display text-lg font-bold text-primary">{s.title}</span>
                   </span>
                 </AccordionTrigger>
-                <AccordionContent className="pb-6 pl-15 text-base leading-relaxed text-muted-foreground">
+                <AccordionContent className="pb-6 pl-[3.75rem] text-base leading-relaxed text-muted-foreground">
                   {s.text}
                 </AccordionContent>
               </AccordionItem>
@@ -476,7 +476,7 @@ function Tools() {
           {TOOLS.map((t, i) => (
             <Reveal key={t.title} delay={i * 70}>
               <button className="group flex h-full w-full items-center gap-4 rounded-3xl border border-border bg-card p-6 text-left shadow-[var(--shadow-soft)] transition-all duration-300 hover:-translate-y-1.5 hover:border-accent/50 hover:shadow-[var(--shadow-lift)]">
-                <span className="grid h-13 w-13 shrink-0 place-items-center rounded-2xl bg-primary/10 p-3 text-primary transition-colors group-hover:bg-accent group-hover:text-accent-foreground">
+                <span className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-primary/10 p-3 text-primary transition-colors group-hover:bg-accent group-hover:text-accent-foreground">
                   <t.icon className="h-6 w-6" />
                 </span>
                 <span className="font-display text-base font-bold text-primary">{t.title}</span>
