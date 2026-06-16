@@ -485,6 +485,7 @@ function Index() {
       <main>
         <Hero />
         <PersonaBar />
+        <AboutSection />
         <Apps />
         <Highlights />
         <Areas />
