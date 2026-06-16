@@ -35,6 +35,17 @@ import { SiteFooter } from "@/components/voz/SiteFooter";
 import { toast } from "sonner";
 import heroImg from "@/assets/hero.jpg";
 import videoPoster from "@/assets/video-poster.jpg";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Feather, Sparkles, CheckCircle2 } from "lucide-react";
+import aboutFamily from "@/assets/about-family.jpg";
+import manifestoHands from "@/assets/manifesto-hands.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -358,7 +369,7 @@ const MAP_STEPS = [
 
 function ProtectionMap() {
   return (
-    <section className="bg-primary py-16 text-primary-foreground sm:py-20">
+    <section id="missao-quem" className="bg-primary py-16 text-primary-foreground sm:py-20">
       <div className={`${SHELL} grid items-center gap-12 lg:grid-cols-[1fr_1.3fr]`}>
         <Reveal>
           <h2 className="font-display text-2xl font-extrabold uppercase tracking-wide sm:text-3xl">
@@ -467,6 +478,225 @@ function Newsletter() {
   );
 }
 
+/* ----------------- O QUE É VOZ PELA INFÂNCIA -------------------- */
+const MANIFESTO = [
+  "Acreditamos que proteger uma criança é proteger o futuro.",
+  "Acreditamos que famílias fortalecidas transformam gerações.",
+  "Acreditamos que conhecimento gera prevenção.",
+  "Acreditamos que o silêncio nunca deve vencer a verdade.",
+  "Acreditamos que toda criança merece crescer em segurança, dignidade e amor.",
+];
+
+const COMMITMENT = [
+  "Manter meu olhar atento à proteção das crianças ao meu redor.",
+  "Buscar conhecimento para reconhecer sinais e agir com consciência.",
+  "Fortalecer vínculos de confiança e escuta com as crianças.",
+  "Nunca silenciar diante de algo que possa feri-las.",
+  "Compartilhar essa missão e inspirar outras pessoas a protegê-las.",
+];
+
+function AboutSection() {
+  return (
+    <section id="missao" className="relative overflow-hidden bg-background py-20 sm:py-28">
+      {/* soft beige + blue ambient details */}
+      <div className="pointer-events-none absolute -left-24 top-24 h-72 w-72 rounded-full bg-beige blur-3xl" />
+      <div className="pointer-events-none absolute -right-24 bottom-32 h-80 w-80 rounded-full bg-sky-500/10 blur-3xl" />
+
+      <div className={`relative ${SHELL}`}>
+        {/* Heading */}
+        <Reveal className="mx-auto max-w-3xl text-center">
+          <span className="inline-flex items-center gap-2 rounded-full border border-accent/20 bg-accent/10 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-accent">
+            <Heart className="h-3.5 w-3.5 fill-current" /> Nossa missão
+          </span>
+          <h2 className="mt-5 font-display text-3xl font-extrabold leading-tight text-primary sm:text-4xl lg:text-5xl">
+            O que é Voz Pela Infância?
+          </h2>
+          <p className="mt-5 text-lg leading-relaxed text-foreground/75">
+            Voz Pela Infância é um movimento de conscientização, educação e mobilização
+            social que acredita que toda criança merece crescer protegida, amada e
+            respeitada.
+          </p>
+        </Reveal>
+
+        {/* Main text + image */}
+        <div className="mt-14 grid items-center gap-12 lg:grid-cols-2">
+          <Reveal>
+            <div className="space-y-5 text-base leading-relaxed text-foreground/75">
+              <p>
+                Todos os dias, milhares de crianças dependem do olhar atento de um adulto
+                para serem protegidas.
+              </p>
+              <p>
+                Muitas vezes, os sinais são silenciosos. As dores não são ditas. Os pedidos
+                de ajuda acontecem através de comportamentos, emoções e mudanças que passam
+                despercebidas.
+              </p>
+              <p className="font-semibold text-primary">
+                O Voz Pela Infância nasceu para transformar informação em proteção.
+              </p>
+              <p>
+                Nossa missão é despertar famílias, profissionais, escolas, igrejas e toda a
+                sociedade para que estejam preparados para reconhecer sinais, fortalecer
+                vínculos e agir de forma consciente na proteção da infância.
+              </p>
+              <p>
+                Porque proteger uma criança não é responsabilidade de um único profissional.
+                É uma missão compartilhada por todos nós.
+              </p>
+            </div>
+          </Reveal>
+
+          <Reveal delay={150}>
+            <div className="overflow-hidden rounded-3xl shadow-[var(--shadow-lift)]">
+              <img
+                src={aboutFamily}
+                alt="Família feliz com pais e crianças sorrindo e brincando juntos ao ar livre"
+                width={1280}
+                height={832}
+                loading="lazy"
+                className="h-full w-full object-cover"
+              />
+            </div>
+          </Reveal>
+        </div>
+
+        {/* Highlight box */}
+        <Reveal className="mt-16">
+          <div className="mx-auto max-w-4xl rounded-3xl border border-sky-500/20 bg-sky-500/10 px-8 py-12 text-center">
+            <p className="font-display text-2xl font-extrabold leading-snug text-primary sm:text-3xl">
+              “Toda criança merece um adulto que não se cale.”
+            </p>
+          </div>
+        </Reveal>
+
+        {/* Institutional video */}
+        <Reveal className="mt-16">
+          <div className="mx-auto max-w-4xl text-center">
+            <h3 className="font-display text-xl font-extrabold text-primary sm:text-2xl">
+              Assista e descubra por que esta missão importa.
+            </h3>
+            <div className="group relative mt-7 overflow-hidden rounded-3xl shadow-[var(--shadow-lift)]">
+              <img
+                src={videoPoster}
+                alt="Capa do vídeo institucional Voz Pela Infância"
+                width={1280}
+                height={720}
+                loading="lazy"
+                className="aspect-video w-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-primary/40" />
+              <button
+                aria-label="Assistir apresentação"
+                className="absolute inset-0 grid place-items-center"
+              >
+                <span className="grid h-20 w-20 place-items-center rounded-full bg-background/95 text-accent shadow-[var(--shadow-lift)] transition-transform duration-300 group-hover:scale-110">
+                  <Play className="h-8 w-8 translate-x-0.5 fill-current" />
+                </span>
+              </button>
+              <span className="absolute bottom-5 left-1/2 -translate-x-1/2 rounded-full bg-background/90 px-5 py-2 text-sm font-bold text-primary backdrop-blur-sm">
+                ▶ Assistir apresentação
+              </span>
+            </div>
+          </div>
+        </Reveal>
+
+        {/* Manifesto */}
+        <Reveal className="mt-20">
+          <div className="grid items-center gap-10 overflow-hidden rounded-3xl bg-primary p-8 text-primary-foreground shadow-[var(--shadow-lift)] sm:p-12 lg:grid-cols-[1.2fr_1fr]">
+            <div>
+              <span className="grid h-14 w-14 place-items-center rounded-2xl bg-primary-foreground/10 text-accent">
+                <Feather className="h-7 w-7" />
+              </span>
+              <h3 className="mt-5 font-display text-2xl font-extrabold sm:text-3xl">
+                Manifesto Voz Pela Infância
+              </h3>
+              <p className="mt-5 text-base font-semibold text-primary-foreground/90">
+                Acreditamos que proteger uma criança é proteger o futuro.
+              </p>
+              <ul className="mt-5 space-y-3">
+                {MANIFESTO.map((line) => (
+                  <li key={line} className="flex items-start gap-3 text-sm leading-relaxed text-primary-foreground/80">
+                    <Sparkles className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
+                    <span>{line}</span>
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-6 font-display text-lg font-bold leading-snug">
+                Por isso, escolhemos erguer nossa voz. Porque uma infância protegida
+                floresce para toda a vida.
+              </p>
+
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button variant="hero" size="lg" className="mt-8">
+                    <Heart className="fill-current" /> Eu decido erguer minha voz
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="max-h-[85vh] overflow-y-auto sm:max-w-lg">
+                  <DialogHeader>
+                    <DialogTitle className="font-display text-2xl text-primary">
+                      Declaração de Compromisso
+                    </DialogTitle>
+                    <DialogDescription>
+                      Ao erguer minha voz pela infância, eu me comprometo a:
+                    </DialogDescription>
+                  </DialogHeader>
+                  <ul className="mt-2 space-y-4">
+                    {COMMITMENT.map((line) => (
+                      <li key={line} className="flex items-start gap-3 text-sm leading-relaxed text-foreground/80">
+                        <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-accent" />
+                        <span>{line}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <p className="mt-6 rounded-2xl bg-beige px-5 py-4 text-center font-display text-base font-bold text-primary">
+                    Eu sou uma voz pela infância. 🧡
+                  </p>
+                  <Button
+                    variant="hero"
+                    size="lg"
+                    className="mt-4 w-full"
+                    onClick={() =>
+                      toast.success("Obrigado por erguer sua voz pela infância! 🧡")
+                    }
+                  >
+                    Assumo este compromisso
+                  </Button>
+                </DialogContent>
+              </Dialog>
+            </div>
+
+            <div className="overflow-hidden rounded-3xl">
+              <img
+                src={manifestoHands}
+                alt="Mãos cuidando de uma pequena muda verde, símbolo de proteção e esperança"
+                width={1024}
+                height={1024}
+                loading="lazy"
+                className="h-full w-full object-cover"
+              />
+            </div>
+          </div>
+        </Reveal>
+
+        {/* Closing question + CTA */}
+        <Reveal className="mt-20">
+          <div className="mx-auto max-w-3xl rounded-3xl border border-border bg-card px-8 py-12 text-center shadow-[var(--shadow-soft)]">
+            <p className="font-display text-2xl font-extrabold leading-snug text-primary sm:text-3xl">
+              Se uma criança precisasse da sua voz hoje, você saberia como protegê-la?
+            </p>
+            <Button asChild variant="hero" size="xl" className="mt-8">
+              <a href="#missao-quem">
+                Quero aprender a proteger <ArrowRight />
+              </a>
+            </Button>
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
 function Index() {
   return (
     <div className="overflow-x-hidden bg-background">
@@ -474,6 +704,7 @@ function Index() {
       <main>
         <Hero />
         <PersonaBar />
+        <AboutSection />
         <Apps />
         <Highlights />
         <Areas />
