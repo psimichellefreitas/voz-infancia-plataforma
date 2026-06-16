@@ -35,6 +35,17 @@ import { SiteFooter } from "@/components/voz/SiteFooter";
 import { toast } from "sonner";
 import heroImg from "@/assets/hero.jpg";
 import videoPoster from "@/assets/video-poster.jpg";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Feather, Sparkles, CheckCircle2 } from "lucide-react";
+import aboutFamily from "@/assets/about-family.jpg";
+import manifestoHands from "@/assets/manifesto-hands.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
