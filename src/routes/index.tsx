@@ -369,7 +369,7 @@ const MAP_STEPS = [
 
 function ProtectionMap() {
   return (
-    <section className="bg-primary py-16 text-primary-foreground sm:py-20">
+    <section id="missao-quem" className="bg-primary py-16 text-primary-foreground sm:py-20">
       <div className={`${SHELL} grid items-center gap-12 lg:grid-cols-[1fr_1.3fr]`}>
         <Reveal>
           <h2 className="font-display text-2xl font-extrabold uppercase tracking-wide sm:text-3xl">
