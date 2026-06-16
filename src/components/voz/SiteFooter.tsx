@@ -33,14 +33,15 @@ export function SiteFooter() {
                 </span>
               </div>
             </div>
+            <p className="mt-4 max-w-xs text-sm leading-relaxed text-primary-foreground/65">
+              O maior portal brasileiro de conscientização, educação e tecnologias
+              para proteção infantil.
+            </p>
             <p className="mt-5 text-xs uppercase tracking-wider text-primary-foreground/55">
               Uma iniciativa do
             </p>
             <p className="mt-1 font-display text-sm font-bold text-primary-foreground/90">
               Instituto Iluminar
-            </p>
-            <p className="mt-4 max-w-xs text-sm leading-relaxed text-primary-foreground/65">
-              Unindo tecnologia, educação, fé e conscientização para proteger cada criança.
             </p>
           </div>
 
