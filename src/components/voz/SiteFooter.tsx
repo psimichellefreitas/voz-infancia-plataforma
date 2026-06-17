@@ -8,7 +8,12 @@ const COLUMNS = [
   },
   {
     title: "Aplicativos",
-    links: ["Todos os Aplicativos", "Aplicativos Gratuitos", "Aplicativos Premium", "Como Funciona"],
+    links: [
+      "Todos os Aplicativos",
+      "Aplicativos Gratuitos",
+      "Aplicativos Premium",
+      "Como Funciona",
+    ],
   },
   {
     title: "Ajuda",
@@ -34,8 +39,8 @@ export function SiteFooter() {
               </div>
             </div>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-primary-foreground/65">
-              O maior portal brasileiro de conscientização, educação e tecnologias
-              para proteção infantil.
+              O maior portal brasileiro de conscientização, educação e tecnologias para proteção
+              infantil.
             </p>
             <p className="mt-5 text-xs uppercase tracking-wider text-primary-foreground/55">
               Uma iniciativa do

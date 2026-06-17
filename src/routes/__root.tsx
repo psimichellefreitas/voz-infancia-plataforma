@@ -88,16 +88,40 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:title", content: "Voz Pela Infância — Proteção e cuidado para cada criança" },
       {
         property: "og:description",
-        content: "Toda criança merece um adulto que não se cale. Junte-se ao movimento de proteção à infância.",
+        content:
+          "Toda criança merece um adulto que não se cale. Junte-se ao movimento de proteção à infância.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Voz Pela Infância — Proteção e cuidado para cada criança" },
-      { name: "description", content: "Voz Pela Infância is a premium digital platform mobilizing communities for child protection." },
-      { property: "og:description", content: "Voz Pela Infância is a premium digital platform mobilizing communities for child protection." },
-      { name: "twitter:description", content: "Voz Pela Infância is a premium digital platform mobilizing communities for child protection." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/af767257-e04c-4130-8f7e-e461d66ea954/id-preview-72872a57--dc6bf197-145a-407f-ad81-c1e39885e4f7.lovable.app-1781550261793.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/af767257-e04c-4130-8f7e-e461d66ea954/id-preview-72872a57--dc6bf197-145a-407f-ad81-c1e39885e4f7.lovable.app-1781550261793.png" },
+      {
+        name: "twitter:title",
+        content: "Voz Pela Infância — Proteção e cuidado para cada criança",
+      },
+      {
+        name: "description",
+        content:
+          "Voz Pela Infância is a premium digital platform mobilizing communities for child protection.",
+      },
+      {
+        property: "og:description",
+        content:
+          "Voz Pela Infância is a premium digital platform mobilizing communities for child protection.",
+      },
+      {
+        name: "twitter:description",
+        content:
+          "Voz Pela Infância is a premium digital platform mobilizing communities for child protection.",
+      },
+      {
+        property: "og:image",
+        content:
+          "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/af767257-e04c-4130-8f7e-e461d66ea954/id-preview-72872a57--dc6bf197-145a-407f-ad81-c1e39885e4f7.lovable.app-1781550261793.png",
+      },
+      {
+        name: "twitter:image",
+        content:
+          "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/af767257-e04c-4130-8f7e-e461d66ea954/id-preview-72872a57--dc6bf197-145a-407f-ad81-c1e39885e4f7.lovable.app-1781550261793.png",
+      },
     ],
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
