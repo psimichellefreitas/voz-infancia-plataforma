@@ -15,10 +15,14 @@ import { Route as ProtecaoSocialRouteImport } from './routes/protecao-social'
 import { Route as ProtecaoSexualRouteImport } from './routes/protecao-sexual'
 import { Route as ProtecaoEmocionalRouteImport } from './routes/protecao-emocional'
 import { Route as ProtecaoDigitalRouteImport } from './routes/protecao-digital'
+import { Route as ProfissionaisRouteImport } from './routes/profissionais'
 import { Route as PodcastsRouteImport } from './routes/podcasts'
+import { Route as PaisRouteImport } from './routes/pais'
 import { Route as MovimentoRouteImport } from './routes/movimento'
 import { Route as ManifestoRouteImport } from './routes/manifesto'
+import { Route as IgrejasRouteImport } from './routes/igrejas'
 import { Route as GuiasRouteImport } from './routes/guias'
+import { Route as EscolasRouteImport } from './routes/escolas'
 import { Route as BibliotecaRouteImport } from './routes/biblioteca'
 import { Route as ArtigosRouteImport } from './routes/artigos'
 import { Route as IndexRouteImport } from './routes/index'
@@ -53,9 +57,19 @@ const ProtecaoDigitalRoute = ProtecaoDigitalRouteImport.update({
   path: '/protecao-digital',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProfissionaisRoute = ProfissionaisRouteImport.update({
+  id: '/profissionais',
+  path: '/profissionais',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PodcastsRoute = PodcastsRouteImport.update({
   id: '/podcasts',
   path: '/podcasts',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PaisRoute = PaisRouteImport.update({
+  id: '/pais',
+  path: '/pais',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MovimentoRoute = MovimentoRouteImport.update({
@@ -68,9 +82,19 @@ const ManifestoRoute = ManifestoRouteImport.update({
   path: '/manifesto',
   getParentRoute: () => rootRouteImport,
 } as any)
+const IgrejasRoute = IgrejasRouteImport.update({
+  id: '/igrejas',
+  path: '/igrejas',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const GuiasRoute = GuiasRouteImport.update({
   id: '/guias',
   path: '/guias',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EscolasRoute = EscolasRouteImport.update({
+  id: '/escolas',
+  path: '/escolas',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BibliotecaRoute = BibliotecaRouteImport.update({
@@ -93,10 +117,14 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/artigos': typeof ArtigosRoute
   '/biblioteca': typeof BibliotecaRoute
+  '/escolas': typeof EscolasRoute
   '/guias': typeof GuiasRoute
+  '/igrejas': typeof IgrejasRoute
   '/manifesto': typeof ManifestoRoute
   '/movimento': typeof MovimentoRoute
+  '/pais': typeof PaisRoute
   '/podcasts': typeof PodcastsRoute
+  '/profissionais': typeof ProfissionaisRoute
   '/protecao-digital': typeof ProtecaoDigitalRoute
   '/protecao-emocional': typeof ProtecaoEmocionalRoute
   '/protecao-sexual': typeof ProtecaoSexualRoute
@@ -108,10 +136,14 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/artigos': typeof ArtigosRoute
   '/biblioteca': typeof BibliotecaRoute
+  '/escolas': typeof EscolasRoute
   '/guias': typeof GuiasRoute
+  '/igrejas': typeof IgrejasRoute
   '/manifesto': typeof ManifestoRoute
   '/movimento': typeof MovimentoRoute
+  '/pais': typeof PaisRoute
   '/podcasts': typeof PodcastsRoute
+  '/profissionais': typeof ProfissionaisRoute
   '/protecao-digital': typeof ProtecaoDigitalRoute
   '/protecao-emocional': typeof ProtecaoEmocionalRoute
   '/protecao-sexual': typeof ProtecaoSexualRoute
@@ -124,10 +156,14 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/artigos': typeof ArtigosRoute
   '/biblioteca': typeof BibliotecaRoute
+  '/escolas': typeof EscolasRoute
   '/guias': typeof GuiasRoute
+  '/igrejas': typeof IgrejasRoute
   '/manifesto': typeof ManifestoRoute
   '/movimento': typeof MovimentoRoute
+  '/pais': typeof PaisRoute
   '/podcasts': typeof PodcastsRoute
+  '/profissionais': typeof ProfissionaisRoute
   '/protecao-digital': typeof ProtecaoDigitalRoute
   '/protecao-emocional': typeof ProtecaoEmocionalRoute
   '/protecao-sexual': typeof ProtecaoSexualRoute
@@ -141,10 +177,14 @@ export interface FileRouteTypes {
     | '/'
     | '/artigos'
     | '/biblioteca'
+    | '/escolas'
     | '/guias'
+    | '/igrejas'
     | '/manifesto'
     | '/movimento'
+    | '/pais'
     | '/podcasts'
+    | '/profissionais'
     | '/protecao-digital'
     | '/protecao-emocional'
     | '/protecao-sexual'
@@ -156,10 +196,14 @@ export interface FileRouteTypes {
     | '/'
     | '/artigos'
     | '/biblioteca'
+    | '/escolas'
     | '/guias'
+    | '/igrejas'
     | '/manifesto'
     | '/movimento'
+    | '/pais'
     | '/podcasts'
+    | '/profissionais'
     | '/protecao-digital'
     | '/protecao-emocional'
     | '/protecao-sexual'
@@ -171,10 +215,14 @@ export interface FileRouteTypes {
     | '/'
     | '/artigos'
     | '/biblioteca'
+    | '/escolas'
     | '/guias'
+    | '/igrejas'
     | '/manifesto'
     | '/movimento'
+    | '/pais'
     | '/podcasts'
+    | '/profissionais'
     | '/protecao-digital'
     | '/protecao-emocional'
     | '/protecao-sexual'
@@ -187,10 +235,14 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ArtigosRoute: typeof ArtigosRoute
   BibliotecaRoute: typeof BibliotecaRoute
+  EscolasRoute: typeof EscolasRoute
   GuiasRoute: typeof GuiasRoute
+  IgrejasRoute: typeof IgrejasRoute
   ManifestoRoute: typeof ManifestoRoute
   MovimentoRoute: typeof MovimentoRoute
+  PaisRoute: typeof PaisRoute
   PodcastsRoute: typeof PodcastsRoute
+  ProfissionaisRoute: typeof ProfissionaisRoute
   ProtecaoDigitalRoute: typeof ProtecaoDigitalRoute
   ProtecaoEmocionalRoute: typeof ProtecaoEmocionalRoute
   ProtecaoSexualRoute: typeof ProtecaoSexualRoute
@@ -243,11 +295,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProtecaoDigitalRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/profissionais': {
+      id: '/profissionais'
+      path: '/profissionais'
+      fullPath: '/profissionais'
+      preLoaderRoute: typeof ProfissionaisRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/podcasts': {
       id: '/podcasts'
       path: '/podcasts'
       fullPath: '/podcasts'
       preLoaderRoute: typeof PodcastsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pais': {
+      id: '/pais'
+      path: '/pais'
+      fullPath: '/pais'
+      preLoaderRoute: typeof PaisRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/movimento': {
@@ -264,11 +330,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ManifestoRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/igrejas': {
+      id: '/igrejas'
+      path: '/igrejas'
+      fullPath: '/igrejas'
+      preLoaderRoute: typeof IgrejasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/guias': {
       id: '/guias'
       path: '/guias'
       fullPath: '/guias'
       preLoaderRoute: typeof GuiasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/escolas': {
+      id: '/escolas'
+      path: '/escolas'
+      fullPath: '/escolas'
+      preLoaderRoute: typeof EscolasRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/biblioteca': {
@@ -299,10 +379,14 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ArtigosRoute: ArtigosRoute,
   BibliotecaRoute: BibliotecaRoute,
+  EscolasRoute: EscolasRoute,
   GuiasRoute: GuiasRoute,
+  IgrejasRoute: IgrejasRoute,
   ManifestoRoute: ManifestoRoute,
   MovimentoRoute: MovimentoRoute,
+  PaisRoute: PaisRoute,
   PodcastsRoute: PodcastsRoute,
+  ProfissionaisRoute: ProfissionaisRoute,
   ProtecaoDigitalRoute: ProtecaoDigitalRoute,
   ProtecaoEmocionalRoute: ProtecaoEmocionalRoute,
   ProtecaoSexualRoute: ProtecaoSexualRoute,
