@@ -89,13 +89,16 @@ function Hero() {
 
       <div className={`relative z-10 ${SHELL} grid items-center gap-10 py-16 sm:py-24 lg:grid-cols-2 lg:py-28`}>
         <Reveal>
-          <p className="mb-3 inline-flex items-center gap-2 rounded-full border border-accent/20 bg-accent/10 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-accent">
+          <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-accent/20 bg-accent/10 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-accent">
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
             </span>
+            🌎 Voz Pela Infância
+          </span>
+          <p className="mb-5 max-w-md text-pretty font-display text-base font-bold leading-snug text-primary sm:text-lg">
             O maior portal brasileiro de conscientização, educação e tecnologias
-            para proteção infantil.
+            para a <span className="text-accent">proteção infantil</span>.
           </p>
           <h1 className="font-display text-4xl font-extrabold leading-[1.05] text-primary sm:text-5xl lg:text-6xl">
             Toda criança merece um adulto{" "}
