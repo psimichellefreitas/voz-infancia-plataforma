@@ -89,13 +89,16 @@ function Hero() {
 
       <div className={`relative z-10 ${SHELL} grid items-center gap-10 py-16 sm:py-24 lg:grid-cols-2 lg:py-28`}>
         <Reveal>
-          <p className="mb-3 inline-flex items-center gap-2 rounded-full border border-accent/20 bg-accent/10 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-accent">
+          <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-accent/20 bg-accent/10 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-accent">
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
             </span>
+            🌎 Voz Pela Infância
+          </span>
+          <p className="mb-5 max-w-md text-pretty font-display text-base font-bold leading-snug text-primary sm:text-lg">
             O maior portal brasileiro de conscientização, educação e tecnologias
-            para proteção infantil.
+            para a <span className="text-accent">proteção infantil</span>.
           </p>
           <h1 className="font-display text-4xl font-extrabold leading-[1.05] text-primary sm:text-5xl lg:text-6xl">
             Toda criança merece um adulto{" "}
@@ -479,6 +482,29 @@ function Newsletter() {
 }
 
 /* ----------------- O QUE É VOZ PELA INFÂNCIA -------------------- */
+const PILLARS = [
+  {
+    icon: Heart,
+    title: "Proteção Emocional",
+    text: "Fortalecer vínculos, escuta e o desenvolvimento saudável das emoções.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Proteção Sexual",
+    text: "Informação que previne abusos e ensina o respeito aos limites do corpo.",
+  },
+  {
+    icon: Lock,
+    title: "Proteção Digital",
+    text: "Orientação para uma navegação segura e consciente no mundo online.",
+  },
+  {
+    icon: HeartHandshake,
+    title: "Proteção Social",
+    text: "Mobilizar famílias, escolas e comunidades em uma rede de cuidado.",
+  },
+];
+
 const MANIFESTO = [
   "Acreditamos que proteger uma criança é proteger o futuro.",
   "Acreditamos que famílias fortalecidas transformam gerações.",
@@ -558,6 +584,25 @@ function AboutSection() {
               />
             </div>
           </Reveal>
+        </div>
+
+        {/* Protection pillars */}
+        <div className="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {PILLARS.map((pillar, i) => (
+            <Reveal key={pillar.title} delay={i * 100}>
+              <div className="group h-full rounded-3xl border border-border bg-card p-7 shadow-[var(--shadow-soft)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[var(--shadow-lift)]">
+                <span className="grid h-12 w-12 place-items-center rounded-2xl bg-accent/10 text-accent transition-colors group-hover:bg-accent group-hover:text-accent-foreground">
+                  <pillar.icon className="h-6 w-6" />
+                </span>
+                <h3 className="mt-5 font-display text-lg font-extrabold text-primary">
+                  {pillar.title}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-foreground/70">
+                  {pillar.text}
+                </p>
+              </div>
+            </Reveal>
+          ))}
         </div>
 
         {/* Highlight box */}
