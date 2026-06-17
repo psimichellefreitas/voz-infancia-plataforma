@@ -100,10 +100,14 @@ export function SiteHeader() {
             ))}
             <div className="mt-4 flex flex-col gap-3">
               <Button asChild variant="outline" size="lg">
-                <a href="#movimento" onClick={() => setOpen(false)}>Entrar</a>
+                <a href="#movimento" onClick={() => setOpen(false)}>
+                  Entrar
+                </a>
               </Button>
               <Button asChild variant="hero" size="lg">
-                <a href="#contribuir" onClick={() => setOpen(false)}>Quero Ajudar</a>
+                <a href="#contribuir" onClick={() => setOpen(false)}>
+                  Quero Ajudar
+                </a>
               </Button>
             </div>
           </nav>

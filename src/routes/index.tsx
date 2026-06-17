@@ -87,7 +87,9 @@ function Hero() {
         <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
       </div>
 
-      <div className={`relative z-10 ${SHELL} grid items-center gap-10 py-16 sm:py-24 lg:grid-cols-2 lg:py-28`}>
+      <div
+        className={`relative z-10 ${SHELL} grid items-center gap-10 py-16 sm:py-24 lg:grid-cols-2 lg:py-28`}
+      >
         <Reveal>
           <div className="mb-6 flex flex-col items-start gap-3 sm:mb-8">
             <span className="inline-flex items-center gap-2.5 rounded-full border border-accent/25 bg-accent/[0.08] px-5 py-2 text-[13px] font-bold uppercase tracking-[0.12em] text-accent shadow-sm backdrop-blur-sm">
@@ -98,18 +100,15 @@ function Hero() {
               🌎 Voz Pela Infância
             </span>
             <p className="max-w-lg text-pretty font-display text-sm font-semibold leading-relaxed text-muted-foreground sm:text-base lg:text-lg">
-              O maior portal brasileiro de conscientização, educação e tecnologias
-              para a{" "}
+              O maior portal brasileiro de conscientização, educação e tecnologias para a{" "}
               <span className="font-bold text-accent">proteção infantil</span>.
             </p>
           </div>
           <h1 className="font-display text-[2rem] font-extrabold leading-[1.08] text-primary sm:text-5xl lg:text-[3.5rem]">
-            Toda criança merece um adulto{" "}
-            <span className="text-accent">que não se cale.</span>
+            Toda criança merece um adulto <span className="text-accent">que não se cale.</span>
           </h1>
           <p className="mt-5 max-w-md text-base leading-relaxed text-foreground/70 sm:mt-6 sm:text-lg">
-            Informação, educação e ferramentas para proteger crianças e transformar
-            realidades.
+            Informação, educação e ferramentas para proteger crianças e transformar realidades.
           </p>
           <div className="mt-9 flex flex-col gap-4 sm:flex-row">
             <Button asChild variant="hero" size="lg">
@@ -151,8 +150,8 @@ function Hero() {
                 <HeartHandshake className="h-6 w-6" />
               </span>
               <p className="text-sm leading-snug text-muted-foreground">
-                A missão da proteção é impedir que a dor roube aquilo que Deus planejou
-                para a infância.
+                A missão da proteção é impedir que a dor roube aquilo que Deus planejou para a
+                infância.
               </p>
             </div>
           </div>
@@ -200,11 +199,36 @@ function PersonaBar() {
 
 /* --------------------- APPS + MOVEMENT CARD --------------------- */
 const APPS = [
-  { title: "Erga Sua Voz Pela Infância", summary: "Jornada gratuita de conscientização e compromisso.", icon: Megaphone, color: "bg-accent/15 text-accent" },
-  { title: "Meu Filho Protegido", summary: "Guia completo para pais protegerem seus filhos.", icon: ShieldCheck, color: "bg-violet-500/15 text-violet-600" },
-  { title: "Proteção Digital", summary: "Ensine seus filhos a se protegerem no mundo digital.", icon: Lock, color: "bg-emerald-500/15 text-emerald-600" },
-  { title: "Escola Segura", summary: "Recursos para construir ambientes escolares seguros.", icon: Building2, color: "bg-sky-500/15 text-sky-600" },
-  { title: "Proteção Emocional", summary: "Recursos para fortalecer a saúde emocional das crianças.", icon: Heart, color: "bg-rose-500/15 text-rose-600" },
+  {
+    title: "Erga Sua Voz Pela Infância",
+    summary: "Jornada gratuita de conscientização e compromisso.",
+    icon: Megaphone,
+    color: "bg-accent/15 text-accent",
+  },
+  {
+    title: "Meu Filho Protegido",
+    summary: "Guia completo para pais protegerem seus filhos.",
+    icon: ShieldCheck,
+    color: "bg-violet-500/15 text-violet-600",
+  },
+  {
+    title: "Proteção Digital",
+    summary: "Ensine seus filhos a se protegerem no mundo digital.",
+    icon: Lock,
+    color: "bg-emerald-500/15 text-emerald-600",
+  },
+  {
+    title: "Escola Segura",
+    summary: "Recursos para construir ambientes escolares seguros.",
+    icon: Building2,
+    color: "bg-sky-500/15 text-sky-600",
+  },
+  {
+    title: "Proteção Emocional",
+    summary: "Recursos para fortalecer a saúde emocional das crianças.",
+    icon: Heart,
+    color: "bg-rose-500/15 text-rose-600",
+  },
 ];
 
 const STATS = [
@@ -254,7 +278,10 @@ function Apps() {
           </div>
 
           <Reveal delay={120}>
-            <div id="movimento" className="flex h-full flex-col rounded-3xl bg-primary p-7 text-primary-foreground shadow-[var(--shadow-lift)]">
+            <div
+              id="movimento"
+              className="flex h-full flex-col rounded-3xl bg-primary p-7 text-primary-foreground shadow-[var(--shadow-lift)]"
+            >
               <h3 className="font-display text-sm font-bold uppercase tracking-wider text-accent">
                 Junte-se ao Movimento
               </h3>
@@ -287,11 +314,36 @@ function Apps() {
 
 /* ---------------------- HIGHLIGHT SECTIONS ---------------------- */
 const HIGHLIGHTS = [
-  { id: "biblioteca", icon: BookOpen, title: "Biblioteca Digital", text: "E-books, guias, cartilhas e materiais gratuitos para você baixar." },
-  { id: "trilhas", icon: GraduationCap, title: "Cursos e Formações", text: "Cursos online para pais, profissionais, escolas e igrejas." },
-  { id: "sinais", icon: AlertTriangle, title: "Sinais de Alerta", text: "Aprenda a identificar sinais de abuso e violência infantil." },
-  { id: "ferramentas", icon: Wrench, title: "Ferramentas Práticas", text: "Checklists, planos, quizzes e recursos para o dia a dia." },
-  { id: "blog", icon: Newspaper, title: "Blog e Artigos", text: "Conteúdos atualizados sobre proteção, educação e infância." },
+  {
+    id: "biblioteca",
+    icon: BookOpen,
+    title: "Biblioteca Digital",
+    text: "E-books, guias, cartilhas e materiais gratuitos para você baixar.",
+  },
+  {
+    id: "trilhas",
+    icon: GraduationCap,
+    title: "Cursos e Formações",
+    text: "Cursos online para pais, profissionais, escolas e igrejas.",
+  },
+  {
+    id: "sinais",
+    icon: AlertTriangle,
+    title: "Sinais de Alerta",
+    text: "Aprenda a identificar sinais de abuso e violência infantil.",
+  },
+  {
+    id: "ferramentas",
+    icon: Wrench,
+    title: "Ferramentas Práticas",
+    text: "Checklists, planos, quizzes e recursos para o dia a dia.",
+  },
+  {
+    id: "blog",
+    icon: Newspaper,
+    title: "Blog e Artigos",
+    text: "Conteúdos atualizados sobre proteção, educação e infância.",
+  },
 ];
 
 function Highlights() {
@@ -327,11 +379,36 @@ function Highlights() {
 
 /* --------------------- SPECIFIC CONTENT ------------------------ */
 const AREAS = [
-  { icon: Users, color: "text-accent", title: "Área dos Pais", text: "Dicas, conteúdos e ferramentas para proteger seus filhos." },
-  { icon: Stethoscope, color: "text-violet-600", title: "Área dos Profissionais", text: "Materiais, protocolos e formações para quem atua na proteção." },
-  { icon: Building2, color: "text-sky-600", title: "Área das Escolas", text: "Projetos, palestras e materiais para construir escolas seguras." },
-  { icon: Church, color: "text-emerald-600", title: "Área das Igrejas", text: "Orientações e recursos para ministérios infantis seguros." },
-  { icon: HeartHandshake, color: "text-rose-600", title: "Comunidade", text: "Faça parte da rede de pessoas que erguem a voz." },
+  {
+    icon: Users,
+    color: "text-accent",
+    title: "Área dos Pais",
+    text: "Dicas, conteúdos e ferramentas para proteger seus filhos.",
+  },
+  {
+    icon: Stethoscope,
+    color: "text-violet-600",
+    title: "Área dos Profissionais",
+    text: "Materiais, protocolos e formações para quem atua na proteção.",
+  },
+  {
+    icon: Building2,
+    color: "text-sky-600",
+    title: "Área das Escolas",
+    text: "Projetos, palestras e materiais para construir escolas seguras.",
+  },
+  {
+    icon: Church,
+    color: "text-emerald-600",
+    title: "Área das Igrejas",
+    text: "Orientações e recursos para ministérios infantis seguros.",
+  },
+  {
+    icon: HeartHandshake,
+    color: "text-rose-600",
+    title: "Comunidade",
+    text: "Faça parte da rede de pessoas que erguem a voz.",
+  },
 ];
 
 function Areas() {
@@ -349,7 +426,9 @@ function Areas() {
               <div className="group flex h-full flex-col rounded-2xl border border-border bg-card p-6 shadow-[var(--shadow-soft)] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[var(--shadow-lift)]">
                 <a.icon className={`h-8 w-8 ${a.color}`} />
                 <h3 className="mt-4 font-display text-base font-bold text-primary">{a.title}</h3>
-                <p className="mt-2 flex-1 text-xs leading-relaxed text-muted-foreground">{a.text}</p>
+                <p className="mt-2 flex-1 text-xs leading-relaxed text-muted-foreground">
+                  {a.text}
+                </p>
                 <span className="mt-4 inline-flex items-center gap-1 text-xs font-semibold text-accent">
                   Acessar <ArrowRight className="h-3.5 w-3.5" />
                 </span>
@@ -385,8 +464,7 @@ function ProtectionMap() {
             Cada pessoa tem um papel importante na proteção da infância.
           </p>
           <p className="mt-3 max-w-sm text-sm leading-relaxed text-primary-foreground/75">
-            Responda algumas perguntas e receba sua trilha personalizada de conteúdos
-            e ferramentas.
+            Responda algumas perguntas e receba sua trilha personalizada de conteúdos e ferramentas.
           </p>
           <Button variant="hero" size="lg" className="mt-7">
             Começar agora
@@ -541,9 +619,8 @@ function AboutSection() {
             O que é Voz Pela Infância?
           </h2>
           <p className="mt-5 text-lg leading-relaxed text-foreground/75">
-            Voz Pela Infância é um movimento de conscientização, educação e mobilização
-            social que acredita que toda criança merece crescer protegida, amada e
-            respeitada.
+            Voz Pela Infância é um movimento de conscientização, educação e mobilização social que
+            acredita que toda criança merece crescer protegida, amada e respeitada.
           </p>
         </Reveal>
 
@@ -552,25 +629,24 @@ function AboutSection() {
           <Reveal>
             <div className="space-y-5 text-base leading-relaxed text-foreground/75">
               <p>
-                Todos os dias, milhares de crianças dependem do olhar atento de um adulto
-                para serem protegidas.
+                Todos os dias, milhares de crianças dependem do olhar atento de um adulto para serem
+                protegidas.
               </p>
               <p>
-                Muitas vezes, os sinais são silenciosos. As dores não são ditas. Os pedidos
-                de ajuda acontecem através de comportamentos, emoções e mudanças que passam
-                despercebidas.
+                Muitas vezes, os sinais são silenciosos. As dores não são ditas. Os pedidos de ajuda
+                acontecem através de comportamentos, emoções e mudanças que passam despercebidas.
               </p>
               <p className="font-semibold text-primary">
                 O Voz Pela Infância nasceu para transformar informação em proteção.
               </p>
               <p>
                 Nossa missão é despertar famílias, profissionais, escolas, igrejas e toda a
-                sociedade para que estejam preparados para reconhecer sinais, fortalecer
-                vínculos e agir de forma consciente na proteção da infância.
+                sociedade para que estejam preparados para reconhecer sinais, fortalecer vínculos e
+                agir de forma consciente na proteção da infância.
               </p>
               <p>
-                Porque proteger uma criança não é responsabilidade de um único profissional.
-                É uma missão compartilhada por todos nós.
+                Porque proteger uma criança não é responsabilidade de um único profissional. É uma
+                missão compartilhada por todos nós.
               </p>
             </div>
           </Reveal>
@@ -600,9 +676,7 @@ function AboutSection() {
                 <h3 className="mt-5 font-display text-lg font-extrabold text-primary">
                   {pillar.title}
                 </h3>
-                <p className="mt-2 text-sm leading-relaxed text-foreground/70">
-                  {pillar.text}
-                </p>
+                <p className="mt-2 text-sm leading-relaxed text-foreground/70">{pillar.text}</p>
               </div>
             </Reveal>
           ))}
@@ -663,15 +737,18 @@ function AboutSection() {
               </p>
               <ul className="mt-5 space-y-3">
                 {MANIFESTO.map((line) => (
-                  <li key={line} className="flex items-start gap-3 text-sm leading-relaxed text-primary-foreground/80">
+                  <li
+                    key={line}
+                    className="flex items-start gap-3 text-sm leading-relaxed text-primary-foreground/80"
+                  >
                     <Sparkles className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
                     <span>{line}</span>
                   </li>
                 ))}
               </ul>
               <p className="mt-6 font-display text-lg font-bold leading-snug">
-                Por isso, escolhemos erguer nossa voz. Porque uma infância protegida
-                floresce para toda a vida.
+                Por isso, escolhemos erguer nossa voz. Porque uma infância protegida floresce para
+                toda a vida.
               </p>
 
               <Dialog>
@@ -691,7 +768,10 @@ function AboutSection() {
                   </DialogHeader>
                   <ul className="mt-2 space-y-4">
                     {COMMITMENT.map((line) => (
-                      <li key={line} className="flex items-start gap-3 text-sm leading-relaxed text-foreground/80">
+                      <li
+                        key={line}
+                        className="flex items-start gap-3 text-sm leading-relaxed text-foreground/80"
+                      >
                         <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-accent" />
                         <span>{line}</span>
                       </li>
@@ -704,9 +784,7 @@ function AboutSection() {
                     variant="hero"
                     size="lg"
                     className="mt-4 w-full"
-                    onClick={() =>
-                      toast.success("Obrigado por erguer sua voz pela infância! 🧡")
-                    }
+                    onClick={() => toast.success("Obrigado por erguer sua voz pela infância! 🧡")}
                   >
                     Assumo este compromisso
                   </Button>
