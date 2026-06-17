@@ -482,6 +482,29 @@ function Newsletter() {
 }
 
 /* ----------------- O QUE É VOZ PELA INFÂNCIA -------------------- */
+const PILLARS = [
+  {
+    icon: Heart,
+    title: "Proteção Emocional",
+    text: "Fortalecer vínculos, escuta e o desenvolvimento saudável das emoções.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Proteção Sexual",
+    text: "Informação que previne abusos e ensina o respeito aos limites do corpo.",
+  },
+  {
+    icon: Lock,
+    title: "Proteção Digital",
+    text: "Orientação para uma navegação segura e consciente no mundo online.",
+  },
+  {
+    icon: HeartHandshake,
+    title: "Proteção Social",
+    text: "Mobilizar famílias, escolas e comunidades em uma rede de cuidado.",
+  },
+];
+
 const MANIFESTO = [
   "Acreditamos que proteger uma criança é proteger o futuro.",
   "Acreditamos que famílias fortalecidas transformam gerações.",
