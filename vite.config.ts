@@ -12,4 +12,12 @@ export default defineConfig({
     // nitro/vite builds from this
     server: { entry: "server" },
   },
+  // Nitro deploy target.
+  // - Inside Lovable (sandbox/native Publish) this is IGNORED and forced to the
+  //   Cloudflare preset -> output in `dist/`. The Lovable "Publish" button keeps working.
+  // - Outside Lovable (e.g. building on Vercel CI from GitHub) this is honored and
+  //   Nitro emits the Vercel Build Output API in `.vercel/output`, which Vercel
+  //   auto-detects. Without this, an external build skips Nitro entirely and produces
+  //   no `.output`, which is the "Nenhum diretório de saída '.output'" error on Vercel.
+  nitro: { preset: "vercel" },
 });
