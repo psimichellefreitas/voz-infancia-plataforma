@@ -11,18 +11,23 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as VideosRouteImport } from './routes/videos'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as QuemSomosRouteImport } from './routes/quem-somos'
 import { Route as ProtecaoSocialRouteImport } from './routes/protecao-social'
 import { Route as ProtecaoSexualRouteImport } from './routes/protecao-sexual'
 import { Route as ProtecaoEmocionalRouteImport } from './routes/protecao-emocional'
 import { Route as ProtecaoDigitalRouteImport } from './routes/protecao-digital'
 import { Route as ProfissionaisRouteImport } from './routes/profissionais'
+import { Route as ProdutosRouteImport } from './routes/produtos'
 import { Route as PodcastsRouteImport } from './routes/podcasts'
 import { Route as PaisRouteImport } from './routes/pais'
 import { Route as MovimentoRouteImport } from './routes/movimento'
 import { Route as ManifestoRouteImport } from './routes/manifesto'
 import { Route as IgrejasRouteImport } from './routes/igrejas'
 import { Route as GuiasRouteImport } from './routes/guias'
+import { Route as FerramentasRouteImport } from './routes/ferramentas'
+import { Route as EventosRouteImport } from './routes/eventos'
 import { Route as EscolasRouteImport } from './routes/escolas'
+import { Route as ContatoRouteImport } from './routes/contato'
 import { Route as BibliotecaRouteImport } from './routes/biblioteca'
 import { Route as ArtigosRouteImport } from './routes/artigos'
 import { Route as IndexRouteImport } from './routes/index'
@@ -35,6 +40,11 @@ const VideosRoute = VideosRouteImport.update({
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const QuemSomosRoute = QuemSomosRouteImport.update({
+  id: '/quem-somos',
+  path: '/quem-somos',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProtecaoSocialRoute = ProtecaoSocialRouteImport.update({
@@ -60,6 +70,11 @@ const ProtecaoDigitalRoute = ProtecaoDigitalRouteImport.update({
 const ProfissionaisRoute = ProfissionaisRouteImport.update({
   id: '/profissionais',
   path: '/profissionais',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProdutosRoute = ProdutosRouteImport.update({
+  id: '/produtos',
+  path: '/produtos',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PodcastsRoute = PodcastsRouteImport.update({
@@ -92,9 +107,24 @@ const GuiasRoute = GuiasRouteImport.update({
   path: '/guias',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FerramentasRoute = FerramentasRouteImport.update({
+  id: '/ferramentas',
+  path: '/ferramentas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EventosRoute = EventosRouteImport.update({
+  id: '/eventos',
+  path: '/eventos',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const EscolasRoute = EscolasRouteImport.update({
   id: '/escolas',
   path: '/escolas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContatoRoute = ContatoRouteImport.update({
+  id: '/contato',
+  path: '/contato',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BibliotecaRoute = BibliotecaRouteImport.update({
@@ -117,18 +147,23 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/artigos': typeof ArtigosRoute
   '/biblioteca': typeof BibliotecaRoute
+  '/contato': typeof ContatoRoute
   '/escolas': typeof EscolasRoute
+  '/eventos': typeof EventosRoute
+  '/ferramentas': typeof FerramentasRoute
   '/guias': typeof GuiasRoute
   '/igrejas': typeof IgrejasRoute
   '/manifesto': typeof ManifestoRoute
   '/movimento': typeof MovimentoRoute
   '/pais': typeof PaisRoute
   '/podcasts': typeof PodcastsRoute
+  '/produtos': typeof ProdutosRoute
   '/profissionais': typeof ProfissionaisRoute
   '/protecao-digital': typeof ProtecaoDigitalRoute
   '/protecao-emocional': typeof ProtecaoEmocionalRoute
   '/protecao-sexual': typeof ProtecaoSexualRoute
   '/protecao-social': typeof ProtecaoSocialRoute
+  '/quem-somos': typeof QuemSomosRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/videos': typeof VideosRoute
 }
@@ -136,18 +171,23 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/artigos': typeof ArtigosRoute
   '/biblioteca': typeof BibliotecaRoute
+  '/contato': typeof ContatoRoute
   '/escolas': typeof EscolasRoute
+  '/eventos': typeof EventosRoute
+  '/ferramentas': typeof FerramentasRoute
   '/guias': typeof GuiasRoute
   '/igrejas': typeof IgrejasRoute
   '/manifesto': typeof ManifestoRoute
   '/movimento': typeof MovimentoRoute
   '/pais': typeof PaisRoute
   '/podcasts': typeof PodcastsRoute
+  '/produtos': typeof ProdutosRoute
   '/profissionais': typeof ProfissionaisRoute
   '/protecao-digital': typeof ProtecaoDigitalRoute
   '/protecao-emocional': typeof ProtecaoEmocionalRoute
   '/protecao-sexual': typeof ProtecaoSexualRoute
   '/protecao-social': typeof ProtecaoSocialRoute
+  '/quem-somos': typeof QuemSomosRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/videos': typeof VideosRoute
 }
@@ -156,18 +196,23 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/artigos': typeof ArtigosRoute
   '/biblioteca': typeof BibliotecaRoute
+  '/contato': typeof ContatoRoute
   '/escolas': typeof EscolasRoute
+  '/eventos': typeof EventosRoute
+  '/ferramentas': typeof FerramentasRoute
   '/guias': typeof GuiasRoute
   '/igrejas': typeof IgrejasRoute
   '/manifesto': typeof ManifestoRoute
   '/movimento': typeof MovimentoRoute
   '/pais': typeof PaisRoute
   '/podcasts': typeof PodcastsRoute
+  '/produtos': typeof ProdutosRoute
   '/profissionais': typeof ProfissionaisRoute
   '/protecao-digital': typeof ProtecaoDigitalRoute
   '/protecao-emocional': typeof ProtecaoEmocionalRoute
   '/protecao-sexual': typeof ProtecaoSexualRoute
   '/protecao-social': typeof ProtecaoSocialRoute
+  '/quem-somos': typeof QuemSomosRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/videos': typeof VideosRoute
 }
@@ -177,18 +222,23 @@ export interface FileRouteTypes {
     | '/'
     | '/artigos'
     | '/biblioteca'
+    | '/contato'
     | '/escolas'
+    | '/eventos'
+    | '/ferramentas'
     | '/guias'
     | '/igrejas'
     | '/manifesto'
     | '/movimento'
     | '/pais'
     | '/podcasts'
+    | '/produtos'
     | '/profissionais'
     | '/protecao-digital'
     | '/protecao-emocional'
     | '/protecao-sexual'
     | '/protecao-social'
+    | '/quem-somos'
     | '/sitemap.xml'
     | '/videos'
   fileRoutesByTo: FileRoutesByTo
@@ -196,18 +246,23 @@ export interface FileRouteTypes {
     | '/'
     | '/artigos'
     | '/biblioteca'
+    | '/contato'
     | '/escolas'
+    | '/eventos'
+    | '/ferramentas'
     | '/guias'
     | '/igrejas'
     | '/manifesto'
     | '/movimento'
     | '/pais'
     | '/podcasts'
+    | '/produtos'
     | '/profissionais'
     | '/protecao-digital'
     | '/protecao-emocional'
     | '/protecao-sexual'
     | '/protecao-social'
+    | '/quem-somos'
     | '/sitemap.xml'
     | '/videos'
   id:
@@ -215,18 +270,23 @@ export interface FileRouteTypes {
     | '/'
     | '/artigos'
     | '/biblioteca'
+    | '/contato'
     | '/escolas'
+    | '/eventos'
+    | '/ferramentas'
     | '/guias'
     | '/igrejas'
     | '/manifesto'
     | '/movimento'
     | '/pais'
     | '/podcasts'
+    | '/produtos'
     | '/profissionais'
     | '/protecao-digital'
     | '/protecao-emocional'
     | '/protecao-sexual'
     | '/protecao-social'
+    | '/quem-somos'
     | '/sitemap.xml'
     | '/videos'
   fileRoutesById: FileRoutesById
@@ -235,18 +295,23 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ArtigosRoute: typeof ArtigosRoute
   BibliotecaRoute: typeof BibliotecaRoute
+  ContatoRoute: typeof ContatoRoute
   EscolasRoute: typeof EscolasRoute
+  EventosRoute: typeof EventosRoute
+  FerramentasRoute: typeof FerramentasRoute
   GuiasRoute: typeof GuiasRoute
   IgrejasRoute: typeof IgrejasRoute
   ManifestoRoute: typeof ManifestoRoute
   MovimentoRoute: typeof MovimentoRoute
   PaisRoute: typeof PaisRoute
   PodcastsRoute: typeof PodcastsRoute
+  ProdutosRoute: typeof ProdutosRoute
   ProfissionaisRoute: typeof ProfissionaisRoute
   ProtecaoDigitalRoute: typeof ProtecaoDigitalRoute
   ProtecaoEmocionalRoute: typeof ProtecaoEmocionalRoute
   ProtecaoSexualRoute: typeof ProtecaoSexualRoute
   ProtecaoSocialRoute: typeof ProtecaoSocialRoute
+  QuemSomosRoute: typeof QuemSomosRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   VideosRoute: typeof VideosRoute
 }
@@ -265,6 +330,13 @@ declare module '@tanstack/react-router' {
       path: '/sitemap.xml'
       fullPath: '/sitemap.xml'
       preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/quem-somos': {
+      id: '/quem-somos'
+      path: '/quem-somos'
+      fullPath: '/quem-somos'
+      preLoaderRoute: typeof QuemSomosRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/protecao-social': {
@@ -300,6 +372,13 @@ declare module '@tanstack/react-router' {
       path: '/profissionais'
       fullPath: '/profissionais'
       preLoaderRoute: typeof ProfissionaisRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/produtos': {
+      id: '/produtos'
+      path: '/produtos'
+      fullPath: '/produtos'
+      preLoaderRoute: typeof ProdutosRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/podcasts': {
@@ -344,11 +423,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GuiasRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/ferramentas': {
+      id: '/ferramentas'
+      path: '/ferramentas'
+      fullPath: '/ferramentas'
+      preLoaderRoute: typeof FerramentasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/eventos': {
+      id: '/eventos'
+      path: '/eventos'
+      fullPath: '/eventos'
+      preLoaderRoute: typeof EventosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/escolas': {
       id: '/escolas'
       path: '/escolas'
       fullPath: '/escolas'
       preLoaderRoute: typeof EscolasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contato': {
+      id: '/contato'
+      path: '/contato'
+      fullPath: '/contato'
+      preLoaderRoute: typeof ContatoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/biblioteca': {
@@ -379,18 +479,23 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ArtigosRoute: ArtigosRoute,
   BibliotecaRoute: BibliotecaRoute,
+  ContatoRoute: ContatoRoute,
   EscolasRoute: EscolasRoute,
+  EventosRoute: EventosRoute,
+  FerramentasRoute: FerramentasRoute,
   GuiasRoute: GuiasRoute,
   IgrejasRoute: IgrejasRoute,
   ManifestoRoute: ManifestoRoute,
   MovimentoRoute: MovimentoRoute,
   PaisRoute: PaisRoute,
   PodcastsRoute: PodcastsRoute,
+  ProdutosRoute: ProdutosRoute,
   ProfissionaisRoute: ProfissionaisRoute,
   ProtecaoDigitalRoute: ProtecaoDigitalRoute,
   ProtecaoEmocionalRoute: ProtecaoEmocionalRoute,
   ProtecaoSexualRoute: ProtecaoSexualRoute,
   ProtecaoSocialRoute: ProtecaoSocialRoute,
+  QuemSomosRoute: QuemSomosRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   VideosRoute: VideosRoute,
 }
