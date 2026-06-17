@@ -11,6 +11,10 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as VideosRouteImport } from './routes/videos'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as ProtecaoSocialRouteImport } from './routes/protecao-social'
+import { Route as ProtecaoSexualRouteImport } from './routes/protecao-sexual'
+import { Route as ProtecaoEmocionalRouteImport } from './routes/protecao-emocional'
+import { Route as ProtecaoDigitalRouteImport } from './routes/protecao-digital'
 import { Route as PodcastsRouteImport } from './routes/podcasts'
 import { Route as MovimentoRouteImport } from './routes/movimento'
 import { Route as ManifestoRouteImport } from './routes/manifesto'
@@ -27,6 +31,26 @@ const VideosRoute = VideosRouteImport.update({
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProtecaoSocialRoute = ProtecaoSocialRouteImport.update({
+  id: '/protecao-social',
+  path: '/protecao-social',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProtecaoSexualRoute = ProtecaoSexualRouteImport.update({
+  id: '/protecao-sexual',
+  path: '/protecao-sexual',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProtecaoEmocionalRoute = ProtecaoEmocionalRouteImport.update({
+  id: '/protecao-emocional',
+  path: '/protecao-emocional',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProtecaoDigitalRoute = ProtecaoDigitalRouteImport.update({
+  id: '/protecao-digital',
+  path: '/protecao-digital',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PodcastsRoute = PodcastsRouteImport.update({
@@ -73,6 +97,10 @@ export interface FileRoutesByFullPath {
   '/manifesto': typeof ManifestoRoute
   '/movimento': typeof MovimentoRoute
   '/podcasts': typeof PodcastsRoute
+  '/protecao-digital': typeof ProtecaoDigitalRoute
+  '/protecao-emocional': typeof ProtecaoEmocionalRoute
+  '/protecao-sexual': typeof ProtecaoSexualRoute
+  '/protecao-social': typeof ProtecaoSocialRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/videos': typeof VideosRoute
 }
@@ -84,6 +112,10 @@ export interface FileRoutesByTo {
   '/manifesto': typeof ManifestoRoute
   '/movimento': typeof MovimentoRoute
   '/podcasts': typeof PodcastsRoute
+  '/protecao-digital': typeof ProtecaoDigitalRoute
+  '/protecao-emocional': typeof ProtecaoEmocionalRoute
+  '/protecao-sexual': typeof ProtecaoSexualRoute
+  '/protecao-social': typeof ProtecaoSocialRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/videos': typeof VideosRoute
 }
@@ -96,6 +128,10 @@ export interface FileRoutesById {
   '/manifesto': typeof ManifestoRoute
   '/movimento': typeof MovimentoRoute
   '/podcasts': typeof PodcastsRoute
+  '/protecao-digital': typeof ProtecaoDigitalRoute
+  '/protecao-emocional': typeof ProtecaoEmocionalRoute
+  '/protecao-sexual': typeof ProtecaoSexualRoute
+  '/protecao-social': typeof ProtecaoSocialRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/videos': typeof VideosRoute
 }
@@ -109,6 +145,10 @@ export interface FileRouteTypes {
     | '/manifesto'
     | '/movimento'
     | '/podcasts'
+    | '/protecao-digital'
+    | '/protecao-emocional'
+    | '/protecao-sexual'
+    | '/protecao-social'
     | '/sitemap.xml'
     | '/videos'
   fileRoutesByTo: FileRoutesByTo
@@ -120,6 +160,10 @@ export interface FileRouteTypes {
     | '/manifesto'
     | '/movimento'
     | '/podcasts'
+    | '/protecao-digital'
+    | '/protecao-emocional'
+    | '/protecao-sexual'
+    | '/protecao-social'
     | '/sitemap.xml'
     | '/videos'
   id:
@@ -131,6 +175,10 @@ export interface FileRouteTypes {
     | '/manifesto'
     | '/movimento'
     | '/podcasts'
+    | '/protecao-digital'
+    | '/protecao-emocional'
+    | '/protecao-sexual'
+    | '/protecao-social'
     | '/sitemap.xml'
     | '/videos'
   fileRoutesById: FileRoutesById
@@ -143,6 +191,10 @@ export interface RootRouteChildren {
   ManifestoRoute: typeof ManifestoRoute
   MovimentoRoute: typeof MovimentoRoute
   PodcastsRoute: typeof PodcastsRoute
+  ProtecaoDigitalRoute: typeof ProtecaoDigitalRoute
+  ProtecaoEmocionalRoute: typeof ProtecaoEmocionalRoute
+  ProtecaoSexualRoute: typeof ProtecaoSexualRoute
+  ProtecaoSocialRoute: typeof ProtecaoSocialRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   VideosRoute: typeof VideosRoute
 }
@@ -161,6 +213,34 @@ declare module '@tanstack/react-router' {
       path: '/sitemap.xml'
       fullPath: '/sitemap.xml'
       preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/protecao-social': {
+      id: '/protecao-social'
+      path: '/protecao-social'
+      fullPath: '/protecao-social'
+      preLoaderRoute: typeof ProtecaoSocialRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/protecao-sexual': {
+      id: '/protecao-sexual'
+      path: '/protecao-sexual'
+      fullPath: '/protecao-sexual'
+      preLoaderRoute: typeof ProtecaoSexualRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/protecao-emocional': {
+      id: '/protecao-emocional'
+      path: '/protecao-emocional'
+      fullPath: '/protecao-emocional'
+      preLoaderRoute: typeof ProtecaoEmocionalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/protecao-digital': {
+      id: '/protecao-digital'
+      path: '/protecao-digital'
+      fullPath: '/protecao-digital'
+      preLoaderRoute: typeof ProtecaoDigitalRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/podcasts': {
@@ -223,6 +303,10 @@ const rootRouteChildren: RootRouteChildren = {
   ManifestoRoute: ManifestoRoute,
   MovimentoRoute: MovimentoRoute,
   PodcastsRoute: PodcastsRoute,
+  ProtecaoDigitalRoute: ProtecaoDigitalRoute,
+  ProtecaoEmocionalRoute: ProtecaoEmocionalRoute,
+  ProtecaoSexualRoute: ProtecaoSexualRoute,
+  ProtecaoSocialRoute: ProtecaoSocialRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   VideosRoute: VideosRoute,
 }
