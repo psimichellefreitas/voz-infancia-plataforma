@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
 
-const BASE_URL = "";
+const BASE_URL = "https://voz-infancia-plataforma.lovable.app";
 
 interface SitemapEntry {
   path: string;
@@ -13,7 +13,29 @@ export const Route = createFileRoute("/sitemap.xml")({
   server: {
     handlers: {
       GET: async () => {
-        const entries: SitemapEntry[] = [{ path: "/", changefreq: "weekly", priority: "1.0" }];
+        const entries: SitemapEntry[] = [
+          { path: "/", changefreq: "weekly", priority: "1.0" },
+          { path: "/movimento", changefreq: "weekly", priority: "0.9" },
+          { path: "/biblioteca", changefreq: "weekly", priority: "0.9" },
+          { path: "/artigos", changefreq: "weekly", priority: "0.8" },
+          { path: "/guias", changefreq: "weekly", priority: "0.8" },
+          { path: "/videos", changefreq: "weekly", priority: "0.8" },
+          { path: "/podcasts", changefreq: "weekly", priority: "0.8" },
+          { path: "/protecao-emocional", changefreq: "monthly", priority: "0.8" },
+          { path: "/protecao-sexual", changefreq: "monthly", priority: "0.8" },
+          { path: "/protecao-digital", changefreq: "monthly", priority: "0.8" },
+          { path: "/protecao-social", changefreq: "monthly", priority: "0.8" },
+          { path: "/pais", changefreq: "monthly", priority: "0.8" },
+          { path: "/profissionais", changefreq: "monthly", priority: "0.8" },
+          { path: "/escolas", changefreq: "monthly", priority: "0.8" },
+          { path: "/igrejas", changefreq: "monthly", priority: "0.8" },
+          { path: "/ferramentas", changefreq: "weekly", priority: "0.8" },
+          { path: "/produtos", changefreq: "weekly", priority: "0.8" },
+          { path: "/eventos", changefreq: "weekly", priority: "0.8" },
+          { path: "/manifesto", changefreq: "monthly", priority: "0.7" },
+          { path: "/quem-somos", changefreq: "monthly", priority: "0.7" },
+          { path: "/contato", changefreq: "monthly", priority: "0.6" },
+        ];
 
         const urls = entries.map((e) =>
           [
