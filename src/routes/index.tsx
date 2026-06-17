@@ -89,22 +89,25 @@ function Hero() {
 
       <div className={`relative z-10 ${SHELL} grid items-center gap-10 py-16 sm:py-24 lg:grid-cols-2 lg:py-28`}>
         <Reveal>
-          <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-accent/20 bg-accent/10 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-accent">
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
+          <div className="mb-6 flex flex-col items-start gap-3 sm:mb-8">
+            <span className="inline-flex items-center gap-2.5 rounded-full border border-accent/25 bg-accent/[0.08] px-5 py-2 text-[13px] font-bold uppercase tracking-[0.12em] text-accent shadow-sm backdrop-blur-sm">
+              <span className="relative flex h-2.5 w-2.5">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75" />
+                <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-accent" />
+              </span>
+              🌎 Voz Pela Infância
             </span>
-            🌎 Voz Pela Infância
-          </span>
-          <p className="mb-5 max-w-md text-pretty font-display text-base font-bold leading-snug text-primary sm:text-lg">
-            O maior portal brasileiro de conscientização, educação e tecnologias
-            para a <span className="text-accent">proteção infantil</span>.
-          </p>
-          <h1 className="font-display text-4xl font-extrabold leading-[1.05] text-primary sm:text-5xl lg:text-6xl">
+            <p className="max-w-lg text-pretty font-display text-sm font-semibold leading-relaxed text-muted-foreground sm:text-base lg:text-lg">
+              O maior portal brasileiro de conscientização, educação e tecnologias
+              para a{" "}
+              <span className="font-bold text-accent">proteção infantil</span>.
+            </p>
+          </div>
+          <h1 className="font-display text-[2rem] font-extrabold leading-[1.08] text-primary sm:text-5xl lg:text-[3.5rem]">
             Toda criança merece um adulto{" "}
             <span className="text-accent">que não se cale.</span>
           </h1>
-          <p className="mt-6 max-w-md text-lg text-foreground/75">
+          <p className="mt-5 max-w-md text-base leading-relaxed text-foreground/70 sm:mt-6 sm:text-lg">
             Informação, educação e ferramentas para proteger crianças e transformar
             realidades.
           </p>
