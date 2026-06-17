@@ -563,6 +563,25 @@ function AboutSection() {
           </Reveal>
         </div>
 
+        {/* Protection pillars */}
+        <div className="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {PILLARS.map((pillar, i) => (
+            <Reveal key={pillar.title} delay={i * 100}>
+              <div className="group h-full rounded-3xl border border-border bg-card p-7 shadow-[var(--shadow-soft)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[var(--shadow-lift)]">
+                <span className="grid h-12 w-12 place-items-center rounded-2xl bg-accent/10 text-accent transition-colors group-hover:bg-accent group-hover:text-accent-foreground">
+                  <pillar.icon className="h-6 w-6" />
+                </span>
+                <h3 className="mt-5 font-display text-lg font-extrabold text-primary">
+                  {pillar.title}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-foreground/70">
+                  {pillar.text}
+                </p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+
         {/* Highlight box */}
         <Reveal className="mt-16">
           <div className="mx-auto max-w-4xl rounded-3xl border border-sky-500/20 bg-sky-500/10 px-8 py-12 text-center">
