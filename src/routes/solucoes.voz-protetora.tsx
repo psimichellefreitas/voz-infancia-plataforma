@@ -169,7 +169,7 @@ function VozProtetoraPage() {
                   </div>
                   <div className="mt-6">
                     <Button asChild variant="heroOutline" size="xl" className="w-full">
-                      <Link to="#comprar">QUERO TER O VOZ PROTETORA</Link>
+                      <a href="#comprar">QUERO TER O VOZ PROTETORA</a>
                     </Button>
                     <p className="mt-3 text-center text-xs text-primary-foreground/70">
                       Integração com checkout em breve.
