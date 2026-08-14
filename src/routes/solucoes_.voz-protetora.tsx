@@ -19,7 +19,7 @@ import { SiteHeader } from "@/components/voz/SiteHeader";
 import { SiteFooter } from "@/components/voz/SiteFooter";
 import { Reveal } from "@/components/voz/Reveal";
 
-export const Route = createFileRoute("/solucoes/voz-protetora")({
+export const Route = createFileRoute("/solucoes_/voz-protetora")({
   head: () => ({
     meta: [
       { title: "Voz Protetora — Orientação prática para proteger a infância" },
