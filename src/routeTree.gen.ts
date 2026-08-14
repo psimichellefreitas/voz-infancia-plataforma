@@ -20,7 +20,7 @@ import { Route as ContatoRouteImport } from './routes/contato'
 import { Route as BussolaVozRouteImport } from './routes/bussola-voz'
 import { Route as ApoieRouteImport } from './routes/apoie'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as SolucoesVozProtetoraRouteImport } from './routes/solucoes.voz-protetora'
+import { Route as SolucoesVozProtetoraRouteImport } from './routes/solucoes_.voz-protetora'
 
 const TermosDeUsoRoute = TermosDeUsoRouteImport.update({
   id: '/termos-de-uso',
@@ -78,9 +78,9 @@ const IndexRoute = IndexRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const SolucoesVozProtetoraRoute = SolucoesVozProtetoraRouteImport.update({
-  id: '/voz-protetora',
-  path: '/voz-protetora',
-  getParentRoute: () => SolucoesRoute,
+  id: '/solucoes_/voz-protetora',
+  path: '/solucoes/voz-protetora',
+  getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
@@ -93,7 +93,7 @@ export interface FileRoutesByFullPath {
   '/recursos': typeof RecursosRoute
   '/seja-voz': typeof SejaVozRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
-  '/solucoes': typeof SolucoesRouteWithChildren
+  '/solucoes': typeof SolucoesRoute
   '/termos-de-uso': typeof TermosDeUsoRoute
   '/solucoes/voz-protetora': typeof SolucoesVozProtetoraRoute
 }
@@ -107,7 +107,7 @@ export interface FileRoutesByTo {
   '/recursos': typeof RecursosRoute
   '/seja-voz': typeof SejaVozRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
-  '/solucoes': typeof SolucoesRouteWithChildren
+  '/solucoes': typeof SolucoesRoute
   '/termos-de-uso': typeof TermosDeUsoRoute
   '/solucoes/voz-protetora': typeof SolucoesVozProtetoraRoute
 }
@@ -122,9 +122,9 @@ export interface FileRoutesById {
   '/recursos': typeof RecursosRoute
   '/seja-voz': typeof SejaVozRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
-  '/solucoes': typeof SolucoesRouteWithChildren
+  '/solucoes': typeof SolucoesRoute
   '/termos-de-uso': typeof TermosDeUsoRoute
-  '/solucoes/voz-protetora': typeof SolucoesVozProtetoraRoute
+  '/solucoes_/voz-protetora': typeof SolucoesVozProtetoraRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -168,7 +168,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/solucoes'
     | '/termos-de-uso'
-    | '/solucoes/voz-protetora'
+    | '/solucoes_/voz-protetora'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -181,8 +181,9 @@ export interface RootRouteChildren {
   RecursosRoute: typeof RecursosRoute
   SejaVozRoute: typeof SejaVozRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
-  SolucoesRoute: typeof SolucoesRouteWithChildren
+  SolucoesRoute: typeof SolucoesRoute
   TermosDeUsoRoute: typeof TermosDeUsoRoute
+  SolucoesVozProtetoraRoute: typeof SolucoesVozProtetoraRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -264,27 +265,15 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/solucoes/voz-protetora': {
-      id: '/solucoes/voz-protetora'
-      path: '/voz-protetora'
+    '/solucoes_/voz-protetora': {
+      id: '/solucoes_/voz-protetora'
+      path: '/solucoes/voz-protetora'
       fullPath: '/solucoes/voz-protetora'
       preLoaderRoute: typeof SolucoesVozProtetoraRouteImport
-      parentRoute: typeof SolucoesRoute
+      parentRoute: typeof rootRouteImport
     }
   }
 }
-
-interface SolucoesRouteChildren {
-  SolucoesVozProtetoraRoute: typeof SolucoesVozProtetoraRoute
-}
-
-const SolucoesRouteChildren: SolucoesRouteChildren = {
-  SolucoesVozProtetoraRoute: SolucoesVozProtetoraRoute,
-}
-
-const SolucoesRouteWithChildren = SolucoesRoute._addFileChildren(
-  SolucoesRouteChildren,
-)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
@@ -296,8 +285,9 @@ const rootRouteChildren: RootRouteChildren = {
   RecursosRoute: RecursosRoute,
   SejaVozRoute: SejaVozRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
-  SolucoesRoute: SolucoesRouteWithChildren,
+  SolucoesRoute: SolucoesRoute,
   TermosDeUsoRoute: TermosDeUsoRoute,
+  SolucoesVozProtetoraRoute: SolucoesVozProtetoraRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
