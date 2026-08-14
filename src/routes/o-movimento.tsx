@@ -67,16 +67,15 @@ function OMovimentoPage() {
         <section>
           <h2 className="text-2xl font-bold text-primary">Por que o Voz existe?</h2>
           <div className="mt-5 space-y-4 text-base leading-relaxed text-muted-foreground">
-            <p>
-              Proteger a infância não é apenas saber reconhecer situações de risco.
-            </p>
+            <p>Proteger a infância não é apenas saber reconhecer situações de risco.</p>
             <p>
               É construir, no cotidiano, relações, ambientes e atitudes que favoreçam segurança,
               respeito, escuta e cuidado.
             </p>
             <p>
               O Voz existe para aproximar conhecimento e prática e ajudar mais pessoas a
-              compreenderem que a proteção da infância também acontece nas escolhas de todos os dias.
+              compreenderem que a proteção da infância também acontece nas escolhas de todos os
+              dias.
             </p>
           </div>
         </section>
@@ -121,9 +120,7 @@ function OMovimentoPage() {
           <h2 className="text-2xl font-bold text-primary">O que significa ser Voz?</h2>
           <div className="mt-5 space-y-4 text-base leading-relaxed text-muted-foreground">
             <p>Ser Voz não significa saber tudo.</p>
-            <p>
-              Significa escolher não ser indiferente diante das necessidades da infância.
-            </p>
+            <p>Significa escolher não ser indiferente diante das necessidades da infância.</p>
           </div>
           <ul className="mt-8 grid gap-4 sm:grid-cols-2">
             {SER_VOZ.map(({ icon: Icon, t, d }) => (

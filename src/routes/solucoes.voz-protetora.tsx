@@ -36,9 +36,7 @@ function VozProtetoraPage() {
           profissionais e instituições na construção de ambientes mais protetivos.
         </p>
         <div className="rounded-[10px] border border-border bg-secondary p-7">
-          <p className="font-semibold text-primary">
-            Quer saber mais sobre o Voz Protetora?
-          </p>
+          <p className="font-semibold text-primary">Quer saber mais sobre o Voz Protetora?</p>
           <div className="mt-5 flex flex-col gap-3 sm:flex-row">
             <Button asChild variant="hero">
               <Link to="/contato">Falar com o movimento</Link>

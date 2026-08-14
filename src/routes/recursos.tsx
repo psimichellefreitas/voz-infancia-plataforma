@@ -79,7 +79,9 @@ function RecursosPage() {
         </section>
 
         <section>
-          <h2 className="text-2xl font-bold text-primary">Encontre conteúdos para o seu contexto.</h2>
+          <h2 className="text-2xl font-bold text-primary">
+            Encontre conteúdos para o seu contexto.
+          </h2>
           <div className="mt-6 grid gap-5 sm:grid-cols-3">
             {CONTEXTOS.map((c) => (
               <article key={c.t} className="rounded-[10px] border border-border bg-secondary p-6">

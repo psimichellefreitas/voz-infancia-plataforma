@@ -6,9 +6,17 @@ import { PageShell } from "@/components/voz/PageShell";
 const SER_VOZ = [
   { icon: Eye, t: "Olhar", d: "Perceber o que acontece ao redor da criança." },
   { icon: Ear, t: "Escutar", d: "Criar espaço para que ela possa falar." },
-  { icon: HeartHandshake, t: "Acolher", d: "Receber sem culpabilizar ou diminuir o que ela sente." },
+  {
+    icon: HeartHandshake,
+    t: "Acolher",
+    d: "Receber sem culpabilizar ou diminuir o que ela sente.",
+  },
   { icon: Compass, t: "Orientar", d: "Ensinar caminhos seguros." },
-  { icon: ShieldCheck, t: "Agir", d: "Fazer o que estiver ao seu alcance para fortalecer a proteção." },
+  {
+    icon: ShieldCheck,
+    t: "Agir",
+    d: "Fazer o que estiver ao seu alcance para fortalecer a proteção.",
+  },
 ];
 
 const HOJE = [
