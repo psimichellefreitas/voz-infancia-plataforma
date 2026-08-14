@@ -8,11 +8,11 @@ export function Logo({ variant = "default" }: { variant?: "default" | "inverse" 
       <img
         src={logoAsset.url}
         alt="Voz Pela Infância"
-        className={`h-9 w-auto rounded-[8px] object-contain transition-opacity ${
+        className={`h-12 w-auto rounded-[8px] object-contain transition-opacity ${
           inverse ? "brightness-105" : ""
         }`}
-        width={180}
-        height={36}
+        width={240}
+        height={48}
       />
     </Link>
   );
