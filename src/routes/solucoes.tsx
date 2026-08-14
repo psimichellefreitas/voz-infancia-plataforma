@@ -1,51 +1,81 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { ArrowRight, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { PageShell } from "@/components/voz/PageShell";
-
-const OFFERS = [
-  { t: "Palestras e campanhas", d: "Encontros de conscientização para famílias e comunidades." },
-  { t: "Formação de equipes", d: "Capacitação de educadores e profissionais que atuam com crianças." },
-  { t: "Cultura de proteção", d: "Apoio na construção de políticas e protocolos institucionais." },
-];
 
 export const Route = createFileRoute("/solucoes")({
   head: () => ({
     meta: [
-      { title: "Soluções — Formações e programas de proteção" },
+      { title: "Soluções — Ferramentas para fortalecer a proteção" },
       {
         name: "description",
         content:
-          "Palestras, formações e apoio institucional para escolas, igrejas, empresas e organizações que atuam com crianças.",
+          "Conheça o Voz Protetora, a ferramenta digital do Voz Pela Infância para transformar conhecimento em atitudes mais protetivas.",
       },
       { property: "og:title", content: "Soluções — Voz Pela Infância" },
       {
         property: "og:description",
-        content: "Programas de formação e cultura de proteção para instituições.",
+        content:
+          "Ferramenta digital de orientação prática para adultos que querem proteger melhor a infância.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
-  component: () => (
-    <PageShell
-      eyebrow="Para instituições"
-      title="Soluções para quem cuida de crianças todos os dias"
-      intro="Levamos formação e método para escolas, igrejas, organizações e equipes."
-    >
-      <div className="space-y-5">
-        {OFFERS.map((o) => (
-          <article
-            key={o.t}
-            className="rounded-[10px] border border-border bg-card p-6 shadow-[var(--shadow-soft)]"
-          >
-            <h2 className="text-lg font-bold text-primary">{o.t}</h2>
-            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{o.d}</p>
-          </article>
-        ))}
-      </div>
-      <div className="mt-10">
-        <Button asChild variant="hero" size="lg">
-          <Link to="/contato">Solicitar proposta</Link>
-        </Button>
-      </div>
-    </PageShell>
-  ),
+  component: SolucoesPage,
 });
+
+function SolucoesPage() {
+  return (
+    <PageShell
+      eyebrow="Soluções"
+      title="Soluções para fortalecer a proteção."
+      intro="O Voz Pela Infância desenvolve recursos que ajudam adultos a transformar conhecimento em atitudes mais protetivas."
+    >
+      <section className="space-y-10">
+        <div className="rounded-[12px] border border-border bg-card p-7 shadow-[var(--shadow-soft)] sm:p-10">
+          <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-accent">
+            <Shield className="h-4 w-4" />
+            Ferramenta digital de orientação prática
+          </div>
+          <h2 className="mt-4 text-2xl font-bold text-primary sm:text-3xl">
+            VOZ PROTETORA
+          </h2>
+          <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground">
+            Uma ferramenta digital que ajuda adultos a saber o que dizer, como agir e como se
+            preparar diante de situações reais da infância.
+          </p>
+          <div className="mt-6 flex flex-wrap gap-3">
+            <span className="rounded-full border border-border bg-secondary px-4 py-2 text-sm font-semibold text-primary">
+              O que dizer.
+            </span>
+            <span className="rounded-full border border-border bg-secondary px-4 py-2 text-sm font-semibold text-primary">
+              Como agir.
+            </span>
+            <span className="rounded-full border border-border bg-secondary px-4 py-2 text-sm font-semibold text-primary">
+              Como se preparar.
+            </span>
+          </div>
+          <div className="mt-8">
+            <Button asChild variant="hero" size="lg">
+              <Link to="/solucoes/voz-protetora">
+                CONHECER VOZ PROTETORA
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </Button>
+          </div>
+        </div>
+
+        <div className="rounded-[12px] border border-border bg-secondary p-8 sm:p-10">
+          <h2 className="text-xl font-bold text-primary sm:text-2xl">
+            Mais soluções poderão fazer parte desse caminho.
+          </h2>
+          <p className="mt-3 text-base leading-relaxed text-muted-foreground">
+            O Movimento poderá desenvolver novos recursos ao longo do tempo, sempre com o compromisso
+            de fortalecer a proteção da infância.
+          </p>
+        </div>
+      </section>
+    </PageShell>
+  );
+}
