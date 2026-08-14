@@ -9,18 +9,66 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TermosDeUsoRouteImport } from './routes/termos-de-uso'
+import { Route as SolucoesRouteImport } from './routes/solucoes'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as SejaVozRouteImport } from './routes/seja-voz'
+import { Route as RecursosRouteImport } from './routes/recursos'
+import { Route as PoliticaDePrivacidadeRouteImport } from './routes/politica-de-privacidade'
+import { Route as OMovimentoRouteImport } from './routes/o-movimento'
 import { Route as ContatoRouteImport } from './routes/contato'
+import { Route as BussolaVozRouteImport } from './routes/bussola-voz'
+import { Route as ApoieRouteImport } from './routes/apoie'
 import { Route as IndexRouteImport } from './routes/index'
 
+const TermosDeUsoRoute = TermosDeUsoRouteImport.update({
+  id: '/termos-de-uso',
+  path: '/termos-de-uso',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SolucoesRoute = SolucoesRouteImport.update({
+  id: '/solucoes',
+  path: '/solucoes',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SejaVozRoute = SejaVozRouteImport.update({
+  id: '/seja-voz',
+  path: '/seja-voz',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RecursosRoute = RecursosRouteImport.update({
+  id: '/recursos',
+  path: '/recursos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PoliticaDePrivacidadeRoute = PoliticaDePrivacidadeRouteImport.update({
+  id: '/politica-de-privacidade',
+  path: '/politica-de-privacidade',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OMovimentoRoute = OMovimentoRouteImport.update({
+  id: '/o-movimento',
+  path: '/o-movimento',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ContatoRoute = ContatoRouteImport.update({
   id: '/contato',
   path: '/contato',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BussolaVozRoute = BussolaVozRouteImport.update({
+  id: '/bussola-voz',
+  path: '/bussola-voz',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApoieRoute = ApoieRouteImport.update({
+  id: '/apoie',
+  path: '/apoie',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -31,36 +79,116 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/apoie': typeof ApoieRoute
+  '/bussola-voz': typeof BussolaVozRoute
   '/contato': typeof ContatoRoute
+  '/o-movimento': typeof OMovimentoRoute
+  '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
+  '/recursos': typeof RecursosRoute
+  '/seja-voz': typeof SejaVozRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/solucoes': typeof SolucoesRoute
+  '/termos-de-uso': typeof TermosDeUsoRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/apoie': typeof ApoieRoute
+  '/bussola-voz': typeof BussolaVozRoute
   '/contato': typeof ContatoRoute
+  '/o-movimento': typeof OMovimentoRoute
+  '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
+  '/recursos': typeof RecursosRoute
+  '/seja-voz': typeof SejaVozRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/solucoes': typeof SolucoesRoute
+  '/termos-de-uso': typeof TermosDeUsoRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/apoie': typeof ApoieRoute
+  '/bussola-voz': typeof BussolaVozRoute
   '/contato': typeof ContatoRoute
+  '/o-movimento': typeof OMovimentoRoute
+  '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
+  '/recursos': typeof RecursosRoute
+  '/seja-voz': typeof SejaVozRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/solucoes': typeof SolucoesRoute
+  '/termos-de-uso': typeof TermosDeUsoRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/contato' | '/sitemap.xml'
+  fullPaths:
+    | '/'
+    | '/apoie'
+    | '/bussola-voz'
+    | '/contato'
+    | '/o-movimento'
+    | '/politica-de-privacidade'
+    | '/recursos'
+    | '/seja-voz'
+    | '/sitemap.xml'
+    | '/solucoes'
+    | '/termos-de-uso'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/contato' | '/sitemap.xml'
-  id: '__root__' | '/' | '/contato' | '/sitemap.xml'
+  to:
+    | '/'
+    | '/apoie'
+    | '/bussola-voz'
+    | '/contato'
+    | '/o-movimento'
+    | '/politica-de-privacidade'
+    | '/recursos'
+    | '/seja-voz'
+    | '/sitemap.xml'
+    | '/solucoes'
+    | '/termos-de-uso'
+  id:
+    | '__root__'
+    | '/'
+    | '/apoie'
+    | '/bussola-voz'
+    | '/contato'
+    | '/o-movimento'
+    | '/politica-de-privacidade'
+    | '/recursos'
+    | '/seja-voz'
+    | '/sitemap.xml'
+    | '/solucoes'
+    | '/termos-de-uso'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ApoieRoute: typeof ApoieRoute
+  BussolaVozRoute: typeof BussolaVozRoute
   ContatoRoute: typeof ContatoRoute
+  OMovimentoRoute: typeof OMovimentoRoute
+  PoliticaDePrivacidadeRoute: typeof PoliticaDePrivacidadeRoute
+  RecursosRoute: typeof RecursosRoute
+  SejaVozRoute: typeof SejaVozRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  SolucoesRoute: typeof SolucoesRoute
+  TermosDeUsoRoute: typeof TermosDeUsoRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/termos-de-uso': {
+      id: '/termos-de-uso'
+      path: '/termos-de-uso'
+      fullPath: '/termos-de-uso'
+      preLoaderRoute: typeof TermosDeUsoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/solucoes': {
+      id: '/solucoes'
+      path: '/solucoes'
+      fullPath: '/solucoes'
+      preLoaderRoute: typeof SolucoesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/sitemap.xml': {
       id: '/sitemap.xml'
       path: '/sitemap.xml'
@@ -68,11 +196,53 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/seja-voz': {
+      id: '/seja-voz'
+      path: '/seja-voz'
+      fullPath: '/seja-voz'
+      preLoaderRoute: typeof SejaVozRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/recursos': {
+      id: '/recursos'
+      path: '/recursos'
+      fullPath: '/recursos'
+      preLoaderRoute: typeof RecursosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/politica-de-privacidade': {
+      id: '/politica-de-privacidade'
+      path: '/politica-de-privacidade'
+      fullPath: '/politica-de-privacidade'
+      preLoaderRoute: typeof PoliticaDePrivacidadeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/o-movimento': {
+      id: '/o-movimento'
+      path: '/o-movimento'
+      fullPath: '/o-movimento'
+      preLoaderRoute: typeof OMovimentoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/contato': {
       id: '/contato'
       path: '/contato'
       fullPath: '/contato'
       preLoaderRoute: typeof ContatoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/bussola-voz': {
+      id: '/bussola-voz'
+      path: '/bussola-voz'
+      fullPath: '/bussola-voz'
+      preLoaderRoute: typeof BussolaVozRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/apoie': {
+      id: '/apoie'
+      path: '/apoie'
+      fullPath: '/apoie'
+      preLoaderRoute: typeof ApoieRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -87,8 +257,16 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ApoieRoute: ApoieRoute,
+  BussolaVozRoute: BussolaVozRoute,
   ContatoRoute: ContatoRoute,
+  OMovimentoRoute: OMovimentoRoute,
+  PoliticaDePrivacidadeRoute: PoliticaDePrivacidadeRoute,
+  RecursosRoute: RecursosRoute,
+  SejaVozRoute: SejaVozRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  SolucoesRoute: SolucoesRoute,
+  TermosDeUsoRoute: TermosDeUsoRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
