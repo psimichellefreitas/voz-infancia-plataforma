@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Mail, MessageCircle, MapPin, HeartHandshake } from "lucide-react";
-import { PortalPage } from "@/components/voz/PortalPage";
+import { Instagram, Mail } from "lucide-react";
+import { PageShell } from "@/components/voz/PageShell";
+import { INSTAGRAM_HANDLE, INSTAGRAM_URL } from "@/components/voz/nav";
 
 export const Route = createFileRoute("/contato")({
   head: () => ({
@@ -9,40 +10,40 @@ export const Route = createFileRoute("/contato")({
       {
         name: "description",
         content:
-          "Fale com o Voz Pela Infância. Tire dúvidas, proponha parcerias ou una sua voz ao movimento de proteção da infância.",
+          "Fale com o Voz Pela Infância para parcerias, formações, palestras e convites institucionais.",
       },
       { property: "og:title", content: "Contato — Voz Pela Infância" },
-      {
-        property: "og:description",
-        content: "Estamos prontos para ouvir você. Vamos proteger juntos.",
-      },
+      { property: "og:description", content: "Parcerias, formações e convites institucionais." },
     ],
   }),
   component: () => (
-    <PortalPage
-      eyebrow="Contato"
-      icon={Mail}
-      title="Vamos conversar"
-      subtitle="Sua voz também faz parte desta história."
-      description="Tire dúvidas, proponha parcerias, compartilhe ideias ou simplesmente diga olá. Estamos prontos para ouvir você e construir juntos um Brasil mais seguro para as crianças."
-      ctaLabel="Quero apoiar o movimento"
-      features={[
-        {
-          icon: MessageCircle,
-          title: "Atendimento",
-          description: "Fale com nossa equipe por e-mail ou redes sociais.",
-        },
-        {
-          icon: HeartHandshake,
-          title: "Parcerias",
-          description: "Instituições e empresas que querem proteger a infância conosco.",
-        },
-        {
-          icon: MapPin,
-          title: "Instituto Iluminar",
-          description: "Uma iniciativa comprometida com a transformação de realidades.",
-        },
-      ]}
-    />
+    <PageShell
+      eyebrow="Fale com o movimento"
+      title="Contato"
+      intro="Para parcerias, formações e convites, escolha o canal mais direto."
+    >
+      <div className="space-y-4">
+        <a
+          href="mailto:contato@vozpelainfancia.org"
+          className="flex items-center gap-4 rounded-[10px] border border-border bg-card p-6 shadow-[var(--shadow-soft)] transition-shadow hover:shadow-[var(--shadow-lift)]"
+        >
+          <Mail className="h-5 w-5 text-primary" />
+          <span className="text-sm font-semibold text-primary">contato@vozpelainfancia.org</span>
+        </a>
+        <a
+          href={INSTAGRAM_URL}
+          target="_blank"
+          rel="noreferrer"
+          className="flex items-center gap-4 rounded-[10px] border border-border bg-card p-6 shadow-[var(--shadow-soft)] transition-shadow hover:shadow-[var(--shadow-lift)]"
+        >
+          <Instagram className="h-5 w-5 text-primary" />
+          <span className="text-sm font-semibold text-primary">{INSTAGRAM_HANDLE}</span>
+        </a>
+      </div>
+      <p className="mt-8 text-sm text-muted-foreground">
+        Em situações de risco imediato a uma criança, acione o Conselho Tutelar da sua cidade ou
+        ligue 100.
+      </p>
+    </PageShell>
   ),
 });
