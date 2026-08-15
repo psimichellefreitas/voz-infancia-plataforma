@@ -19,13 +19,16 @@ import { Route as OMovimentoRouteImport } from './routes/o-movimento'
 import { Route as ContatoRouteImport } from './routes/contato'
 import { Route as CheckoutRouteImport } from './routes/checkout'
 import { Route as BussolaVozRouteImport } from './routes/bussola-voz'
+import { Route as AuthRouteImport } from './routes/auth'
 import { Route as ApoieRouteImport } from './routes/apoie'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as SolucoesVozProtetoraRouteImport } from './routes/solucoes_.voz-protetora'
 import { Route as PagamentoRecusadoRouteImport } from './routes/pagamento.recusado'
 import { Route as PagamentoProcessandoRouteImport } from './routes/pagamento.processando'
 import { Route as PagamentoPendenteRouteImport } from './routes/pagamento.pendente'
 import { Route as PagamentoAprovadoRouteImport } from './routes/pagamento.aprovado'
+import { Route as AuthenticatedVozProtetoraRouteImport } from './routes/_authenticated/voz-protetora'
 import { Route as ApiPublicWebhooksMercadopagoRouteImport } from './routes/api/public/webhooks/mercadopago'
 
 const TermosDeUsoRoute = TermosDeUsoRouteImport.update({
@@ -78,9 +81,18 @@ const BussolaVozRoute = BussolaVozRouteImport.update({
   path: '/bussola-voz',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApoieRoute = ApoieRouteImport.update({
   id: '/apoie',
   path: '/apoie',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -113,6 +125,12 @@ const PagamentoAprovadoRoute = PagamentoAprovadoRouteImport.update({
   path: '/pagamento/aprovado',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedVozProtetoraRoute =
+  AuthenticatedVozProtetoraRouteImport.update({
+    id: '/voz-protetora',
+    path: '/voz-protetora',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const ApiPublicWebhooksMercadopagoRoute =
   ApiPublicWebhooksMercadopagoRouteImport.update({
     id: '/api/public/webhooks/mercadopago',
@@ -123,6 +141,7 @@ const ApiPublicWebhooksMercadopagoRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/apoie': typeof ApoieRoute
+  '/auth': typeof AuthRoute
   '/bussola-voz': typeof BussolaVozRoute
   '/checkout': typeof CheckoutRoute
   '/contato': typeof ContatoRoute
@@ -133,6 +152,7 @@ export interface FileRoutesByFullPath {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/solucoes': typeof SolucoesRoute
   '/termos-de-uso': typeof TermosDeUsoRoute
+  '/voz-protetora': typeof AuthenticatedVozProtetoraRoute
   '/pagamento/aprovado': typeof PagamentoAprovadoRoute
   '/pagamento/pendente': typeof PagamentoPendenteRoute
   '/pagamento/processando': typeof PagamentoProcessandoRoute
@@ -143,6 +163,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/apoie': typeof ApoieRoute
+  '/auth': typeof AuthRoute
   '/bussola-voz': typeof BussolaVozRoute
   '/checkout': typeof CheckoutRoute
   '/contato': typeof ContatoRoute
@@ -153,6 +174,7 @@ export interface FileRoutesByTo {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/solucoes': typeof SolucoesRoute
   '/termos-de-uso': typeof TermosDeUsoRoute
+  '/voz-protetora': typeof AuthenticatedVozProtetoraRoute
   '/pagamento/aprovado': typeof PagamentoAprovadoRoute
   '/pagamento/pendente': typeof PagamentoPendenteRoute
   '/pagamento/processando': typeof PagamentoProcessandoRoute
@@ -163,7 +185,9 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/apoie': typeof ApoieRoute
+  '/auth': typeof AuthRoute
   '/bussola-voz': typeof BussolaVozRoute
   '/checkout': typeof CheckoutRoute
   '/contato': typeof ContatoRoute
@@ -174,6 +198,7 @@ export interface FileRoutesById {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/solucoes': typeof SolucoesRoute
   '/termos-de-uso': typeof TermosDeUsoRoute
+  '/_authenticated/voz-protetora': typeof AuthenticatedVozProtetoraRoute
   '/pagamento/aprovado': typeof PagamentoAprovadoRoute
   '/pagamento/pendente': typeof PagamentoPendenteRoute
   '/pagamento/processando': typeof PagamentoProcessandoRoute
@@ -186,6 +211,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/apoie'
+    | '/auth'
     | '/bussola-voz'
     | '/checkout'
     | '/contato'
@@ -196,6 +222,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/solucoes'
     | '/termos-de-uso'
+    | '/voz-protetora'
     | '/pagamento/aprovado'
     | '/pagamento/pendente'
     | '/pagamento/processando'
@@ -206,6 +233,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/apoie'
+    | '/auth'
     | '/bussola-voz'
     | '/checkout'
     | '/contato'
@@ -216,6 +244,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/solucoes'
     | '/termos-de-uso'
+    | '/voz-protetora'
     | '/pagamento/aprovado'
     | '/pagamento/pendente'
     | '/pagamento/processando'
@@ -225,7 +254,9 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/_authenticated'
     | '/apoie'
+    | '/auth'
     | '/bussola-voz'
     | '/checkout'
     | '/contato'
@@ -236,6 +267,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/solucoes'
     | '/termos-de-uso'
+    | '/_authenticated/voz-protetora'
     | '/pagamento/aprovado'
     | '/pagamento/pendente'
     | '/pagamento/processando'
@@ -246,7 +278,9 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
   ApoieRoute: typeof ApoieRoute
+  AuthRoute: typeof AuthRoute
   BussolaVozRoute: typeof BussolaVozRoute
   CheckoutRoute: typeof CheckoutRoute
   ContatoRoute: typeof ContatoRoute
@@ -337,11 +371,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BussolaVozRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/apoie': {
       id: '/apoie'
       path: '/apoie'
       fullPath: '/apoie'
       preLoaderRoute: typeof ApoieRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -386,6 +434,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PagamentoAprovadoRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/voz-protetora': {
+      id: '/_authenticated/voz-protetora'
+      path: '/voz-protetora'
+      fullPath: '/voz-protetora'
+      preLoaderRoute: typeof AuthenticatedVozProtetoraRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/api/public/webhooks/mercadopago': {
       id: '/api/public/webhooks/mercadopago'
       path: '/api/public/webhooks/mercadopago'
@@ -396,9 +451,22 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedVozProtetoraRoute: typeof AuthenticatedVozProtetoraRoute
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedVozProtetoraRoute: AuthenticatedVozProtetoraRoute,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   ApoieRoute: ApoieRoute,
+  AuthRoute: AuthRoute,
   BussolaVozRoute: BussolaVozRoute,
   CheckoutRoute: CheckoutRoute,
   ContatoRoute: ContatoRoute,
