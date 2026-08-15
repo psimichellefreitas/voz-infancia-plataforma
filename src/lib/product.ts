@@ -2,7 +2,8 @@
 export const VOZ_PROTETORA = {
   id: "voz-protetora-v1",
   name: "VOZ PROTETORA V1",
-  amount: 67,
+  // TEMPORÁRIO: valor de teste. Voltar para 67 depois dos testes de fluxo.
+  amount: 1,
   currency: "BRL",
   model: "compra única",
 } as const;

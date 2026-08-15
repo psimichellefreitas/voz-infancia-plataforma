@@ -19,12 +19,12 @@ export const Route = createFileRoute("/checkout")({
       {
         name: "description",
         content:
-          "Finalize a compra do Voz Protetora: R$ 67,00, compra única. Pagamento processado pelo Mercado Pago.",
+          "Finalize a compra do Voz Protetora: R$ 1,00, compra única. Pagamento processado pelo Mercado Pago.",
       },
       { property: "og:title", content: "Checkout — Voz Protetora" },
       {
         property: "og:description",
-        content: "Compra única do Voz Protetora por R$ 67,00, com pagamento seguro.",
+        content: "Compra única do Voz Protetora por R$ 1,00, com pagamento seguro.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
