@@ -169,7 +169,7 @@ function VozProtetoraPage() {
                   </div>
                   <div className="mt-6">
                     <Button asChild variant="heroOutline" size="xl" className="w-full">
-                      <a href="#comprar">QUERO TER O VOZ PROTETORA</a>
+                      <Link to="/checkout">QUERO TER O VOZ PROTETORA</Link>
                     </Button>
                     <p className="mt-3 text-center text-xs text-primary-foreground/70">
                       Integração com checkout em breve.
@@ -457,14 +457,14 @@ function VozProtetoraPage() {
               <p className="mt-1 text-sm text-muted-foreground">Compra única.</p>
               <div className="mt-8">
                 <Button asChild variant="hero" size="xl">
-                  <Link to="/contato">
+                  <Link to="/checkout">
                     QUERO TER O VOZ PROTETORA
                     <ArrowRight className="h-4 w-4" />
                   </Link>
                 </Button>
               </div>
               <p className="mt-4 text-xs text-muted-foreground">
-                O checkout será integrado em breve. Enquanto isso, fale com o movimento.
+                Pagamento processado pelo Mercado Pago. Acesso liberado após a confirmação.
               </p>
             </div>
           </Reveal>
