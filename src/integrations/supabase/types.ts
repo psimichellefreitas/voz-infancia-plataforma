@@ -14,13 +14,112 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      buyers: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          name: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+          name: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          name?: string
+        }
+        Relationships: []
+      }
+      product_access: {
+        Row: {
+          access_status: string
+          buyer_id: string
+          created_at: string
+          granted_at: string | null
+          id: string
+          product_id: string
+        }
+        Insert: {
+          access_status?: string
+          buyer_id: string
+          created_at?: string
+          granted_at?: string | null
+          id?: string
+          product_id: string
+        }
+        Update: {
+          access_status?: string
+          buyer_id?: string
+          created_at?: string
+          granted_at?: string | null
+          id?: string
+          product_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "product_access_buyer_id_fkey"
+            columns: ["buyer_id"]
+            isOneToOne: false
+            referencedRelation: "buyers"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      purchases: {
+        Row: {
+          amount: number
+          buyer_id: string
+          created_at: string
+          id: string
+          payment_id: string | null
+          payment_provider: string
+          payment_status: string
+          product_id: string
+          updated_at: string
+        }
+        Insert: {
+          amount: number
+          buyer_id: string
+          created_at?: string
+          id?: string
+          payment_id?: string | null
+          payment_provider?: string
+          payment_status?: string
+          product_id: string
+          updated_at?: string
+        }
+        Update: {
+          amount?: number
+          buyer_id?: string
+          created_at?: string
+          id?: string
+          payment_id?: string | null
+          payment_provider?: string
+          payment_status?: string
+          product_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "purchases_buyer_id_fkey"
+            columns: ["buyer_id"]
+            isOneToOne: false
+            referencedRelation: "buyers"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      current_buyer_id: { Args: never; Returns: string }
     }
     Enums: {
       [_ in never]: never
