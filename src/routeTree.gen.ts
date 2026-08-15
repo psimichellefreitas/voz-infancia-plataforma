@@ -17,10 +17,19 @@ import { Route as RecursosRouteImport } from './routes/recursos'
 import { Route as PoliticaDePrivacidadeRouteImport } from './routes/politica-de-privacidade'
 import { Route as OMovimentoRouteImport } from './routes/o-movimento'
 import { Route as ContatoRouteImport } from './routes/contato'
+import { Route as CheckoutRouteImport } from './routes/checkout'
 import { Route as BussolaVozRouteImport } from './routes/bussola-voz'
+import { Route as AuthRouteImport } from './routes/auth'
 import { Route as ApoieRouteImport } from './routes/apoie'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as SolucoesVozProtetoraRouteImport } from './routes/solucoes_.voz-protetora'
+import { Route as PagamentoRecusadoRouteImport } from './routes/pagamento.recusado'
+import { Route as PagamentoProcessandoRouteImport } from './routes/pagamento.processando'
+import { Route as PagamentoPendenteRouteImport } from './routes/pagamento.pendente'
+import { Route as PagamentoAprovadoRouteImport } from './routes/pagamento.aprovado'
+import { Route as AuthenticatedVozProtetoraRouteImport } from './routes/_authenticated/voz-protetora'
+import { Route as ApiPublicWebhooksMercadopagoRouteImport } from './routes/api/public/webhooks/mercadopago'
 
 const TermosDeUsoRoute = TermosDeUsoRouteImport.update({
   id: '/termos-de-uso',
@@ -62,14 +71,28 @@ const ContatoRoute = ContatoRouteImport.update({
   path: '/contato',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CheckoutRoute = CheckoutRouteImport.update({
+  id: '/checkout',
+  path: '/checkout',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BussolaVozRoute = BussolaVozRouteImport.update({
   id: '/bussola-voz',
   path: '/bussola-voz',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApoieRoute = ApoieRouteImport.update({
   id: '/apoie',
   path: '/apoie',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -82,11 +105,45 @@ const SolucoesVozProtetoraRoute = SolucoesVozProtetoraRouteImport.update({
   path: '/solucoes/voz-protetora',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PagamentoRecusadoRoute = PagamentoRecusadoRouteImport.update({
+  id: '/pagamento/recusado',
+  path: '/pagamento/recusado',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PagamentoProcessandoRoute = PagamentoProcessandoRouteImport.update({
+  id: '/pagamento/processando',
+  path: '/pagamento/processando',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PagamentoPendenteRoute = PagamentoPendenteRouteImport.update({
+  id: '/pagamento/pendente',
+  path: '/pagamento/pendente',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PagamentoAprovadoRoute = PagamentoAprovadoRouteImport.update({
+  id: '/pagamento/aprovado',
+  path: '/pagamento/aprovado',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedVozProtetoraRoute =
+  AuthenticatedVozProtetoraRouteImport.update({
+    id: '/voz-protetora',
+    path: '/voz-protetora',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const ApiPublicWebhooksMercadopagoRoute =
+  ApiPublicWebhooksMercadopagoRouteImport.update({
+    id: '/api/public/webhooks/mercadopago',
+    path: '/api/public/webhooks/mercadopago',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/apoie': typeof ApoieRoute
+  '/auth': typeof AuthRoute
   '/bussola-voz': typeof BussolaVozRoute
+  '/checkout': typeof CheckoutRoute
   '/contato': typeof ContatoRoute
   '/o-movimento': typeof OMovimentoRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
@@ -95,12 +152,20 @@ export interface FileRoutesByFullPath {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/solucoes': typeof SolucoesRoute
   '/termos-de-uso': typeof TermosDeUsoRoute
+  '/voz-protetora': typeof AuthenticatedVozProtetoraRoute
+  '/pagamento/aprovado': typeof PagamentoAprovadoRoute
+  '/pagamento/pendente': typeof PagamentoPendenteRoute
+  '/pagamento/processando': typeof PagamentoProcessandoRoute
+  '/pagamento/recusado': typeof PagamentoRecusadoRoute
   '/solucoes/voz-protetora': typeof SolucoesVozProtetoraRoute
+  '/api/public/webhooks/mercadopago': typeof ApiPublicWebhooksMercadopagoRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/apoie': typeof ApoieRoute
+  '/auth': typeof AuthRoute
   '/bussola-voz': typeof BussolaVozRoute
+  '/checkout': typeof CheckoutRoute
   '/contato': typeof ContatoRoute
   '/o-movimento': typeof OMovimentoRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
@@ -109,13 +174,22 @@ export interface FileRoutesByTo {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/solucoes': typeof SolucoesRoute
   '/termos-de-uso': typeof TermosDeUsoRoute
+  '/voz-protetora': typeof AuthenticatedVozProtetoraRoute
+  '/pagamento/aprovado': typeof PagamentoAprovadoRoute
+  '/pagamento/pendente': typeof PagamentoPendenteRoute
+  '/pagamento/processando': typeof PagamentoProcessandoRoute
+  '/pagamento/recusado': typeof PagamentoRecusadoRoute
   '/solucoes/voz-protetora': typeof SolucoesVozProtetoraRoute
+  '/api/public/webhooks/mercadopago': typeof ApiPublicWebhooksMercadopagoRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/apoie': typeof ApoieRoute
+  '/auth': typeof AuthRoute
   '/bussola-voz': typeof BussolaVozRoute
+  '/checkout': typeof CheckoutRoute
   '/contato': typeof ContatoRoute
   '/o-movimento': typeof OMovimentoRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
@@ -124,14 +198,22 @@ export interface FileRoutesById {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/solucoes': typeof SolucoesRoute
   '/termos-de-uso': typeof TermosDeUsoRoute
+  '/_authenticated/voz-protetora': typeof AuthenticatedVozProtetoraRoute
+  '/pagamento/aprovado': typeof PagamentoAprovadoRoute
+  '/pagamento/pendente': typeof PagamentoPendenteRoute
+  '/pagamento/processando': typeof PagamentoProcessandoRoute
+  '/pagamento/recusado': typeof PagamentoRecusadoRoute
   '/solucoes_/voz-protetora': typeof SolucoesVozProtetoraRoute
+  '/api/public/webhooks/mercadopago': typeof ApiPublicWebhooksMercadopagoRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/apoie'
+    | '/auth'
     | '/bussola-voz'
+    | '/checkout'
     | '/contato'
     | '/o-movimento'
     | '/politica-de-privacidade'
@@ -140,12 +222,20 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/solucoes'
     | '/termos-de-uso'
+    | '/voz-protetora'
+    | '/pagamento/aprovado'
+    | '/pagamento/pendente'
+    | '/pagamento/processando'
+    | '/pagamento/recusado'
     | '/solucoes/voz-protetora'
+    | '/api/public/webhooks/mercadopago'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/apoie'
+    | '/auth'
     | '/bussola-voz'
+    | '/checkout'
     | '/contato'
     | '/o-movimento'
     | '/politica-de-privacidade'
@@ -154,12 +244,21 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/solucoes'
     | '/termos-de-uso'
+    | '/voz-protetora'
+    | '/pagamento/aprovado'
+    | '/pagamento/pendente'
+    | '/pagamento/processando'
+    | '/pagamento/recusado'
     | '/solucoes/voz-protetora'
+    | '/api/public/webhooks/mercadopago'
   id:
     | '__root__'
     | '/'
+    | '/_authenticated'
     | '/apoie'
+    | '/auth'
     | '/bussola-voz'
+    | '/checkout'
     | '/contato'
     | '/o-movimento'
     | '/politica-de-privacidade'
@@ -168,13 +267,22 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/solucoes'
     | '/termos-de-uso'
+    | '/_authenticated/voz-protetora'
+    | '/pagamento/aprovado'
+    | '/pagamento/pendente'
+    | '/pagamento/processando'
+    | '/pagamento/recusado'
     | '/solucoes_/voz-protetora'
+    | '/api/public/webhooks/mercadopago'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
   ApoieRoute: typeof ApoieRoute
+  AuthRoute: typeof AuthRoute
   BussolaVozRoute: typeof BussolaVozRoute
+  CheckoutRoute: typeof CheckoutRoute
   ContatoRoute: typeof ContatoRoute
   OMovimentoRoute: typeof OMovimentoRoute
   PoliticaDePrivacidadeRoute: typeof PoliticaDePrivacidadeRoute
@@ -183,7 +291,12 @@ export interface RootRouteChildren {
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SolucoesRoute: typeof SolucoesRoute
   TermosDeUsoRoute: typeof TermosDeUsoRoute
+  PagamentoAprovadoRoute: typeof PagamentoAprovadoRoute
+  PagamentoPendenteRoute: typeof PagamentoPendenteRoute
+  PagamentoProcessandoRoute: typeof PagamentoProcessandoRoute
+  PagamentoRecusadoRoute: typeof PagamentoRecusadoRoute
   SolucoesVozProtetoraRoute: typeof SolucoesVozProtetoraRoute
+  ApiPublicWebhooksMercadopagoRoute: typeof ApiPublicWebhooksMercadopagoRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -244,6 +357,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContatoRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/checkout': {
+      id: '/checkout'
+      path: '/checkout'
+      fullPath: '/checkout'
+      preLoaderRoute: typeof CheckoutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/bussola-voz': {
       id: '/bussola-voz'
       path: '/bussola-voz'
@@ -251,11 +371,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BussolaVozRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/apoie': {
       id: '/apoie'
       path: '/apoie'
       fullPath: '/apoie'
       preLoaderRoute: typeof ApoieRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -272,13 +406,69 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SolucoesVozProtetoraRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/pagamento/recusado': {
+      id: '/pagamento/recusado'
+      path: '/pagamento/recusado'
+      fullPath: '/pagamento/recusado'
+      preLoaderRoute: typeof PagamentoRecusadoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pagamento/processando': {
+      id: '/pagamento/processando'
+      path: '/pagamento/processando'
+      fullPath: '/pagamento/processando'
+      preLoaderRoute: typeof PagamentoProcessandoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pagamento/pendente': {
+      id: '/pagamento/pendente'
+      path: '/pagamento/pendente'
+      fullPath: '/pagamento/pendente'
+      preLoaderRoute: typeof PagamentoPendenteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pagamento/aprovado': {
+      id: '/pagamento/aprovado'
+      path: '/pagamento/aprovado'
+      fullPath: '/pagamento/aprovado'
+      preLoaderRoute: typeof PagamentoAprovadoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/voz-protetora': {
+      id: '/_authenticated/voz-protetora'
+      path: '/voz-protetora'
+      fullPath: '/voz-protetora'
+      preLoaderRoute: typeof AuthenticatedVozProtetoraRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/api/public/webhooks/mercadopago': {
+      id: '/api/public/webhooks/mercadopago'
+      path: '/api/public/webhooks/mercadopago'
+      fullPath: '/api/public/webhooks/mercadopago'
+      preLoaderRoute: typeof ApiPublicWebhooksMercadopagoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedVozProtetoraRoute: typeof AuthenticatedVozProtetoraRoute
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedVozProtetoraRoute: AuthenticatedVozProtetoraRoute,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   ApoieRoute: ApoieRoute,
+  AuthRoute: AuthRoute,
   BussolaVozRoute: BussolaVozRoute,
+  CheckoutRoute: CheckoutRoute,
   ContatoRoute: ContatoRoute,
   OMovimentoRoute: OMovimentoRoute,
   PoliticaDePrivacidadeRoute: PoliticaDePrivacidadeRoute,
@@ -287,7 +477,12 @@ const rootRouteChildren: RootRouteChildren = {
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   SolucoesRoute: SolucoesRoute,
   TermosDeUsoRoute: TermosDeUsoRoute,
+  PagamentoAprovadoRoute: PagamentoAprovadoRoute,
+  PagamentoPendenteRoute: PagamentoPendenteRoute,
+  PagamentoProcessandoRoute: PagamentoProcessandoRoute,
+  PagamentoRecusadoRoute: PagamentoRecusadoRoute,
   SolucoesVozProtetoraRoute: SolucoesVozProtetoraRoute,
+  ApiPublicWebhooksMercadopagoRoute: ApiPublicWebhooksMercadopagoRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
