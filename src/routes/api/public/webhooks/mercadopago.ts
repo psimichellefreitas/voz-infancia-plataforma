@@ -73,7 +73,7 @@ export const Route = createFileRoute("/api/public/webhooks/mercadopago")({
 
         const { data: purchase } = await supabaseAdmin
           .from("purchases")
-          .select("id, buyer_id, product_id")
+          .select("id, buyer_id, product_id, amount")
           .eq("id", purchaseId)
           .maybeSingle();
 
@@ -88,6 +88,17 @@ export const Route = createFileRoute("/api/public/webhooks/mercadopago")({
           .eq("id", purchase.id);
 
         // REGRA: acesso somente com pagamento aprovado.
+        const amountOk =
+          payment.amount == null || payment.amount >= Number(purchase.amount) - 0.01;
+
+        if (internalStatus === "approved" && !amountOk) {
+          console.error(
+            "[MercadoPago] valor pago menor que o esperado — acesso não liberado",
+            payment.id,
+          );
+          return new Response("ok", { status: 200 });
+        }
+
         if (internalStatus === "approved") {
           const grantedAt = new Date().toISOString();
           const { error } = await supabaseAdmin.from("product_access").upsert(
@@ -103,6 +114,13 @@ export const Route = createFileRoute("/api/public/webhooks/mercadopago")({
             console.error("[MercadoPago] falha ao liberar acesso", error);
             return new Response("Failed to grant access", { status: 500 });
           }
+        } else if (internalStatus === "cancelled") {
+          // Estorno/cancelamento/chargeback: acesso é retirado.
+          await supabaseAdmin
+            .from("product_access")
+            .update({ access_status: "inactive" })
+            .eq("buyer_id", purchase.buyer_id)
+            .eq("product_id", purchase.product_id);
         }
 
         return new Response("ok", { status: 200 });
