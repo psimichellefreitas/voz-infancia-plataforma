@@ -164,7 +164,7 @@ function VozProtetoraPage() {
                     <p className="text-sm font-semibold uppercase tracking-[0.14em] text-primary-foreground/80">
                       Investimento
                     </p>
-                    <p className="mt-2 text-5xl font-bold text-primary-foreground">R$ 67,00</p>
+                    <p className="mt-2 text-5xl font-bold text-primary-foreground">R$ 1,00</p>
                     <p className="mt-1 text-sm text-primary-foreground/80">Compra única.</p>
                   </div>
                   <div className="mt-6">
@@ -453,7 +453,7 @@ function VozProtetoraPage() {
               <p className="mt-3 text-base text-muted-foreground">
                 Uma ferramenta para ajudar você a saber o que dizer, como agir e como se preparar.
               </p>
-              <p className="mt-6 text-5xl font-bold text-primary">R$ 67,00</p>
+              <p className="mt-6 text-5xl font-bold text-primary">R$ 1,00</p>
               <p className="mt-1 text-sm text-muted-foreground">Compra única.</p>
               <div className="mt-8">
                 <Button asChild variant="hero" size="xl">
