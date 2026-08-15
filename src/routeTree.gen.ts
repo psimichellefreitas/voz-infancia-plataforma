@@ -17,10 +17,15 @@ import { Route as RecursosRouteImport } from './routes/recursos'
 import { Route as PoliticaDePrivacidadeRouteImport } from './routes/politica-de-privacidade'
 import { Route as OMovimentoRouteImport } from './routes/o-movimento'
 import { Route as ContatoRouteImport } from './routes/contato'
+import { Route as CheckoutRouteImport } from './routes/checkout'
 import { Route as BussolaVozRouteImport } from './routes/bussola-voz'
 import { Route as ApoieRouteImport } from './routes/apoie'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as SolucoesVozProtetoraRouteImport } from './routes/solucoes_.voz-protetora'
+import { Route as PagamentoRecusadoRouteImport } from './routes/pagamento.recusado'
+import { Route as PagamentoProcessandoRouteImport } from './routes/pagamento.processando'
+import { Route as PagamentoPendenteRouteImport } from './routes/pagamento.pendente'
+import { Route as PagamentoAprovadoRouteImport } from './routes/pagamento.aprovado'
 import { Route as ApiPublicWebhooksMercadopagoRouteImport } from './routes/api/public/webhooks/mercadopago'
 
 const TermosDeUsoRoute = TermosDeUsoRouteImport.update({
@@ -63,6 +68,11 @@ const ContatoRoute = ContatoRouteImport.update({
   path: '/contato',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CheckoutRoute = CheckoutRouteImport.update({
+  id: '/checkout',
+  path: '/checkout',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BussolaVozRoute = BussolaVozRouteImport.update({
   id: '/bussola-voz',
   path: '/bussola-voz',
@@ -83,6 +93,26 @@ const SolucoesVozProtetoraRoute = SolucoesVozProtetoraRouteImport.update({
   path: '/solucoes/voz-protetora',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PagamentoRecusadoRoute = PagamentoRecusadoRouteImport.update({
+  id: '/pagamento/recusado',
+  path: '/pagamento/recusado',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PagamentoProcessandoRoute = PagamentoProcessandoRouteImport.update({
+  id: '/pagamento/processando',
+  path: '/pagamento/processando',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PagamentoPendenteRoute = PagamentoPendenteRouteImport.update({
+  id: '/pagamento/pendente',
+  path: '/pagamento/pendente',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PagamentoAprovadoRoute = PagamentoAprovadoRouteImport.update({
+  id: '/pagamento/aprovado',
+  path: '/pagamento/aprovado',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiPublicWebhooksMercadopagoRoute =
   ApiPublicWebhooksMercadopagoRouteImport.update({
     id: '/api/public/webhooks/mercadopago',
@@ -94,6 +124,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/apoie': typeof ApoieRoute
   '/bussola-voz': typeof BussolaVozRoute
+  '/checkout': typeof CheckoutRoute
   '/contato': typeof ContatoRoute
   '/o-movimento': typeof OMovimentoRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
@@ -102,6 +133,10 @@ export interface FileRoutesByFullPath {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/solucoes': typeof SolucoesRoute
   '/termos-de-uso': typeof TermosDeUsoRoute
+  '/pagamento/aprovado': typeof PagamentoAprovadoRoute
+  '/pagamento/pendente': typeof PagamentoPendenteRoute
+  '/pagamento/processando': typeof PagamentoProcessandoRoute
+  '/pagamento/recusado': typeof PagamentoRecusadoRoute
   '/solucoes/voz-protetora': typeof SolucoesVozProtetoraRoute
   '/api/public/webhooks/mercadopago': typeof ApiPublicWebhooksMercadopagoRoute
 }
@@ -109,6 +144,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/apoie': typeof ApoieRoute
   '/bussola-voz': typeof BussolaVozRoute
+  '/checkout': typeof CheckoutRoute
   '/contato': typeof ContatoRoute
   '/o-movimento': typeof OMovimentoRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
@@ -117,6 +153,10 @@ export interface FileRoutesByTo {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/solucoes': typeof SolucoesRoute
   '/termos-de-uso': typeof TermosDeUsoRoute
+  '/pagamento/aprovado': typeof PagamentoAprovadoRoute
+  '/pagamento/pendente': typeof PagamentoPendenteRoute
+  '/pagamento/processando': typeof PagamentoProcessandoRoute
+  '/pagamento/recusado': typeof PagamentoRecusadoRoute
   '/solucoes/voz-protetora': typeof SolucoesVozProtetoraRoute
   '/api/public/webhooks/mercadopago': typeof ApiPublicWebhooksMercadopagoRoute
 }
@@ -125,6 +165,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/apoie': typeof ApoieRoute
   '/bussola-voz': typeof BussolaVozRoute
+  '/checkout': typeof CheckoutRoute
   '/contato': typeof ContatoRoute
   '/o-movimento': typeof OMovimentoRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
@@ -133,6 +174,10 @@ export interface FileRoutesById {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/solucoes': typeof SolucoesRoute
   '/termos-de-uso': typeof TermosDeUsoRoute
+  '/pagamento/aprovado': typeof PagamentoAprovadoRoute
+  '/pagamento/pendente': typeof PagamentoPendenteRoute
+  '/pagamento/processando': typeof PagamentoProcessandoRoute
+  '/pagamento/recusado': typeof PagamentoRecusadoRoute
   '/solucoes_/voz-protetora': typeof SolucoesVozProtetoraRoute
   '/api/public/webhooks/mercadopago': typeof ApiPublicWebhooksMercadopagoRoute
 }
@@ -142,6 +187,7 @@ export interface FileRouteTypes {
     | '/'
     | '/apoie'
     | '/bussola-voz'
+    | '/checkout'
     | '/contato'
     | '/o-movimento'
     | '/politica-de-privacidade'
@@ -150,6 +196,10 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/solucoes'
     | '/termos-de-uso'
+    | '/pagamento/aprovado'
+    | '/pagamento/pendente'
+    | '/pagamento/processando'
+    | '/pagamento/recusado'
     | '/solucoes/voz-protetora'
     | '/api/public/webhooks/mercadopago'
   fileRoutesByTo: FileRoutesByTo
@@ -157,6 +207,7 @@ export interface FileRouteTypes {
     | '/'
     | '/apoie'
     | '/bussola-voz'
+    | '/checkout'
     | '/contato'
     | '/o-movimento'
     | '/politica-de-privacidade'
@@ -165,6 +216,10 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/solucoes'
     | '/termos-de-uso'
+    | '/pagamento/aprovado'
+    | '/pagamento/pendente'
+    | '/pagamento/processando'
+    | '/pagamento/recusado'
     | '/solucoes/voz-protetora'
     | '/api/public/webhooks/mercadopago'
   id:
@@ -172,6 +227,7 @@ export interface FileRouteTypes {
     | '/'
     | '/apoie'
     | '/bussola-voz'
+    | '/checkout'
     | '/contato'
     | '/o-movimento'
     | '/politica-de-privacidade'
@@ -180,6 +236,10 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/solucoes'
     | '/termos-de-uso'
+    | '/pagamento/aprovado'
+    | '/pagamento/pendente'
+    | '/pagamento/processando'
+    | '/pagamento/recusado'
     | '/solucoes_/voz-protetora'
     | '/api/public/webhooks/mercadopago'
   fileRoutesById: FileRoutesById
@@ -188,6 +248,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ApoieRoute: typeof ApoieRoute
   BussolaVozRoute: typeof BussolaVozRoute
+  CheckoutRoute: typeof CheckoutRoute
   ContatoRoute: typeof ContatoRoute
   OMovimentoRoute: typeof OMovimentoRoute
   PoliticaDePrivacidadeRoute: typeof PoliticaDePrivacidadeRoute
@@ -196,6 +257,10 @@ export interface RootRouteChildren {
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SolucoesRoute: typeof SolucoesRoute
   TermosDeUsoRoute: typeof TermosDeUsoRoute
+  PagamentoAprovadoRoute: typeof PagamentoAprovadoRoute
+  PagamentoPendenteRoute: typeof PagamentoPendenteRoute
+  PagamentoProcessandoRoute: typeof PagamentoProcessandoRoute
+  PagamentoRecusadoRoute: typeof PagamentoRecusadoRoute
   SolucoesVozProtetoraRoute: typeof SolucoesVozProtetoraRoute
   ApiPublicWebhooksMercadopagoRoute: typeof ApiPublicWebhooksMercadopagoRoute
 }
@@ -258,6 +323,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContatoRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/checkout': {
+      id: '/checkout'
+      path: '/checkout'
+      fullPath: '/checkout'
+      preLoaderRoute: typeof CheckoutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/bussola-voz': {
       id: '/bussola-voz'
       path: '/bussola-voz'
@@ -286,6 +358,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SolucoesVozProtetoraRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/pagamento/recusado': {
+      id: '/pagamento/recusado'
+      path: '/pagamento/recusado'
+      fullPath: '/pagamento/recusado'
+      preLoaderRoute: typeof PagamentoRecusadoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pagamento/processando': {
+      id: '/pagamento/processando'
+      path: '/pagamento/processando'
+      fullPath: '/pagamento/processando'
+      preLoaderRoute: typeof PagamentoProcessandoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pagamento/pendente': {
+      id: '/pagamento/pendente'
+      path: '/pagamento/pendente'
+      fullPath: '/pagamento/pendente'
+      preLoaderRoute: typeof PagamentoPendenteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pagamento/aprovado': {
+      id: '/pagamento/aprovado'
+      path: '/pagamento/aprovado'
+      fullPath: '/pagamento/aprovado'
+      preLoaderRoute: typeof PagamentoAprovadoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/public/webhooks/mercadopago': {
       id: '/api/public/webhooks/mercadopago'
       path: '/api/public/webhooks/mercadopago'
@@ -300,6 +400,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ApoieRoute: ApoieRoute,
   BussolaVozRoute: BussolaVozRoute,
+  CheckoutRoute: CheckoutRoute,
   ContatoRoute: ContatoRoute,
   OMovimentoRoute: OMovimentoRoute,
   PoliticaDePrivacidadeRoute: PoliticaDePrivacidadeRoute,
@@ -308,6 +409,10 @@ const rootRouteChildren: RootRouteChildren = {
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   SolucoesRoute: SolucoesRoute,
   TermosDeUsoRoute: TermosDeUsoRoute,
+  PagamentoAprovadoRoute: PagamentoAprovadoRoute,
+  PagamentoPendenteRoute: PagamentoPendenteRoute,
+  PagamentoProcessandoRoute: PagamentoProcessandoRoute,
+  PagamentoRecusadoRoute: PagamentoRecusadoRoute,
   SolucoesVozProtetoraRoute: SolucoesVozProtetoraRoute,
   ApiPublicWebhooksMercadopagoRoute: ApiPublicWebhooksMercadopagoRoute,
 }
