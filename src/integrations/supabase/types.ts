@@ -70,6 +70,30 @@ export type Database = {
           },
         ]
       }
+      protection_steps: {
+        Row: {
+          created_at: string
+          done: boolean
+          id: string
+          step_text: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          done?: boolean
+          id?: string
+          step_text: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          done?: boolean
+          id?: string
+          step_text?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       purchases: {
         Row: {
           amount: number
