@@ -43,7 +43,7 @@ export function ProdutoShell({ eyebrow, title, intro, backTo, children }: Produt
               <div className="mx-auto max-w-5xl px-5 py-10 sm:px-8 sm:py-14">
                 {backTo && (
                   <Link
-                    to={backTo.to}
+                    to={backTo.to as never}
                     className="mb-5 inline-flex items-center gap-2 text-sm font-semibold text-primary-foreground/80 hover:text-primary-foreground"
                   >
                     <ArrowLeft className="h-4 w-4" />
