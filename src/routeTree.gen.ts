@@ -28,7 +28,7 @@ import { Route as PagamentoRecusadoRouteImport } from './routes/pagamento.recusa
 import { Route as PagamentoProcessandoRouteImport } from './routes/pagamento.processando'
 import { Route as PagamentoPendenteRouteImport } from './routes/pagamento.pendente'
 import { Route as PagamentoAprovadoRouteImport } from './routes/pagamento.aprovado'
-import { Route as AuthenticatedVozProtetoraRouteImport } from './routes/_authenticated/voz-protetora'
+import { Route as AuthenticatedVozProtetoraIndexRouteImport } from './routes/_authenticated/voz-protetora.index'
 import { Route as ApiPublicWebhooksMercadopagoRouteImport } from './routes/api/public/webhooks/mercadopago'
 
 const TermosDeUsoRoute = TermosDeUsoRouteImport.update({
@@ -125,10 +125,10 @@ const PagamentoAprovadoRoute = PagamentoAprovadoRouteImport.update({
   path: '/pagamento/aprovado',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AuthenticatedVozProtetoraRoute =
-  AuthenticatedVozProtetoraRouteImport.update({
-    id: '/voz-protetora',
-    path: '/voz-protetora',
+const AuthenticatedVozProtetoraIndexRoute =
+  AuthenticatedVozProtetoraIndexRouteImport.update({
+    id: '/voz-protetora/',
+    path: '/voz-protetora/',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
 const ApiPublicWebhooksMercadopagoRoute =
@@ -152,12 +152,12 @@ export interface FileRoutesByFullPath {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/solucoes': typeof SolucoesRoute
   '/termos-de-uso': typeof TermosDeUsoRoute
-  '/voz-protetora': typeof AuthenticatedVozProtetoraRoute
   '/pagamento/aprovado': typeof PagamentoAprovadoRoute
   '/pagamento/pendente': typeof PagamentoPendenteRoute
   '/pagamento/processando': typeof PagamentoProcessandoRoute
   '/pagamento/recusado': typeof PagamentoRecusadoRoute
   '/solucoes/voz-protetora': typeof SolucoesVozProtetoraRoute
+  '/voz-protetora/': typeof AuthenticatedVozProtetoraIndexRoute
   '/api/public/webhooks/mercadopago': typeof ApiPublicWebhooksMercadopagoRoute
 }
 export interface FileRoutesByTo {
@@ -174,12 +174,12 @@ export interface FileRoutesByTo {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/solucoes': typeof SolucoesRoute
   '/termos-de-uso': typeof TermosDeUsoRoute
-  '/voz-protetora': typeof AuthenticatedVozProtetoraRoute
   '/pagamento/aprovado': typeof PagamentoAprovadoRoute
   '/pagamento/pendente': typeof PagamentoPendenteRoute
   '/pagamento/processando': typeof PagamentoProcessandoRoute
   '/pagamento/recusado': typeof PagamentoRecusadoRoute
   '/solucoes/voz-protetora': typeof SolucoesVozProtetoraRoute
+  '/voz-protetora': typeof AuthenticatedVozProtetoraIndexRoute
   '/api/public/webhooks/mercadopago': typeof ApiPublicWebhooksMercadopagoRoute
 }
 export interface FileRoutesById {
@@ -198,12 +198,12 @@ export interface FileRoutesById {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/solucoes': typeof SolucoesRoute
   '/termos-de-uso': typeof TermosDeUsoRoute
-  '/_authenticated/voz-protetora': typeof AuthenticatedVozProtetoraRoute
   '/pagamento/aprovado': typeof PagamentoAprovadoRoute
   '/pagamento/pendente': typeof PagamentoPendenteRoute
   '/pagamento/processando': typeof PagamentoProcessandoRoute
   '/pagamento/recusado': typeof PagamentoRecusadoRoute
   '/solucoes_/voz-protetora': typeof SolucoesVozProtetoraRoute
+  '/_authenticated/voz-protetora/': typeof AuthenticatedVozProtetoraIndexRoute
   '/api/public/webhooks/mercadopago': typeof ApiPublicWebhooksMercadopagoRoute
 }
 export interface FileRouteTypes {
@@ -222,12 +222,12 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/solucoes'
     | '/termos-de-uso'
-    | '/voz-protetora'
     | '/pagamento/aprovado'
     | '/pagamento/pendente'
     | '/pagamento/processando'
     | '/pagamento/recusado'
     | '/solucoes/voz-protetora'
+    | '/voz-protetora/'
     | '/api/public/webhooks/mercadopago'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -244,12 +244,12 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/solucoes'
     | '/termos-de-uso'
-    | '/voz-protetora'
     | '/pagamento/aprovado'
     | '/pagamento/pendente'
     | '/pagamento/processando'
     | '/pagamento/recusado'
     | '/solucoes/voz-protetora'
+    | '/voz-protetora'
     | '/api/public/webhooks/mercadopago'
   id:
     | '__root__'
@@ -267,12 +267,12 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/solucoes'
     | '/termos-de-uso'
-    | '/_authenticated/voz-protetora'
     | '/pagamento/aprovado'
     | '/pagamento/pendente'
     | '/pagamento/processando'
     | '/pagamento/recusado'
     | '/solucoes_/voz-protetora'
+    | '/_authenticated/voz-protetora/'
     | '/api/public/webhooks/mercadopago'
   fileRoutesById: FileRoutesById
 }
@@ -434,11 +434,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PagamentoAprovadoRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/_authenticated/voz-protetora': {
-      id: '/_authenticated/voz-protetora'
+    '/_authenticated/voz-protetora/': {
+      id: '/_authenticated/voz-protetora/'
       path: '/voz-protetora'
-      fullPath: '/voz-protetora'
-      preLoaderRoute: typeof AuthenticatedVozProtetoraRouteImport
+      fullPath: '/voz-protetora/'
+      preLoaderRoute: typeof AuthenticatedVozProtetoraIndexRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/api/public/webhooks/mercadopago': {
@@ -452,11 +452,11 @@ declare module '@tanstack/react-router' {
 }
 
 interface AuthenticatedRouteRouteChildren {
-  AuthenticatedVozProtetoraRoute: typeof AuthenticatedVozProtetoraRoute
+  AuthenticatedVozProtetoraIndexRoute: typeof AuthenticatedVozProtetoraIndexRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
-  AuthenticatedVozProtetoraRoute: AuthenticatedVozProtetoraRoute,
+  AuthenticatedVozProtetoraIndexRoute: AuthenticatedVozProtetoraIndexRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
