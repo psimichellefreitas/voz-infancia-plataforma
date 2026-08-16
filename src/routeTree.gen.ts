@@ -29,6 +29,7 @@ import { Route as PagamentoProcessandoRouteImport } from './routes/pagamento.pro
 import { Route as PagamentoPendenteRouteImport } from './routes/pagamento.pendente'
 import { Route as PagamentoAprovadoRouteImport } from './routes/pagamento.aprovado'
 import { Route as AuthenticatedVozProtetoraIndexRouteImport } from './routes/_authenticated/voz-protetora.index'
+import { Route as AuthenticatedVozProtetoraAconteceuIndexRouteImport } from './routes/_authenticated/voz-protetora.aconteceu.index'
 import { Route as ApiPublicWebhooksMercadopagoRouteImport } from './routes/api/public/webhooks/mercadopago'
 
 const TermosDeUsoRoute = TermosDeUsoRouteImport.update({
@@ -131,6 +132,12 @@ const AuthenticatedVozProtetoraIndexRoute =
     path: '/voz-protetora/',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedVozProtetoraAconteceuIndexRoute =
+  AuthenticatedVozProtetoraAconteceuIndexRouteImport.update({
+    id: '/voz-protetora/aconteceu/',
+    path: '/voz-protetora/aconteceu/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const ApiPublicWebhooksMercadopagoRoute =
   ApiPublicWebhooksMercadopagoRouteImport.update({
     id: '/api/public/webhooks/mercadopago',
@@ -159,6 +166,7 @@ export interface FileRoutesByFullPath {
   '/solucoes/voz-protetora': typeof SolucoesVozProtetoraRoute
   '/voz-protetora/': typeof AuthenticatedVozProtetoraIndexRoute
   '/api/public/webhooks/mercadopago': typeof ApiPublicWebhooksMercadopagoRoute
+  '/voz-protetora/aconteceu/': typeof AuthenticatedVozProtetoraAconteceuIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -181,6 +189,7 @@ export interface FileRoutesByTo {
   '/solucoes/voz-protetora': typeof SolucoesVozProtetoraRoute
   '/voz-protetora': typeof AuthenticatedVozProtetoraIndexRoute
   '/api/public/webhooks/mercadopago': typeof ApiPublicWebhooksMercadopagoRoute
+  '/voz-protetora/aconteceu': typeof AuthenticatedVozProtetoraAconteceuIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -205,6 +214,7 @@ export interface FileRoutesById {
   '/solucoes_/voz-protetora': typeof SolucoesVozProtetoraRoute
   '/_authenticated/voz-protetora/': typeof AuthenticatedVozProtetoraIndexRoute
   '/api/public/webhooks/mercadopago': typeof ApiPublicWebhooksMercadopagoRoute
+  '/_authenticated/voz-protetora/aconteceu/': typeof AuthenticatedVozProtetoraAconteceuIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -229,6 +239,7 @@ export interface FileRouteTypes {
     | '/solucoes/voz-protetora'
     | '/voz-protetora/'
     | '/api/public/webhooks/mercadopago'
+    | '/voz-protetora/aconteceu/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -251,6 +262,7 @@ export interface FileRouteTypes {
     | '/solucoes/voz-protetora'
     | '/voz-protetora'
     | '/api/public/webhooks/mercadopago'
+    | '/voz-protetora/aconteceu'
   id:
     | '__root__'
     | '/'
@@ -274,6 +286,7 @@ export interface FileRouteTypes {
     | '/solucoes_/voz-protetora'
     | '/_authenticated/voz-protetora/'
     | '/api/public/webhooks/mercadopago'
+    | '/_authenticated/voz-protetora/aconteceu/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -441,6 +454,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedVozProtetoraIndexRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/voz-protetora/aconteceu/': {
+      id: '/_authenticated/voz-protetora/aconteceu/'
+      path: '/voz-protetora/aconteceu'
+      fullPath: '/voz-protetora/aconteceu/'
+      preLoaderRoute: typeof AuthenticatedVozProtetoraAconteceuIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/api/public/webhooks/mercadopago': {
       id: '/api/public/webhooks/mercadopago'
       path: '/api/public/webhooks/mercadopago'
@@ -453,10 +473,13 @@ declare module '@tanstack/react-router' {
 
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedVozProtetoraIndexRoute: typeof AuthenticatedVozProtetoraIndexRoute
+  AuthenticatedVozProtetoraAconteceuIndexRoute: typeof AuthenticatedVozProtetoraAconteceuIndexRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedVozProtetoraIndexRoute: AuthenticatedVozProtetoraIndexRoute,
+  AuthenticatedVozProtetoraAconteceuIndexRoute:
+    AuthenticatedVozProtetoraAconteceuIndexRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
