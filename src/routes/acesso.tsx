@@ -23,10 +23,11 @@ export const Route = createFileRoute("/acesso")({
       { name: "robots", content: "noindex" },
     ],
   }),
+  validateSearch: (search: Record<string, unknown>) => ({
+    redirect: isSafePath(search["redirect"]) ? search["redirect"] : undefined,
+  }),
   component: AcessoPage,
 });
-
-declare module "@tanstack/react-router" {}
 
 function isSafePath(value: unknown): value is string {
   return typeof value === "string" && value.startsWith("/") && !value.startsWith("//");
