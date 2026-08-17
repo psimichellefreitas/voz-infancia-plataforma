@@ -68,7 +68,12 @@ export function ProdutoNav() {
         </button>
       </div>
 
-      <div className={cn("border-t border-border bg-background px-5 pb-5 pt-1 xl:hidden", !open && "hidden")}>
+      <div
+        className={cn(
+          "border-t border-border bg-background px-5 pb-5 pt-1 xl:hidden",
+          !open && "hidden",
+        )}
+      >
         <nav className="flex flex-col">
           {ITEMS.map((item) => (
             <Link

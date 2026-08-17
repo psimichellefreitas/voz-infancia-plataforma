@@ -8,7 +8,10 @@ export const Route = createFileRoute("/_authenticated/voz-protetora/aconteceu/")
   head: () => ({
     meta: [
       { title: "Aconteceu — Voz Protetora" },
-      { name: "description", content: "Algo aconteceu. Escolha a situação para receber orientação." },
+      {
+        name: "description",
+        content: "Algo aconteceu. Escolha a situação para receber orientação.",
+      },
       { property: "og:title", content: "Aconteceu — Voz Protetora" },
       { property: "og:description", content: "Orientação para situações que já aconteceram." },
       { property: "og:type", content: "website" },

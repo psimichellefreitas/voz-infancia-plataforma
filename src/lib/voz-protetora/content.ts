@@ -57,35 +57,123 @@ export const FORTALECER_STRUCTURE: OrientationBlock[] = [
 ];
 
 export const ACONTECEU: ContentItem[] = [
-  { slug: "nao-quer-abracar", title: "A criança não quer abraçar um familiar.", status: "pendente" },
+  {
+    slug: "nao-quer-abracar",
+    title: "A criança não quer abraçar um familiar.",
+    status: "pendente",
+  },
   { slug: "nao-quer-beijar", title: "A criança não quer beijar alguém.", status: "pendente" },
   { slug: "medo-de-alguem", title: "A criança diz que tem medo de alguém.", status: "pendente" },
-  { slug: "contou-algo-preocupante", title: "A criança contou algo que me preocupou.", status: "pendente" },
-  { slug: "pediu-para-nao-contar", title: "A criança pediu para eu não contar algo.", status: "pendente" },
+  {
+    slug: "contou-algo-preocupante",
+    title: "A criança contou algo que me preocupou.",
+    status: "pendente",
+  },
+  {
+    slug: "pediu-para-nao-contar",
+    title: "A criança pediu para eu não contar algo.",
+    status: "pendente",
+  },
   { slug: "mudou-comportamento", title: "A criança mudou de comportamento.", status: "pendente" },
-  { slug: "nao-quer-ir-a-lugar", title: "A criança não quer ir a determinado lugar.", status: "pendente" },
-  { slug: "viu-algo-inadequado", title: "A criança viu algo inadequado na internet.", status: "pendente" },
-  { slug: "perguntou-partes-intimas", title: "A criança perguntou sobre partes íntimas.", status: "pendente" },
-  { slug: "alguem-ultrapassou-limite", title: "A criança contou que alguém ultrapassou seu limite.", status: "pendente" },
-  { slug: "adulto-pediu-segredo", title: "Um adulto pediu para a criança guardar um segredo.", status: "pendente" },
-  { slug: "desconforto-perto-de-pessoa", title: "A criança parece desconfortável perto de determinada pessoa.", status: "pendente" },
-  { slug: "nao-sei-interpretar", title: "A criança fez algo que não sei como interpretar.", status: "pendente" },
-  { slug: "mensagens-preocupantes", title: "A criança está recebendo mensagens de alguém e algo me preocupa.", status: "pendente" },
-  { slug: "pressao-para-fazer-algo", title: "A criança está sendo pressionada a fazer algo que não quer.", status: "pendente" },
+  {
+    slug: "nao-quer-ir-a-lugar",
+    title: "A criança não quer ir a determinado lugar.",
+    status: "pendente",
+  },
+  {
+    slug: "viu-algo-inadequado",
+    title: "A criança viu algo inadequado na internet.",
+    status: "pendente",
+  },
+  {
+    slug: "perguntou-partes-intimas",
+    title: "A criança perguntou sobre partes íntimas.",
+    status: "pendente",
+  },
+  {
+    slug: "alguem-ultrapassou-limite",
+    title: "A criança contou que alguém ultrapassou seu limite.",
+    status: "pendente",
+  },
+  {
+    slug: "adulto-pediu-segredo",
+    title: "Um adulto pediu para a criança guardar um segredo.",
+    status: "pendente",
+  },
+  {
+    slug: "desconforto-perto-de-pessoa",
+    title: "A criança parece desconfortável perto de determinada pessoa.",
+    status: "pendente",
+  },
+  {
+    slug: "nao-sei-interpretar",
+    title: "A criança fez algo que não sei como interpretar.",
+    status: "pendente",
+  },
+  {
+    slug: "mensagens-preocupantes",
+    title: "A criança está recebendo mensagens de alguém e algo me preocupa.",
+    status: "pendente",
+  },
+  {
+    slug: "pressao-para-fazer-algo",
+    title: "A criança está sendo pressionada a fazer algo que não quer.",
+    status: "pendente",
+  },
 ];
 
 export const VAI_ACONTECER: ContentItem[] = [
   { slug: "piscina", emoji: "🏊", title: "A criança vai à piscina.", status: "pendente" },
   { slug: "praia", emoji: "🏖️", title: "A criança vai à praia.", status: "pendente" },
-  { slug: "dormir-familiar", emoji: "🏠", title: "A criança vai dormir na casa de um familiar.", status: "pendente" },
-  { slug: "casa-de-amigo", emoji: "🏡", title: "A criança vai passar o dia na casa de um amigo.", status: "pendente" },
-  { slug: "cuidados-de-outra-pessoa", emoji: "👵", title: "A criança vai ficar sob os cuidados de outra pessoa.", status: "pendente" },
+  {
+    slug: "dormir-familiar",
+    emoji: "🏠",
+    title: "A criança vai dormir na casa de um familiar.",
+    status: "pendente",
+  },
+  {
+    slug: "casa-de-amigo",
+    emoji: "🏡",
+    title: "A criança vai passar o dia na casa de um amigo.",
+    status: "pendente",
+  },
+  {
+    slug: "cuidados-de-outra-pessoa",
+    emoji: "👵",
+    title: "A criança vai ficar sob os cuidados de outra pessoa.",
+    status: "pendente",
+  },
   { slug: "festa", emoji: "🎂", title: "A criança vai a uma festa.", status: "pendente" },
-  { slug: "atividade-esportiva", emoji: "⚽", title: "A criança vai participar de uma atividade esportiva.", status: "pendente" },
-  { slug: "excursao-escolar", emoji: "🚌", title: "A criança vai participar de uma excursão ou viagem escolar.", status: "pendente" },
-  { slug: "atividade-religiosa", emoji: "🛐", title: "A criança vai participar de uma atividade religiosa.", status: "pendente" },
-  { slug: "acampamento", emoji: "⛺", title: "A criança vai participar de um acampamento.", status: "pendente" },
-  { slug: "ambiente-digital", emoji: "📱", title: "A criança vai começar a utilizar um ambiente digital.", status: "pendente" },
+  {
+    slug: "atividade-esportiva",
+    emoji: "⚽",
+    title: "A criança vai participar de uma atividade esportiva.",
+    status: "pendente",
+  },
+  {
+    slug: "excursao-escolar",
+    emoji: "🚌",
+    title: "A criança vai participar de uma excursão ou viagem escolar.",
+    status: "pendente",
+  },
+  {
+    slug: "atividade-religiosa",
+    emoji: "🛐",
+    title: "A criança vai participar de uma atividade religiosa.",
+    status: "pendente",
+  },
+  {
+    slug: "acampamento",
+    emoji: "⛺",
+    title: "A criança vai participar de um acampamento.",
+    status: "pendente",
+  },
+  {
+    slug: "ambiente-digital",
+    emoji: "📱",
+    title: "A criança vai começar a utilizar um ambiente digital.",
+    status: "pendente",
+  },
   { slug: "jogar-online", emoji: "🎮", title: "A criança vai jogar online.", status: "pendente" },
 ];
 

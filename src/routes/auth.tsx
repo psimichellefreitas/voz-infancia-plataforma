@@ -16,8 +16,7 @@ export const Route = createFileRoute("/auth")({
       { title: "Entrar — Voz Pela Infância" },
       {
         name: "description",
-        content:
-          "Entre com o e-mail utilizado na compra para acessar o Voz Protetora.",
+        content: "Entre com o e-mail utilizado na compra para acessar o Voz Protetora.",
       },
       { property: "og:title", content: "Entrar — Voz Pela Infância" },
       {
@@ -97,7 +96,13 @@ function AuthPage() {
                 className="mt-2"
                 placeholder="seu@email.com"
               />
-              <Button type="submit" variant="hero" size="xl" className="mt-6 w-full" disabled={loading}>
+              <Button
+                type="submit"
+                variant="hero"
+                size="xl"
+                className="mt-6 w-full"
+                disabled={loading}
+              >
                 {loading ? (
                   <>
                     <Loader2 className="h-4 w-4 animate-spin" />
