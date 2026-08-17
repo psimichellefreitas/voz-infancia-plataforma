@@ -38,9 +38,7 @@ function SolucoesPage() {
             <Shield className="h-4 w-4" />
             Ferramenta digital de orientação prática
           </div>
-          <h2 className="mt-4 text-2xl font-bold text-primary sm:text-3xl">
-            VOZ PROTETORA
-          </h2>
+          <h2 className="mt-4 text-2xl font-bold text-primary sm:text-3xl">VOZ PROTETORA</h2>
           <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground">
             Uma ferramenta digital que ajuda adultos a saber o que dizer, como agir e como se
             preparar diante de situações reais da infância.
@@ -71,8 +69,8 @@ function SolucoesPage() {
             Mais soluções poderão fazer parte desse caminho.
           </h2>
           <p className="mt-3 text-base leading-relaxed text-muted-foreground">
-            O Movimento poderá desenvolver novos recursos ao longo do tempo, sempre com o compromisso
-            de fortalecer a proteção da infância.
+            O Movimento poderá desenvolver novos recursos ao longo do tempo, sempre com o
+            compromisso de fortalecer a proteção da infância.
           </p>
         </div>
       </section>

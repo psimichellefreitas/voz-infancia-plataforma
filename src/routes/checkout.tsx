@@ -114,7 +114,13 @@ function CheckoutPage() {
                 </div>
               </div>
 
-              <Button type="submit" variant="hero" size="xl" className="mt-7 w-full" disabled={loading}>
+              <Button
+                type="submit"
+                variant="hero"
+                size="xl"
+                className="mt-7 w-full"
+                disabled={loading}
+              >
                 {loading ? (
                   <>
                     <Loader2 className="h-4 w-4 animate-spin" />
@@ -126,8 +132,8 @@ function CheckoutPage() {
               </Button>
 
               <p className="mt-4 flex items-start gap-2 text-xs leading-relaxed text-muted-foreground">
-                <Lock className="mt-0.5 h-3.5 w-3.5 shrink-0" />
-                O pagamento é processado pelo Mercado Pago. Não armazenamos dados de cartão.
+                <Lock className="mt-0.5 h-3.5 w-3.5 shrink-0" />O pagamento é processado pelo
+                Mercado Pago. Não armazenamos dados de cartão.
               </p>
               <p className="mt-3 text-xs text-muted-foreground">
                 Ao continuar, você concorda com os{" "}
@@ -135,7 +141,10 @@ function CheckoutPage() {
                   Termos de Uso
                 </Link>{" "}
                 e com a{" "}
-                <Link to="/politica-de-privacidade" className="font-semibold text-primary underline">
+                <Link
+                  to="/politica-de-privacidade"
+                  className="font-semibold text-primary underline"
+                >
                   Política de Privacidade
                 </Link>
                 .
