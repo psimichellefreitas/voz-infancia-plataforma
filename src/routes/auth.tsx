@@ -16,8 +16,7 @@ export const Route = createFileRoute("/auth")({
       { title: "Entrar — Voz Pela Infância" },
       {
         name: "description",
-        content:
-          "Entre com o e-mail utilizado na compra para acessar o Voz Protetora.",
+        content: "Entre com o e-mail utilizado na compra para acessar o Voz Protetora.",
       },
       { property: "og:title", content: "Entrar — Voz Pela Infância" },
       {
@@ -47,7 +46,10 @@ function AuthPage() {
   async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
     setLoading(true);
-    const target = `${window.location.origin}${redirect ?? "/voz-protetora"}`;
+    // O link do e-mail sempre passa por /acesso, que espera a sessão ser criada
+    // antes de entrar na área protegida.
+    const target = `${window.location.origin}/acesso`;
+    void redirect;
     const { error } = await supabase.auth.signInWithOtp({
       email: email.trim().toLowerCase(),
       options: { emailRedirectTo: target },
@@ -94,7 +96,13 @@ function AuthPage() {
                 className="mt-2"
                 placeholder="seu@email.com"
               />
-              <Button type="submit" variant="hero" size="xl" className="mt-6 w-full" disabled={loading}>
+              <Button
+                type="submit"
+                variant="hero"
+                size="xl"
+                className="mt-6 w-full"
+                disabled={loading}
+              >
                 {loading ? (
                   <>
                     <Loader2 className="h-4 w-4 animate-spin" />

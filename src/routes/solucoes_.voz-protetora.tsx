@@ -31,8 +31,7 @@ export const Route = createFileRoute("/solucoes_/voz-protetora")({
       { property: "og:title", content: "Voz Protetora — Voz Pela Infância" },
       {
         property: "og:description",
-        content:
-          "Orientação prática para adultos que querem proteger melhor a infância.",
+        content: "Orientação prática para adultos que querem proteger melhor a infância.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -84,12 +83,20 @@ const QUERO_FORTALECER = [
 ];
 
 const ORIENTACAO_ETAPAS = [
-  { n: "01", t: "O QUE PODE ESTAR ACONTECENDO?", d: "Contextualização breve, sem diagnóstico e sem alarmismo." },
+  {
+    n: "01",
+    t: "O QUE PODE ESTAR ACONTECENDO?",
+    d: "Contextualização breve, sem diagnóstico e sem alarmismo.",
+  },
   { n: "02", t: "O QUE DIZER?", d: "Frases que o adulto pode utilizar." },
   { n: "03", t: "COMO AGIR?", d: "Passos objetivos." },
   { n: "04", t: "EVITE", d: "Atitudes que podem dificultar a proteção." },
   { n: "05", t: "OLHAR PROTETOR", d: "O que observar e contextualizar." },
-  { n: "06", t: "QUANDO BUSCAR AJUDA?", d: "Quando a situação exige orientação adicional ou acionamento da rede adequada." },
+  {
+    n: "06",
+    t: "QUANDO BUSCAR AJUDA?",
+    d: "Quando a situação exige orientação adicional ou acionamento da rede adequada.",
+  },
   { n: "07", t: "O QUE ESSA SITUAÇÃO ENSINA?", d: "O princípio protetivo daquela situação." },
   { n: "08", t: "MEU PRÓXIMO PASSO", d: "Uma ação concreta que o adulto pode realizar." },
 ];
@@ -241,10 +248,7 @@ function VozProtetoraPage() {
                     className="rounded-[12px] border border-border bg-card p-6 shadow-[var(--shadow-soft)] sm:p-8"
                   >
                     <div
-                      className={cn(
-                        "grid h-12 w-12 place-items-center rounded-[10px]",
-                        card.bg,
-                      )}
+                      className={cn("grid h-12 w-12 place-items-center rounded-[10px]", card.bg)}
                     >
                       <card.icon className={cn("h-6 w-6", card.color)} />
                     </div>
@@ -308,12 +312,8 @@ function VozProtetoraPage() {
                     <span className="text-xs font-bold uppercase tracking-[0.14em] text-accent">
                       {etapa.n}
                     </span>
-                    <h3 className="mt-2 text-sm font-bold leading-snug text-primary">
-                      {etapa.t}
-                    </h3>
-                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                      {etapa.d}
-                    </p>
+                    <h3 className="mt-2 text-sm font-bold leading-snug text-primary">{etapa.t}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{etapa.d}</p>
                   </div>
                 ))}
               </div>
@@ -346,10 +346,7 @@ function VozProtetoraPage() {
             </div>
             <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {VAI_ACONTECER_ETAPAS.map((etapa) => (
-                <div
-                  key={etapa.t}
-                  className="rounded-[10px] border border-border bg-secondary p-5"
-                >
+                <div key={etapa.t} className="rounded-[10px] border border-border bg-secondary p-5">
                   <h3 className="text-sm font-bold text-primary">{etapa.t}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{etapa.d}</p>
                 </div>
@@ -422,8 +419,8 @@ function VozProtetoraPage() {
                 MINHA PRESENÇA PROTETIVA
               </h2>
               <p className="mt-3 max-w-3xl text-base leading-relaxed text-muted-foreground">
-                Um check-up simples e reflexivo para perceber onde você pode fortalecer sua
-                presença protetiva.
+                Um check-up simples e reflexivo para perceber onde você pode fortalecer sua presença
+                protetiva.
               </p>
               <div className="mt-8 grid gap-3 sm:grid-cols-2">
                 {PRESENCA_CHECK.map((item) => (

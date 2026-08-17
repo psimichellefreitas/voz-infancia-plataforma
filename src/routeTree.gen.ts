@@ -21,6 +21,7 @@ import { Route as CheckoutRouteImport } from './routes/checkout'
 import { Route as BussolaVozRouteImport } from './routes/bussola-voz'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as ApoieRouteImport } from './routes/apoie'
+import { Route as AcessoRouteImport } from './routes/acesso'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as SolucoesVozProtetoraRouteImport } from './routes/solucoes_.voz-protetora'
@@ -99,6 +100,11 @@ const AuthRoute = AuthRouteImport.update({
 const ApoieRoute = ApoieRouteImport.update({
   id: '/apoie',
   path: '/apoie',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AcessoRoute = AcessoRouteImport.update({
+  id: '/acesso',
+  path: '/acesso',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
@@ -210,6 +216,7 @@ const AuthenticatedVozProtetoraAconteceuSlugRoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/acesso': typeof AcessoRoute
   '/apoie': typeof ApoieRoute
   '/auth': typeof AuthRoute
   '/bussola-voz': typeof BussolaVozRoute
@@ -242,6 +249,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/acesso': typeof AcessoRoute
   '/apoie': typeof ApoieRoute
   '/auth': typeof AuthRoute
   '/bussola-voz': typeof BussolaVozRoute
@@ -276,6 +284,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/acesso': typeof AcessoRoute
   '/apoie': typeof ApoieRoute
   '/auth': typeof AuthRoute
   '/bussola-voz': typeof BussolaVozRoute
@@ -310,6 +319,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/acesso'
     | '/apoie'
     | '/auth'
     | '/bussola-voz'
@@ -342,6 +352,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/acesso'
     | '/apoie'
     | '/auth'
     | '/bussola-voz'
@@ -375,6 +386,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/_authenticated'
+    | '/acesso'
     | '/apoie'
     | '/auth'
     | '/bussola-voz'
@@ -409,6 +421,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  AcessoRoute: typeof AcessoRoute
   ApoieRoute: typeof ApoieRoute
   AuthRoute: typeof AuthRoute
   BussolaVozRoute: typeof BussolaVozRoute
@@ -513,6 +526,13 @@ declare module '@tanstack/react-router' {
       path: '/apoie'
       fullPath: '/apoie'
       preLoaderRoute: typeof ApoieRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/acesso': {
+      id: '/acesso'
+      path: '/acesso'
+      fullPath: '/acesso'
+      preLoaderRoute: typeof AcessoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_authenticated': {
@@ -695,6 +715,7 @@ const AuthenticatedRouteRouteWithChildren =
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  AcessoRoute: AcessoRoute,
   ApoieRoute: ApoieRoute,
   AuthRoute: AuthRoute,
   BussolaVozRoute: BussolaVozRoute,

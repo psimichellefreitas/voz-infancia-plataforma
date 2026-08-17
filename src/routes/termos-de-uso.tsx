@@ -26,8 +26,8 @@ export const Route = createFileRoute("/termos-de-uso")({
           integrais, adaptações ou usos comerciais dependem de autorização prévia.
         </p>
         <p>
-          Ao utilizar o site, você concorda em não empregar seus conteúdos para práticas que exponham
-          crianças ou violem a legislação de proteção à infância.
+          Ao utilizar o site, você concorda em não empregar seus conteúdos para práticas que
+          exponham crianças ou violem a legislação de proteção à infância.
         </p>
       </div>
     </PageShell>

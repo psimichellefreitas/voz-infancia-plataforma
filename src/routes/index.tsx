@@ -1,5 +1,12 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Compass, HeartHandshake, ShieldCheck, Sparkles, ArrowRight, Instagram } from "lucide-react";
+import {
+  Compass,
+  HeartHandshake,
+  ShieldCheck,
+  Sparkles,
+  ArrowRight,
+  Instagram,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/voz/Reveal";
 import { SiteHeader } from "@/components/voz/SiteHeader";
@@ -86,8 +93,8 @@ function Home() {
                 Toda criança precisa de adultos que a valorizem, orientem e zelem por ela.
               </h1>
               <p className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-                O Voz Pela Infância informa, forma e mobiliza pessoas para uma proteção real —
-                sem alarmismo, com responsabilidade e cuidado.
+                O Voz Pela Infância informa, forma e mobiliza pessoas para uma proteção real — sem
+                alarmismo, com responsabilidade e cuidado.
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <Button asChild variant="hero" size="lg">
@@ -192,7 +199,9 @@ function Home() {
 
         {/* INSTAGRAM */}
         <section className="border-t border-border bg-secondary py-14">
-          <div className={`${SHELL} flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between`}>
+          <div
+            className={`${SHELL} flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between`}
+          >
             <div>
               <h2 className="text-xl font-bold text-primary">Acompanhe no Instagram</h2>
               <p className="mt-1 text-sm text-muted-foreground">

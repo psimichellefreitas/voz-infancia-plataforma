@@ -10,9 +10,8 @@ export const Route = createFileRoute("/api/public/webhooks/mercadopago")({
   server: {
     handlers: {
       POST: async ({ request }) => {
-        const { getWebhookSecret, fetchPayment, mapPaymentStatus } = await import(
-          "@/lib/mercadopago.server"
-        );
+        const { getWebhookSecret, fetchPayment, mapPaymentStatus } =
+          await import("@/lib/mercadopago.server");
 
         const rawBody = await request.text();
 
@@ -88,8 +87,7 @@ export const Route = createFileRoute("/api/public/webhooks/mercadopago")({
           .eq("id", purchase.id);
 
         // REGRA: acesso somente com pagamento aprovado.
-        const amountOk =
-          payment.amount == null || payment.amount >= Number(purchase.amount) - 0.01;
+        const amountOk = payment.amount == null || payment.amount >= Number(purchase.amount) - 0.01;
 
         if (internalStatus === "approved" && !amountOk) {
           console.error(
