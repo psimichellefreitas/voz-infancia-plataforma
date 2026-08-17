@@ -1,10 +1,9 @@
-import type { ReactNode } from "react";
-import { Link } from "@tanstack/react-router";
+import { useEffect, type ReactNode } from "react";
+import { Link, useNavigate } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { useQuery } from "@tanstack/react-query";
 import { ArrowLeft, Loader2, Lock } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
 import { getMyProductAccess } from "@/lib/access.functions";
 import { ProdutoNav } from "./ProdutoNav";
 
@@ -27,6 +26,14 @@ export function ProdutoShell({ eyebrow, title, intro, backTo, children }: Produt
     queryFn: () => fetchAccess({ data: undefined }),
     staleTime: 60_000,
   });
+  const navigate = useNavigate();
+
+  // Sem autorização válida no backend, o comprador vai para a página comercial.
+  useEffect(() => {
+    if (data && !data.hasAccess) {
+      navigate({ to: "/solucoes/voz-protetora", replace: true });
+    }
+  }, [data, navigate]);
 
   return (
     <div className="min-h-screen bg-secondary">
@@ -71,20 +78,17 @@ export function ProdutoShell({ eyebrow, title, intro, backTo, children }: Produt
               <div className="mx-auto grid h-14 w-14 place-items-center rounded-full bg-primary/10">
                 <Lock className="h-7 w-7 text-primary" />
               </div>
-              <h1 className="mt-5 text-2xl font-bold text-primary">Acesso ainda não liberado</h1>
+              <h1 className="mt-5 text-xl font-bold text-primary">Acesso ainda não liberado</h1>
               <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                Não encontramos uma compra confirmada para {data?.email ?? "este e-mail"}. Se você
-                acabou de pagar, aguarde alguns instantes. Se usou outro e-mail na compra, entre com
-                ele.
+                Não encontramos uma compra confirmada para {data?.email ?? "este e-mail"}. Levando
+                você para a página do Voz Protetora...
               </p>
-              <div className="mt-7 flex flex-wrap justify-center gap-3">
-                <Button asChild variant="hero" size="xl">
-                  <Link to="/checkout">QUERO TER O VOZ PROTETORA</Link>
-                </Button>
-                <Button asChild variant="outline" size="xl">
-                  <Link to="/contato">FALAR COM O MOVIMENTO</Link>
-                </Button>
-              </div>
+              <Link
+                to="/solucoes/voz-protetora"
+                className="mt-6 inline-flex text-sm font-semibold text-primary underline"
+              >
+                Ver o Voz Protetora
+              </Link>
             </div>
           </section>
         )}
