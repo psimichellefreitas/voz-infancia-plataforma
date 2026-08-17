@@ -42,7 +42,14 @@ export function SiteHeader() {
           ))}
         </nav>
 
-        <div className="hidden lg:block">
+        <div className="hidden items-center gap-5 lg:flex">
+          <Link
+            to="/auth"
+            search={{ redirect: "/voz-protetora" }}
+            className="text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground transition-colors hover:text-primary"
+          >
+            Já tenho o Voz Protetora
+          </Link>
           <Button asChild variant="hero">
             <Link to="/seja-voz">SEJA VOZ</Link>
           </Button>
@@ -76,6 +83,14 @@ export function SiteHeader() {
                 SEJA VOZ
               </Link>
             </Button>
+            <Link
+              to="/auth"
+              search={{ redirect: "/voz-protetora" }}
+              onClick={() => setOpen(false)}
+              className="mt-4 text-center text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground"
+            >
+              Já tenho o Voz Protetora
+            </Link>
           </nav>
         </div>
       )}

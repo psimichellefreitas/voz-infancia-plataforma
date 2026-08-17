@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate, useSearch } from "@tanstack/react-router";
 import { Loader2, ShieldCheck } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -23,11 +23,19 @@ export const Route = createFileRoute("/acesso")({
       { name: "robots", content: "noindex" },
     ],
   }),
+  validateSearch: (search: Record<string, unknown>) => ({
+    redirect: isSafePath(search["redirect"]) ? search["redirect"] : undefined,
+  }),
   component: AcessoPage,
 });
 
+function isSafePath(value: unknown): value is string {
+  return typeof value === "string" && value.startsWith("/") && !value.startsWith("//");
+}
+
 function AcessoPage() {
   const navigate = useNavigate();
+  const { redirect } = useSearch({ from: "/acesso" });
   const [failed, setFailed] = useState(false);
 
   useEffect(() => {
@@ -36,7 +44,7 @@ function AcessoPage() {
     const go = () => {
       if (done) return;
       done = true;
-      navigate({ to: "/voz-protetora", replace: true });
+      navigate({ to: (redirect ?? "/voz-protetora") as never, replace: true });
     };
 
     const { data: sub } = supabase.auth.onAuthStateChange((_event, session) => {
@@ -55,7 +63,7 @@ function AcessoPage() {
       sub.subscription.unsubscribe();
       clearTimeout(timeout);
     };
-  }, [navigate]);
+  }, [navigate, redirect]);
 
   return (
     <div className="grid min-h-screen place-items-center bg-secondary px-5">

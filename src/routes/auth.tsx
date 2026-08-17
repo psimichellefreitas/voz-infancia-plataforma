@@ -48,8 +48,8 @@ function AuthPage() {
     setLoading(true);
     // O link do e-mail sempre passa por /acesso, que espera a sessão ser criada
     // antes de entrar na área protegida.
-    const target = `${window.location.origin}/acesso`;
-    void redirect;
+    const destino = redirect ?? "/voz-protetora";
+    const target = `${window.location.origin}/acesso?redirect=${encodeURIComponent(destino)}`;
     const { error } = await supabase.auth.signInWithOtp({
       email: email.trim().toLowerCase(),
       options: { emailRedirectTo: target },
