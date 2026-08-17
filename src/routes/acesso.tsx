@@ -26,6 +26,8 @@ export const Route = createFileRoute("/acesso")({
   component: AcessoPage,
 });
 
+declare module "@tanstack/react-router" {}
+
 function isSafePath(value: unknown): value is string {
   return typeof value === "string" && value.startsWith("/") && !value.startsWith("//");
 }
