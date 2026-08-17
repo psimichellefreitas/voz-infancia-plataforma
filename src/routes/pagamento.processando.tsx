@@ -67,7 +67,9 @@ function ProcessandoPage() {
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             {status === "approved" ? (
               <Button asChild variant="hero" size="xl">
-                <Link to="/pagamento/aprovado">VER MEU ACESSO</Link>
+                <Link to="/pagamento/aprovado" search={{ compra }}>
+                  VER MEU ACESSO
+                </Link>
               </Button>
             ) : null}
             <Button asChild variant="outline" size="xl">
