@@ -9,97 +9,46 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as TermosDeUsoRouteImport } from './routes/termos-de-uso'
-import { Route as SolucoesRouteImport } from './routes/solucoes'
-import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
-import { Route as SejaVozRouteImport } from './routes/seja-voz'
-import { Route as RecursosRouteImport } from './routes/recursos'
-import { Route as PoliticaDePrivacidadeRouteImport } from './routes/politica-de-privacidade'
-import { Route as OMovimentoRouteImport } from './routes/o-movimento'
-import { Route as ContatoRouteImport } from './routes/contato'
-import { Route as CheckoutRouteImport } from './routes/checkout'
-import { Route as BussolaVozRouteImport } from './routes/bussola-voz'
-import { Route as AuthRouteImport } from './routes/auth'
-import { Route as ApoieRouteImport } from './routes/apoie'
-import { Route as AcessoRouteImport } from './routes/acesso'
-import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as SolucoesVozProtetoraRouteImport } from './routes/solucoes_.voz-protetora'
-import { Route as PagamentoRecusadoRouteImport } from './routes/pagamento.recusado'
-import { Route as PagamentoProcessandoRouteImport } from './routes/pagamento.processando'
-import { Route as PagamentoPendenteRouteImport } from './routes/pagamento.pendente'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
+import { Route as AcessoRouteImport } from './routes/acesso'
+import { Route as ApoieRouteImport } from './routes/apoie'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as BussolaVozRouteImport } from './routes/bussola-voz'
+import { Route as CheckoutRouteImport } from './routes/checkout'
+import { Route as ContatoRouteImport } from './routes/contato'
+import { Route as OMovimentoRouteImport } from './routes/o-movimento'
+import { Route as PoliticaDePrivacidadeRouteImport } from './routes/politica-de-privacidade'
+import { Route as RecursosRouteImport } from './routes/recursos'
+import { Route as SejaVozRouteImport } from './routes/seja-voz'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as SolucoesRouteImport } from './routes/solucoes'
+import { Route as TermosDeUsoRouteImport } from './routes/termos-de-uso'
 import { Route as PagamentoAprovadoRouteImport } from './routes/pagamento.aprovado'
+import { Route as PagamentoPendenteRouteImport } from './routes/pagamento.pendente'
+import { Route as PagamentoProcessandoRouteImport } from './routes/pagamento.processando'
+import { Route as PagamentoRecusadoRouteImport } from './routes/pagamento.recusado'
+import { Route as SolucoesVozProtetoraRouteImport } from './routes/solucoes_.voz-protetora'
 import { Route as AuthenticatedVozProtetoraIndexRouteImport } from './routes/_authenticated/voz-protetora.index'
-import { Route as AuthenticatedVozProtetoraPrecisoDeAjudaRouteImport } from './routes/_authenticated/voz-protetora.preciso-de-ajuda'
-import { Route as AuthenticatedVozProtetoraMinhaVozRouteImport } from './routes/_authenticated/voz-protetora.minha-voz'
-import { Route as AuthenticatedVozProtetoraMinhaPresencaRouteImport } from './routes/_authenticated/voz-protetora.minha-presenca'
 import { Route as AuthenticatedVozProtetoraMeuPassoRouteImport } from './routes/_authenticated/voz-protetora.meu-passo'
-import { Route as AuthenticatedVozProtetoraVaiAcontecerIndexRouteImport } from './routes/_authenticated/voz-protetora.vai-acontecer.index'
-import { Route as AuthenticatedVozProtetoraFortalecerIndexRouteImport } from './routes/_authenticated/voz-protetora.fortalecer.index'
+import { Route as AuthenticatedVozProtetoraMinhaPresencaRouteImport } from './routes/_authenticated/voz-protetora.minha-presenca'
+import { Route as AuthenticatedVozProtetoraMinhaVozRouteImport } from './routes/_authenticated/voz-protetora.minha-voz'
+import { Route as AuthenticatedVozProtetoraPrecisoDeAjudaRouteImport } from './routes/_authenticated/voz-protetora.preciso-de-ajuda'
 import { Route as AuthenticatedVozProtetoraAconteceuIndexRouteImport } from './routes/_authenticated/voz-protetora.aconteceu.index'
-import { Route as ApiPublicWebhooksMercadopagoRouteImport } from './routes/api/public/webhooks/mercadopago'
-import { Route as AuthenticatedVozProtetoraVaiAcontecerSlugRouteImport } from './routes/_authenticated/voz-protetora.vai-acontecer.$slug'
-import { Route as AuthenticatedVozProtetoraFortalecerSlugRouteImport } from './routes/_authenticated/voz-protetora.fortalecer.$slug'
 import { Route as AuthenticatedVozProtetoraAconteceuSlugRouteImport } from './routes/_authenticated/voz-protetora.aconteceu.$slug'
+import { Route as AuthenticatedVozProtetoraFortalecerIndexRouteImport } from './routes/_authenticated/voz-protetora.fortalecer.index'
+import { Route as AuthenticatedVozProtetoraFortalecerSlugRouteImport } from './routes/_authenticated/voz-protetora.fortalecer.$slug'
+import { Route as AuthenticatedVozProtetoraVaiAcontecerIndexRouteImport } from './routes/_authenticated/voz-protetora.vai-acontecer.index'
+import { Route as AuthenticatedVozProtetoraVaiAcontecerSlugRouteImport } from './routes/_authenticated/voz-protetora.vai-acontecer.$slug'
+import { Route as ApiPublicWebhooksMercadopagoRouteImport } from './routes/api/public/webhooks/mercadopago'
 
-const TermosDeUsoRoute = TermosDeUsoRouteImport.update({
-  id: '/termos-de-uso',
-  path: '/termos-de-uso',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const SolucoesRoute = SolucoesRouteImport.update({
-  id: '/solucoes',
-  path: '/solucoes',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
-  id: '/sitemap.xml',
-  path: '/sitemap.xml',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SejaVozRoute = SejaVozRouteImport.update({
-  id: '/seja-voz',
-  path: '/seja-voz',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const RecursosRoute = RecursosRouteImport.update({
-  id: '/recursos',
-  path: '/recursos',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PoliticaDePrivacidadeRoute = PoliticaDePrivacidadeRouteImport.update({
-  id: '/politica-de-privacidade',
-  path: '/politica-de-privacidade',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const OMovimentoRoute = OMovimentoRouteImport.update({
-  id: '/o-movimento',
-  path: '/o-movimento',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ContatoRoute = ContatoRouteImport.update({
-  id: '/contato',
-  path: '/contato',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CheckoutRoute = CheckoutRouteImport.update({
-  id: '/checkout',
-  path: '/checkout',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const BussolaVozRoute = BussolaVozRouteImport.update({
-  id: '/bussola-voz',
-  path: '/bussola-voz',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AuthRoute = AuthRouteImport.update({
-  id: '/auth',
-  path: '/auth',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ApoieRoute = ApoieRouteImport.update({
-  id: '/apoie',
-  path: '/apoie',
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AcessoRoute = AcessoRouteImport.update({
@@ -107,28 +56,69 @@ const AcessoRoute = AcessoRouteImport.update({
   path: '/acesso',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
-  id: '/_authenticated',
+const ApoieRoute = ApoieRouteImport.update({
+  id: '/apoie',
+  path: '/apoie',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
-const SolucoesVozProtetoraRoute = SolucoesVozProtetoraRouteImport.update({
-  id: '/solucoes_/voz-protetora',
-  path: '/solucoes/voz-protetora',
+const BussolaVozRoute = BussolaVozRouteImport.update({
+  id: '/bussola-voz',
+  path: '/bussola-voz',
   getParentRoute: () => rootRouteImport,
 } as any)
-const PagamentoRecusadoRoute = PagamentoRecusadoRouteImport.update({
-  id: '/pagamento/recusado',
-  path: '/pagamento/recusado',
+const CheckoutRoute = CheckoutRouteImport.update({
+  id: '/checkout',
+  path: '/checkout',
   getParentRoute: () => rootRouteImport,
 } as any)
-const PagamentoProcessandoRoute = PagamentoProcessandoRouteImport.update({
-  id: '/pagamento/processando',
-  path: '/pagamento/processando',
+const ContatoRoute = ContatoRouteImport.update({
+  id: '/contato',
+  path: '/contato',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OMovimentoRoute = OMovimentoRouteImport.update({
+  id: '/o-movimento',
+  path: '/o-movimento',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PoliticaDePrivacidadeRoute = PoliticaDePrivacidadeRouteImport.update({
+  id: '/politica-de-privacidade',
+  path: '/politica-de-privacidade',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RecursosRoute = RecursosRouteImport.update({
+  id: '/recursos',
+  path: '/recursos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SejaVozRoute = SejaVozRouteImport.update({
+  id: '/seja-voz',
+  path: '/seja-voz',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SolucoesRoute = SolucoesRouteImport.update({
+  id: '/solucoes',
+  path: '/solucoes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TermosDeUsoRoute = TermosDeUsoRouteImport.update({
+  id: '/termos-de-uso',
+  path: '/termos-de-uso',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PagamentoAprovadoRoute = PagamentoAprovadoRouteImport.update({
+  id: '/pagamento/aprovado',
+  path: '/pagamento/aprovado',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PagamentoPendenteRoute = PagamentoPendenteRouteImport.update({
@@ -136,9 +126,19 @@ const PagamentoPendenteRoute = PagamentoPendenteRouteImport.update({
   path: '/pagamento/pendente',
   getParentRoute: () => rootRouteImport,
 } as any)
-const PagamentoAprovadoRoute = PagamentoAprovadoRouteImport.update({
-  id: '/pagamento/aprovado',
-  path: '/pagamento/aprovado',
+const PagamentoProcessandoRoute = PagamentoProcessandoRouteImport.update({
+  id: '/pagamento/processando',
+  path: '/pagamento/processando',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PagamentoRecusadoRoute = PagamentoRecusadoRouteImport.update({
+  id: '/pagamento/recusado',
+  path: '/pagamento/recusado',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SolucoesVozProtetoraRoute = SolucoesVozProtetoraRouteImport.update({
+  id: '/solucoes_/voz-protetora',
+  path: '/solucoes/voz-protetora',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthenticatedVozProtetoraIndexRoute =
@@ -147,16 +147,10 @@ const AuthenticatedVozProtetoraIndexRoute =
     path: '/voz-protetora/',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
-const AuthenticatedVozProtetoraPrecisoDeAjudaRoute =
-  AuthenticatedVozProtetoraPrecisoDeAjudaRouteImport.update({
-    id: '/voz-protetora/preciso-de-ajuda',
-    path: '/voz-protetora/preciso-de-ajuda',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
-const AuthenticatedVozProtetoraMinhaVozRoute =
-  AuthenticatedVozProtetoraMinhaVozRouteImport.update({
-    id: '/voz-protetora/minha-voz',
-    path: '/voz-protetora/minha-voz',
+const AuthenticatedVozProtetoraMeuPassoRoute =
+  AuthenticatedVozProtetoraMeuPassoRouteImport.update({
+    id: '/voz-protetora/meu-passo',
+    path: '/voz-protetora/meu-passo',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
 const AuthenticatedVozProtetoraMinhaPresencaRoute =
@@ -165,22 +159,16 @@ const AuthenticatedVozProtetoraMinhaPresencaRoute =
     path: '/voz-protetora/minha-presenca',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
-const AuthenticatedVozProtetoraMeuPassoRoute =
-  AuthenticatedVozProtetoraMeuPassoRouteImport.update({
-    id: '/voz-protetora/meu-passo',
-    path: '/voz-protetora/meu-passo',
+const AuthenticatedVozProtetoraMinhaVozRoute =
+  AuthenticatedVozProtetoraMinhaVozRouteImport.update({
+    id: '/voz-protetora/minha-voz',
+    path: '/voz-protetora/minha-voz',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
-const AuthenticatedVozProtetoraVaiAcontecerIndexRoute =
-  AuthenticatedVozProtetoraVaiAcontecerIndexRouteImport.update({
-    id: '/voz-protetora/vai-acontecer/',
-    path: '/voz-protetora/vai-acontecer/',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
-const AuthenticatedVozProtetoraFortalecerIndexRoute =
-  AuthenticatedVozProtetoraFortalecerIndexRouteImport.update({
-    id: '/voz-protetora/fortalecer/',
-    path: '/voz-protetora/fortalecer/',
+const AuthenticatedVozProtetoraPrecisoDeAjudaRoute =
+  AuthenticatedVozProtetoraPrecisoDeAjudaRouteImport.update({
+    id: '/voz-protetora/preciso-de-ajuda',
+    path: '/voz-protetora/preciso-de-ajuda',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
 const AuthenticatedVozProtetoraAconteceuIndexRoute =
@@ -189,16 +177,16 @@ const AuthenticatedVozProtetoraAconteceuIndexRoute =
     path: '/voz-protetora/aconteceu/',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
-const ApiPublicWebhooksMercadopagoRoute =
-  ApiPublicWebhooksMercadopagoRouteImport.update({
-    id: '/api/public/webhooks/mercadopago',
-    path: '/api/public/webhooks/mercadopago',
-    getParentRoute: () => rootRouteImport,
+const AuthenticatedVozProtetoraAconteceuSlugRoute =
+  AuthenticatedVozProtetoraAconteceuSlugRouteImport.update({
+    id: '/voz-protetora/aconteceu/$slug',
+    path: '/voz-protetora/aconteceu/$slug',
+    getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
-const AuthenticatedVozProtetoraVaiAcontecerSlugRoute =
-  AuthenticatedVozProtetoraVaiAcontecerSlugRouteImport.update({
-    id: '/voz-protetora/vai-acontecer/$slug',
-    path: '/voz-protetora/vai-acontecer/$slug',
+const AuthenticatedVozProtetoraFortalecerIndexRoute =
+  AuthenticatedVozProtetoraFortalecerIndexRouteImport.update({
+    id: '/voz-protetora/fortalecer/',
+    path: '/voz-protetora/fortalecer/',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
 const AuthenticatedVozProtetoraFortalecerSlugRoute =
@@ -207,11 +195,23 @@ const AuthenticatedVozProtetoraFortalecerSlugRoute =
     path: '/voz-protetora/fortalecer/$slug',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
-const AuthenticatedVozProtetoraAconteceuSlugRoute =
-  AuthenticatedVozProtetoraAconteceuSlugRouteImport.update({
-    id: '/voz-protetora/aconteceu/$slug',
-    path: '/voz-protetora/aconteceu/$slug',
+const AuthenticatedVozProtetoraVaiAcontecerIndexRoute =
+  AuthenticatedVozProtetoraVaiAcontecerIndexRouteImport.update({
+    id: '/voz-protetora/vai-acontecer/',
+    path: '/voz-protetora/vai-acontecer/',
     getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedVozProtetoraVaiAcontecerSlugRoute =
+  AuthenticatedVozProtetoraVaiAcontecerSlugRouteImport.update({
+    id: '/voz-protetora/vai-acontecer/$slug',
+    path: '/voz-protetora/vai-acontecer/$slug',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const ApiPublicWebhooksMercadopagoRoute =
+  ApiPublicWebhooksMercadopagoRouteImport.update({
+    id: '/api/public/webhooks/mercadopago',
+    path: '/api/public/webhooks/mercadopago',
+    getParentRoute: () => rootRouteImport,
   } as any)
 
 export interface FileRoutesByFullPath {
@@ -444,95 +444,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/termos-de-uso': {
-      id: '/termos-de-uso'
-      path: '/termos-de-uso'
-      fullPath: '/termos-de-uso'
-      preLoaderRoute: typeof TermosDeUsoRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/solucoes': {
-      id: '/solucoes'
-      path: '/solucoes'
-      fullPath: '/solucoes'
-      preLoaderRoute: typeof SolucoesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sitemap.xml': {
-      id: '/sitemap.xml'
-      path: '/sitemap.xml'
-      fullPath: '/sitemap.xml'
-      preLoaderRoute: typeof SitemapDotxmlRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/seja-voz': {
-      id: '/seja-voz'
-      path: '/seja-voz'
-      fullPath: '/seja-voz'
-      preLoaderRoute: typeof SejaVozRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/recursos': {
-      id: '/recursos'
-      path: '/recursos'
-      fullPath: '/recursos'
-      preLoaderRoute: typeof RecursosRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/politica-de-privacidade': {
-      id: '/politica-de-privacidade'
-      path: '/politica-de-privacidade'
-      fullPath: '/politica-de-privacidade'
-      preLoaderRoute: typeof PoliticaDePrivacidadeRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/o-movimento': {
-      id: '/o-movimento'
-      path: '/o-movimento'
-      fullPath: '/o-movimento'
-      preLoaderRoute: typeof OMovimentoRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/contato': {
-      id: '/contato'
-      path: '/contato'
-      fullPath: '/contato'
-      preLoaderRoute: typeof ContatoRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/checkout': {
-      id: '/checkout'
-      path: '/checkout'
-      fullPath: '/checkout'
-      preLoaderRoute: typeof CheckoutRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/bussola-voz': {
-      id: '/bussola-voz'
-      path: '/bussola-voz'
-      fullPath: '/bussola-voz'
-      preLoaderRoute: typeof BussolaVozRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/auth': {
-      id: '/auth'
-      path: '/auth'
-      fullPath: '/auth'
-      preLoaderRoute: typeof AuthRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/apoie': {
-      id: '/apoie'
-      path: '/apoie'
-      fullPath: '/apoie'
-      preLoaderRoute: typeof ApoieRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/acesso': {
-      id: '/acesso'
-      path: '/acesso'
-      fullPath: '/acesso'
-      preLoaderRoute: typeof AcessoRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_authenticated': {
@@ -542,39 +458,95 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/acesso': {
+      id: '/acesso'
+      path: '/acesso'
+      fullPath: '/acesso'
+      preLoaderRoute: typeof AcessoRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/solucoes_/voz-protetora': {
-      id: '/solucoes_/voz-protetora'
-      path: '/solucoes/voz-protetora'
-      fullPath: '/solucoes/voz-protetora'
-      preLoaderRoute: typeof SolucoesVozProtetoraRouteImport
+    '/apoie': {
+      id: '/apoie'
+      path: '/apoie'
+      fullPath: '/apoie'
+      preLoaderRoute: typeof ApoieRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/pagamento/recusado': {
-      id: '/pagamento/recusado'
-      path: '/pagamento/recusado'
-      fullPath: '/pagamento/recusado'
-      preLoaderRoute: typeof PagamentoRecusadoRouteImport
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/pagamento/processando': {
-      id: '/pagamento/processando'
-      path: '/pagamento/processando'
-      fullPath: '/pagamento/processando'
-      preLoaderRoute: typeof PagamentoProcessandoRouteImport
+    '/bussola-voz': {
+      id: '/bussola-voz'
+      path: '/bussola-voz'
+      fullPath: '/bussola-voz'
+      preLoaderRoute: typeof BussolaVozRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/pagamento/pendente': {
-      id: '/pagamento/pendente'
-      path: '/pagamento/pendente'
-      fullPath: '/pagamento/pendente'
-      preLoaderRoute: typeof PagamentoPendenteRouteImport
+    '/checkout': {
+      id: '/checkout'
+      path: '/checkout'
+      fullPath: '/checkout'
+      preLoaderRoute: typeof CheckoutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contato': {
+      id: '/contato'
+      path: '/contato'
+      fullPath: '/contato'
+      preLoaderRoute: typeof ContatoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/o-movimento': {
+      id: '/o-movimento'
+      path: '/o-movimento'
+      fullPath: '/o-movimento'
+      preLoaderRoute: typeof OMovimentoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/politica-de-privacidade': {
+      id: '/politica-de-privacidade'
+      path: '/politica-de-privacidade'
+      fullPath: '/politica-de-privacidade'
+      preLoaderRoute: typeof PoliticaDePrivacidadeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/recursos': {
+      id: '/recursos'
+      path: '/recursos'
+      fullPath: '/recursos'
+      preLoaderRoute: typeof RecursosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/seja-voz': {
+      id: '/seja-voz'
+      path: '/seja-voz'
+      fullPath: '/seja-voz'
+      preLoaderRoute: typeof SejaVozRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/solucoes': {
+      id: '/solucoes'
+      path: '/solucoes'
+      fullPath: '/solucoes'
+      preLoaderRoute: typeof SolucoesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/termos-de-uso': {
+      id: '/termos-de-uso'
+      path: '/termos-de-uso'
+      fullPath: '/termos-de-uso'
+      preLoaderRoute: typeof TermosDeUsoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/pagamento/aprovado': {
@@ -584,32 +556,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PagamentoAprovadoRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/pagamento/pendente': {
+      id: '/pagamento/pendente'
+      path: '/pagamento/pendente'
+      fullPath: '/pagamento/pendente'
+      preLoaderRoute: typeof PagamentoPendenteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pagamento/processando': {
+      id: '/pagamento/processando'
+      path: '/pagamento/processando'
+      fullPath: '/pagamento/processando'
+      preLoaderRoute: typeof PagamentoProcessandoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pagamento/recusado': {
+      id: '/pagamento/recusado'
+      path: '/pagamento/recusado'
+      fullPath: '/pagamento/recusado'
+      preLoaderRoute: typeof PagamentoRecusadoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/solucoes_/voz-protetora': {
+      id: '/solucoes_/voz-protetora'
+      path: '/solucoes/voz-protetora'
+      fullPath: '/solucoes/voz-protetora'
+      preLoaderRoute: typeof SolucoesVozProtetoraRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_authenticated/voz-protetora/': {
       id: '/_authenticated/voz-protetora/'
       path: '/voz-protetora'
       fullPath: '/voz-protetora/'
       preLoaderRoute: typeof AuthenticatedVozProtetoraIndexRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/_authenticated/voz-protetora/preciso-de-ajuda': {
-      id: '/_authenticated/voz-protetora/preciso-de-ajuda'
-      path: '/voz-protetora/preciso-de-ajuda'
-      fullPath: '/voz-protetora/preciso-de-ajuda'
-      preLoaderRoute: typeof AuthenticatedVozProtetoraPrecisoDeAjudaRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/_authenticated/voz-protetora/minha-voz': {
-      id: '/_authenticated/voz-protetora/minha-voz'
-      path: '/voz-protetora/minha-voz'
-      fullPath: '/voz-protetora/minha-voz'
-      preLoaderRoute: typeof AuthenticatedVozProtetoraMinhaVozRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/_authenticated/voz-protetora/minha-presenca': {
-      id: '/_authenticated/voz-protetora/minha-presenca'
-      path: '/voz-protetora/minha-presenca'
-      fullPath: '/voz-protetora/minha-presenca'
-      preLoaderRoute: typeof AuthenticatedVozProtetoraMinhaPresencaRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/voz-protetora/meu-passo': {
@@ -619,18 +598,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedVozProtetoraMeuPassoRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/_authenticated/voz-protetora/vai-acontecer/': {
-      id: '/_authenticated/voz-protetora/vai-acontecer/'
-      path: '/voz-protetora/vai-acontecer'
-      fullPath: '/voz-protetora/vai-acontecer/'
-      preLoaderRoute: typeof AuthenticatedVozProtetoraVaiAcontecerIndexRouteImport
+    '/_authenticated/voz-protetora/minha-presenca': {
+      id: '/_authenticated/voz-protetora/minha-presenca'
+      path: '/voz-protetora/minha-presenca'
+      fullPath: '/voz-protetora/minha-presenca'
+      preLoaderRoute: typeof AuthenticatedVozProtetoraMinhaPresencaRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/_authenticated/voz-protetora/fortalecer/': {
-      id: '/_authenticated/voz-protetora/fortalecer/'
-      path: '/voz-protetora/fortalecer'
-      fullPath: '/voz-protetora/fortalecer/'
-      preLoaderRoute: typeof AuthenticatedVozProtetoraFortalecerIndexRouteImport
+    '/_authenticated/voz-protetora/minha-voz': {
+      id: '/_authenticated/voz-protetora/minha-voz'
+      path: '/voz-protetora/minha-voz'
+      fullPath: '/voz-protetora/minha-voz'
+      preLoaderRoute: typeof AuthenticatedVozProtetoraMinhaVozRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/voz-protetora/preciso-de-ajuda': {
+      id: '/_authenticated/voz-protetora/preciso-de-ajuda'
+      path: '/voz-protetora/preciso-de-ajuda'
+      fullPath: '/voz-protetora/preciso-de-ajuda'
+      preLoaderRoute: typeof AuthenticatedVozProtetoraPrecisoDeAjudaRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/voz-protetora/aconteceu/': {
@@ -640,18 +626,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedVozProtetoraAconteceuIndexRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/api/public/webhooks/mercadopago': {
-      id: '/api/public/webhooks/mercadopago'
-      path: '/api/public/webhooks/mercadopago'
-      fullPath: '/api/public/webhooks/mercadopago'
-      preLoaderRoute: typeof ApiPublicWebhooksMercadopagoRouteImport
-      parentRoute: typeof rootRouteImport
+    '/_authenticated/voz-protetora/aconteceu/$slug': {
+      id: '/_authenticated/voz-protetora/aconteceu/$slug'
+      path: '/voz-protetora/aconteceu/$slug'
+      fullPath: '/voz-protetora/aconteceu/$slug'
+      preLoaderRoute: typeof AuthenticatedVozProtetoraAconteceuSlugRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/_authenticated/voz-protetora/vai-acontecer/$slug': {
-      id: '/_authenticated/voz-protetora/vai-acontecer/$slug'
-      path: '/voz-protetora/vai-acontecer/$slug'
-      fullPath: '/voz-protetora/vai-acontecer/$slug'
-      preLoaderRoute: typeof AuthenticatedVozProtetoraVaiAcontecerSlugRouteImport
+    '/_authenticated/voz-protetora/fortalecer/': {
+      id: '/_authenticated/voz-protetora/fortalecer/'
+      path: '/voz-protetora/fortalecer'
+      fullPath: '/voz-protetora/fortalecer/'
+      preLoaderRoute: typeof AuthenticatedVozProtetoraFortalecerIndexRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/voz-protetora/fortalecer/$slug': {
@@ -661,12 +647,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedVozProtetoraFortalecerSlugRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/_authenticated/voz-protetora/aconteceu/$slug': {
-      id: '/_authenticated/voz-protetora/aconteceu/$slug'
-      path: '/voz-protetora/aconteceu/$slug'
-      fullPath: '/voz-protetora/aconteceu/$slug'
-      preLoaderRoute: typeof AuthenticatedVozProtetoraAconteceuSlugRouteImport
+    '/_authenticated/voz-protetora/vai-acontecer/': {
+      id: '/_authenticated/voz-protetora/vai-acontecer/'
+      path: '/voz-protetora/vai-acontecer'
+      fullPath: '/voz-protetora/vai-acontecer/'
+      preLoaderRoute: typeof AuthenticatedVozProtetoraVaiAcontecerIndexRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/voz-protetora/vai-acontecer/$slug': {
+      id: '/_authenticated/voz-protetora/vai-acontecer/$slug'
+      path: '/voz-protetora/vai-acontecer/$slug'
+      fullPath: '/voz-protetora/vai-acontecer/$slug'
+      preLoaderRoute: typeof AuthenticatedVozProtetoraVaiAcontecerSlugRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/api/public/webhooks/mercadopago': {
+      id: '/api/public/webhooks/mercadopago'
+      path: '/api/public/webhooks/mercadopago'
+      fullPath: '/api/public/webhooks/mercadopago'
+      preLoaderRoute: typeof ApiPublicWebhooksMercadopagoRouteImport
+      parentRoute: typeof rootRouteImport
     }
   }
 }
