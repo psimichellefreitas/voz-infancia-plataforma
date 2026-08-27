@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { AlertTriangle, ArrowRight, ClipboardList, Search, Shield, Sprout } from "lucide-react";
 
 import { ProdutoShell } from "@/components/voz/produto/ProdutoShell";
-import { usePreviewUnlocked } from "@/lib/preview-mode";
+import { usePreviewSearch } from "@/lib/preview-mode";
 
 export const Route = createFileRoute("/_authenticated/voz-protetora/")({
   head: () => ({
@@ -71,8 +71,7 @@ const ATALHOS = [
 ] as const;
 
 function VozProtetoraHome() {
-  const previewUnlocked = usePreviewUnlocked();
-  const previewSearch = previewUnlocked ? { preview: 1 } : undefined;
+  const previewSearch = usePreviewSearch();
 
   return (
     <ProdutoShell

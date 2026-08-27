@@ -4,7 +4,7 @@ import { LogOut, Menu, Shield, X } from "lucide-react";
 import { useQueryClient } from "@tanstack/react-query";
 
 import { supabase } from "@/integrations/supabase/client";
-import { usePreviewUnlocked } from "@/lib/preview-mode";
+import { usePreviewSearch } from "@/lib/preview-mode";
 import { cn } from "@/lib/utils";
 
 const ITEMS = [
@@ -22,8 +22,7 @@ export function ProdutoNav() {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
   const queryClient = useQueryClient();
-  const previewUnlocked = usePreviewUnlocked();
-  const previewSearch = previewUnlocked ? { preview: 1 } : undefined;
+  const previewSearch = usePreviewSearch();
 
   async function handleSignOut() {
     await queryClient.cancelQueries();
