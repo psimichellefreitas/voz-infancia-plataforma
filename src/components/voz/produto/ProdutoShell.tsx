@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import { ArrowLeft, Loader2, Lock } from "lucide-react";
 
 import { getMyProductAccess } from "@/lib/access.functions";
+import { isPreviewUnlocked } from "@/lib/preview-mode";
 import { ProdutoNav } from "./ProdutoNav";
 
 interface ProdutoShellProps {
@@ -21,30 +22,35 @@ interface ProdutoShellProps {
  */
 export function ProdutoShell({ eyebrow, title, intro, backTo, children }: ProdutoShellProps) {
   const fetchAccess = useServerFn(getMyProductAccess);
+  const previewUnlocked = isPreviewUnlocked();
   const { data, isPending } = useQuery({
     queryKey: ["voz-protetora-access"],
     queryFn: () => fetchAccess({ data: undefined }),
     staleTime: 60_000,
+    enabled: !previewUnlocked,
   });
   const navigate = useNavigate();
 
   // Sem autorização válida no backend, o comprador vai para a página comercial.
   useEffect(() => {
-    if (data && !data.hasAccess) {
+    if (!previewUnlocked && data && !data.hasAccess) {
       navigate({ to: "/solucoes/voz-protetora", replace: true });
     }
-  }, [data, navigate]);
+  }, [data, navigate, previewUnlocked]);
+
+  const loading = isPending && !previewUnlocked;
+  const allowed = previewUnlocked || data?.hasAccess;
 
   return (
     <div className="min-h-screen bg-secondary">
       <ProdutoNav />
       <main className="pt-16">
-        {isPending ? (
+        {loading ? (
           <div className="mx-auto flex max-w-5xl items-center gap-3 px-5 py-20 text-muted-foreground sm:px-8">
             <Loader2 className="h-5 w-5 animate-spin" />
             Verificando seu acesso...
           </div>
-        ) : data?.hasAccess ? (
+        ) : allowed ? (
           <>
             <section className="border-b border-border bg-primary text-primary-foreground">
               <div className="mx-auto max-w-5xl px-5 py-10 sm:px-8 sm:py-14">
