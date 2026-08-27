@@ -48,7 +48,7 @@ export function isPreviewUnlocked(): boolean {
  * Retorna false no primeiro render e atualiza após a hidratação.
  */
 export function usePreviewUnlocked(): boolean {
-  const [unlocked, setUnlocked] = useState(false);
+  const [unlocked, setUnlocked] = useState(() => isPreviewUnlocked());
   useEffect(() => {
     setUnlocked(isPreviewUnlocked());
   }, []);
