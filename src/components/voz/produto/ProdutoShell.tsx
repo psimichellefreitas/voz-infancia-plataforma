@@ -5,7 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import { ArrowLeft, Loader2, Lock } from "lucide-react";
 
 import { getMyProductAccess } from "@/lib/access.functions";
-import { usePreviewUnlocked } from "@/lib/preview-mode";
+import { usePreviewSearch, usePreviewUnlocked } from "@/lib/preview-mode";
 import { ProdutoNav } from "./ProdutoNav";
 
 interface ProdutoShellProps {
