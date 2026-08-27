@@ -21,16 +21,18 @@ interface ProdutoShellProps {
  */
 export function ProdutoShell({ eyebrow, title, intro, backTo, children }: ProdutoShellProps) {
   const fetchAccess = useServerFn(getMyProductAccess);
+  const previewUnlocked = isPreviewUnlocked();
   const { data, isPending } = useQuery({
     queryKey: ["voz-protetora-access"],
     queryFn: () => fetchAccess({ data: undefined }),
     staleTime: 60_000,
+    enabled: !previewUnlocked,
   });
   const navigate = useNavigate();
 
   // Sem autorização válida no backend, o comprador vai para a página comercial.
   useEffect(() => {
-    if (data && !data.hasAccess) {
+    if (!previewUnlocked && data && !data.hasAccess) {
       navigate({ to: "/solucoes/voz-protetora", replace: true });
     }
   }, [data, navigate]);
