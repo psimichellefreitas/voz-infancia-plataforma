@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import { ArrowLeft, Loader2, Lock } from "lucide-react";
 
 import { getMyProductAccess } from "@/lib/access.functions";
+import { isPreviewUnlocked } from "@/lib/preview-mode";
 import { ProdutoNav } from "./ProdutoNav";
 
 interface ProdutoShellProps {
@@ -35,7 +36,10 @@ export function ProdutoShell({ eyebrow, title, intro, backTo, children }: Produt
     if (!previewUnlocked && data && !data.hasAccess) {
       navigate({ to: "/solucoes/voz-protetora", replace: true });
     }
-  }, [data, navigate]);
+  }, [data, navigate, previewUnlocked]);
+
+  const loading = isPending && !previewUnlocked;
+  const allowed = previewUnlocked || data?.hasAccess;
 
   return (
     <div className="min-h-screen bg-secondary">
