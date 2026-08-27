@@ -98,8 +98,8 @@ function MeuPassoPage() {
         </div>
         {cannotSave && (
           <p className="mt-4 rounded-[12px] border border-border bg-secondary p-4 text-xs leading-relaxed text-muted-foreground">
-            Modo visualização: o conteúdo está liberado para análise, mas o salvamento fica
-            bloqueado até você entrar com sua conta.
+O conteúdo está aberto para todos. Para salvar seus passos e acompanhá-los depois, entre com
+            sua conta.
           </p>
         )}
         <Button
