@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 
 import { ProdutoShell } from "@/components/voz/produto/ProdutoShell";
+import { usePreviewUnlocked } from "@/lib/preview-mode";
 import { FORTALECER } from "@/lib/voz-protetora/content";
 
 export const Route = createFileRoute("/_authenticated/voz-protetora/fortalecer/")({
@@ -20,6 +21,9 @@ export const Route = createFileRoute("/_authenticated/voz-protetora/fortalecer/"
 });
 
 function FortalecerLista() {
+  const previewUnlocked = usePreviewUnlocked();
+  const previewSearch = previewUnlocked ? { preview: "1" } : undefined;
+
   return (
     <ProdutoShell
       eyebrow="Quero fortalecer"
@@ -33,6 +37,7 @@ function FortalecerLista() {
             key={item.slug}
             to="/voz-protetora/fortalecer/$slug"
             params={{ slug: item.slug }}
+            search={previewSearch}
             className="flex items-center justify-between gap-4 rounded-[12px] border border-border bg-card px-5 py-4 transition-colors hover:border-accent"
           >
             <span className="text-sm font-semibold text-foreground/90">

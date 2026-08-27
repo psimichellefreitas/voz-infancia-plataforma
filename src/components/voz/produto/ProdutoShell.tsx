@@ -23,6 +23,7 @@ interface ProdutoShellProps {
 export function ProdutoShell({ eyebrow, title, intro, backTo, children }: ProdutoShellProps) {
   const fetchAccess = useServerFn(getMyProductAccess);
   const previewUnlocked = usePreviewUnlocked();
+  const previewSearch = previewUnlocked ? { preview: "1" } : undefined;
   const { data, isPending } = useQuery({
     queryKey: ["voz-protetora-access"],
     queryFn: () => fetchAccess({ data: undefined }),
@@ -58,6 +59,7 @@ export function ProdutoShell({ eyebrow, title, intro, backTo, children }: Produt
                 {backTo && (
                   <Link
                     to={backTo.to as never}
+                    search={previewSearch}
                     className="mb-5 inline-flex items-center gap-2 text-sm font-semibold text-primary-foreground/80 hover:text-primary-foreground"
                   >
                     <ArrowLeft className="h-4 w-4" />
