@@ -39,16 +39,24 @@ export const Route = createFileRoute("/auth")({
 
 function AuthPage() {
   const { redirect } = useSearch({ from: "/auth" });
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [sent, setSent] = useState(false);
   const [loading, setLoading] = useState(false);
 
   async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
+    const destino = redirect ?? "/voz-protetora";
+
+    // Acesso aberto: qualquer e-mail entra direto, sem link por e-mail.
+    if (ACESSO_ABERTO) {
+      navigate({ to: destino as never, replace: true });
+      return;
+    }
+
     setLoading(true);
     // O link do e-mail sempre passa por /acesso, que espera a sessão ser criada
     // antes de entrar na área protegida.
-    const destino = redirect ?? "/voz-protetora";
     const target = `${window.location.origin}/acesso?redirect=${encodeURIComponent(destino)}`;
     const { error } = await supabase.auth.signInWithOtp({
       email: email.trim().toLowerCase(),
@@ -61,6 +69,7 @@ function AuthPage() {
     }
     setSent(true);
   }
+
 
   return (
     <div className="min-h-screen bg-background">
