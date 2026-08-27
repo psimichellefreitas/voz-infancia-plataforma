@@ -8,7 +8,7 @@ import { toast } from "sonner";
 import { ProdutoShell } from "@/components/voz/produto/ProdutoShell";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { usePreviewUnlocked } from "@/lib/preview-mode";
+import { useHasSession } from "@/lib/preview-mode";
 import { addMyStep, deleteMyStep, listMySteps, toggleMyStep } from "@/lib/steps.functions";
 
 export const Route = createFileRoute("/_authenticated/voz-protetora/meu-passo")({
@@ -34,7 +34,8 @@ const EXEMPLOS = [
 
 function MeuPassoPage() {
   const [text, setText] = useState("");
-  const previewUnlocked = usePreviewUnlocked();
+  const hasSession = useHasSession();
+  const cannotSave = !hasSession;
   const queryClient = useQueryClient();
   const fetchSteps = useServerFn(listMySteps);
   const create = useServerFn(addMyStep);
@@ -44,7 +45,7 @@ function MeuPassoPage() {
   const { data: steps, isPending } = useQuery({
     queryKey: ["protection-steps"],
     queryFn: () => fetchSteps({ data: undefined }),
-    enabled: !previewUnlocked,
+    enabled: hasSession,
     retry: false,
   });
 
@@ -95,7 +96,7 @@ function MeuPassoPage() {
             </button>
           ))}
         </div>
-        {previewUnlocked && (
+        {cannotSave && (
           <p className="mt-4 rounded-[12px] border border-border bg-secondary p-4 text-xs leading-relaxed text-muted-foreground">
             Modo visualização: o conteúdo está liberado para análise, mas o salvamento fica
             bloqueado até você entrar com sua conta.
@@ -105,7 +106,7 @@ function MeuPassoPage() {
           variant="hero"
           size="xl"
           className="mt-5"
-          disabled={previewUnlocked || text.trim().length < 3 || addMutation.isPending}
+          disabled={cannotSave || text.trim().length < 3 || addMutation.isPending}
           onClick={() => addMutation.mutate(text.trim())}
         >
           {addMutation.isPending ? <Loader2 className="h-4 w-4 animate-spin" /> : null}
@@ -115,7 +116,7 @@ function MeuPassoPage() {
 
       <div className="mt-8">
         <h2 className="text-sm font-bold uppercase tracking-[0.1em] text-primary">Meus passos</h2>
-        {isPending && !previewUnlocked ? (
+        {isPending && hasSession ? (
           <p className="mt-3 flex items-center gap-2 text-sm text-muted-foreground">
             <Loader2 className="h-4 w-4 animate-spin" /> Carregando...
           </p>
