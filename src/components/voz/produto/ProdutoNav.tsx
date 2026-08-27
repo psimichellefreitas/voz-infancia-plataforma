@@ -4,6 +4,7 @@ import { LogOut, Menu, Shield, X } from "lucide-react";
 import { useQueryClient } from "@tanstack/react-query";
 
 import { supabase } from "@/integrations/supabase/client";
+import { usePreviewUnlocked } from "@/lib/preview-mode";
 import { cn } from "@/lib/utils";
 
 const ITEMS = [
@@ -21,6 +22,8 @@ export function ProdutoNav() {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
   const queryClient = useQueryClient();
+  const previewUnlocked = usePreviewUnlocked();
+  const previewSearch = previewUnlocked ? { preview: 1 } : undefined;
 
   async function handleSignOut() {
     await queryClient.cancelQueries();
@@ -32,7 +35,11 @@ export function ProdutoNav() {
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-border bg-background/95 backdrop-blur-md">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-3 sm:px-8">
-        <Link to="/voz-protetora" className="flex items-center gap-2 text-primary">
+        <Link
+          to="/voz-protetora"
+          search={previewSearch}
+          className="flex items-center gap-2 text-primary"
+        >
           <Shield className="h-5 w-5 text-accent" />
           <span className="text-sm font-bold uppercase tracking-[0.14em]">Voz Protetora</span>
         </Link>
@@ -42,6 +49,7 @@ export function ProdutoNav() {
             <Link
               key={item.to}
               to={item.to}
+              search={previewSearch}
               className="text-sm font-semibold text-foreground/70 transition-colors hover:text-primary"
               activeProps={{ className: "text-primary" }}
               activeOptions={{ exact: item.to === "/voz-protetora" }}
@@ -79,6 +87,7 @@ export function ProdutoNav() {
             <Link
               key={item.to}
               to={item.to}
+              search={previewSearch}
               onClick={() => setOpen(false)}
               className="border-b border-border/70 py-3 text-base font-semibold text-foreground/85"
             >

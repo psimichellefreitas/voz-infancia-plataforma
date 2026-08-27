@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { AlertTriangle, ArrowRight, ClipboardList, Search, Shield, Sprout } from "lucide-react";
 
 import { ProdutoShell } from "@/components/voz/produto/ProdutoShell";
+import { usePreviewUnlocked } from "@/lib/preview-mode";
 
 export const Route = createFileRoute("/_authenticated/voz-protetora/")({
   head: () => ({
@@ -70,6 +71,9 @@ const ATALHOS = [
 ] as const;
 
 function VozProtetoraHome() {
+  const previewUnlocked = usePreviewUnlocked();
+  const previewSearch = previewUnlocked ? { preview: 1 } : undefined;
+
   return (
     <ProdutoShell
       eyebrow="🛡️ Voz Protetora"
@@ -81,6 +85,7 @@ function VozProtetoraHome() {
           <Link
             key={porta.t}
             to={porta.to}
+            search={previewSearch}
             className="group rounded-[12px] border border-border bg-card p-6 shadow-[var(--shadow-soft)] transition-shadow hover:shadow-[var(--shadow-lift)]"
           >
             <div className="grid h-12 w-12 place-items-center rounded-[10px] bg-primary/5">
@@ -101,6 +106,7 @@ function VozProtetoraHome() {
           <Link
             key={item.to}
             to={item.to}
+            search={previewSearch}
             className="rounded-[12px] border border-border bg-card p-5 transition-colors hover:border-accent"
           >
             <h3 className="text-sm font-bold text-primary">{item.t}</h3>
