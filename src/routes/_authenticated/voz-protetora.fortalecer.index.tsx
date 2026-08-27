@@ -22,7 +22,7 @@ export const Route = createFileRoute("/_authenticated/voz-protetora/fortalecer/"
 
 function FortalecerLista() {
   const previewUnlocked = usePreviewUnlocked();
-  const previewSearch = previewUnlocked ? { preview: "1" } : undefined;
+  const previewSearch = previewUnlocked ? { preview: 1 } : undefined;
 
   return (
     <ProdutoShell

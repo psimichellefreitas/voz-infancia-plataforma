@@ -22,7 +22,7 @@ export const Route = createFileRoute("/_authenticated/voz-protetora/vai-acontece
 
 function VaiAcontecerLista() {
   const previewUnlocked = usePreviewUnlocked();
-  const previewSearch = previewUnlocked ? { preview: "1" } : undefined;
+  const previewSearch = previewUnlocked ? { preview: 1 } : undefined;
 
   return (
     <ProdutoShell

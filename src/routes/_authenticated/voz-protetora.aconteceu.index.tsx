@@ -25,7 +25,7 @@ export const Route = createFileRoute("/_authenticated/voz-protetora/aconteceu/")
 
 function AcontceuLista() {
   const previewUnlocked = usePreviewUnlocked();
-  const previewSearch = previewUnlocked ? { preview: "1" } : undefined;
+  const previewSearch = previewUnlocked ? { preview: 1 } : undefined;
 
   return (
     <ProdutoShell

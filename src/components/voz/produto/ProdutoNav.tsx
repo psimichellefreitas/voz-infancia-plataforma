@@ -23,7 +23,7 @@ export function ProdutoNav() {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const previewUnlocked = usePreviewUnlocked();
-  const previewSearch = previewUnlocked ? { preview: "1" } : undefined;
+  const previewSearch = previewUnlocked ? { preview: 1 } : undefined;
 
   async function handleSignOut() {
     await queryClient.cancelQueries();

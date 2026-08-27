@@ -72,7 +72,7 @@ const ATALHOS = [
 
 function VozProtetoraHome() {
   const previewUnlocked = usePreviewUnlocked();
-  const previewSearch = previewUnlocked ? { preview: "1" } : undefined;
+  const previewSearch = previewUnlocked ? { preview: 1 } : undefined;
 
   return (
     <ProdutoShell
