@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 
 import { ProdutoShell } from "@/components/voz/produto/ProdutoShell";
-import { usePreviewUnlocked } from "@/lib/preview-mode";
+import { usePreviewSearch } from "@/lib/preview-mode";
 import { FORTALECER } from "@/lib/voz-protetora/content";
 
 export const Route = createFileRoute("/_authenticated/voz-protetora/fortalecer/")({
@@ -21,8 +21,7 @@ export const Route = createFileRoute("/_authenticated/voz-protetora/fortalecer/"
 });
 
 function FortalecerLista() {
-  const previewUnlocked = usePreviewUnlocked();
-  const previewSearch = previewUnlocked ? { preview: 1 } : undefined;
+  const previewSearch = usePreviewSearch();
 
   return (
     <ProdutoShell
