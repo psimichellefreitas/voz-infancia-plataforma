@@ -115,7 +115,7 @@ function MeuPassoPage() {
 
       <div className="mt-8">
         <h2 className="text-sm font-bold uppercase tracking-[0.1em] text-primary">Meus passos</h2>
-        {isPending ? (
+        {isPending && !previewUnlocked ? (
           <p className="mt-3 flex items-center gap-2 text-sm text-muted-foreground">
             <Loader2 className="h-4 w-4 animate-spin" /> Carregando...
           </p>
