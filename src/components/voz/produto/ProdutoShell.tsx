@@ -45,12 +45,12 @@ export function ProdutoShell({ eyebrow, title, intro, backTo, children }: Produt
     <div className="min-h-screen bg-secondary">
       <ProdutoNav />
       <main className="pt-16">
-        {isPending ? (
+        {loading ? (
           <div className="mx-auto flex max-w-5xl items-center gap-3 px-5 py-20 text-muted-foreground sm:px-8">
             <Loader2 className="h-5 w-5 animate-spin" />
             Verificando seu acesso...
           </div>
-        ) : data?.hasAccess ? (
+        ) : allowed ? (
           <>
             <section className="border-b border-border bg-primary text-primary-foreground">
               <div className="mx-auto max-w-5xl px-5 py-10 sm:px-8 sm:py-14">
