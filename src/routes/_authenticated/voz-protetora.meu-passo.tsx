@@ -8,6 +8,7 @@ import { toast } from "sonner";
 import { ProdutoShell } from "@/components/voz/produto/ProdutoShell";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
+import { usePreviewUnlocked } from "@/lib/preview-mode";
 import { addMyStep, deleteMyStep, listMySteps, toggleMyStep } from "@/lib/steps.functions";
 
 export const Route = createFileRoute("/_authenticated/voz-protetora/meu-passo")({
@@ -33,6 +34,7 @@ const EXEMPLOS = [
 
 function MeuPassoPage() {
   const [text, setText] = useState("");
+  const previewUnlocked = usePreviewUnlocked();
   const queryClient = useQueryClient();
   const fetchSteps = useServerFn(listMySteps);
   const create = useServerFn(addMyStep);
@@ -42,6 +44,8 @@ function MeuPassoPage() {
   const { data: steps, isPending } = useQuery({
     queryKey: ["protection-steps"],
     queryFn: () => fetchSteps({ data: undefined }),
+    enabled: !previewUnlocked,
+    retry: false,
   });
 
   const invalidate = () => queryClient.invalidateQueries({ queryKey: ["protection-steps"] });
@@ -91,11 +95,17 @@ function MeuPassoPage() {
             </button>
           ))}
         </div>
+        {previewUnlocked && (
+          <p className="mt-4 rounded-[12px] border border-border bg-secondary p-4 text-xs leading-relaxed text-muted-foreground">
+            Modo visualização: o conteúdo está liberado para análise, mas o salvamento fica
+            bloqueado até você entrar com sua conta.
+          </p>
+        )}
         <Button
           variant="hero"
           size="xl"
           className="mt-5"
-          disabled={text.trim().length < 3 || addMutation.isPending}
+          disabled={previewUnlocked || text.trim().length < 3 || addMutation.isPending}
           onClick={() => addMutation.mutate(text.trim())}
         >
           {addMutation.isPending ? <Loader2 className="h-4 w-4 animate-spin" /> : null}
