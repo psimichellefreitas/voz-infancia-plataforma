@@ -5,7 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import { ArrowLeft, Loader2, Lock } from "lucide-react";
 
 import { getMyProductAccess } from "@/lib/access.functions";
-import { isPreviewUnlocked } from "@/lib/preview-mode";
+import { usePreviewUnlocked } from "@/lib/preview-mode";
 import { ProdutoNav } from "./ProdutoNav";
 
 interface ProdutoShellProps {
@@ -22,12 +22,13 @@ interface ProdutoShellProps {
  */
 export function ProdutoShell({ eyebrow, title, intro, backTo, children }: ProdutoShellProps) {
   const fetchAccess = useServerFn(getMyProductAccess);
-  const previewUnlocked = isPreviewUnlocked();
+  const previewUnlocked = usePreviewUnlocked();
   const { data, isPending } = useQuery({
     queryKey: ["voz-protetora-access"],
     queryFn: () => fetchAccess({ data: undefined }),
     staleTime: 60_000,
     enabled: !previewUnlocked,
+    retry: false,
   });
   const navigate = useNavigate();
 

@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+
 /**
  * Modo de visualização para construção/análise.
  *
@@ -25,4 +27,16 @@ export function isPreviewUnlocked(): boolean {
   }
 
   return window.localStorage.getItem(KEY) === "1";
+}
+
+/**
+ * Versão em hook: evita divergência entre SSR e cliente.
+ * Retorna false no primeiro render e atualiza após a hidratação.
+ */
+export function usePreviewUnlocked(): boolean {
+  const [unlocked, setUnlocked] = useState(false);
+  useEffect(() => {
+    setUnlocked(isPreviewUnlocked());
+  }, []);
+  return unlocked;
 }
