@@ -3,8 +3,9 @@ import { Menu, X } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { NAV } from "./nav";
+import { NAV, CTA } from "./nav";
 import { Logo } from "./Logo";
+import { ThemeToggle } from "./ThemeToggle";
 
 export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
@@ -42,27 +43,24 @@ export function SiteHeader() {
           ))}
         </nav>
 
-        <div className="hidden items-center gap-5 lg:flex">
-          <Link
-            to="/auth"
-            search={{ redirect: "/voz-protetora" }}
-            className="text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground transition-colors hover:text-primary"
-          >
-            Já tenho o Voz Protetora
-          </Link>
+        <div className="hidden items-center gap-3 lg:flex">
+          <ThemeToggle />
           <Button asChild variant="hero">
-            <Link to="/seja-voz">SEJA VOZ</Link>
+            <Link to="/participe">{CTA}</Link>
           </Button>
         </div>
 
-        <button
-          className="grid h-10 w-10 place-items-center rounded-[10px] text-primary lg:hidden"
-          onClick={() => setOpen((v) => !v)}
-          aria-label={open ? "Fechar menu" : "Abrir menu"}
-          aria-expanded={open}
-        >
-          {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-        </button>
+        <div className="flex items-center gap-2 lg:hidden">
+          <ThemeToggle />
+          <button
+            className="grid h-10 w-10 place-items-center rounded-[10px] text-primary"
+            onClick={() => setOpen((v) => !v)}
+            aria-label={open ? "Fechar menu" : "Abrir menu"}
+            aria-expanded={open}
+          >
+            {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
+        </div>
       </div>
 
       {open && (
@@ -79,18 +77,10 @@ export function SiteHeader() {
               </Link>
             ))}
             <Button asChild variant="hero" size="lg" className="mt-5">
-              <Link to="/seja-voz" onClick={() => setOpen(false)}>
-                SEJA VOZ
+              <Link to="/participe" onClick={() => setOpen(false)}>
+                {CTA}
               </Link>
             </Button>
-            <Link
-              to="/auth"
-              search={{ redirect: "/voz-protetora" }}
-              onClick={() => setOpen(false)}
-              className="mt-4 text-center text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground"
-            >
-              Já tenho o Voz Protetora
-            </Link>
           </nav>
         </div>
       )}

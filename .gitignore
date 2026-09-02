@@ -30,3 +30,12 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Env local (não versionar)
+.env
+.env.local
+node_modules/
+.vercel/
+.output/
+dist/
+package-lock.json

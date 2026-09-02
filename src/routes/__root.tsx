@@ -12,22 +12,23 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Toaster } from "@/components/ui/sonner";
+import { themeInitScript } from "@/components/voz/ThemeToggle";
 
 function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
         <h1 className="text-7xl font-bold text-foreground">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
+        <h2 className="mt-4 text-xl font-semibold text-foreground">Página não encontrada</h2>
         <p className="mt-2 text-sm text-muted-foreground">
-          The page you're looking for doesn't exist or has been moved.
+          A página que você procura não existe ou foi movida.
         </p>
         <div className="mt-6">
           <Link
             to="/"
             className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
           >
-            Go home
+            Voltar para o início
           </Link>
         </div>
       </div>
@@ -46,10 +47,10 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
         <h1 className="text-xl font-semibold tracking-tight text-foreground">
-          This page didn't load
+          Esta página não carregou
         </h1>
         <p className="mt-2 text-sm text-muted-foreground">
-          Something went wrong on our end. You can try refreshing or head back home.
+          Algo deu errado do nosso lado. Você pode tentar atualizar ou voltar para o início.
         </p>
         <div className="mt-6 flex flex-wrap justify-center gap-2">
           <button
@@ -59,13 +60,13 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
             }}
             className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
           >
-            Try again
+            Tentar de novo
           </button>
           <a
             href="/"
             className="inline-flex items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent"
           >
-            Go home
+            Ir para o início
           </a>
         </div>
       </div>
@@ -73,62 +74,33 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   );
 }
 
+const SITE_TITLE = "Voz Pela Infância — Movimento em Defesa da Infância";
+const SITE_DESCRIPTION =
+  "A Voz Pela Infância é um movimento de educação e mobilização: prepara adultos para prevenir violências, reconhecer sinais, escutar e agir em defesa da infância.";
+
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Voz Pela Infância — Proteção e cuidado para cada criança" },
-      {
-        name: "description",
-        content:
-          "Movimento que une tecnologia, educação, fé e conscientização para proteger crianças. Conteúdos gratuitos, aplicativos e trilhas para pais, educadores, escolas e igrejas.",
-      },
-      { name: "author", content: "Instituto Iluminar" },
-      { property: "og:title", content: "Voz Pela Infância — Proteção e cuidado para cada criança" },
-      {
-        property: "og:description",
-        content:
-          "Toda criança merece um adulto que não se cale. Junte-se ao movimento de proteção à infância.",
-      },
+      { title: SITE_TITLE },
+      { name: "description", content: SITE_DESCRIPTION },
+      { name: "author", content: "Voz Pela Infância" },
+      { property: "og:site_name", content: "Voz Pela Infância" },
+      { property: "og:title", content: SITE_TITLE },
+      { property: "og:description", content: SITE_DESCRIPTION },
       { property: "og:type", content: "website" },
+      { property: "og:locale", content: "pt_BR" },
       { name: "twitter:card", content: "summary_large_image" },
-      {
-        name: "twitter:title",
-        content: "Voz Pela Infância — Proteção e cuidado para cada criança",
-      },
-      {
-        name: "description",
-        content:
-          "Voz Pela Infância is a premium digital platform mobilizing communities for child protection.",
-      },
-      {
-        property: "og:description",
-        content:
-          "Voz Pela Infância is a premium digital platform mobilizing communities for child protection.",
-      },
-      {
-        name: "twitter:description",
-        content:
-          "Voz Pela Infância is a premium digital platform mobilizing communities for child protection.",
-      },
-      {
-        property: "og:image",
-        content:
-          "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/af767257-e04c-4130-8f7e-e461d66ea954/id-preview-72872a57--dc6bf197-145a-407f-ad81-c1e39885e4f7.lovable.app-1781550261793.png",
-      },
-      {
-        name: "twitter:image",
-        content:
-          "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/af767257-e04c-4130-8f7e-e461d66ea954/id-preview-72872a57--dc6bf197-145a-407f-ad81-c1e39885e4f7.lovable.app-1781550261793.png",
-      },
+      { name: "twitter:title", content: SITE_TITLE },
+      { name: "twitter:description", content: SITE_DESCRIPTION },
     ],
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..600&family=Sora:wght@400..800&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,500&family=Libre+Franklin:wght@400;500;600;700&display=swap",
       },
       { rel: "icon", type: "image/png", href: "/favicon.png" },
       {
@@ -145,9 +117,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="pt-BR">
       <head>
         <HeadContent />
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>
       <body>
         {children}

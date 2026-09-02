@@ -11,13 +11,17 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
+import { Route as AcessibilidadeRouteImport } from './routes/acessibilidade'
 import { Route as AcessoRouteImport } from './routes/acesso'
 import { Route as ApoieRouteImport } from './routes/apoie'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as BussolaVozRouteImport } from './routes/bussola-voz'
 import { Route as CheckoutRouteImport } from './routes/checkout'
 import { Route as ContatoRouteImport } from './routes/contato'
+import { Route as ConteudosRouteImport } from './routes/conteudos'
+import { Route as MetodologiaRouteImport } from './routes/metodologia'
 import { Route as OMovimentoRouteImport } from './routes/o-movimento'
+import { Route as ParticipeRouteImport } from './routes/participe'
 import { Route as PoliticaDePrivacidadeRouteImport } from './routes/politica-de-privacidade'
 import { Route as RecursosRouteImport } from './routes/recursos'
 import { Route as SejaVozRouteImport } from './routes/seja-voz'
@@ -51,6 +55,11 @@ const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
   id: '/_authenticated',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AcessibilidadeRoute = AcessibilidadeRouteImport.update({
+  id: '/acessibilidade',
+  path: '/acessibilidade',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AcessoRoute = AcessoRouteImport.update({
   id: '/acesso',
   path: '/acesso',
@@ -81,9 +90,24 @@ const ContatoRoute = ContatoRouteImport.update({
   path: '/contato',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ConteudosRoute = ConteudosRouteImport.update({
+  id: '/conteudos',
+  path: '/conteudos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MetodologiaRoute = MetodologiaRouteImport.update({
+  id: '/metodologia',
+  path: '/metodologia',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const OMovimentoRoute = OMovimentoRouteImport.update({
   id: '/o-movimento',
   path: '/o-movimento',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ParticipeRoute = ParticipeRouteImport.update({
+  id: '/participe',
+  path: '/participe',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PoliticaDePrivacidadeRoute = PoliticaDePrivacidadeRouteImport.update({
@@ -216,13 +240,17 @@ const ApiPublicWebhooksMercadopagoRoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/acessibilidade': typeof AcessibilidadeRoute
   '/acesso': typeof AcessoRoute
   '/apoie': typeof ApoieRoute
   '/auth': typeof AuthRoute
   '/bussola-voz': typeof BussolaVozRoute
   '/checkout': typeof CheckoutRoute
   '/contato': typeof ContatoRoute
+  '/conteudos': typeof ConteudosRoute
+  '/metodologia': typeof MetodologiaRoute
   '/o-movimento': typeof OMovimentoRoute
+  '/participe': typeof ParticipeRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
   '/recursos': typeof RecursosRoute
   '/seja-voz': typeof SejaVozRoute
@@ -249,13 +277,17 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/acessibilidade': typeof AcessibilidadeRoute
   '/acesso': typeof AcessoRoute
   '/apoie': typeof ApoieRoute
   '/auth': typeof AuthRoute
   '/bussola-voz': typeof BussolaVozRoute
   '/checkout': typeof CheckoutRoute
   '/contato': typeof ContatoRoute
+  '/conteudos': typeof ConteudosRoute
+  '/metodologia': typeof MetodologiaRoute
   '/o-movimento': typeof OMovimentoRoute
+  '/participe': typeof ParticipeRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
   '/recursos': typeof RecursosRoute
   '/seja-voz': typeof SejaVozRoute
@@ -284,13 +316,17 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/acessibilidade': typeof AcessibilidadeRoute
   '/acesso': typeof AcessoRoute
   '/apoie': typeof ApoieRoute
   '/auth': typeof AuthRoute
   '/bussola-voz': typeof BussolaVozRoute
   '/checkout': typeof CheckoutRoute
   '/contato': typeof ContatoRoute
+  '/conteudos': typeof ConteudosRoute
+  '/metodologia': typeof MetodologiaRoute
   '/o-movimento': typeof OMovimentoRoute
+  '/participe': typeof ParticipeRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
   '/recursos': typeof RecursosRoute
   '/seja-voz': typeof SejaVozRoute
@@ -319,13 +355,17 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/acessibilidade'
     | '/acesso'
     | '/apoie'
     | '/auth'
     | '/bussola-voz'
     | '/checkout'
     | '/contato'
+    | '/conteudos'
+    | '/metodologia'
     | '/o-movimento'
+    | '/participe'
     | '/politica-de-privacidade'
     | '/recursos'
     | '/seja-voz'
@@ -352,13 +392,17 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/acessibilidade'
     | '/acesso'
     | '/apoie'
     | '/auth'
     | '/bussola-voz'
     | '/checkout'
     | '/contato'
+    | '/conteudos'
+    | '/metodologia'
     | '/o-movimento'
+    | '/participe'
     | '/politica-de-privacidade'
     | '/recursos'
     | '/seja-voz'
@@ -386,13 +430,17 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/_authenticated'
+    | '/acessibilidade'
     | '/acesso'
     | '/apoie'
     | '/auth'
     | '/bussola-voz'
     | '/checkout'
     | '/contato'
+    | '/conteudos'
+    | '/metodologia'
     | '/o-movimento'
+    | '/participe'
     | '/politica-de-privacidade'
     | '/recursos'
     | '/seja-voz'
@@ -421,13 +469,17 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  AcessibilidadeRoute: typeof AcessibilidadeRoute
   AcessoRoute: typeof AcessoRoute
   ApoieRoute: typeof ApoieRoute
   AuthRoute: typeof AuthRoute
   BussolaVozRoute: typeof BussolaVozRoute
   CheckoutRoute: typeof CheckoutRoute
   ContatoRoute: typeof ContatoRoute
+  ConteudosRoute: typeof ConteudosRoute
+  MetodologiaRoute: typeof MetodologiaRoute
   OMovimentoRoute: typeof OMovimentoRoute
+  ParticipeRoute: typeof ParticipeRoute
   PoliticaDePrivacidadeRoute: typeof PoliticaDePrivacidadeRoute
   RecursosRoute: typeof RecursosRoute
   SejaVozRoute: typeof SejaVozRoute
@@ -456,6 +508,13 @@ declare module '@tanstack/react-router' {
       path: ''
       fullPath: '/'
       preLoaderRoute: typeof AuthenticatedRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/acessibilidade': {
+      id: '/acessibilidade'
+      path: '/acessibilidade'
+      fullPath: '/acessibilidade'
+      preLoaderRoute: typeof AcessibilidadeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/acesso': {
@@ -500,11 +559,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContatoRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/conteudos': {
+      id: '/conteudos'
+      path: '/conteudos'
+      fullPath: '/conteudos'
+      preLoaderRoute: typeof ConteudosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/metodologia': {
+      id: '/metodologia'
+      path: '/metodologia'
+      fullPath: '/metodologia'
+      preLoaderRoute: typeof MetodologiaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/o-movimento': {
       id: '/o-movimento'
       path: '/o-movimento'
       fullPath: '/o-movimento'
       preLoaderRoute: typeof OMovimentoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/participe': {
+      id: '/participe'
+      path: '/participe'
+      fullPath: '/participe'
+      preLoaderRoute: typeof ParticipeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/politica-de-privacidade': {
@@ -715,13 +795,17 @@ const AuthenticatedRouteRouteWithChildren =
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  AcessibilidadeRoute: AcessibilidadeRoute,
   AcessoRoute: AcessoRoute,
   ApoieRoute: ApoieRoute,
   AuthRoute: AuthRoute,
   BussolaVozRoute: BussolaVozRoute,
   CheckoutRoute: CheckoutRoute,
   ContatoRoute: ContatoRoute,
+  ConteudosRoute: ConteudosRoute,
+  MetodologiaRoute: MetodologiaRoute,
   OMovimentoRoute: OMovimentoRoute,
+  ParticipeRoute: ParticipeRoute,
   PoliticaDePrivacidadeRoute: PoliticaDePrivacidadeRoute,
   RecursosRoute: RecursosRoute,
   SejaVozRoute: SejaVozRoute,
