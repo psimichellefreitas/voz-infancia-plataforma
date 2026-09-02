@@ -6,8 +6,8 @@ import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/voz/Reveal";
 import { SiteHeader } from "@/components/voz/SiteHeader";
 import { SiteFooter } from "@/components/voz/SiteFooter";
+import { HeroArt } from "@/components/voz/HeroArt";
 import { DESCRITOR, MANIFESTO } from "@/components/voz/nav";
-import heroImg from "@/assets/v1-hero.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -99,14 +99,7 @@ function Home() {
             </Reveal>
 
             <Reveal delay={120}>
-              <img
-                src={heroImg}
-                alt="Um adulto caminha ao lado de uma criança, com a mão em seu ombro, em luz natural."
-                width={1600}
-                height={1200}
-                fetchPriority="high"
-                className="w-full rounded-[12px] border border-border object-cover shadow-[var(--shadow-lift)]"
-              />
+              <HeroArt className="aspect-[5/4] w-full" />
             </Reveal>
           </div>
         </section>
