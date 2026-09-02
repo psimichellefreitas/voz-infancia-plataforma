@@ -1,32 +1,28 @@
+import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import {
-  Compass,
-  HeartHandshake,
-  ShieldCheck,
-  Sparkles,
-  ArrowRight,
-  Instagram,
-} from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/voz/Reveal";
 import { SiteHeader } from "@/components/voz/SiteHeader";
 import { SiteFooter } from "@/components/voz/SiteFooter";
-import { INSTAGRAM_HANDLE, INSTAGRAM_URL } from "@/components/voz/nav";
+import { DESCRITOR, MANIFESTO } from "@/components/voz/nav";
 import heroImg from "@/assets/v1-hero.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Voz Pela Infância — Movimento em defesa da infância" },
+      { title: "Voz Pela Infância — Movimento em Defesa da Infância" },
       {
         name: "description",
         content:
-          "Valorizar, orientar e zelar. Um movimento que informa e mobiliza adultos para proteger crianças com clareza, respeito e responsabilidade.",
+          "A proteção da infância começa quando os adultos aprendem a proteger. A Voz Pela Infância educa e mobiliza adultos para prevenir, reconhecer sinais, escutar e agir.",
       },
-      { property: "og:title", content: "Voz Pela Infância — Movimento em defesa da infância" },
+      { property: "og:title", content: "Voz Pela Infância — Movimento em Defesa da Infância" },
       {
         property: "og:description",
-        content: "Valorizar. Orientar. Zelar. Conheça o movimento e torne-se voz pela infância.",
+        content:
+          "Um movimento de educação e mobilização para preparar adultos que convivem com crianças.",
       },
     ],
   }),
@@ -35,45 +31,40 @@ export const Route = createFileRoute("/")({
 
 const SHELL = "mx-auto max-w-6xl px-5 sm:px-8";
 
-const PILLARS = [
+/** Camada 3–6 da arquitetura oficial (DOC 01, Título VI), na ordem: postura → método → expressão → ferramenta. */
+const ESTRUTURA = [
   {
-    icon: HeartHandshake,
-    title: "Valorizar",
-    text: "Reconhecer a infância como tempo próprio, com dignidade, escuta e cuidado.",
+    papel: "Postura",
+    nome: "Visão VOZ",
+    texto: "Valorizar a Infância · Orientar para Proteger · Zelar pela Proteção.",
   },
   {
-    icon: Compass,
-    title: "Orientar",
-    text: "Levar informação clara e responsável a famílias, escolas e comunidades.",
+    papel: "Método",
+    nome: "Método dos 5C da Proteção",
+    texto:
+      "Consciência · Conexão · Conhecimento · Comprometimento · Cuidado — o que precisa ser fortalecido nos adultos.",
   },
   {
-    icon: ShieldCheck,
-    title: "Zelar",
-    text: "Sustentar ambientes seguros por meio de prevenção, presença e vigilância adulta.",
+    papel: "Expressão",
+    nome: "5 Vozes da Proteção",
+    texto:
+      "Ensina · Escuta · Acolhe · Protege · Inspira — como a proteção aparece nas relações.",
+  },
+  {
+    papel: "Ferramenta",
+    nome: "Bússola VOZ",
+    texto: "Ver · Ouvir · Zelar — para perceber e decidir diante de situações reais.",
   },
 ];
 
-const HIGHLIGHTS = [
-  {
-    title: "O Movimento",
-    text: "Quem somos, no que acreditamos e como atuamos em defesa da infância.",
-    to: "/o-movimento",
-  },
-  {
-    title: "Bússola Voz",
-    text: "Uma direção prática para adultos que querem agir com equilíbrio e critério.",
-    to: "/bussola-voz",
-  },
-  {
-    title: "Recursos",
-    text: "Materiais, orientações e conteúdos para aprofundar e compartilhar.",
-    to: "/recursos",
-  },
-  {
-    title: "Soluções",
-    text: "Programas e formações para escolas, instituições e comunidades.",
-    to: "/solucoes",
-  },
+/** Territórios do Sistema Editorial (DOC 02, §12) — nomes oficiais, não alterar. */
+const TERRITORIOS = [
+  "Educação",
+  "Cotidiano",
+  "Resposta",
+  "Rede",
+  "Mobilização",
+  "Voz Institucional",
 ];
 
 function Home() {
@@ -87,21 +78,22 @@ function Home() {
           <div className={`${SHELL} grid items-center gap-10 py-14 sm:py-20 lg:grid-cols-2`}>
             <Reveal>
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">
-                Movimento em defesa da infância
+                {DESCRITOR}
               </p>
-              <h1 className="mt-4 text-[2rem] font-bold leading-[1.12] text-primary sm:text-4xl lg:text-5xl">
-                Toda criança precisa de adultos que a valorizem, orientem e zelem por ela.
+              <h1 className="mt-4 text-[2rem] font-semibold leading-[1.12] text-primary sm:text-4xl lg:text-[2.9rem]">
+                A proteção da infância começa quando os adultos aprendem a proteger.
               </h1>
               <p className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-                O Voz Pela Infância informa, forma e mobiliza pessoas para uma proteção real — sem
-                alarmismo, com responsabilidade e cuidado.
+                A Voz Pela Infância é um movimento de educação e mobilização: prepara adultos para
+                prevenir violências, reconhecer sinais, escutar e agir — sem substituir a rede de
+                proteção.
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <Button asChild variant="hero" size="lg">
-                  <Link to="/seja-voz">Seja Voz</Link>
+                  <Link to="/o-movimento">Conhecer o movimento</Link>
                 </Button>
                 <Button asChild variant="outline" size="lg">
-                  <Link to="/o-movimento">Conheça o movimento</Link>
+                  <Link to="/conteudos">Explorar conteúdos</Link>
                 </Button>
               </div>
             </Reveal>
@@ -109,116 +101,346 @@ function Home() {
             <Reveal delay={120}>
               <img
                 src={heroImg}
-                alt="Adulto caminhando ao lado de uma criança com a mão em seu ombro, em luz natural"
+                alt="Um adulto caminha ao lado de uma criança, com a mão em seu ombro, em luz natural."
                 width={1600}
                 height={1200}
                 fetchPriority="high"
-                className="w-full rounded-[10px] border border-border object-cover shadow-[var(--shadow-lift)]"
+                className="w-full rounded-[12px] border border-border object-cover shadow-[var(--shadow-lift)]"
               />
             </Reveal>
           </div>
         </section>
 
-        {/* PILARES */}
+        {/* O QUE É / PARA QUEM */}
+        <section className="py-16 sm:py-24">
+          <div className={`${SHELL} max-w-3xl`}>
+            <Reveal>
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">
+                O que é a Voz Pela Infância
+              </p>
+              <h2 className="mt-3 text-2xl font-semibold text-primary sm:text-3xl">
+                Um movimento para preparar quem cuida
+              </h2>
+              <p className="mt-5 text-base leading-relaxed text-muted-foreground sm:text-lg">
+                A Voz existe para transformar informação em consciência, postura e ação protetiva.
+                Nosso propósito é construir uma <strong className="text-foreground">Cultura
+                Protetiva da Infância</strong> — uma sociedade em que proteger crianças e
+                adolescentes seja responsabilidade cotidiana e compartilhada, e não apenas resposta
+                à crise.
+              </p>
+              <ul className="mt-7 flex flex-wrap gap-2.5">
+                {[
+                  "Famílias e responsáveis",
+                  "Educadores e professores",
+                  "Profissionais",
+                  "Instituições e comunidades",
+                ].map((p) => (
+                  <li
+                    key={p}
+                    className="rounded-full border border-border bg-card px-4 py-2 text-sm font-medium text-muted-foreground"
+                  >
+                    {p}
+                  </li>
+                ))}
+              </ul>
+              <Link
+                to="/o-movimento"
+                className="mt-8 inline-flex items-center gap-1.5 text-sm font-semibold text-primary transition-colors hover:text-accent"
+              >
+                Conhecer o movimento
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </Reveal>
+          </div>
+        </section>
+
+        {/* QUEM IDEALIZA */}
+        <section className="border-y border-border bg-secondary py-14 sm:py-20">
+          <div className={`${SHELL} grid max-w-4xl gap-8 sm:grid-cols-[180px_1fr] sm:items-center`}>
+            <Reveal>
+              <div className="aspect-square w-[160px] overflow-hidden rounded-[12px] border border-border bg-muted sm:w-full">
+                <div className="grid h-full w-full place-items-center text-xs text-muted-foreground">
+                  foto
+                </div>
+              </div>
+            </Reveal>
+            <Reveal delay={80}>
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">
+                Quem idealiza
+              </p>
+              <h2 className="mt-2 text-xl font-semibold text-primary sm:text-2xl">
+                Michelle Freitas
+              </h2>
+              <p className="mt-3 max-w-xl text-sm leading-relaxed text-muted-foreground sm:text-base">
+                A Voz Pela Infância é idealizada por Michelle Freitas, psicóloga, no Rio Grande do
+                Norte. O movimento nasce de uma compreensão simples: antes da denúncia, existe a
+                prevenção — e, antes da prevenção, existe uma cultura.
+              </p>
+              <Link
+                to="/o-movimento"
+                className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-primary transition-colors hover:text-accent"
+              >
+                Conhecer a trajetória
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </Reveal>
+          </div>
+        </section>
+
+        {/* COMO A VOZ ATUA */}
         <section className="py-16 sm:py-24">
           <div className={SHELL}>
             <Reveal>
-              <h2 className="text-2xl font-bold text-primary sm:text-3xl">Nossos princípios</h2>
-              <p className="mt-3 max-w-2xl text-muted-foreground">
-                Três compromissos orientam cada conteúdo, formação e ação do movimento.
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">
+                Como a Voz atua
+              </p>
+              <h2 className="mt-3 max-w-2xl text-2xl font-semibold text-primary sm:text-3xl">
+                Um propósito, sustentado por uma estrutura
+              </h2>
+              <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground">
+                Tudo o que a Voz faz serve a um propósito: construir uma Cultura Protetiva da
+                Infância. Para chegar lá, o movimento se organiza em uma postura, um método, uma
+                expressão e uma ferramenta.
               </p>
             </Reveal>
-            <div className="mt-10 grid gap-5 md:grid-cols-3">
-              {PILLARS.map((p, i) => (
-                <Reveal key={p.title} delay={i * 80}>
-                  <article className="h-full rounded-[10px] border border-border bg-card p-7 shadow-[var(--shadow-soft)]">
-                    <span className="grid h-11 w-11 place-items-center rounded-[10px] bg-primary/10 text-primary">
-                      <p.icon className="h-5 w-5" />
+            <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+              {ESTRUTURA.map((item, i) => (
+                <Reveal key={item.nome} delay={i * 70}>
+                  <article className="flex h-full flex-col rounded-[10px] border border-border bg-card p-6 shadow-[var(--shadow-soft)]">
+                    <span className="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-accent">
+                      {item.papel}
                     </span>
-                    <h3 className="mt-5 text-lg font-bold text-primary">{p.title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{p.text}</p>
+                    <h3 className="mt-2 text-lg font-semibold text-primary">{item.nome}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                      {item.texto}
+                    </p>
                   </article>
                 </Reveal>
               ))}
             </div>
-          </div>
-        </section>
-
-        {/* DESTAQUES */}
-        <section className="border-y border-border bg-secondary py-16 sm:py-24">
-          <div className={SHELL}>
             <Reveal>
-              <h2 className="text-2xl font-bold text-primary sm:text-3xl">Por onde começar</h2>
+              <Link
+                to="/metodologia"
+                className="mt-9 inline-flex items-center gap-1.5 text-sm font-semibold text-primary transition-colors hover:text-accent"
+              >
+                Conhecer a metodologia
+                <ArrowRight className="h-4 w-4" />
+              </Link>
             </Reveal>
-            <div className="mt-10 grid gap-5 sm:grid-cols-2">
-              {HIGHLIGHTS.map((h, i) => (
-                <Reveal key={h.to} delay={i * 70}>
-                  <Link
-                    to={h.to}
-                    className="group flex h-full flex-col rounded-[10px] border border-border bg-card p-7 shadow-[var(--shadow-soft)] transition-shadow hover:shadow-[var(--shadow-lift)]"
-                  >
-                    <h3 className="text-lg font-bold text-primary">{h.title}</h3>
-                    <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">
-                      {h.text}
-                    </p>
-                    <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-accent">
-                      Acessar
-                      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                    </span>
-                  </Link>
-                </Reveal>
-              ))}
-            </div>
           </div>
         </section>
 
-        {/* CTA */}
-        <section className="py-16 sm:py-24">
+        {/* COMO PENSAMOS */}
+        <section className="border-y border-border bg-secondary py-14 sm:py-16">
           <div className={SHELL}>
             <Reveal>
-              <div className="rounded-[10px] bg-primary px-7 py-12 text-primary-foreground sm:px-12">
-                <Sparkles className="h-6 w-6 text-primary-foreground/80" />
-                <h2 className="mt-5 max-w-2xl text-2xl font-bold leading-snug sm:text-3xl">
-                  Se uma criança precisasse da sua voz hoje, ela encontraria?
-                </h2>
-                <p className="mt-4 max-w-xl text-primary-foreground/80">
-                  Assuma o compromisso público de valorizar, orientar e zelar pela infância.
+              <div className="max-w-2xl border-l-2 border-accent pl-6">
+                <p className="font-display text-xl leading-snug text-primary sm:text-2xl">
+                  Diante de um caso ou de uma notícia, a Voz não expõe a tragédia: pergunta o que
+                  aquilo ensina sobre proteção. É a pergunta que orienta cada decisão do movimento —
+                  “Isso protege a infância?”
                 </p>
-                <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                  <Button asChild variant="green" size="lg">
-                    <Link to="/seja-voz">Quero ser voz</Link>
-                  </Button>
-                  <Button asChild variant="heroOutline" size="lg">
-                    <Link to="/apoie">Apoie o movimento</Link>
-                  </Button>
-                </div>
+                <Link
+                  to="/o-movimento"
+                  className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-primary transition-colors hover:text-accent"
+                >
+                  Como o movimento pensa
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
               </div>
             </Reveal>
           </div>
         </section>
 
-        {/* INSTAGRAM */}
-        <section className="border-t border-border bg-secondary py-14">
-          <div
-            className={`${SHELL} flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between`}
-          >
-            <div>
-              <h2 className="text-xl font-bold text-primary">Acompanhe no Instagram</h2>
-              <p className="mt-1 text-sm text-muted-foreground">
-                Conteúdos diários de conscientização e orientação.
+        {/* CONTEÚDOS EM DESTAQUE */}
+        <section className="py-16 sm:py-24">
+          <div className={SHELL}>
+            <Reveal>
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">
+                Conteúdos
               </p>
+              <h2 className="mt-3 text-2xl font-semibold text-primary sm:text-3xl">
+                Aprender no dia a dia
+              </h2>
+              <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground">
+                Conteúdos que ajudam a reconhecer a proteção — ou a sua ausência — nas situações
+                reais da vida com crianças. Os primeiros estão a caminho.
+              </p>
+            </Reveal>
+            <Reveal>
+              <ul className="mt-8 flex flex-wrap gap-2.5">
+                {TERRITORIOS.map((t) => (
+                  <li
+                    key={t}
+                    className="rounded-full border border-border bg-card px-4 py-2 text-sm font-medium text-muted-foreground"
+                  >
+                    {t}
+                  </li>
+                ))}
+              </ul>
+              <Link
+                to="/conteudos"
+                className="mt-8 inline-flex items-center gap-1.5 text-sm font-semibold text-primary transition-colors hover:text-accent"
+              >
+                Ver a área de Conteúdos
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </Reveal>
+          </div>
+        </section>
+
+        {/* COMO A VOZ PODE AJUDAR */}
+        <section className="border-y border-border bg-secondary py-16 sm:py-24">
+          <div className={SHELL}>
+            <Reveal>
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">
+                Soluções
+              </p>
+              <h2 className="mt-3 text-2xl font-semibold text-primary sm:text-3xl">
+                Como a Voz pode ajudar
+              </h2>
+            </Reveal>
+            <div className="mt-9 grid gap-5 sm:grid-cols-2">
+              <Reveal>
+                <article className="flex h-full flex-col rounded-[12px] border border-border bg-card p-7 shadow-[var(--shadow-soft)]">
+                  <span className="self-start rounded-[6px] bg-secondary px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.1em] text-primary">
+                    Disponível
+                  </span>
+                  <h3 className="mt-4 text-xl font-semibold text-primary">
+                    Formações e palestras
+                  </h3>
+                  <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">
+                    Encontros e formações para escolas, instituições, equipes e comunidades, a
+                    partir do Método dos 5C da Proteção.
+                  </p>
+                  <Link
+                    to="/solucoes"
+                    className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-primary transition-colors hover:text-accent"
+                  >
+                    Levar a Voz para a sua instituição
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </article>
+              </Reveal>
+              <Reveal delay={80}>
+                <article className="flex h-full flex-col rounded-[12px] border border-border bg-card p-7 shadow-[var(--shadow-soft)]">
+                  <span className="self-start rounded-[6px] bg-secondary px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.1em] text-muted-foreground">
+                    Em desenvolvimento
+                  </span>
+                  <h3 className="mt-4 text-xl font-semibold text-primary">Materiais e produtos</h3>
+                  <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">
+                    Materiais práticos e produtos para adultos aplicarem a proteção no cotidiano.
+                  </p>
+                  <Link
+                    to="/solucoes"
+                    className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-primary transition-colors hover:text-accent"
+                  >
+                    Saber mais
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </article>
+              </Reveal>
             </div>
-            <Button asChild variant="navy">
-              <a href={INSTAGRAM_URL} target="_blank" rel="noreferrer">
-                <Instagram className="h-4 w-4" />
-                {INSTAGRAM_HANDLE}
-              </a>
-            </Button>
+            <Reveal>
+              <Link
+                to="/solucoes"
+                className="mt-9 inline-flex items-center gap-1.5 text-sm font-semibold text-primary transition-colors hover:text-accent"
+              >
+                Conhecer as soluções
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </Reveal>
+          </div>
+        </section>
+
+        {/* PARTICIPE */}
+        <section className="bg-primary py-20 text-primary-foreground sm:py-28">
+          <div className={`${SHELL} max-w-3xl text-center`}>
+            <Reveal>
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary-foreground/75">
+                Participe
+              </p>
+              <p className="mx-auto mt-4 max-w-[20ch] font-display text-[1.6rem] italic leading-snug sm:text-[2.4rem]">
+                {MANIFESTO}
+              </p>
+              <p className="mx-auto mt-5 max-w-[44ch] text-primary-foreground/85">
+                Receba novos conteúdos e formas de participar do movimento.
+              </p>
+              <p className="my-8 flex items-center justify-center gap-4 text-sm font-bold uppercase tracking-[0.14em]">
+                <span className="h-px w-11 bg-primary-foreground/30" />
+                Seja Voz.
+                <span className="h-px w-11 bg-primary-foreground/30" />
+              </p>
+              <NewsletterForm />
+              <p className="mt-6 text-sm text-primary-foreground/80">
+                Ou compartilhe com um adulto que convive com crianças.
+              </p>
+            </Reveal>
           </div>
         </section>
       </main>
 
       <SiteFooter />
     </div>
+  );
+}
+
+function NewsletterForm() {
+  const [nome, setNome] = useState("");
+  const [email, setEmail] = useState("");
+  const [consent, setConsent] = useState(false);
+
+  function onSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (!consent) {
+      toast.info("Marque o consentimento para continuar.");
+      return;
+    }
+    toast.info("As inscrições estarão disponíveis em breve.");
+  }
+
+  return (
+    <form onSubmit={onSubmit} className="mx-auto max-w-lg" aria-label="Inscrição para novidades">
+      <div className="flex flex-col gap-3 sm:flex-row">
+        <label className="sr-only" htmlFor="nf-nome">
+          Nome
+        </label>
+        <input
+          id="nf-nome"
+          type="text"
+          value={nome}
+          onChange={(e) => setNome(e.target.value)}
+          placeholder="Seu nome"
+          autoComplete="name"
+          className="min-w-0 flex-1 rounded-[8px] border border-primary-foreground/40 bg-transparent px-4 py-2.5 text-sm text-primary-foreground placeholder:text-primary-foreground/55 focus-visible:border-primary-foreground focus-visible:outline-none"
+        />
+        <label className="sr-only" htmlFor="nf-email">
+          E-mail
+        </label>
+        <input
+          id="nf-email"
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Seu e-mail"
+          autoComplete="email"
+          className="min-w-0 flex-1 rounded-[8px] border border-primary-foreground/40 bg-transparent px-4 py-2.5 text-sm text-primary-foreground placeholder:text-primary-foreground/55 focus-visible:border-primary-foreground focus-visible:outline-none"
+        />
+        <Button type="submit" variant="green" size="lg">
+          Confirmar inscrição
+        </Button>
+      </div>
+      <label className="mt-4 flex items-start justify-center gap-2.5 text-left text-xs text-primary-foreground/80">
+        <input
+          type="checkbox"
+          checked={consent}
+          onChange={(e) => setConsent(e.target.checked)}
+          className="mt-0.5"
+        />
+        <span className="max-w-[40ch]">
+          Concordo em receber e-mails da Voz Pela Infância. Posso cancelar quando quiser.
+        </span>
+      </label>
+    </form>
   );
 }
