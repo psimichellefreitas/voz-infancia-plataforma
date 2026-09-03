@@ -1,7 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
 
-const BASE_URL = "https://voz-infancia-plataforma.lovable.app";
+// TODO: trocar pelo domínio oficial quando publicado (https://vozpelainfancia.com.br).
+const BASE_URL = "https://vozpelainfancia.com.br";
 
 interface SitemapEntry {
   path: string;
@@ -16,15 +17,14 @@ export const Route = createFileRoute("/sitemap.xml")({
         const entries: SitemapEntry[] = [
           { path: "/", changefreq: "weekly", priority: "1.0" },
           { path: "/o-movimento", changefreq: "monthly", priority: "0.9" },
-          { path: "/seja-voz", changefreq: "monthly", priority: "0.9" },
-          { path: "/bussola-voz", changefreq: "monthly", priority: "0.9" },
-          { path: "/recursos", changefreq: "weekly", priority: "0.8" },
+          { path: "/metodologia", changefreq: "monthly", priority: "0.9" },
+          { path: "/conteudos", changefreq: "weekly", priority: "0.8" },
           { path: "/solucoes", changefreq: "monthly", priority: "0.8" },
-          { path: "/solucoes/voz-protetora", changefreq: "monthly", priority: "0.9" },
-          { path: "/apoie", changefreq: "monthly", priority: "0.7" },
-          { path: "/contato", changefreq: "monthly", priority: "0.6" },
+          { path: "/participe", changefreq: "monthly", priority: "0.8" },
+          { path: "/contato", changefreq: "monthly", priority: "0.5" },
           { path: "/politica-de-privacidade", changefreq: "monthly", priority: "0.3" },
           { path: "/termos-de-uso", changefreq: "monthly", priority: "0.3" },
+          { path: "/acessibilidade", changefreq: "monthly", priority: "0.3" },
         ];
 
         const urls = entries.map((e) =>

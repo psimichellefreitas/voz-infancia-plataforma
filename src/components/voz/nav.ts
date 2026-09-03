@@ -26,8 +26,8 @@ export const FOOTER_INSTITUTIONAL: NavItem[] = [
 export const INSTAGRAM_HANDLE = "@somosvozpelainfancia";
 export const INSTAGRAM_URL = "https://instagram.com/somosvozpelainfancia";
 
-// TODO: confirmar o endereço de e-mail oficial antes de publicar.
-export const CONTATO_EMAIL = "contato@vozpelainfancia.org";
+// TODO: confirmar a caixa de e-mail oficial no domínio antes de publicar.
+export const CONTATO_EMAIL = "contato@vozpelainfancia.com.br";
 
 /** Sistema Verbal oficial (DOC 02, §11). Uso pontual, na função de cada elemento. */
 export const DESCRITOR = "Movimento em Defesa da Infância";
