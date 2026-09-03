@@ -77,20 +77,19 @@ const CINCO_C = [
 ];
 
 const VOZES = [
-  { nome: "Ensina", principio: "Conhecimento deve aumentar a capacidade de proteção, não o medo." },
+  { nome: "Ensina", principio: "Leva conhecimento que aumenta a capacidade de proteger, sem gerar medo." },
   {
     nome: "Escuta",
-    principio: "Escutar é criar condições para a criança falar sem medo de ser desqualificada.",
+    principio: "Cria espaço para a criança falar e ser levada a sério.",
   },
-  { nome: "Acolhe", principio: "Acolher é fazer a criança perceber que falar não foi um erro." },
+  { nome: "Acolhe", principio: "Responde com segurança e sem culpabilizar quando a criança procura ajuda." },
   {
     nome: "Protege",
-    principio: "Proteger exige responsabilidade para agir — e discernimento para saber quando buscar ajuda.",
+    principio: "Transforma percepção e responsabilidade em ação — e sabe quando buscar ajuda.",
   },
   {
     nome: "Inspira",
-    principio:
-      "Uma atitude protetiva pode proteger uma criança; uma cultura protetiva pode fortalecer muitos ambientes.",
+    principio: "Mobiliza outros adultos a assumirem a mesma postura.",
   },
 ];
 
@@ -98,17 +97,17 @@ const BUSSOLA = [
   {
     m: "Ver",
     pergunta: "O que está acontecendo?",
-    principio: "Observar não é concluir.",
+    principio: "Perceber antes de interpretar.",
   },
   {
     m: "Ouvir",
     pergunta: "O que a criança está comunicando?",
-    principio: "Escutar não é investigar.",
+    principio: "Dar espaço, sem pressionar.",
   },
   {
     m: "Zelar",
     pergunta: "O que posso fazer para proteger?",
-    principio: "Proteger também é saber quando buscar ajuda.",
+    principio: "Agir no próprio papel e buscar apoio.",
   },
 ];
 
@@ -176,14 +175,13 @@ function MetodologiaPage() {
             É o horizonte — o que o movimento quer fortalecer. Não é um método, uma ferramenta ou
             uma campanha, e não é sinônimo dos 5C.
           </p>
-          <blockquote className="mt-6 border-l-2 border-accent pl-5 text-base leading-relaxed text-foreground/90">
-            Cultura Protetiva da Infância é o conjunto de valores, atitudes, conhecimentos, relações
-            e práticas compartilhadas que tornam a proteção da infância uma responsabilidade
-            cotidiana, coletiva e inegociável.
-          </blockquote>
+          <p className="mt-4 leading-relaxed text-muted-foreground">
+            É a cultura em que proteger crianças e adolescentes é tratado como valor,
+            responsabilidade compartilhada e prática do dia a dia — presente nas relações, nos
+            ambientes, nas escolhas e nas instituições, e não só nas respostas à crise.
+          </p>
           <p className="mt-6 text-sm font-medium text-foreground">
-            Ela se caracteriza quando a proteção está presente de forma consistente em seis
-            dimensões:
+            Ela aparece quando a proteção está presente de forma consistente em seis dimensões:
           </p>
           <ul className="mt-3 flex flex-wrap gap-2.5">
             {DIMENSOES.map((d) => (
@@ -201,15 +199,10 @@ function MetodologiaPage() {
               diálogo, autonomia progressiva e presença adulta — não vigilância ou desconfiança.
             </p>
             <p className="rounded-[10px] border border-border bg-card p-4 text-sm leading-relaxed text-muted-foreground">
-              <strong className="text-foreground">Não é apenas informação.</strong> O caminho é
-              informação → consciência → compreensão → postura → ação → prática.
+              <strong className="text-foreground">Não é apenas informação.</strong> É informação que
+              vira consciência, postura e prática cotidiana.
             </p>
           </div>
-          <p className="mt-6 font-display text-lg leading-snug text-primary">
-            Cultura Protetiva é quando proteger crianças deixa de ser uma ação isolada e passa a
-            fazer parte da maneira como uma família, uma escola, uma instituição ou uma comunidade
-            pensa, se relaciona, educa e age.
-          </p>
         </section>
 
         {/* 2. VISÃO VOZ */}
@@ -247,15 +240,11 @@ function MetodologiaPage() {
             Método dos 5C da Proteção
           </h2>
           <p className="mt-4 leading-relaxed text-muted-foreground">
-            É a estrutura metodológica oficial para desenvolver <strong className="text-foreground">capacidade
-            protetiva</strong>. Os cinco C são os pilares que estruturam o método — não se usa “5
-            Pilares da Proteção” como nome.
+            É a estrutura metodológica oficial para desenvolver a <strong className="text-foreground">capacidade
+            protetiva</strong> dos adultos, das relações e das instituições — reconhecer a
+            responsabilidade de proteger e transformá-la em prática. Os cinco C são os pilares que
+            estruturam o método; não se usa “5 Pilares da Proteção” como nome.
           </p>
-          <blockquote className="mt-6 border-l-2 border-accent pl-5 text-base leading-relaxed text-foreground/90">
-            Capacidade protetiva é a possibilidade de uma pessoa, relação, instituição ou ambiente
-            reconhecer a responsabilidade de proteger a infância e transformar esse reconhecimento
-            em percepção, relação, conhecimento, decisão, ação e continuidade.
-          </blockquote>
           <div className="mt-6 overflow-x-auto">
             <table className="w-full min-w-[34rem] border-collapse text-sm">
               <thead>
@@ -279,10 +268,6 @@ function MetodologiaPage() {
           <p className="mt-6 text-sm leading-relaxed text-muted-foreground">
             Os cinco formam um sistema integrado, não uma escada rígida: uma dimensão fortalece a
             outra.
-          </p>
-          <p className="mt-4 font-display text-lg leading-snug text-primary">
-            Consciência para perceber. Conexão para relacionar-se. Conhecimento para compreender.
-            Comprometimento para assumir responsabilidade. Cuidado para sustentar.
           </p>
         </section>
 
@@ -308,10 +293,6 @@ function MetodologiaPage() {
               </li>
             ))}
           </ul>
-          <p className="mt-6 font-display text-lg leading-snug text-primary">
-            Ensinar para preparar. Escutar para perceber. Acolher para oferecer segurança. Proteger
-            para agir. Inspirar para ampliar.
-          </p>
         </section>
 
         {/* 5. BÚSSOLA VOZ */}
@@ -359,9 +340,6 @@ function MetodologiaPage() {
             {" "}
             (aprofunda as situações à luz do Método dos 5C — os 5C são usados como lente de
             reflexão, não passam a fazer parte da Bússola).
-          </p>
-          <p className="mt-4 font-display text-lg leading-snug text-primary">
-            VER para perceber. OUVIR para compreender. ZELAR para proteger.
           </p>
           <p className="mt-4 text-xs text-muted-foreground">
             O Mapa da Proteção — ferramenta de autoavaliação — é visão futura e não está ativo nesta
