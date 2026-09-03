@@ -1,10 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Instagram, Mail } from "lucide-react";
 import { PageShell } from "@/components/voz/PageShell";
-import { INSTAGRAM_HANDLE, INSTAGRAM_URL } from "@/components/voz/nav";
+import { INSTAGRAM_HANDLE, INSTAGRAM_URL, CONTATO_EMAIL } from "@/components/voz/nav";
 
-// TODO: confirmar o endereço de e-mail oficial antes de publicar.
-const EMAIL = "contato@vozpelainfancia.org";
+const EMAIL = CONTATO_EMAIL;
 
 export const Route = createFileRoute("/contato")({
   head: () => ({
