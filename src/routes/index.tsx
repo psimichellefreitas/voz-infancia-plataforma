@@ -1,12 +1,11 @@
-import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
-import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/voz/Reveal";
 import { SiteHeader } from "@/components/voz/SiteHeader";
 import { SiteFooter } from "@/components/voz/SiteFooter";
 import { HeroArt } from "@/components/voz/HeroArt";
+import { NewsletterForm } from "@/components/voz/NewsletterForm";
 import { DESCRITOR, MANIFESTO } from "@/components/voz/nav";
 
 export const Route = createFileRoute("/")({
@@ -364,7 +363,7 @@ function Home() {
                 Seja Voz.
                 <span className="h-px w-11 bg-primary-foreground/30" />
               </p>
-              <NewsletterForm />
+              <NewsletterForm tone="onAccent" />
               <p className="mt-6 text-sm text-primary-foreground/80">
                 Ou compartilhe com um adulto que convive com crianças.
               </p>
@@ -375,65 +374,5 @@ function Home() {
 
       <SiteFooter />
     </div>
-  );
-}
-
-function NewsletterForm() {
-  const [nome, setNome] = useState("");
-  const [email, setEmail] = useState("");
-  const [consent, setConsent] = useState(false);
-
-  function onSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    if (!consent) {
-      toast.info("Marque o consentimento para continuar.");
-      return;
-    }
-    toast.info("As inscrições estarão disponíveis em breve.");
-  }
-
-  return (
-    <form onSubmit={onSubmit} className="mx-auto max-w-lg" aria-label="Inscrição para novidades">
-      <div className="flex flex-col gap-3 sm:flex-row">
-        <label className="sr-only" htmlFor="nf-nome">
-          Nome
-        </label>
-        <input
-          id="nf-nome"
-          type="text"
-          value={nome}
-          onChange={(e) => setNome(e.target.value)}
-          placeholder="Seu nome"
-          autoComplete="name"
-          className="min-w-0 flex-1 rounded-[8px] border border-primary-foreground/40 bg-transparent px-4 py-2.5 text-sm text-primary-foreground placeholder:text-primary-foreground/55 focus-visible:border-primary-foreground focus-visible:outline-none"
-        />
-        <label className="sr-only" htmlFor="nf-email">
-          E-mail
-        </label>
-        <input
-          id="nf-email"
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="Seu e-mail"
-          autoComplete="email"
-          className="min-w-0 flex-1 rounded-[8px] border border-primary-foreground/40 bg-transparent px-4 py-2.5 text-sm text-primary-foreground placeholder:text-primary-foreground/55 focus-visible:border-primary-foreground focus-visible:outline-none"
-        />
-        <Button type="submit" variant="green" size="lg">
-          Confirmar inscrição
-        </Button>
-      </div>
-      <label className="mt-4 flex items-start justify-center gap-2.5 text-left text-xs text-primary-foreground/80">
-        <input
-          type="checkbox"
-          checked={consent}
-          onChange={(e) => setConsent(e.target.checked)}
-          className="mt-0.5"
-        />
-        <span className="max-w-[40ch]">
-          Concordo em receber e-mails da Voz Pela Infância. Posso cancelar quando quiser.
-        </span>
-      </label>
-    </form>
   );
 }
