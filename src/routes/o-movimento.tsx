@@ -1,33 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Eye, Ear, HeartHandshake, Compass, ShieldCheck } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { ArrowRight } from "lucide-react";
 import { PageShell } from "@/components/voz/PageShell";
-
-const PILARES = [
-  {
-    letra: "V",
-    t: "Valorizar a infância",
-    d: "Reconhecer a infância como uma fase que merece respeito, cuidado, desenvolvimento e proteção.",
-  },
-  {
-    letra: "O",
-    t: "Orientar para a proteção",
-    d: "Compartilhar conhecimento e caminhos que ajudem adultos e instituições a agir de forma mais consciente e protetiva.",
-  },
-  {
-    letra: "Z",
-    t: "Zelar pela proteção",
-    d: "Transformar atenção e responsabilidade em atitudes concretas de cuidado e proteção.",
-  },
-];
-
-const SER_VOZ = [
-  { icon: Eye, t: "Olhar", d: "Perceber o que acontece." },
-  { icon: Ear, t: "Escutar", d: "Criar espaço para a criança falar." },
-  { icon: HeartHandshake, t: "Acolher", d: "Receber sem julgamento." },
-  { icon: Compass, t: "Orientar", d: "Ensinar caminhos seguros." },
-  { icon: ShieldCheck, t: "Agir", d: "Fortalecer a proteção quando necessário." },
-];
 
 export const Route = createFileRoute("/o-movimento")({
   head: () => ({
@@ -36,113 +9,351 @@ export const Route = createFileRoute("/o-movimento")({
       {
         name: "description",
         content:
-          "Conheça o Voz Pela Infância: um movimento em defesa da infância que valoriza, orienta e zela pela proteção de crianças e adolescentes.",
+          "Por que a Voz Pela Infância existe, seu posicionamento complementar à rede de proteção, como o movimento pensa e quem o idealiza.",
       },
       { property: "og:title", content: "O Movimento — Voz Pela Infância" },
       {
         property: "og:description",
-        content: "Propósito e princípios do movimento em defesa da infância.",
+        content: "Um movimento de educação e mobilização em defesa da infância.",
       },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: OMovimentoPage,
 });
 
+const JUMP = [
+  { to: "por-que", label: "Por que existe" },
+  { to: "posicionamento", label: "Posicionamento" },
+  { to: "como-pensamos", label: "Como pensamos" },
+  { to: "responsabilidade", label: "Responsabilidade adulta" },
+  { to: "quem-idealiza", label: "Quem idealiza" },
+  { to: "atuacao", label: "Onde atua" },
+];
+
+const FAZ = [
+  "educa e traduz conhecimentos sobre infância, desenvolvimento, direitos e prevenção",
+  "orienta, conscientiza e amplia repertório",
+  "fortalece adultos e favorece relações protetivas",
+  "mobiliza e incentiva a prevenção",
+  "orienta para a ação — sempre com um próximo passo seguro",
+];
+
+const NAO_E = [
+  "espaço de culpabilização, pânico ou exposição de crianças",
+  "espaço de investigação amadora",
+  "substituta da rede de proteção, de serviços especializados ou de atendimento psicológico, médico ou jurídico",
+  "marca que promete soluções simples para problemas complexos",
+  "marca que responsabiliza a criança pela prevenção da violência",
+];
+
+const CRIANCA = [
+  "conhecer o próprio corpo, reconhecer sentimentos e compreender limites",
+  "expressar desconfortos, pedir ajuda e reconhecer situações inadequadas",
+  "desenvolver autonomia e usar recursos de segurança compatíveis com a idade",
+];
+
+const ADULTO = [
+  "respeitar limites, criar ambientes seguros e perceber sinais",
+  "escutar, acolher, orientar e supervisionar",
+  "estabelecer limites protetivos e reconhecer riscos",
+  "agir diante de ameaça ou violência e construir redes de proteção",
+  "assumir responsabilidade pela segurança e pelo desenvolvimento da criança",
+];
+
+const CAMPOS = [
+  "Família",
+  "Escola",
+  "Serviços e profissionais",
+  "Comunidade",
+  "Ambiente digital",
+  "Instituições",
+  "Sociedade",
+];
+
+const TEMAS = [
+  "violência sexual, física e psicológica",
+  "negligência",
+  "bullying e cyberbullying",
+  "exposição digital e aliciamento online",
+  "exploração",
+  "saúde emocional",
+  "limites e educação sexual protetiva",
+  "parentalidade e desenvolvimento infantil",
+  "inclusão e escuta",
+  "rede de proteção",
+  "formação de profissionais",
+  "direitos da criança e do adolescente",
+];
+
 function OMovimentoPage() {
   return (
     <PageShell
-      eyebrow="Voz Pela Infância"
-      title="Um movimento em defesa da infância."
-      intro="O Voz Pela Infância nasce do compromisso de fortalecer uma Cultura Protetiva para que crianças e adolescentes sejam valorizados, orientados e protegidos em todos os espaços onde vivem, crescem e se relacionam."
+      eyebrow="O Movimento"
+      title="Um movimento em defesa da infância"
+      intro="A Voz Pela Infância é um movimento de educação e mobilização que existe para fortalecer uma Cultura Protetiva da Infância — para que proteger crianças e adolescentes seja responsabilidade cotidiana e compartilhada, e não apenas resposta à crise."
     >
-      <div className="space-y-16">
-        <div>
-          <Button asChild variant="hero" size="lg">
-            <Link to="/seja-voz">SEJA VOZ</Link>
-          </Button>
-        </div>
+      <nav
+        aria-label="Nesta página"
+        className="flex flex-wrap gap-2.5 border-b border-border pb-8"
+      >
+        {JUMP.map((j) => (
+          <a
+            key={j.to}
+            href={`#${j.to}`}
+            className="rounded-full border border-border bg-card px-3.5 py-1.5 text-sm font-medium text-muted-foreground transition-colors hover:border-primary hover:text-primary"
+          >
+            {j.label}
+          </a>
+        ))}
+      </nav>
 
-        <section>
-          <h2 className="text-2xl font-bold text-primary">Por que o Voz existe?</h2>
-          <div className="mt-5 space-y-4 text-base leading-relaxed text-muted-foreground">
-            <p>Proteger a infância não é apenas saber reconhecer situações de risco.</p>
-            <p>
-              É construir, no cotidiano, relações, ambientes e atitudes que favoreçam segurança,
-              respeito, escuta e cuidado.
-            </p>
-            <p>
-              O Voz existe para aproximar conhecimento e prática e ajudar mais pessoas a
-              compreenderem que a proteção da infância também acontece nas escolhas de todos os
-              dias.
-            </p>
-          </div>
-        </section>
-
-        <section>
-          <h2 className="text-2xl font-bold text-primary">O que nos orienta?</h2>
-          <div className="mt-6 grid gap-5 sm:grid-cols-3">
-            {PILARES.map((p) => (
-              <article
-                key={p.letra}
-                className="rounded-[10px] border border-border bg-card p-6 shadow-[var(--shadow-soft)]"
-              >
-                <span className="grid h-10 w-10 place-items-center rounded-[10px] bg-secondary text-lg font-bold text-accent">
-                  {p.letra}
-                </span>
-                <h3 className="mt-4 text-base font-semibold uppercase tracking-[0.08em] text-primary">
-                  {p.t}
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{p.d}</p>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="rounded-[12px] border border-border bg-secondary p-8 text-center sm:p-12">
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">
-            Pergunta norteadora do Movimento
+      <div className="mt-12 space-y-16">
+        {/* 1. POR QUE EXISTE */}
+        <section id="por-que" className="scroll-mt-24">
+          <h2 className="text-2xl font-semibold text-primary sm:text-3xl">Por que a Voz existe</h2>
+          <p className="mt-5 font-display text-lg leading-snug text-primary">
+            Antes da denúncia, existe a prevenção. E, antes da prevenção, existe uma cultura.
           </p>
-          <h2 className="mt-3 text-xl font-semibold text-primary">
-            Uma pergunta para orientar nossas escolhas.
+          <div className="mt-5 space-y-4 leading-relaxed text-muted-foreground">
+            <p>
+              Proteger a infância não é apenas saber reconhecer situações de risco. É construir, no
+              cotidiano, relações, ambientes e atitudes que favoreçam segurança, respeito, escuta e
+              cuidado.
+            </p>
+            <p>
+              A Voz existe para aproximar conhecimento e prática — e ajudar mais pessoas a
+              compreenderem que a proteção da infância também acontece nas escolhas de todos os dias.
+            </p>
+            <p className="text-foreground">
+              A pergunta que orienta o movimento: o que nós, adultos, precisamos saber, perceber e
+              fazer para que uma criança esteja mais protegida antes que a violência aconteça?
+            </p>
+          </div>
+        </section>
+
+        {/* 2. POSICIONAMENTO */}
+        <section id="posicionamento" className="scroll-mt-24 border-t border-border pt-14">
+          <h2 className="text-2xl font-semibold text-primary sm:text-3xl">Posicionamento</h2>
+          <p className="mt-5 leading-relaxed text-muted-foreground">
+            A Voz Pela Infância ocupa um espaço <strong className="text-foreground">complementar</strong>
+            {" "}
+            às organizações e serviços que atuam com denúncia, responsabilização, atendimento,
+            legislação, políticas públicas ou enfrentamento das violências. Seu lugar é a ponte
+            entre informação, consciência, postura e ação protetiva.
+          </p>
+          <p className="mt-4 text-sm font-semibold uppercase tracking-[0.12em] text-primary">
+            Informação → Consciência → Postura → Ação Protetiva
+          </p>
+          <div className="mt-6 grid gap-4 sm:grid-cols-2">
+            <div className="rounded-[10px] border border-border bg-card p-5 shadow-[var(--shadow-soft)]">
+              <h3 className="text-sm font-semibold uppercase tracking-[0.08em] text-primary">
+                O que a Voz faz
+              </h3>
+              <ul className="mt-3 space-y-2 text-sm leading-relaxed text-muted-foreground">
+                {FAZ.map((f) => (
+                  <li key={f} className="flex gap-2">
+                    <span aria-hidden className="text-accent">
+                      ·
+                    </span>
+                    {f}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="rounded-[10px] border border-border bg-secondary p-5">
+              <h3 className="text-sm font-semibold uppercase tracking-[0.08em] text-primary">
+                O que a Voz não é
+              </h3>
+              <ul className="mt-3 space-y-2 text-sm leading-relaxed text-muted-foreground">
+                {NAO_E.map((n) => (
+                  <li key={n} className="flex gap-2">
+                    <span aria-hidden className="text-accent">
+                      ·
+                    </span>
+                    {n}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        {/* 3. COMO PENSAMOS */}
+        <section id="como-pensamos" className="scroll-mt-24 border-t border-border pt-14">
+          <h2 className="text-2xl font-semibold text-primary sm:text-3xl">Como o movimento pensa</h2>
+          <p className="mt-5 leading-relaxed text-muted-foreground">
+            Diante de um caso, uma notícia ou uma situação de violência, a Voz não se coloca como
+            espaço de exposição da tragédia. Pergunta: <strong className="text-foreground">o que esse
+            caso nos ensina sobre proteção?</strong>
+          </p>
+          <p className="mt-4 text-sm font-medium text-primary">
+            caso → aprendizagem → percepção → orientação → proteção → ação
+          </p>
+          <div className="mt-6 border-l-2 border-accent pl-5">
+            <p className="leading-relaxed text-muted-foreground">
+              É também a pergunta que orienta cada decisão do movimento — conteúdo, formação,
+              produto, campanha: <strong className="text-foreground">“Isso protege a infância?”</strong>
+              {" "}
+              Quando a resposta é positiva, a prática pode ser fortalecida; quando negativa, revista;
+              havendo dúvida, observada e, se preciso, orientada por conhecimento técnico ou pela
+              rede de proteção.
+            </p>
+            <p className="mt-3 text-sm text-muted-foreground">
+              Sequência de aprofundamento: <em>Isso protege a infância? → Essa escolha aumenta ou
+              diminui a proteção? → O que posso fazer para fortalecer a proteção?</em>
+            </p>
+          </div>
+        </section>
+
+        {/* 4. POSTURA: VISÃO VOZ */}
+        <section id="postura" className="scroll-mt-24 border-t border-border pt-14">
+          <h2 className="text-2xl font-semibold text-primary sm:text-3xl">A postura: Visão VOZ</h2>
+          <p className="mt-5 leading-relaxed text-muted-foreground">
+            A postura que o movimento convida adultos e instituições a assumir:{" "}
+            <strong className="text-foreground">Valorizar a Infância · Orientar para Proteger ·
+            Zelar pela Proteção.</strong> A Visão VOZ não é uma ferramenta e não é o método — é a
+            direção da atuação.
+          </p>
+          <Link
+            to="/metodologia"
+            hash="visao-voz"
+            className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary transition-colors hover:text-accent"
+          >
+            Ver a metodologia
+            <ArrowRight className="h-4 w-4" />
+          </Link>
+        </section>
+
+        {/* 5. RESPONSABILIDADE ADULTA */}
+        <section id="responsabilidade" className="scroll-mt-24 border-t border-border pt-14">
+          <h2 className="text-2xl font-semibold text-primary sm:text-3xl">
+            Responsabilidade adulta
           </h2>
-          <p className="mt-8 text-3xl font-bold leading-tight text-primary sm:text-4xl">
-            “Isso protege a infância?”
+          <p className="mt-5 font-display text-lg leading-snug text-primary">
+            Crianças precisam aprender sobre proteção, mas adultos precisam aprender a proteger.
           </p>
-          <p className="mx-auto mt-8 max-w-xl text-sm leading-relaxed text-muted-foreground sm:text-base">
-            Uma pergunta simples para nos ajudar a refletir sobre escolhas, atitudes e ambientes que
-            envolvem crianças e adolescentes.
+          <p className="mt-4 leading-relaxed text-muted-foreground">
+            A criança participa ativamente de sua proteção, mas não pode carregar a responsabilidade
+            pela prevenção da violência ou pela segurança do ambiente.
+          </p>
+          <div className="mt-6 grid gap-4 sm:grid-cols-2">
+            <div className="rounded-[10px] border border-border bg-card p-5 shadow-[var(--shadow-soft)]">
+              <h3 className="text-sm font-semibold uppercase tracking-[0.08em] text-primary">
+                À criança cabe aprender
+              </h3>
+              <ul className="mt-3 space-y-2 text-sm leading-relaxed text-muted-foreground">
+                {CRIANCA.map((c) => (
+                  <li key={c} className="flex gap-2">
+                    <span aria-hidden className="text-accent">
+                      ·
+                    </span>
+                    {c}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="rounded-[10px] border border-border bg-card p-5 shadow-[var(--shadow-soft)]">
+              <h3 className="text-sm font-semibold uppercase tracking-[0.08em] text-primary">
+                Aos adultos cabe
+              </h3>
+              <ul className="mt-3 space-y-2 text-sm leading-relaxed text-muted-foreground">
+                {ADULTO.map((a) => (
+                  <li key={a} className="flex gap-2">
+                    <span aria-hidden className="text-accent">
+                      ·
+                    </span>
+                    {a}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+          <p className="mt-5 text-sm leading-relaxed text-muted-foreground">
+            Corresponsabilidade não é responsabilidade indistinta: família, escola, serviços,
+            instituições, comunidade e Estado têm papéis diferentes.
           </p>
         </section>
 
-        <section>
-          <h2 className="text-2xl font-bold text-primary">O que significa ser Voz?</h2>
-          <div className="mt-5 space-y-4 text-base leading-relaxed text-muted-foreground">
-            <p>Ser Voz não significa saber tudo.</p>
-            <p>Significa escolher não ser indiferente diante das necessidades da infância.</p>
+        {/* 6. QUEM IDEALIZA */}
+        <section id="quem-idealiza" className="scroll-mt-24 border-t border-border pt-14">
+          <h2 className="text-2xl font-semibold text-primary sm:text-3xl">Quem idealiza</h2>
+          <div className="mt-6 grid gap-6 sm:grid-cols-[200px_1fr] sm:items-start">
+            <div className="aspect-square w-[160px] overflow-hidden rounded-[12px] border border-border bg-muted sm:w-full">
+              <div className="grid h-full w-full place-items-center text-xs text-muted-foreground">
+                foto
+              </div>
+            </div>
+            <div className="space-y-4 leading-relaxed text-muted-foreground">
+              <p>
+                A Voz Pela Infância é idealizada por{" "}
+                <strong className="text-foreground">Michelle Freitas</strong>, psicóloga{" "}
+                <span className="text-muted-foreground/80">[registro CRP — a completar]</span>, no
+                Rio Grande do Norte.
+              </p>
+              <p>
+                <span className="text-muted-foreground/80">
+                  [Parágrafo de formação e atuação com infância — a completar por Michelle: contextos
+                  em que atuou (famílias, escolas, serviços de proteção, clínica), tempo de
+                  experiência e o que observou nesse percurso.]
+                </span>
+              </p>
+              <p>
+                <span className="text-muted-foreground/80">
+                  [Parágrafo sobre o que a levou a criar o movimento — a completar: a percepção de
+                  que a proteção precisa começar antes da violência, no cotidiano e na cultura.]
+                </span>
+              </p>
+              <p className="text-foreground">
+                O movimento traduz essa compreensão em educação, método e ferramentas para preparar
+                adultos.
+              </p>
+              <p className="rounded-[8px] border border-dashed border-border bg-secondary/60 p-3 text-xs not-italic text-muted-foreground">
+                Texto-modelo (nível médio). Substituir os trechos entre colchetes pela redação final
+                de Michelle e adicionar a foto.
+              </p>
+            </div>
           </div>
-          <ul className="mt-8 grid gap-4 sm:grid-cols-2">
-            {SER_VOZ.map(({ icon: Icon, t, d }) => (
+        </section>
+
+        {/* 7. ONDE ATUA */}
+        <section id="atuacao" className="scroll-mt-24 border-t border-border pt-14">
+          <h2 className="text-2xl font-semibold text-primary sm:text-3xl">Onde a Voz atua</h2>
+          <p className="mt-5 text-sm font-medium text-foreground">Campos de aplicação</p>
+          <ul className="mt-3 flex flex-wrap gap-2.5">
+            {CAMPOS.map((c) => (
               <li
-                key={t}
-                className="flex items-start gap-4 rounded-[10px] border border-border bg-card p-5 shadow-[var(--shadow-soft)]"
+                key={c}
+                className="rounded-full border border-border bg-card px-4 py-1.5 text-sm font-medium text-muted-foreground"
               >
-                <Icon className="mt-0.5 h-5 w-5 shrink-0 text-accent" strokeWidth={1.6} />
-                <div>
-                  <h3 className="text-sm font-semibold uppercase tracking-[0.08em] text-primary">
-                    {t}
-                  </h3>
-                  <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{d}</p>
-                </div>
+                {c}
               </li>
             ))}
           </ul>
-          <div className="mt-10">
-            <Button asChild variant="hero" size="lg">
-              <Link to="/seja-voz">SEJA VOZ</Link>
-            </Button>
-          </div>
+          <p className="mt-6 text-sm font-medium text-foreground">Temas de atuação</p>
+          <ul className="mt-3 flex flex-wrap gap-2">
+            {TEMAS.map((t) => (
+              <li
+                key={t}
+                className="rounded-[6px] border border-border bg-secondary px-3 py-1.5 text-xs font-medium text-muted-foreground"
+              >
+                {t}
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        {/* 8. FECHO */}
+        <section className="border-t border-border pt-14">
+          <p className="text-base text-muted-foreground">
+            A construção de uma Cultura Protetiva acontece por muitas pessoas, em muitos lugares.
+          </p>
+          <Link
+            to="/participe"
+            className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-primary transition-colors hover:text-accent"
+          >
+            Faça parte do movimento
+            <ArrowRight className="h-4 w-4" />
+          </Link>
         </section>
       </div>
     </PageShell>

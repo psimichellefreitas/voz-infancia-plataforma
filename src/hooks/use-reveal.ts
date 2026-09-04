@@ -1,8 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 
 /**
- * Reveals an element with a fade/slide when it scrolls into view.
- * Returns a ref to attach and a boolean indicating visibility.
+ * Revela um elemento com fade/slide quando ele entra na viewport.
+ * Retorna um ref para anexar e um booleano de visibilidade.
+ *
+ * Salvaguardas: se não houver IntersectionObserver, se o usuário pedir menos
+ * movimento, ou se o observer não disparar em 600ms, o conteúdo aparece assim
+ * mesmo — nunca fica preso invisível.
  */
 export function useReveal<T extends HTMLElement = HTMLDivElement>(
   options?: IntersectionObserverInit,
@@ -13,6 +17,15 @@ export function useReveal<T extends HTMLElement = HTMLDivElement>(
   useEffect(() => {
     const node = ref.current;
     if (!node) return;
+
+    const prefersReduced =
+      typeof window !== "undefined" &&
+      window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+
+    if (prefersReduced || typeof IntersectionObserver === "undefined") {
+      setVisible(true);
+      return;
+    }
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -25,7 +38,14 @@ export function useReveal<T extends HTMLElement = HTMLDivElement>(
     );
 
     observer.observe(node);
-    return () => observer.disconnect();
+
+    // Fallback: garante a revelação mesmo se o observer não disparar.
+    const fallback = window.setTimeout(() => setVisible(true), 600);
+
+    return () => {
+      observer.disconnect();
+      window.clearTimeout(fallback);
+    };
   }, []);
 
   return { ref, visible } as const;
