@@ -4,7 +4,7 @@ import logoSrc from "@/assets/logo-voz-pela-infancia.png";
 export function Logo({ variant = "default" }: { variant?: "default" | "inverse" }) {
   const inverse = variant === "inverse";
   return (
-    <Link to="/" className="flex items-center gap-2.5" aria-label="Voz Pela Infância — início">
+    <Link to="/" className="flex items-center gap-2.5" aria-label="Voz Pela Infância: início">
       <img
         src={logoSrc}
         alt="Voz Pela Infância"

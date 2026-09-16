@@ -74,7 +74,7 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   );
 }
 
-const SITE_TITLE = "Voz Pela Infância — Movimento em Defesa da Infância";
+const SITE_TITLE = "Voz Pela Infância: Movimento em Defesa da Infância";
 const SITE_DESCRIPTION =
   "A Voz Pela Infância é um movimento de educação e mobilização: prepara adultos para prevenir violências, reconhecer sinais, escutar e agir em defesa da infância.";
 

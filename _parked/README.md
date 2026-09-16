@@ -1,29 +1,28 @@
-# _parked — código estacionado (fora de rota)
+# _parked — histórico
 
-Estas rotas e componentes **não são registrados pelo roteador** (o TanStack Router
-só varre `src/routes/`). Ficam aqui preservados, sem estar acessíveis no site.
+Esta pasta guardou, entre 2026-09-?? e 2026-09-15, o código do VOZ PROTETORA (produto, checkout,
+pagamento, login, acesso) enquanto o site institucional era construído e o conteúdo do produto
+era reescrito a partir da base congelada.
 
-## Por quê
+## Por que foi parqueado
 
-O VOZ PROTETORA, o checkout e o fluxo de pagamento foram construídos **antes de a
-base institucional ser congelada** e seu conteúdo não reflete os 10 documentos
-oficiais. Além disso, o roadmap aprovado coloca o VOZ PROTETORA **depois** do site
-institucional. Ver a decisão 2 do "Plano do Site V1".
+O VOZ PROTETORA, o checkout e o fluxo de pagamento foram construídos **antes de a base
+institucional ser congelada** e seu conteúdo não refletia os 10 documentos oficiais. O roadmap
+aprovado colocava o VOZ PROTETORA **depois** do site institucional.
 
-## O que está aqui
+## Retomada — 2026-09-15
 
-- `routes/solucoes_.voz-protetora.tsx` — landing page do produto
-- `routes/_authenticated/` — área logada do produto (11 telas)
-- `routes/checkout.tsx`, `routes/pagamento.*.tsx`, `routes/acesso.tsx`, `routes/auth.tsx`
-- `routes/api/public/webhooks/mercadopago.ts` — webhook de pagamento
-- `routes/apoie.tsx` — página de apoio (sem fluxo de doação nesta fase)
-- `components/produto/` — componentes usados apenas pelo produto
+O Banco de Situações V1 (60 peças — 20 ACONTECEU, 20 VAI ACONTECER, 20 QUERO FORTALECER) foi
+integralmente redigido a partir da base e aprovado item a item pela idealizadora
+(`03_PRODUTOS/VOZ_PROTETORA/conteudo/`). O código voltou para `src/routes/` e
+`src/components/voz/produto/`.
 
-## Como retomar
-
-Na fase VOZ PROTETORA, o conteúdo será **reescrito a partir da base** e aprovado
-item a item. O código volta para `src/routes/` / `src/components/voz/` conforme a
-necessidade. Libs relacionadas continuam em `src/lib/` (`checkout.functions`,
-`mercadopago.server`, `product`, `access*`, `preview-mode`).
-
-**Antes de qualquer retomada:** corrigir `src/lib/product.ts` (`amount: 1`, valor de teste).
+**Pendente após a retomada:**
+- Portar o texto aprovado das 60 peças para `src/lib/voz-protetora/content.ts` (blocos com
+  `body`, status `publicado`).
+- `src/lib/product.ts` ainda modela **compra única** com `amount: 1` (valor de teste). A decisão
+  aprovada é **assinatura anual R$97, recorrente (Mercado Pago Preapproval)** — isso exige trocar
+  a integração de pagamento (hoje é `checkout/preferences`, pagamento único) e o schema do
+  Supabase (`purchases`/`product_access` não modelam assinatura/renovação). Ver
+  `PRD_VOZ_PROTETORA_V1.md`, §6 e §13.4 (pendência de cancelamento/reembolso) antes de mexer
+  nisso.

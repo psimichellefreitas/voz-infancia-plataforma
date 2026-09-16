@@ -5,7 +5,11 @@ import { VOZ_PROTETORA } from "./product";
 
 /**
  * Autorização validada no backend, a partir do e-mail autenticado.
- * Retorna acesso ativo apenas quando existe registro liberado no banco.
+ *
+ * Acesso é calculado ao vivo a partir de `subscriptions` (não de uma flag estática em
+ * `product_access`), para respeitar DOC_PRODUTO_VOZ_PROTETORA_V1.md §13.4: o acesso continua
+ * válido até o fim do ciclo pago mesmo depois de cancelada, e durante a janela de tolerância de
+ * pagamento — sem precisar de um job agendado para "virar a chave" no momento exato.
  */
 export const getMyProductAccess = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
@@ -21,17 +25,32 @@ export const getMyProductAccess = createServerFn({ method: "POST" })
 
     if (!buyer) return { hasAccess: false as const, email };
 
-    const { data: access } = await context.supabase
-      .from("product_access")
-      .select("access_status, granted_at")
+    const { data: subscription } = await context.supabase
+      .from("subscriptions")
+      .select("status, current_period_end, payment_retry_until")
       .eq("buyer_id", buyer.id)
       .eq("product_id", VOZ_PROTETORA.id)
       .maybeSingle();
 
+    const now = new Date();
+    const periodEnd = subscription?.current_period_end
+      ? new Date(subscription.current_period_end)
+      : null;
+    const retryUntil = subscription?.payment_retry_until
+      ? new Date(subscription.payment_retry_until)
+      : null;
+
+    const hasAccess = Boolean(
+      subscription &&
+        (subscription.status === "authorized" ||
+          (subscription.status === "cancelled" && periodEnd !== null && now < periodEnd) ||
+          (subscription.status === "payment_failed" && retryUntil !== null && now < retryUntil)),
+    );
+
     return {
-      hasAccess: access?.access_status === "active",
+      hasAccess,
       email,
       name: buyer.name,
-      grantedAt: access?.granted_at ?? null,
+      grantedAt: subscription ? periodEnd?.toISOString() ?? null : null,
     };
   });

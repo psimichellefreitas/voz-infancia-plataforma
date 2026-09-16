@@ -8,13 +8,13 @@ const EMAIL = CONTATO_EMAIL;
 export const Route = createFileRoute("/contato")({
   head: () => ({
     meta: [
-      { title: "Contato — Voz Pela Infância" },
+      { title: "Contato: Voz Pela Infância" },
       {
         name: "description",
         content:
           "Fale com a Voz Pela Infância para formações, palestras, parcerias e convites institucionais.",
       },
-      { property: "og:title", content: "Contato — Voz Pela Infância" },
+      { property: "og:title", content: "Contato: Voz Pela Infância" },
       { property: "og:description", content: "Formações, palestras, parcerias e convites institucionais." },
     ],
   }),

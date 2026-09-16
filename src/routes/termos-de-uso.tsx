@@ -4,13 +4,13 @@ import { PageShell } from "@/components/voz/PageShell";
 export const Route = createFileRoute("/termos-de-uso")({
   head: () => ({
     meta: [
-      { title: "Termos de Uso — Voz Pela Infância" },
+      { title: "Termos de Uso: Voz Pela Infância" },
       {
         name: "description",
         content:
           "Condições de uso do site e proteção da propriedade intelectual dos conteúdos e da metodologia da Voz Pela Infância.",
       },
-      { property: "og:title", content: "Termos de Uso — Voz Pela Infância" },
+      { property: "og:title", content: "Termos de Uso: Voz Pela Infância" },
       { property: "og:description", content: "Condições de uso do site e dos conteúdos." },
     ],
   }),
@@ -25,7 +25,7 @@ function TermosPage() {
   return (
     <PageShell eyebrow="Legal" title="Termos de Uso">
       <div className="rounded-[8px] border border-dashed border-border bg-secondary/60 p-4 text-xs text-muted-foreground">
-        Rascunho. Antes de publicar, revisar com assessoria jurídica — em especial a seção de
+        Rascunho. Antes de publicar, revisar com assessoria jurídica, em especial a seção de
         propriedade intelectual e o processo de registro da marca. Última atualização:{" "}
         <span className="text-muted-foreground/80">[a definir]</span>.
       </div>
@@ -54,7 +54,7 @@ function TermosPage() {
         <H2>Propriedade intelectual</H2>
         <ul className="ml-4 list-disc space-y-1.5">
           <li>
-            Todo o conteúdo deste site — textos, materiais, estrutura e identidade — é de autoria do
+            Todo o conteúdo deste site (textos, materiais, estrutura e identidade) é de autoria do
             movimento Voz Pela Infância / Michelle Freitas e protegido por direitos autorais.
           </li>
           <li>

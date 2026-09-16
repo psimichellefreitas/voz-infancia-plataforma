@@ -5,13 +5,13 @@ import { PageShell } from "@/components/voz/PageShell";
 export const Route = createFileRoute("/o-movimento")({
   head: () => ({
     meta: [
-      { title: "O Movimento — Voz Pela Infância" },
+      { title: "O Movimento: Voz Pela Infância" },
       {
         name: "description",
         content:
           "Por que a Voz Pela Infância existe, seu posicionamento complementar à rede de proteção, como o movimento pensa e quem o idealiza.",
       },
-      { property: "og:title", content: "O Movimento — Voz Pela Infância" },
+      { property: "og:title", content: "O Movimento: Voz Pela Infância" },
       {
         property: "og:description",
         content: "Um movimento de educação e mobilização em defesa da infância.",
@@ -35,7 +35,7 @@ const FAZ = [
   "orienta, conscientiza e amplia repertório",
   "fortalece adultos e favorece relações protetivas",
   "mobiliza e incentiva a prevenção",
-  "orienta para a ação — sempre com um próximo passo seguro",
+  "orienta para a ação, sempre com um próximo passo seguro",
 ];
 
 const NAO_E = [
@@ -90,7 +90,7 @@ function OMovimentoPage() {
     <PageShell
       eyebrow="O Movimento"
       title="Um movimento em defesa da infância"
-      intro="A Voz Pela Infância é um movimento de educação e mobilização que existe para fortalecer uma Cultura Protetiva da Infância — para que proteger crianças e adolescentes seja responsabilidade cotidiana e compartilhada, e não apenas resposta à crise."
+      intro="A Voz Pela Infância é um movimento de educação e mobilização que existe para fortalecer uma Cultura Protetiva da Infância, para que proteger crianças e adolescentes seja responsabilidade cotidiana e compartilhada, e não apenas resposta à crise."
     >
       <nav
         aria-label="Nesta página"
@@ -121,7 +121,7 @@ function OMovimentoPage() {
               cuidado.
             </p>
             <p>
-              A Voz existe para aproximar conhecimento e prática — e ajudar mais pessoas a
+              A Voz existe para aproximar conhecimento e prática, e ajudar mais pessoas a
               compreenderem que a proteção da infância também acontece nas escolhas de todos os dias.
             </p>
             <p className="text-foreground">
@@ -191,7 +191,7 @@ function OMovimentoPage() {
           </p>
           <div className="mt-6 border-l-2 border-accent pl-5">
             <p className="leading-relaxed text-muted-foreground">
-              É também a pergunta que orienta cada decisão do movimento — conteúdo, formação,
+              É também a pergunta que orienta cada decisão do movimento, conteúdo, formação,
               produto, campanha: <strong className="text-foreground">“Isso protege a infância?”</strong>
               {" "}
               Quando a resposta é positiva, a prática pode ser fortalecida; quando negativa, revista;
@@ -211,7 +211,7 @@ function OMovimentoPage() {
           <p className="mt-5 leading-relaxed text-muted-foreground">
             A postura que o movimento convida adultos e instituições a assumir:{" "}
             <strong className="text-foreground">Valorizar a Infância · Orientar para Proteger ·
-            Zelar pela Proteção.</strong> A Visão VOZ não é uma ferramenta e não é o método — é a
+            Zelar pela Proteção.</strong> A Visão VOZ não é uma ferramenta e não é o método, é a
             direção da atuação.
           </p>
           <Link
@@ -287,19 +287,19 @@ function OMovimentoPage() {
               <p>
                 A Voz Pela Infância é idealizada por{" "}
                 <strong className="text-foreground">Michelle Freitas</strong>, psicóloga{" "}
-                <span className="text-muted-foreground/80">[registro CRP — a completar]</span>, no
+                <span className="text-muted-foreground/80">[registro CRP: a completar]</span>, no
                 Rio Grande do Norte.
               </p>
               <p>
                 <span className="text-muted-foreground/80">
-                  [Parágrafo de formação e atuação com infância — a completar por Michelle: contextos
+                  [Parágrafo de formação e atuação com infância, a completar por Michelle: contextos
                   em que atuou (famílias, escolas, serviços de proteção, clínica), tempo de
                   experiência e o que observou nesse percurso.]
                 </span>
               </p>
               <p>
                 <span className="text-muted-foreground/80">
-                  [Parágrafo sobre o que a levou a criar o movimento — a completar: a percepção de
+                  [Parágrafo sobre o que a levou a criar o movimento, a completar: a percepção de
                   que a proteção precisa começar antes da violência, no cotidiano e na cultura.]
                 </span>
               </p>

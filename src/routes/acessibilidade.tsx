@@ -4,13 +4,13 @@ import { PageShell } from "@/components/voz/PageShell";
 export const Route = createFileRoute("/acessibilidade")({
   head: () => ({
     meta: [
-      { title: "Acessibilidade — Voz Pela Infância" },
+      { title: "Acessibilidade: Voz Pela Infância" },
       {
         name: "description",
         content:
           "O compromisso da Voz Pela Infância com um site acessível: contraste, navegação por teclado, textos alternativos e linguagem clara.",
       },
-      { property: "og:title", content: "Acessibilidade — Voz Pela Infância" },
+      { property: "og:title", content: "Acessibilidade: Voz Pela Infância" },
       { property: "og:description", content: "Compromisso de acessibilidade e como relatar barreiras." },
     ],
   }),
@@ -49,8 +49,8 @@ function AcessibilidadePage() {
 
         <H2>Em construção</H2>
         <p>
-          A identidade visual do site ainda é provisória. Ajustes finos de acessibilidade —
-          incluindo revisão de contraste e testes com leitores de tela — serão feitos ao longo do
+          A identidade visual do site ainda é provisória. Ajustes finos de acessibilidade,
+          incluindo revisão de contraste e testes com leitores de tela, serão feitos ao longo do
           desenvolvimento.
         </p>
 

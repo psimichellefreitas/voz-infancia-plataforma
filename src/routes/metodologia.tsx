@@ -5,13 +5,13 @@ import { PageShell } from "@/components/voz/PageShell";
 export const Route = createFileRoute("/metodologia")({
   head: () => ({
     meta: [
-      { title: "Metodologia — Voz Pela Infância" },
+      { title: "Metodologia: Voz Pela Infância" },
       {
         name: "description",
         content:
-          "Cultura Protetiva da Infância, Visão VOZ, Método dos 5C da Proteção, 5 Vozes da Proteção e Bússola VOZ — a estrutura que sustenta o movimento.",
+          "Cultura Protetiva da Infância, Visão VOZ, Método dos 5C da Proteção, 5 Vozes da Proteção e Bússola VOZ: a estrutura que sustenta o movimento.",
       },
-      { property: "og:title", content: "Metodologia — Voz Pela Infância" },
+      { property: "og:title", content: "Metodologia: Voz Pela Infância" },
       {
         property: "og:description",
         content: "A postura, o método, a expressão e a ferramenta do movimento, na ordem oficial.",
@@ -35,7 +35,7 @@ const VISAO = [
   {
     verbo: "Valorizar a Infância",
     conceito:
-      "Reconhecer que crianças e adolescentes têm dignidade, direitos, necessidades e voz própria — no presente, não apenas como preparo para o futuro.",
+      "Reconhecer que crianças e adolescentes têm dignidade, direitos, necessidades e voz própria, no presente, não apenas como preparo para o futuro.",
     // Ajuste de "merece" para "a que ela tem direito" (PROPOSTA de revisão do DOC 07, §4 —
     // decisão da idealizadora; o documento oficial deve ser atualizado depois).
     pergunta:
@@ -85,7 +85,7 @@ const VOZES = [
   { nome: "Acolhe", principio: "Responde com segurança e sem culpabilizar quando a criança procura ajuda." },
   {
     nome: "Protege",
-    principio: "Transforma percepção e responsabilidade em ação — e sabe quando buscar ajuda.",
+    principio: "Transforma percepção e responsabilidade em ação, e sabe quando buscar ajuda.",
   },
   {
     nome: "Inspira",
@@ -147,7 +147,7 @@ function MetodologiaPage() {
     <PageShell
       eyebrow="Metodologia"
       title="A estrutura que sustenta o movimento"
-      intro="Tudo o que a Voz Pela Infância faz serve a um propósito: construir uma Cultura Protetiva da Infância. Para chegar lá, o movimento se organiza em uma postura, um método, uma expressão e uma ferramenta — nesta ordem."
+      intro="Tudo o que a Voz Pela Infância faz serve a um propósito: construir uma Cultura Protetiva da Infância. Para chegar lá, o movimento se organiza em uma postura, um método, uma expressão e uma ferramenta, nesta ordem."
     >
       <nav
         aria-label="Nesta página"
@@ -172,12 +172,12 @@ function MetodologiaPage() {
             Cultura Protetiva da Infância
           </h2>
           <p className="mt-4 leading-relaxed text-muted-foreground">
-            É o horizonte — o que o movimento quer fortalecer. Não é um método, uma ferramenta ou
+            É o horizonte: o que o movimento quer fortalecer. Não é um método, uma ferramenta ou
             uma campanha, e não é sinônimo dos 5C.
           </p>
           <p className="mt-4 leading-relaxed text-muted-foreground">
             É a cultura em que proteger crianças e adolescentes é tratado como valor,
-            responsabilidade compartilhada e prática do dia a dia — presente nas relações, nos
+            responsabilidade compartilhada e prática do dia a dia, presente nas relações, nos
             ambientes, nas escolhas e nas instituições, e não só nas respostas à crise.
           </p>
           <p className="mt-6 text-sm font-medium text-foreground">
@@ -196,7 +196,7 @@ function MetodologiaPage() {
           <div className="mt-6 grid gap-3 sm:grid-cols-2">
             <p className="rounded-[10px] border border-border bg-card p-4 text-sm leading-relaxed text-muted-foreground">
               <strong className="text-foreground">Não é cultura do medo.</strong> Favorece vínculo,
-              diálogo, autonomia progressiva e presença adulta — não vigilância ou desconfiança.
+              diálogo, autonomia progressiva e presença adulta, não vigilância ou desconfiança.
             </p>
             <p className="rounded-[10px] border border-border bg-card p-4 text-sm leading-relaxed text-muted-foreground">
               <strong className="text-foreground">Não é apenas informação.</strong> É informação que
@@ -241,7 +241,7 @@ function MetodologiaPage() {
           </h2>
           <p className="mt-4 leading-relaxed text-muted-foreground">
             É a estrutura metodológica oficial para desenvolver a <strong className="text-foreground">capacidade
-            protetiva</strong> dos adultos, das relações e das instituições — reconhecer a
+            protetiva</strong> dos adultos, das relações e das instituições: reconhecer a
             responsabilidade de proteger e transformá-la em prática. Os cinco C são os pilares que
             estruturam o método; não se usa “5 Pilares da Proteção” como nome.
           </p>
@@ -301,7 +301,7 @@ function MetodologiaPage() {
           <h2 className="mt-2 text-2xl font-semibold text-primary sm:text-3xl">Bússola VOZ</h2>
           <p className="mt-4 leading-relaxed text-muted-foreground">
             É a ferramenta prática para o adulto organizar o olhar, a escuta e a resposta diante de
-            uma situação — sem transformar algo complexo em conclusão precipitada.
+            uma situação, sem transformar algo complexo em conclusão precipitada.
           </p>
           <div className="mt-6 grid gap-4 sm:grid-cols-3">
             {BUSSOLA.map((b) => (
@@ -338,11 +338,11 @@ function MetodologiaPage() {
             Tem uma <strong className="text-foreground">Versão Essencial</strong> (uso imediato, sem
             conhecimento prévio) e uma <strong className="text-foreground">Versão Avançada</strong>
             {" "}
-            (aprofunda as situações à luz do Método dos 5C — os 5C são usados como lente de
+            (aprofunda as situações à luz do Método dos 5C: os 5C são usados como lente de
             reflexão, não passam a fazer parte da Bússola).
           </p>
           <p className="mt-4 text-xs text-muted-foreground">
-            O Mapa da Proteção — ferramenta de autoavaliação — é visão futura e não está ativo nesta
+            O Mapa da Proteção (ferramenta de autoavaliação) é visão futura e não está ativo nesta
             fase.
           </p>
         </section>
@@ -351,9 +351,9 @@ function MetodologiaPage() {
         <section className="scroll-mt-24 border-t border-border pt-14">
           <h2 className="text-xl font-semibold text-primary sm:text-2xl">Como tudo se conecta</h2>
           <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-            A Pergunta Norteadora — <strong className="text-foreground">“Isso protege a infância?”</strong>
+            A Pergunta Norteadora, <strong className="text-foreground">“Isso protege a infância?”</strong>
             {" "}
-            — atravessa todas as camadas como critério permanente; não é uma delas.
+            atravessa todas as camadas como critério permanente; não é uma delas.
           </p>
           <ol className="mt-6 space-y-2">
             {CADEIA.map((n, i) => (
@@ -364,7 +364,7 @@ function MetodologiaPage() {
                 <span className="font-display text-sm font-semibold text-accent">{i + 1}</span>
                 <span className="text-sm">
                   <strong className="text-primary">{n.termo}</strong>
-                  <span className="text-muted-foreground"> — {n.papel}</span>
+                  <span className="text-muted-foreground">: {n.papel}</span>
                 </span>
               </li>
             ))}

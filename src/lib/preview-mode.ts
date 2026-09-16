@@ -69,20 +69,37 @@ export function usePreviewSearch(): { preview: 1 } | undefined {
   return unlocked ? { preview: 1 } : undefined;
 }
 
-/** Sessão real do usuário — usada para permitir gravações no banco. */
+/**
+ * Sessão real do usuário — usada para permitir gravações no banco.
+ * Ambiente sem Supabase configurado (ex.: dev local sem credenciais): trata como "sem
+ * sessão" em vez de deixar o erro subir e derrubar a página.
+ */
 export function useHasSession(): boolean {
   const [hasSession, setHasSession] = useState(false);
   useEffect(() => {
     let active = true;
-    supabase.auth.getSession().then(({ data }) => {
-      if (active) setHasSession(Boolean(data.session));
-    });
-    const { data: sub } = supabase.auth.onAuthStateChange((_event, session) => {
-      setHasSession(Boolean(session));
-    });
+    let unsubscribe: (() => void) | undefined;
+
+    try {
+      supabase.auth
+        .getSession()
+        .then(({ data }) => {
+          if (active) setHasSession(Boolean(data.session));
+        })
+        .catch(() => {
+          if (active) setHasSession(false);
+        });
+      const { data: sub } = supabase.auth.onAuthStateChange((_event, session) => {
+        setHasSession(Boolean(session));
+      });
+      unsubscribe = () => sub.subscription.unsubscribe();
+    } catch {
+      setHasSession(false);
+    }
+
     return () => {
       active = false;
-      sub.subscription.unsubscribe();
+      unsubscribe?.();
     };
   }, []);
   return hasSession;

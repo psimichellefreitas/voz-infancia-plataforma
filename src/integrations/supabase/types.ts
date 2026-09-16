@@ -138,6 +138,64 @@ export type Database = {
           },
         ]
       }
+      // Adicionada manualmente para a migração 20260915120000_add_subscriptions.sql —
+      // regenerar com `supabase gen types` assim que a migração rodar no projeto real.
+      subscriptions: {
+        Row: {
+          amount: number
+          buyer_id: string
+          cancelled_at: string | null
+          created_at: string
+          currency: string
+          current_period_end: string | null
+          current_period_start: string | null
+          id: string
+          mp_preapproval_id: string | null
+          payment_retry_until: string | null
+          product_id: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          amount: number
+          buyer_id: string
+          cancelled_at?: string | null
+          created_at?: string
+          currency?: string
+          current_period_end?: string | null
+          current_period_start?: string | null
+          id?: string
+          mp_preapproval_id?: string | null
+          payment_retry_until?: string | null
+          product_id: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          amount?: number
+          buyer_id?: string
+          cancelled_at?: string | null
+          created_at?: string
+          currency?: string
+          current_period_end?: string | null
+          current_period_start?: string | null
+          id?: string
+          mp_preapproval_id?: string | null
+          payment_retry_until?: string | null
+          product_id?: string
+          status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "subscriptions_buyer_id_fkey"
+            columns: ["buyer_id"]
+            isOneToOne: false
+            referencedRelation: "buyers"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never

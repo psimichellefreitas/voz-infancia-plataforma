@@ -4,13 +4,13 @@ import { PageShell } from "@/components/voz/PageShell";
 export const Route = createFileRoute("/politica-de-privacidade")({
   head: () => ({
     meta: [
-      { title: "Política de Privacidade — Voz Pela Infância" },
+      { title: "Política de Privacidade: Voz Pela Infância" },
       {
         name: "description",
         content:
           "Como a Voz Pela Infância trata dados pessoais, consentimento e comunicações, em conformidade com a LGPD.",
       },
-      { property: "og:title", content: "Política de Privacidade — Voz Pela Infância" },
+      { property: "og:title", content: "Política de Privacidade: Voz Pela Infância" },
       { property: "og:description", content: "Tratamento de dados pessoais e privacidade no site." },
     ],
   }),
@@ -33,8 +33,8 @@ function PrivacidadePage() {
         <H2>Quem é responsável pelos dados</H2>
         <p>
           A Voz Pela Infância é o controlador dos dados tratados neste site.
-          <span className="text-muted-foreground/80"> [Incluir identificação formal — responsável
-          legal / CNPJ, quando houver — e o canal do encarregado.]</span> Contato para assuntos de
+          <span className="text-muted-foreground/80"> [Incluir identificação formal: responsável
+          legal / CNPJ, quando houver, e o canal do encarregado.]</span> Contato para assuntos de
           privacidade: pela{" "}
           <Link to="/contato" className="font-semibold text-primary hover:text-accent">
             página de contato
@@ -84,7 +84,7 @@ function PrivacidadePage() {
         <H2>Por quanto tempo guardamos</H2>
         <p>
           Enquanto durar a finalidade que justificou a coleta, ou até que você solicite a exclusão
-          ou retire o consentimento — o que ocorrer primeiro.
+          ou retire o consentimento, o que ocorrer primeiro.
         </p>
 
         <H2>Seus direitos</H2>

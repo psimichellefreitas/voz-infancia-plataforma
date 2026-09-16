@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { createFileRoute } from "@tanstack/react-router";
-import { ArrowRight } from "lucide-react";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { ArrowRight, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { PageShell } from "@/components/voz/PageShell";
 import { CONTATO_EMAIL } from "@/components/voz/nav";
@@ -8,13 +8,13 @@ import { CONTATO_EMAIL } from "@/components/voz/nav";
 export const Route = createFileRoute("/solucoes")({
   head: () => ({
     meta: [
-      { title: "Soluções — Voz Pela Infância" },
+      { title: "Soluções: Voz Pela Infância" },
       {
         name: "description",
         content:
-          "Formações, palestras e materiais para levar a Cultura Protetiva da Infância para a prática — em escolas, instituições, equipes e comunidades.",
+          "Formações, palestras e materiais para levar a Cultura Protetiva da Infância para a prática, em escolas, instituições, equipes e comunidades.",
       },
-      { property: "og:title", content: "Soluções — Voz Pela Infância" },
+      { property: "og:title", content: "Soluções: Voz Pela Infância" },
       {
         property: "og:description",
         content: "Como a Voz Pela Infância ajuda a transformar conhecimento em ação protetiva.",
@@ -27,7 +27,7 @@ export const Route = createFileRoute("/solucoes")({
 const FORMATOS = [
   {
     nome: "Palestra",
-    d: "Encontro único de sensibilização — abre a conversa sobre proteção no cotidiano.",
+    d: "Encontro único de sensibilização, abre a conversa sobre proteção no cotidiano.",
   },
   {
     nome: "Formação",
@@ -43,7 +43,7 @@ const PUBLICOS = ["Escolas", "Instituições", "Equipes e serviços", "Comunidad
 
 const COMO_FUNCIONA = [
   "Conversa inicial para entender o contexto, o público e o tempo disponível.",
-  "Proposta adaptada — tema, formato e abordagem.",
+  "Proposta adaptada: tema, formato e abordagem.",
   "Realização do encontro.",
   "Material de apoio e sugestões de próximos passos.",
 ];
@@ -51,7 +51,7 @@ const COMO_FUNCIONA = [
 const NAO_PROMETE = [
   "não elimina o risco de violência",
   "não substitui protocolos institucionais nem a rede de proteção",
-  "não torna ninguém automaticamente preparado — é um passo no desenvolvimento de capacidades",
+  "não torna ninguém automaticamente preparado, é um passo no desenvolvimento de capacidades",
 ];
 
 function H2({ children, id }: { children: string; id?: string }) {
@@ -67,7 +67,7 @@ function SolucoesPage() {
     <PageShell
       eyebrow="Soluções"
       title="Como a Voz pode ajudar"
-      intro="Formas de levar a Cultura Protetiva da Infância para a prática — de encontros presenciais a materiais para o dia a dia."
+      intro="Formas de levar a Cultura Protetiva da Infância para a prática, de encontros presenciais a materiais para o dia a dia."
     >
       <div className="space-y-16">
         {/* FORMAÇÕES E PALESTRAS */}
@@ -78,7 +78,7 @@ function SolucoesPage() {
           <H2 id="formacoes">Formações e palestras</H2>
           <p className="mt-4 leading-relaxed text-muted-foreground">
             Encontros conduzidos a partir do Método dos 5C da Proteção, para ampliar a capacidade
-            protetiva dos adultos — perceber, se relacionar, saber, assumir responsabilidade e
+            protetiva dos adultos: perceber, se relacionar, saber, assumir responsabilidade e
             sustentar a proteção no cotidiano. O conteúdo é adaptado ao público e ao contexto, sem
             alarmismo.
           </p>
@@ -153,21 +153,43 @@ function SolucoesPage() {
 
         {/* MATERIAIS E PRODUTOS */}
         <section className="border-t border-border pt-14">
-          <span className="inline-block rounded-[6px] border border-border bg-card px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.1em] text-muted-foreground">
-            Em desenvolvimento
+          <span className="inline-block rounded-[6px] bg-secondary px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.1em] text-primary">
+            Disponível
           </span>
           <H2>Materiais e produtos</H2>
           <p className="mt-4 max-w-2xl leading-relaxed text-muted-foreground">
-            Materiais práticos e produtos para adultos aplicarem a proteção no cotidiano. Estão em
-            desenvolvimento e serão apresentados aqui quando disponíveis.
+            Materiais práticos e produtos para adultos aplicarem a proteção no cotidiano.
           </p>
+
+          <Link
+            to="/solucoes/voz-protetora"
+            search={{ lp: undefined }}
+            className="mt-6 flex flex-col gap-4 rounded-[12px] border border-border bg-card p-6 shadow-[var(--shadow-soft)] transition-shadow hover:shadow-[var(--shadow-lift)] sm:flex-row sm:items-center sm:justify-between"
+          >
+            <div className="flex items-start gap-4">
+              <div className="grid h-12 w-12 shrink-0 place-items-center rounded-[10px] bg-primary/5">
+                <Shield className="h-6 w-6 text-primary" />
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-primary">VOZ PROTETORA</h3>
+                <p className="mt-1.5 max-w-xl text-sm leading-relaxed text-muted-foreground">
+                  Orientação prática para adultos diante de situações reais da infância: o que
+                  dizer, como agir e como se preparar.
+                </p>
+              </div>
+            </div>
+            <span className="inline-flex shrink-0 items-center gap-1.5 text-sm font-semibold text-accent">
+              Conhecer
+              <ArrowRight className="h-4 w-4" />
+            </span>
+          </Link>
         </section>
 
         {/* SOLICITAR */}
         <section className="border-t border-border pt-14">
           <H2 id="solicitar">Solicitar uma formação</H2>
           <p className="mt-4 max-w-2xl leading-relaxed text-muted-foreground">
-            Preencha os campos abaixo — o botão abre seu programa de e-mail com a mensagem pronta.
+            Preencha os campos abaixo: o botão abre seu programa de e-mail com a mensagem pronta.
             Ou escreva direto para{" "}
             <a
               href={`mailto:${CONTATO_EMAIL}`}
@@ -205,7 +227,7 @@ function FormacaoRequest() {
 
   function onSubmit(e: React.FormEvent) {
     e.preventDefault();
-    const subject = `Solicitação de formação${form.instituicao ? ` — ${form.instituicao}` : ""}`;
+    const subject = `Solicitação de formação${form.instituicao ? `: ${form.instituicao}` : ""}`;
     const body = [
       `Nome: ${form.nome}`,
       `Instituição: ${form.instituicao}`,

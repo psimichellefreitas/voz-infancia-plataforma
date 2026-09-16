@@ -7,13 +7,13 @@ import { MANIFESTO, INSTAGRAM_HANDLE, INSTAGRAM_URL } from "@/components/voz/nav
 export const Route = createFileRoute("/participe")({
   head: () => ({
     meta: [
-      { title: "Participe — Voz Pela Infância" },
+      { title: "Participe: Voz Pela Infância" },
       {
         name: "description",
         content:
           "Receba novos conteúdos, compartilhe de forma consciente e leve a Voz Pela Infância para a sua instituição.",
       },
-      { property: "og:title", content: "Participe — Voz Pela Infância" },
+      { property: "og:title", content: "Participe: Voz Pela Infância" },
       {
         property: "og:description",
         content: "Toda infância precisa de proteção. Todo adulto pode ser Voz.",
@@ -76,7 +76,7 @@ function ParticipePage() {
           <p className="mt-5 leading-relaxed text-muted-foreground">
             Ser Voz não é saber tudo, ser especialista ou resolver sozinho uma situação. É escolher
             <strong className="text-foreground"> não ser indiferente</strong> diante da proteção da
-            infância — assumir uma postura de presença, responsabilidade e cuidado.
+            infância: assumir uma postura de presença, responsabilidade e cuidado.
           </p>
           <p className="mt-6 text-sm font-medium text-foreground">Você pode começar hoje:</p>
           <ul className="mt-3 space-y-2 text-sm leading-relaxed text-muted-foreground">

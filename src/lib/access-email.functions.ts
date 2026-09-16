@@ -2,9 +2,9 @@ import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 
 /**
- * Envia o e-mail de acesso (link por e-mail) para o comprador de uma compra
- * já aprovada. Nenhum acesso é liberado aqui — o acesso continua sendo
- * liberado exclusivamente pelo webhook do Mercado Pago.
+ * Envia o e-mail de acesso (link por e-mail) para o assinante de uma assinatura já
+ * autorizada. Nenhum acesso é liberado aqui — o acesso continua sendo liberado
+ * exclusivamente pelo webhook do Mercado Pago (`subscription_preapproval` → authorized).
  */
 export const sendAccessEmail = createServerFn({ method: "POST" })
   .inputValidator(z.object({ purchaseId: z.string().uuid() }))
@@ -14,31 +14,20 @@ export const sendAccessEmail = createServerFn({ method: "POST" })
     const { resolvePublicBaseUrl } = await import("./mercadopago.server");
     const { getRequest } = await import("@tanstack/react-start/server");
 
-    const { data: purchase } = await supabaseAdmin
-      .from("purchases")
-      .select("id, buyer_id, product_id, payment_status")
+    const { data: subscription } = await supabaseAdmin
+      .from("subscriptions")
+      .select("id, buyer_id, status")
       .eq("id", data.purchaseId)
       .maybeSingle();
 
-    if (!purchase || purchase.payment_status !== "approved") {
+    if (!subscription || subscription.status !== "authorized") {
       return { sent: false as const, reason: "not-approved" };
-    }
-
-    const { data: access } = await supabaseAdmin
-      .from("product_access")
-      .select("access_status")
-      .eq("buyer_id", purchase.buyer_id)
-      .eq("product_id", purchase.product_id)
-      .maybeSingle();
-
-    if (access?.access_status !== "active") {
-      return { sent: false as const, reason: "no-access" };
     }
 
     const { data: buyer } = await supabaseAdmin
       .from("buyers")
       .select("email")
-      .eq("id", purchase.buyer_id)
+      .eq("id", subscription.buyer_id)
       .maybeSingle();
 
     if (!buyer?.email) return { sent: false as const, reason: "no-buyer" };

@@ -3,6 +3,16 @@ import { z } from "zod";
 
 import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
 
+/**
+ * DEPRECIADO (2026-09-16) — não usado por nenhuma rota.
+ *
+ * "Meu Passo de Proteção" passou a guardar o texto só no localStorage do navegador
+ * (`voz-protetora.meu-passo.tsx`), conforme DOC_PRODUTO_VOZ_PROTETORA_V1.md §10.2 e
+ * PRD_VOZ_PROTETORA_V1.md §5: esse texto é pessoal do adulto e não deve ir para o servidor.
+ * Este arquivo e a tabela `protection_steps` ficam preservados, sem uso, até uma decisão sobre
+ * removê-los definitivamente.
+ */
+
 /** Passos de proteção do próprio comprador. Nenhum dado de criança é coletado. */
 export const listMySteps = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
