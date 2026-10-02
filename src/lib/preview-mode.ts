@@ -11,7 +11,7 @@ import { supabase } from "@/integrations/supabase/client";
  * Para voltar a exigir login (quando iniciar a venda), basta mudar
  * ACESSO_ABERTO para false.
  */
-export const ACESSO_ABERTO = true;
+export const ACESSO_ABERTO = false;
 
 const KEY = "voz:preview-unlock";
 

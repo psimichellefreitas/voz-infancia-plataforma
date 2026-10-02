@@ -2,9 +2,9 @@ import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 
 /**
- * Envia o e-mail de acesso (link por e-mail) para o assinante de uma assinatura já
- * autorizada. Nenhum acesso é liberado aqui — o acesso continua sendo liberado
- * exclusivamente pelo webhook do Mercado Pago (`subscription_preapproval` → authorized).
+ * Envia o e-mail de acesso (link por e-mail) para quem teve a compra aprovada. Nenhum acesso
+ * é liberado aqui — o acesso continua sendo liberado exclusivamente pelo webhook do Mercado
+ * Pago (`payment` → approved, ver access.functions.ts e product_access).
  */
 export const sendAccessEmail = createServerFn({ method: "POST" })
   .inputValidator(z.object({ purchaseId: z.string().uuid() }))
@@ -14,20 +14,20 @@ export const sendAccessEmail = createServerFn({ method: "POST" })
     const { resolvePublicBaseUrl } = await import("./mercadopago.server");
     const { getRequest } = await import("@tanstack/react-start/server");
 
-    const { data: subscription } = await supabaseAdmin
-      .from("subscriptions")
-      .select("id, buyer_id, status")
+    const { data: purchase } = await supabaseAdmin
+      .from("purchases")
+      .select("id, buyer_id, payment_status")
       .eq("id", data.purchaseId)
       .maybeSingle();
 
-    if (!subscription || subscription.status !== "authorized") {
+    if (!purchase || purchase.payment_status !== "approved") {
       return { sent: false as const, reason: "not-approved" };
     }
 
     const { data: buyer } = await supabaseAdmin
       .from("buyers")
       .select("email")
-      .eq("id", subscription.buyer_id)
+      .eq("id", purchase.buyer_id)
       .maybeSingle();
 
     if (!buyer?.email) return { sent: false as const, reason: "no-buyer" };

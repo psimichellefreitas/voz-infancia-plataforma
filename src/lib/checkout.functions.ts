@@ -10,16 +10,15 @@ const checkoutSchema = z.object({
 });
 
 /**
- * Inicia uma assinatura real: registra comprador + assinatura (status "pending")
- * e cria o Preapproval no Mercado Pago (DOC_PRODUTO_VOZ_PROTETORA_V1.md §13).
- * NENHUM acesso é liberado aqui — só quando o Mercado Pago confirmar "authorized"
- * (webhook `subscription_preapproval`).
+ * Inicia uma compra única: registra comprador + compra (status "initiated") e cria a
+ * preferência de pagamento no Mercado Pago (PRD_VOZ_PROTETORA_V1.md §10-ter). NENHUM acesso é
+ * liberado aqui — só quando o Mercado Pago confirmar o pagamento (webhook `payment`).
  */
 export const startCheckout = createServerFn({ method: "POST" })
   .inputValidator(checkoutSchema)
   .handler(async ({ data }) => {
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
-    const { createPreapproval, resolvePublicBaseUrl } = await import("./mercadopago.server");
+    const { createPreference, resolvePublicBaseUrl } = await import("./mercadopago.server");
     const { getRequest } = await import("@tanstack/react-start/server");
 
     const { data: buyer, error: buyerError } = await supabaseAdmin
@@ -30,51 +29,43 @@ export const startCheckout = createServerFn({ method: "POST" })
 
     if (buyerError || !buyer) {
       console.error("[checkout] falha ao registrar comprador", buyerError);
-      throw new Error("Não foi possível iniciar sua assinatura agora. Tente novamente.");
+      throw new Error("Não foi possível iniciar sua compra agora. Tente novamente.");
     }
 
-    const { data: subscription, error: subscriptionError } = await supabaseAdmin
-      .from("subscriptions")
-      .upsert(
-        {
-          buyer_id: buyer.id,
-          product_id: VOZ_PROTETORA.id,
-          amount: VOZ_PROTETORA.amount,
-          currency: VOZ_PROTETORA.currency,
-          status: "pending",
-        },
-        { onConflict: "buyer_id,product_id" },
-      )
+    const { data: purchase, error: purchaseError } = await supabaseAdmin
+      .from("purchases")
+      .insert({
+        buyer_id: buyer.id,
+        product_id: VOZ_PROTETORA.id,
+        amount: VOZ_PROTETORA.amount,
+        payment_provider: "mercadopago",
+        payment_status: "initiated",
+      })
       .select("id")
       .single();
 
-    if (subscriptionError || !subscription) {
-      console.error("[checkout] falha ao registrar assinatura", subscriptionError);
-      throw new Error("Não foi possível iniciar sua assinatura agora. Tente novamente.");
+    if (purchaseError || !purchase) {
+      console.error("[checkout] falha ao registrar compra", purchaseError);
+      throw new Error("Não foi possível iniciar sua compra agora. Tente novamente.");
     }
 
     const baseUrl = resolvePublicBaseUrl(getRequest()?.url);
 
-    const preapproval = await createPreapproval({
-      subscriptionId: subscription.id,
-      reason: VOZ_PROTETORA.name,
+    const preference = await createPreference({
+      purchaseId: purchase.id,
+      productId: VOZ_PROTETORA.id,
+      title: VOZ_PROTETORA.name,
       amount: VOZ_PROTETORA.amount,
-      frequency: VOZ_PROTETORA.recurrence.frequency,
-      frequencyType: VOZ_PROTETORA.recurrence.frequencyType,
-      payerEmail: data.email,
-      backUrl: `${baseUrl}/pagamento/processando?compra=${subscription.id}`,
+      buyerName: data.name,
+      buyerEmail: data.email,
+      baseUrl,
     });
 
-    await supabaseAdmin
-      .from("subscriptions")
-      .update({ mp_preapproval_id: preapproval.id })
-      .eq("id", subscription.id);
-
-    return { subscriptionId: subscription.id, checkoutUrl: preapproval.checkoutUrl };
+    return { purchaseId: purchase.id, checkoutUrl: preference.checkoutUrl };
   });
 
 /**
- * Consulta somente o status conhecido pelo sistema para uma assinatura.
+ * Consulta somente o status conhecido pelo sistema para uma compra.
  * Não altera nada e não libera acesso.
  */
 export const getPurchaseStatus = createServerFn({ method: "POST" })
@@ -82,27 +73,23 @@ export const getPurchaseStatus = createServerFn({ method: "POST" })
   .handler(async ({ data }) => {
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
 
-    const { data: subscription } = await supabaseAdmin
-      .from("subscriptions")
-      .select("id, status")
+    const { data: purchase } = await supabaseAdmin
+      .from("purchases")
+      .select("id, payment_status")
       .eq("id", data.purchaseId)
       .maybeSingle();
 
-    if (!subscription) return { found: false as const };
-
-    // Mantido como "paymentStatus" para compatibilidade com pagamento.processando.tsx:
-    // "authorized" é tratado como aprovado (ver statusLabel/redirect nessa página).
-    const paymentStatus = subscription.status === "authorized" ? "approved" : subscription.status;
+    if (!purchase) return { found: false as const };
 
     return {
       found: true as const,
-      paymentStatus,
-      accessStatus: subscription.status === "authorized" ? "active" : "inactive",
+      paymentStatus: purchase.payment_status,
+      accessStatus: purchase.payment_status === "approved" ? "active" : "inactive",
     };
   });
 
-/** Status detalhado da assinatura do usuário logado, para a área de conta. */
-export const getMySubscriptionStatus = createServerFn({ method: "POST" })
+/** Compra aprovada mais recente do usuário logado, para a área de conta ("Minha Compra"). */
+export const getMyPurchaseStatus = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .handler(async ({ context }) => {
     const email = String(context.claims["email"] ?? "").toLowerCase();
@@ -115,80 +102,21 @@ export const getMySubscriptionStatus = createServerFn({ method: "POST" })
       .maybeSingle();
     if (!buyer) return { found: false as const };
 
-    const { data: subscription } = await context.supabase
-      .from("subscriptions")
-      .select(
-        "status, amount, currency, current_period_end, payment_retry_until, cancelled_at",
-      )
+    const { data: purchase } = await context.supabase
+      .from("purchases")
+      .select("amount, payment_status, created_at")
       .eq("buyer_id", buyer.id)
       .eq("product_id", VOZ_PROTETORA.id)
+      .eq("payment_status", "approved")
+      .order("created_at", { ascending: false })
+      .limit(1)
       .maybeSingle();
 
-    if (!subscription) return { found: false as const };
-
-    const now = new Date();
-    const periodEnd = subscription.current_period_end
-      ? new Date(subscription.current_period_end)
-      : null;
-    const retryUntil = subscription.payment_retry_until
-      ? new Date(subscription.payment_retry_until)
-      : null;
-
-    const hasAccess =
-      subscription.status === "authorized" ||
-      (subscription.status === "cancelled" && periodEnd !== null && now < periodEnd) ||
-      (subscription.status === "payment_failed" && retryUntil !== null && now < retryUntil);
+    if (!purchase) return { found: false as const };
 
     return {
       found: true as const,
-      status: subscription.status,
-      amount: subscription.amount,
-      currency: subscription.currency,
-      currentPeriodEnd: subscription.current_period_end,
-      cancelledAt: subscription.cancelled_at,
-      hasAccess,
+      amount: purchase.amount,
+      purchasedAt: purchase.created_at,
     };
-  });
-
-/**
- * Cancela a assinatura do usuário logado. O acesso continua até o fim do ciclo já pago
- * (DOC_PRODUTO_VOZ_PROTETORA_V1.md §13.4, item 2) — não é revogado aqui.
- */
-export const cancelMySubscription = createServerFn({ method: "POST" })
-  .middleware([requireSupabaseAuth])
-  .handler(async ({ context }) => {
-    const email = String(context.claims["email"] ?? "").toLowerCase();
-    if (!email) throw new Error("Sessão inválida.");
-
-    const { data: buyer } = await context.supabase
-      .from("buyers")
-      .select("id")
-      .ilike("email", email)
-      .maybeSingle();
-    if (!buyer) throw new Error("Assinatura não encontrada.");
-
-    const { data: subscription } = await context.supabase
-      .from("subscriptions")
-      .select("id, mp_preapproval_id, status")
-      .eq("buyer_id", buyer.id)
-      .eq("product_id", VOZ_PROTETORA.id)
-      .maybeSingle();
-
-    if (!subscription) throw new Error("Assinatura não encontrada.");
-    if (subscription.status === "cancelled") return { cancelled: true as const };
-
-    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
-    const { cancelPreapproval } = await import("./mercadopago.server");
-
-    if (subscription.mp_preapproval_id) {
-      const ok = await cancelPreapproval(subscription.mp_preapproval_id);
-      if (!ok) throw new Error("Não foi possível cancelar no Mercado Pago. Tente novamente.");
-    }
-
-    await supabaseAdmin
-      .from("subscriptions")
-      .update({ status: "cancelled", cancelled_at: new Date().toISOString() })
-      .eq("id", subscription.id);
-
-    return { cancelled: true as const };
   });

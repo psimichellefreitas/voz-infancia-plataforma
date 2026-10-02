@@ -40,7 +40,7 @@ function NotificacoesPage() {
     <ProdutoShell
       eyebrow="🔔 Notificações"
       title="Novidades do Voz Protetora"
-      intro="Avisos sobre novos conteúdos, atualizações e a sua assinatura. Frequência baixa, sem cobrança de uso: você pode desativar quando quiser."
+      intro="Avisos sobre novos conteúdos e atualizações do produto. Frequência baixa, sem cobrança de uso: você pode desativar quando quiser."
       backTo={{ to: "/voz-protetora", label: "Voltar ao início" }}
     >
       <button

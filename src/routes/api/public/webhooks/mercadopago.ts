@@ -6,15 +6,15 @@ import type { Database } from "@/integrations/supabase/types";
 type AdminClient = SupabaseClient<Database>;
 
 /**
- * Webhook oficial do Mercado Pago para a assinatura recorrente (Preapproval).
- * A liberação de acesso acontece SOMENTE aqui, e somente após consultar o status real
- * junto à API do Mercado Pago. Ver DOC_PRODUTO_VOZ_PROTETORA_V1.md §13.
+ * Webhook oficial do Mercado Pago. A liberação de acesso acontece SOMENTE aqui, e somente
+ * após consultar o status real junto à API do Mercado Pago.
  *
  * Tópicos tratados:
- * - `subscription_preapproval`: mudança de status da assinatura (pending → authorized,
- *   cancelled, etc.).
- * - `subscription_authorized_payment`: cada cobrança dentro da assinatura (autorização
- *   inicial e cada renovação anual).
+ * - `payment`: compra única (V1 atual — PRD_VOZ_PROTETORA_V1.md §10-ter). Libera
+ *   `product_access` quando aprovado.
+ * - `subscription_preapproval` / `subscription_authorized_payment`: assinatura recorrente
+ *   (Preapproval). Sem uso enquanto o V1 for compra única, mas mantidos prontos para quando
+ *   o produto migrar de volta para recorrência.
  */
 export const Route = createFileRoute("/api/public/webhooks/mercadopago")({
   server: {
@@ -73,7 +73,10 @@ export const Route = createFileRoute("/api/public/webhooks/mercadopago")({
           return handlePreapproval(dataId, mp, supabaseAdmin);
         }
 
-        // Outros tópicos (ex.: "payment" solto) não se aplicam à assinatura recorrente.
+        if (topic.includes("payment")) {
+          return handlePayment(dataId, mp, supabaseAdmin);
+        }
+
         return new Response("ok", { status: 200 });
       },
     },
@@ -206,6 +209,58 @@ async function handleAuthorizedPayment(
       payment_retry_until: null,
     })
     .eq("id", subscription.id);
+
+  return new Response("ok", { status: 200 });
+}
+
+/**
+ * Compra única (V1 atual). Libera `product_access` quando o pagamento é aprovado; nunca
+ * revoga acesso já concedido a partir de um pagamento reprovado (evita remover acesso de
+ * quem já tinha comprado antes, por conta de um evento de webhook fora de ordem).
+ */
+async function handlePayment(
+  paymentId: string,
+  mp: typeof import("@/lib/mercadopago.server"),
+  supabaseAdmin: AdminClient,
+) {
+  const payment = await mp.fetchPayment(paymentId);
+  if (!payment) return new Response("Payment not found", { status: 404 });
+
+  const purchaseId = payment.externalReference;
+  if (!purchaseId) {
+    console.error("[MercadoPago] payment sem external_reference", payment.id);
+    return new Response("ok", { status: 200 });
+  }
+
+  const { data: purchase } = await supabaseAdmin
+    .from("purchases")
+    .select("id, buyer_id, product_id")
+    .eq("id", purchaseId)
+    .maybeSingle();
+
+  if (!purchase) {
+    console.error("[MercadoPago] compra não encontrada", purchaseId);
+    return new Response("ok", { status: 200 });
+  }
+
+  const status = mp.mapPaymentStatus(payment.status);
+
+  await supabaseAdmin
+    .from("purchases")
+    .update({ payment_id: payment.id, payment_status: status })
+    .eq("id", purchase.id);
+
+  if (status === "approved") {
+    await supabaseAdmin.from("product_access").upsert(
+      {
+        buyer_id: purchase.buyer_id,
+        product_id: purchase.product_id,
+        access_status: "active",
+        granted_at: new Date().toISOString(),
+      },
+      { onConflict: "buyer_id,product_id" },
+    );
+  }
 
   return new Response("ok", { status: 200 });
 }

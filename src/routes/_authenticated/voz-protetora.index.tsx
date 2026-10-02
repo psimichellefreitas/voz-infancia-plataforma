@@ -80,8 +80,8 @@ const ATALHOS = [
   {
     icon: CreditCard,
     to: "/voz-protetora/minha-assinatura",
-    t: "💳 MINHA ASSINATURA",
-    d: "Veja o status e cancele quando quiser.",
+    t: "💳 MINHA COMPRA",
+    d: "Veja os dados da sua compra.",
   },
 ] as const;
 

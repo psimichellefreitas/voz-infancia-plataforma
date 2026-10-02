@@ -86,16 +86,14 @@ function ProcessandoPage() {
 function statusLabel(status: string | null) {
   switch (status) {
     case "approved":
-      return "assinatura autorizada";
+      return "pagamento aprovado";
     case "rejected":
       return "pagamento não aprovado";
     case "cancelled":
-      return "assinatura cancelada";
-    case "payment_failed":
-      return "cobrança não aprovada";
+      return "pagamento cancelado";
     case "initiated":
     case "pending":
-      return "aguardando autorização";
+      return "aguardando confirmação";
     default:
       return "verificando";
   }

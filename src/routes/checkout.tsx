@@ -15,16 +15,16 @@ import { VOZ_PROTETORA, formatBRL } from "@/lib/product";
 export const Route = createFileRoute("/checkout")({
   head: () => ({
     meta: [
-      { title: "Assinar: Voz Protetora | Voz Pela Infância" },
+      { title: "Comprar: Voz Protetora | Voz Pela Infância" },
       {
         name: "description",
         content:
-          "Assine o Voz Protetora: assinatura anual, renovação automática. Pagamento processado pelo Mercado Pago.",
+          "Compre o Voz Protetora: pagamento único, acesso liberado após a confirmação, processado pelo Mercado Pago.",
       },
-      { property: "og:title", content: "Assinar: Voz Protetora" },
+      { property: "og:title", content: "Comprar: Voz Protetora" },
       {
         property: "og:description",
-        content: "Assinatura anual do Voz Protetora, com pagamento seguro e renovação automática.",
+        content: "Pagamento único e seguro para acessar o Voz Protetora.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -46,8 +46,8 @@ function CheckoutPage() {
     setLoading(true);
     try {
       const result = await begin({ data: { name, email } });
-      // Guarda apenas a referência da assinatura para consultar o status depois.
-      window.sessionStorage.setItem("voz.ultimaCompra", result.subscriptionId);
+      // Guarda apenas a referência da compra para consultar o status depois.
+      window.sessionStorage.setItem("voz.ultimaCompra", result.purchaseId);
       window.location.href = result.checkoutUrl;
     } catch (error) {
       console.error(error);
@@ -68,15 +68,14 @@ function CheckoutPage() {
 
       <main className="pt-20">
         <section className="mx-auto max-w-3xl px-5 py-12 sm:px-8 sm:py-16">
-          <h1 className="text-2xl font-bold text-primary sm:text-3xl">Assinar o Voz Protetora</h1>
+          <h1 className="text-2xl font-bold text-primary sm:text-3xl">Comprar o Voz Protetora</h1>
           <p className="mt-2 text-base text-muted-foreground">
             Você precisa informar apenas nome e e-mail. O e-mail será usado para liberar e
             reconhecer o seu acesso.
           </p>
           <p className="mt-2 text-sm text-muted-foreground">
-            Assinatura anual com renovação automática. Você pode cancelar quando quiser: o acesso
-            continua até o fim do ciclo já pago. Nos primeiros 7 dias, cancelamento com reembolso
-            integral (
+            Pagamento único, acesso liberado após a confirmação. Nos primeiros 7 dias, direito a
+            reembolso integral, conforme o Código de Defesa do Consumidor (
             <Link to="/termos-de-uso" className="font-semibold text-primary underline">
               Termos de Uso
             </Link>
@@ -136,7 +135,7 @@ function CheckoutPage() {
                     ABRINDO PAGAMENTO...
                   </>
                 ) : (
-                  "IR PARA O PAGAMENTO DA ASSINATURA"
+                  "IR PARA O PAGAMENTO"
                 )}
               </Button>
 
@@ -165,11 +164,11 @@ function CheckoutPage() {
                 Resumo
               </p>
               <h2 className="mt-3 text-lg font-bold text-primary">{VOZ_PROTETORA.name}</h2>
-              <p className="mt-1 text-sm text-muted-foreground">Assinatura anual.</p>
+              <p className="mt-1 text-sm text-muted-foreground">Pagamento único.</p>
               <p className="mt-5 text-4xl font-bold text-primary">
                 {formatBRL(VOZ_PROTETORA.amount)}
               </p>
-              <p className="mt-1 text-xs text-muted-foreground">Por ano, renovação automática.</p>
+              <p className="mt-1 text-xs text-muted-foreground">Pagamento único, acesso liberado após a confirmação.</p>
               <div className="mt-6 flex items-start gap-2 rounded-[10px] border border-border bg-card p-4">
                 <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
                 <p className="text-xs leading-relaxed text-foreground/80">

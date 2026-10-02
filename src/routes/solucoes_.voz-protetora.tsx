@@ -188,7 +188,7 @@ const SCREENSHOTS = [
 const CONFIANCA_ITENS = [
   { icon: Lock, label: "Pagamento processado pelo Mercado Pago, sem armazenar cartão" },
   { icon: Mail, label: "Acesso por e-mail, sem senha para lembrar" },
-  { icon: RotateCcw, label: "Cancele quando quiser" },
+  { icon: RotateCcw, label: "Pagamento único, sem cobrança recorrente" },
   { icon: ShieldCheck, label: "7 dias de garantia total (Código de Defesa do Consumidor)" },
 ];
 
@@ -224,12 +224,12 @@ const FAQ_ITEMS = [
     a: "Depois da confirmação do pagamento, você recebe um e-mail com um link de acesso. Não é preciso criar ou lembrar senha.",
   },
   {
-    q: "Como funciona o pagamento e existe recorrência?",
-    a: `Assinatura anual de ${formatBRL(VOZ_PROTETORA.amount)}, com renovação automática, processada pelo Mercado Pago.`,
+    q: "Como funciona o pagamento? Existe cobrança recorrente?",
+    a: `Pagamento único de ${formatBRL(VOZ_PROTETORA.amount)}, processado pelo Mercado Pago. Sem assinatura, sem cobrança recorrente: você paga uma vez e o acesso é vitalício.`,
   },
   {
-    q: "Como funciona o cancelamento?",
-    a: "Nos primeiros 7 dias, cancelamento com reembolso integral, conforme o Código de Defesa do Consumidor. Depois disso, você pode cancelar quando quiser: o acesso continua até o fim do ciclo já pago.",
+    q: "Posso pedir reembolso?",
+    a: "Sim. Nos primeiros 7 dias após a compra, você tem direito a reembolso integral, conforme o Código de Defesa do Consumidor. Basta entrar em contato pela página de Contato.",
   },
   {
     q: "Posso usar depois que algo já aconteceu, ou só para me preparar antes?",
@@ -297,7 +297,7 @@ function VozProtetoraPage() {
                       {formatBRL(VOZ_PROTETORA.amount)}
                     </p>
                     <p className="mt-1 text-sm text-primary-foreground/80">
-                      Assinatura anual, renovação automática.
+                      Pagamento único, acesso vitalício.
                     </p>
                   </div>
                   <div className="mt-6">
@@ -305,14 +305,14 @@ function VozProtetoraPage() {
                       <Link to="/checkout">QUERO TER O VOZ PROTETORA</Link>
                     </Button>
                     <p className="mt-3 text-center text-xs text-primary-foreground/70">
-                      Cancele quando quiser. 7 dias de garantia.
+                      7 dias de garantia, reembolso integral.
                     </p>
                     <Link
                       to="/auth"
                       search={{ redirect: undefined }}
                       className="mt-4 block text-center text-xs font-semibold text-primary-foreground/70 underline-offset-2 hover:text-primary-foreground hover:underline"
                     >
-                      Já é assinante? Entrar
+                      Já comprou? Entrar
                     </Link>
                   </div>
                 </div>
@@ -615,7 +615,7 @@ function VozProtetoraPage() {
                 Veja como é por dentro
               </h2>
               <p className="mx-auto mt-3 max-w-xl text-center text-base text-muted-foreground">
-                Capturas reais da área do assinante: é isso que você vai encontrar quando entrar.
+                Capturas reais da área do produto: é isso que você vai encontrar quando entrar.
               </p>
               <div className="mt-8 grid gap-5 sm:grid-cols-2">
                 {SCREENSHOTS.map((shot) => (
@@ -715,7 +715,7 @@ function VozProtetoraPage() {
                 {formatBRL(VOZ_PROTETORA.amount)}
               </p>
               <p className="mt-1 text-sm text-muted-foreground">
-                Assinatura anual, renovação automática.
+                Pagamento único, acesso vitalício.
               </p>
               <div className="mt-8">
                 <Button asChild variant="hero" size="xl">
@@ -726,8 +726,8 @@ function VozProtetoraPage() {
                 </Button>
               </div>
               <p className="mt-4 text-xs text-muted-foreground">
-                Pagamento processado pelo Mercado Pago. Acesso liberado após a confirmação. Cancele
-                quando quiser. Nos primeiros 7 dias, com reembolso integral.
+                Pagamento processado pelo Mercado Pago. Acesso liberado após a confirmação. Nos
+                primeiros 7 dias, direito a reembolso integral.
               </p>
             </div>
           </Reveal>
