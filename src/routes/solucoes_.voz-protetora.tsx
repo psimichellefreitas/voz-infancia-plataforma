@@ -250,9 +250,9 @@ function VozProtetoraPage() {
 
       <main className="pt-20">
         {/* A — HERO */}
-        <section className="relative overflow-hidden border-b border-border bg-primary px-5 py-16 sm:px-8 sm:py-24">
-          <div className="absolute inset-0 opacity-10">
-            <div className="absolute -right-20 -top-20 h-96 w-96 rounded-full bg-voz-yellow blur-3xl" />
+        <section className="relative overflow-hidden border-b border-border bg-gradient-to-br from-primary via-primary to-[oklch(0.3_0.09_258.5)] px-5 py-16 sm:px-8 sm:py-28">
+          <div className="absolute inset-0 opacity-25">
+            <div className="absolute -right-20 -top-20 h-96 w-96 rounded-full bg-accent blur-3xl" />
             <div className="absolute -bottom-20 -left-20 h-80 w-80 rounded-full bg-voz-green blur-3xl" />
           </div>
           <div className="relative mx-auto max-w-6xl">
@@ -263,7 +263,7 @@ function VozProtetoraPage() {
                     <Shield className="h-4 w-4" />
                     VOZ PROTETORA
                   </div>
-                  <h1 className="mt-5 text-[2rem] font-bold leading-tight text-primary-foreground sm:text-4xl lg:text-5xl">
+                  <h1 className="mt-5 text-[2.1rem] font-bold leading-[1.08] text-balance text-primary-foreground sm:text-5xl lg:text-[3.4rem]">
                     Quando você não souber como agir, saiba onde buscar orientação.
                   </h1>
                   <p className="mt-5 text-lg leading-relaxed text-primary-foreground/85">
@@ -288,29 +288,30 @@ function VozProtetoraPage() {
                     <ArrowRight className="h-3.5 w-3.5" />
                   </a>
                 </div>
-                <div className="w-full max-w-sm rounded-[12px] border border-primary-foreground/20 bg-primary-foreground/10 p-6 backdrop-blur-sm sm:p-8">
-                  <div className="text-center">
-                    <p className="text-sm font-semibold uppercase tracking-[0.14em] text-primary-foreground/80">
+                <div className="relative w-full max-w-sm overflow-hidden rounded-[28px] bg-card p-6 text-foreground shadow-[0_30px_60px_-24px_rgba(0,0,0,0.55)] ring-1 ring-white/30 sm:p-8">
+                  <div className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-accent via-voz-yellow to-accent" />
+                  <div className="pt-2 text-center">
+                    <p className="text-sm font-semibold uppercase tracking-[0.14em] text-muted-foreground">
                       Investimento
                     </p>
-                    <p className="mt-2 text-5xl font-bold text-primary-foreground">
+                    <p className="mt-2 font-display text-6xl font-bold text-primary">
                       {formatBRL(VOZ_PROTETORA.amount)}
                     </p>
-                    <p className="mt-1 text-sm text-primary-foreground/80">
+                    <p className="mt-2 inline-block rounded-full bg-secondary px-3 py-1 text-sm font-semibold text-primary">
                       Pagamento único, acesso vitalício.
                     </p>
                   </div>
                   <div className="mt-6">
-                    <Button asChild variant="heroOutline" size="xl" className="w-full">
+                    <Button asChild variant="hero" size="xl" className="w-full">
                       <Link to="/checkout">QUERO TER O VOZ PROTETORA</Link>
                     </Button>
-                    <p className="mt-3 text-center text-xs text-primary-foreground/70">
+                    <p className="mt-3 text-center text-xs text-muted-foreground">
                       7 dias de garantia, reembolso integral.
                     </p>
                     <Link
                       to="/auth"
                       search={{ redirect: undefined }}
-                      className="mt-4 block text-center text-xs font-semibold text-primary-foreground/70 underline-offset-2 hover:text-primary-foreground hover:underline"
+                      className="mt-4 block text-center text-xs font-semibold text-muted-foreground underline-offset-2 hover:text-primary hover:underline"
                     >
                       Já comprou? Entrar
                     </Link>
@@ -322,10 +323,10 @@ function VozProtetoraPage() {
         </section>
 
         {/* B — IDENTIFICAÇÃO + PROBLEMA (fundidas) */}
-        <section className="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-20">
+        <section className="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-24">
           <Reveal>
             <div className="mx-auto max-w-2xl text-center">
-              <h2 className="text-2xl font-bold text-primary sm:text-3xl">
+              <h2 className="text-[1.75rem] font-bold leading-tight text-balance text-primary sm:text-4xl">
                 Você já viveu, ou vai viver, uma situação assim?
               </h2>
             </div>
@@ -333,14 +334,14 @@ function VozProtetoraPage() {
               {HOOK_ITEMS.map(({ item, porta, destaque }) => {
                 const info = PORTA_INFO[porta];
                 const cardClass = cn(
-                  "flex items-start gap-3 rounded-[12px] border p-5 shadow-[var(--shadow-soft)] transition-colors",
+                  "flex items-start gap-4 rounded-[22px] rounded-bl-[6px] border p-5 shadow-[var(--shadow-soft)] transition-all hover:-translate-y-0.5 hover:shadow-[var(--shadow-lift)]",
                   destaque ? "border-accent bg-card" : "border-border bg-card",
                 );
                 const cardContent = (
                   <>
                     <div
                       className={cn(
-                        "grid h-9 w-9 shrink-0 place-items-center rounded-[8px]",
+                        "grid h-11 w-11 shrink-0 place-items-center rounded-2xl",
                         info.bg,
                       )}
                     >
@@ -381,12 +382,12 @@ function VozProtetoraPage() {
         {/* C — DEMONSTRAÇÃO REAL + MOMENTO DE CONEXÃO (fundidas) */}
         <section
           id="demonstracao"
-          className="border-y border-border bg-secondary px-5 py-16 sm:px-8 sm:py-20"
+          className="border-y border-[#E8DFCC] bg-[#F7F1E6] px-5 py-16 sm:px-8 sm:py-24 dark:border-border dark:bg-secondary"
         >
           <div className="mx-auto max-w-3xl">
             <Reveal>
               <div className="text-center">
-                <h2 className="text-2xl font-bold text-primary sm:text-3xl">
+                <h2 className="text-[1.75rem] font-bold leading-tight text-balance text-primary sm:text-4xl">
                   Veja uma orientação real, por dentro do Voz Protetora.
                 </h2>
                 <p className="mt-3 text-base text-muted-foreground">{DEMO_ITEM.title}</p>
@@ -412,10 +413,10 @@ function VozProtetoraPage() {
         </section>
 
         {/* D — O QUE É + COMO FUNCIONA (fundidas) */}
-        <section className="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-20">
+        <section className="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-24">
           <Reveal>
             <div className="mx-auto max-w-2xl text-center">
-              <h2 className="text-2xl font-bold text-primary sm:text-3xl">
+              <h2 className="text-[1.75rem] font-bold leading-tight text-balance text-primary sm:text-4xl">
                 Uma ferramenta de orientação prática, não uma lista de regras para memorizar.
               </h2>
               <p className="mt-4 text-base leading-relaxed text-muted-foreground">
@@ -431,10 +432,10 @@ function VozProtetoraPage() {
                 return (
                   <div
                     key={porta.key}
-                    className="rounded-[12px] border border-border bg-card p-6 shadow-[var(--shadow-soft)] sm:p-8"
+                    className="relative overflow-hidden rounded-[24px] border border-border bg-card p-6 shadow-[var(--shadow-soft)] transition-all before:absolute before:inset-x-0 before:top-0 before:h-1 before:bg-gradient-to-r before:from-accent before:to-voz-yellow hover:-translate-y-1 hover:shadow-[var(--shadow-lift)] sm:p-8"
                   >
                     <div
-                      className={cn("grid h-12 w-12 place-items-center rounded-[10px]", info.bg)}
+                      className={cn("grid h-14 w-14 place-items-center rounded-2xl", info.bg)}
                     >
                       <info.icon className={cn("h-6 w-6", info.color)} />
                     </div>
@@ -455,7 +456,7 @@ function VozProtetoraPage() {
                 {RECURSOS.map((recurso) => (
                   <div
                     key={recurso.label}
-                    className="flex items-start gap-3 rounded-[10px] border border-border bg-card p-4"
+                    className="flex items-start gap-3 rounded-2xl border border-border bg-card p-4"
                   >
                     <recurso.icon className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
                     <p className="text-sm leading-snug text-foreground/85">{recurso.label}</p>
@@ -467,11 +468,11 @@ function VozProtetoraPage() {
         </section>
 
         {/* E — VARIEDADE DO CATÁLOGO (curadoria) */}
-        <section className="border-y border-border bg-secondary px-5 py-16 sm:px-8 sm:py-20">
+        <section className="border-y border-[#E8DFCC] bg-[#F7F1E6] px-5 py-16 sm:px-8 sm:py-24 dark:border-border dark:bg-secondary">
           <div className="mx-auto max-w-6xl">
             <Reveal>
               <div className="mx-auto max-w-2xl text-center">
-                <h2 className="text-2xl font-bold text-primary sm:text-3xl">
+                <h2 className="text-[1.75rem] font-bold leading-tight text-balance text-primary sm:text-4xl">
                   Alguns exemplos do que você encontra
                 </h2>
                 <p className="mt-3 text-base text-muted-foreground">
@@ -485,7 +486,7 @@ function VozProtetoraPage() {
                   return (
                     <div
                       key={item.slug}
-                      className="flex items-start gap-3 rounded-[10px] border border-border bg-card p-4 shadow-[var(--shadow-soft)]"
+                      className="flex items-start gap-3 rounded-2xl border border-border bg-card p-4 shadow-[var(--shadow-soft)] transition-shadow hover:shadow-[var(--shadow-lift)]"
                     >
                       <div
                         className={cn(
@@ -516,9 +517,9 @@ function VozProtetoraPage() {
         </section>
 
         {/* F — POSICIONAMENTO (diferencial + "você não precisa saber tudo", fundidas) */}
-        <section className="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-20">
+        <section className="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-24">
           <Reveal>
-            <h2 className="text-center text-2xl font-bold text-primary sm:text-3xl">
+            <h2 className="text-center text-[1.75rem] font-bold leading-tight text-balance text-primary sm:text-4xl">
               Você não precisa saber tudo sobre proteção.
             </h2>
             <p className="mx-auto mt-3 max-w-2xl text-center text-base leading-relaxed text-muted-foreground">
@@ -534,7 +535,7 @@ function VozProtetoraPage() {
                 return (
                   <div
                     key={item.title}
-                    className="rounded-[10px] border border-border bg-card p-5 text-center shadow-[var(--shadow-soft)]"
+                    className="rounded-[22px] border border-border bg-card p-6 text-center shadow-[var(--shadow-soft)] transition-all hover:-translate-y-0.5 hover:shadow-[var(--shadow-lift)]"
                   >
                     <div className="mx-auto grid h-12 w-12 place-items-center rounded-full bg-secondary">
                       <Icon className="h-5 w-5 text-primary" />
@@ -555,10 +556,10 @@ function VozProtetoraPage() {
         </section>
 
         {/* G — PARA QUEM É */}
-        <section className="border-y border-border bg-secondary px-5 py-16 sm:px-8 sm:py-20">
+        <section className="border-y border-[#E8DFCC] bg-[#F7F1E6] px-5 py-16 sm:px-8 sm:py-24 dark:border-border dark:bg-secondary">
           <div className="mx-auto max-w-4xl">
             <Reveal>
-              <h2 className="text-center text-2xl font-bold text-primary sm:text-3xl">
+              <h2 className="text-center text-[1.75rem] font-bold leading-tight text-balance text-primary sm:text-4xl">
                 Para quem é o Voz Protetora
               </h2>
               <div className="mt-8 flex flex-wrap justify-center gap-3">
@@ -580,7 +581,7 @@ function VozProtetoraPage() {
         </section>
 
         {/* H — AUTORIDADE */}
-        <section className="mx-auto max-w-3xl px-5 py-16 sm:px-8 sm:py-20">
+        <section className="mx-auto max-w-3xl px-5 py-16 sm:px-8 sm:py-24">
           <Reveal>
             <div className="flex flex-col items-center gap-5 text-center sm:flex-row sm:items-start sm:text-left">
               <div className="grid h-16 w-16 shrink-0 place-items-center rounded-full bg-primary/10">
@@ -608,10 +609,10 @@ function VozProtetoraPage() {
         </section>
 
         {/* I — DEMONSTRAÇÃO VISUAL DO PRODUTO (capturas reais da área do assinante) */}
-        <section className="border-y border-border bg-secondary px-5 py-16 sm:px-8 sm:py-20">
+        <section className="border-y border-[#E8DFCC] bg-[#F7F1E6] px-5 py-16 sm:px-8 sm:py-24 dark:border-border dark:bg-secondary">
           <div className="mx-auto max-w-5xl">
             <Reveal>
-              <h2 className="text-center text-2xl font-bold text-primary sm:text-3xl">
+              <h2 className="text-center text-[1.75rem] font-bold leading-tight text-balance text-primary sm:text-4xl">
                 Veja como é por dentro
               </h2>
               <p className="mx-auto mt-3 max-w-xl text-center text-base text-muted-foreground">
@@ -621,8 +622,13 @@ function VozProtetoraPage() {
                 {SCREENSHOTS.map((shot) => (
                   <figure
                     key={shot.legenda}
-                    className="overflow-hidden rounded-[14px] border border-border bg-card shadow-[var(--shadow-soft)]"
+                    className="overflow-hidden rounded-[22px] border border-border bg-card shadow-[var(--shadow-lift)] transition-transform hover:-translate-y-1"
                   >
+                    <div className="flex items-center gap-1.5 border-b border-border bg-secondary px-4 py-2.5">
+                      <span className="h-2.5 w-2.5 rounded-full bg-voz-yellow/80" />
+                      <span className="h-2.5 w-2.5 rounded-full bg-accent/70" />
+                      <span className="h-2.5 w-2.5 rounded-full bg-primary/40" />
+                    </div>
                     <div className="aspect-[16/10] overflow-hidden bg-secondary">
                       <img
                         src={shot.src}
@@ -644,13 +650,13 @@ function VozProtetoraPage() {
         </section>
 
         {/* J — SINAIS DE CONFIANÇA */}
-        <section className="mx-auto max-w-4xl px-5 py-16 sm:px-8 sm:py-20">
+        <section className="mx-auto max-w-4xl px-5 py-16 sm:px-8 sm:py-24">
           <Reveal>
             <div className="grid gap-4 sm:grid-cols-2">
               {CONFIANCA_ITENS.map((sinal) => (
                 <div
                   key={sinal.label}
-                  className="flex items-start gap-3 rounded-[10px] border border-border bg-card p-4 shadow-[var(--shadow-soft)]"
+                  className="flex items-start gap-3 rounded-2xl border border-border bg-card p-4 shadow-[var(--shadow-soft)] transition-shadow hover:shadow-[var(--shadow-lift)]"
                 >
                   <sinal.icon className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
                   <p className="text-sm leading-snug text-foreground/85">{sinal.label}</p>
@@ -661,14 +667,14 @@ function VozProtetoraPage() {
         </section>
 
         {/* K — LIMITES (obrigatória — DOC 02 §27; DOC_PRODUTO §6, §12) */}
-        <section className="border-y border-border bg-secondary px-5 py-16 sm:px-8 sm:py-20">
+        <section className="border-y border-[#E8DFCC] bg-[#F7F1E6] px-5 py-16 sm:px-8 sm:py-24 dark:border-border dark:bg-secondary">
           <div className="mx-auto max-w-3xl">
             <Reveal>
               <div className="flex items-center gap-3">
                 <div className="grid h-10 w-10 place-items-center rounded-[10px] bg-primary/10">
                   <Ban className="h-5 w-5 text-primary" />
                 </div>
-                <h2 className="text-2xl font-bold text-primary sm:text-3xl">
+                <h2 className="text-[1.75rem] font-bold leading-tight text-balance text-primary sm:text-4xl">
                   O que o Voz Protetora não é
                 </h2>
               </div>
@@ -680,7 +686,7 @@ function VozProtetoraPage() {
                 {LIMITES.map((item) => (
                   <div
                     key={item}
-                    className="flex items-start gap-3 rounded-[10px] border border-border bg-card p-4 shadow-[var(--shadow-soft)]"
+                    className="flex items-start gap-3 rounded-2xl border border-border bg-card p-4 shadow-[var(--shadow-soft)] transition-shadow hover:shadow-[var(--shadow-lift)]"
                   >
                     <Ban className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" />
                     <p className="text-sm leading-snug text-foreground/85">{item}</p>
@@ -698,20 +704,21 @@ function VozProtetoraPage() {
         </section>
 
         {/* L — OFERTA */}
-        <section id="comprar" className="mx-auto max-w-3xl px-5 py-16 text-center sm:px-8 sm:py-20">
+        <section id="comprar" className="mx-auto max-w-3xl px-5 py-16 text-center sm:px-8 sm:py-24">
           <Reveal>
-            <div className="rounded-[16px] border border-border bg-card p-8 shadow-[var(--shadow-lift)] sm:p-12">
+            <div className="relative overflow-hidden rounded-[32px] border border-border bg-card p-8 shadow-[0_30px_70px_-30px_oklch(0.25_0.03_258/0.35)] sm:p-12">
+              <div className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-accent via-voz-yellow to-accent" />
               <div className="mx-auto grid h-14 w-14 place-items-center rounded-full bg-primary/10">
                 <Shield className="h-7 w-7 text-primary" />
               </div>
-              <h2 className="mt-5 text-2xl font-bold text-primary sm:text-3xl">
+              <h2 className="mt-5 text-[1.75rem] font-bold leading-tight text-balance text-primary sm:text-4xl">
                 Quero ter o Voz Protetora
               </h2>
               <p className="mt-3 text-base text-muted-foreground">
                 {TOTAL_ORIENTACOES} orientações reais, a postura Ver·Ouvir·Zelar, busca, e os
                 recursos de apoio à sua presença protetiva, tudo em um único lugar.
               </p>
-              <p className="mt-6 text-5xl font-bold text-primary">
+              <p className="mt-6 font-display text-6xl font-bold text-primary">
                 {formatBRL(VOZ_PROTETORA.amount)}
               </p>
               <p className="mt-1 text-sm text-muted-foreground">
@@ -734,13 +741,13 @@ function VozProtetoraPage() {
         </section>
 
         {/* M — FAQ */}
-        <section className="border-t border-border bg-secondary px-5 py-16 sm:px-8 sm:py-20">
+        <section className="border-t border-[#E8DFCC] bg-[#F7F1E6] px-5 py-16 sm:px-8 sm:py-24 dark:border-border dark:bg-secondary">
           <div className="mx-auto max-w-3xl">
             <Reveal>
-              <h2 className="text-center text-2xl font-bold text-primary sm:text-3xl">
+              <h2 className="text-center text-[1.75rem] font-bold leading-tight text-balance text-primary sm:text-4xl">
                 Perguntas frequentes
               </h2>
-              <div className="mt-8 rounded-[12px] border border-border bg-card px-5 sm:px-8">
+              <div className="mt-8 rounded-[24px] border border-border bg-card px-5 shadow-[var(--shadow-soft)] sm:px-8">
                 <Accordion type="single" collapsible>
                   {FAQ_ITEMS.map((faq, index) => (
                     <AccordionItem key={faq.q} value={`faq-${index}`}>
@@ -767,9 +774,11 @@ function VozProtetoraPage() {
         </section>
 
         {/* N — FECHAMENTO EMOCIONAL */}
-        <section className="bg-primary px-5 py-16 text-center text-primary-foreground sm:px-8 sm:py-20">
+        <section className="relative overflow-hidden bg-gradient-to-br from-primary via-primary to-[oklch(0.3_0.09_258.5)] px-5 py-16 text-center text-primary-foreground sm:px-8 sm:py-28">
+          <div className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-accent opacity-25 blur-2xl" />
+          <div className="pointer-events-none absolute -bottom-24 -left-24 h-72 w-72 rounded-full bg-voz-yellow opacity-15 blur-2xl" />
           <Reveal>
-            <div className="mx-auto max-w-2xl">
+            <div className="relative mx-auto max-w-2xl">
               <Check className="mx-auto h-8 w-8 text-voz-yellow" />
               <p className="mt-5 text-2xl font-bold leading-snug sm:text-3xl">
                 Toda infância precisa de proteção.

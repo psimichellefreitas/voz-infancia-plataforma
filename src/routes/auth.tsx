@@ -77,7 +77,16 @@ function AuthPage() {
     });
     setLoading(false);
     if (error) {
-      toast.error("Não foi possível enviar o link de acesso. Tente novamente.");
+      // O Supabase só envia um link por minuto para o mesmo e-mail (e limita o total por hora).
+      const limite =
+        error.status === 429 ||
+        error.code === "over_email_send_rate_limit" ||
+        error.code === "over_request_rate_limit";
+      toast.error(
+        limite
+          ? "Já enviamos um link há pouco. Aguarde cerca de 1 minuto antes de pedir outro e confira também o spam."
+          : "Não foi possível enviar o link de acesso. Tente novamente.",
+      );
       return;
     }
     setSent(true);

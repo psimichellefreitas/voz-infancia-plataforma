@@ -30,10 +30,10 @@ export function StickyMobileCta() {
       <div className="flex items-center justify-between gap-3 px-4 py-2.5">
         <p className="text-sm font-semibold text-primary">
           {formatBRL(VOZ_PROTETORA.amount)}
-          <span className="ml-1 font-normal text-muted-foreground">/ano</span>
+          <span className="ml-1 font-normal text-muted-foreground">pagamento único</span>
         </p>
         <Button asChild variant="hero" size="sm">
-          <Link to="/checkout">Assinar</Link>
+          <Link to="/checkout">Comprar</Link>
         </Button>
       </div>
     </div>
