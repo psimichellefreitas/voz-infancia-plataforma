@@ -1,5 +1,5 @@
 import { createFileRoute, useNavigate, useSearch } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Loader2, Mail } from "lucide-react";
 import { toast } from "sonner";
 
@@ -44,6 +44,18 @@ function AuthPage() {
   const [email, setEmail] = useState("");
   const [sent, setSent] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  // Quem já tem sessão neste aparelho não precisa pedir link de novo.
+  useEffect(() => {
+    let cancelled = false;
+    supabase.auth.getSession().then(({ data }) => {
+      if (cancelled || !data.session) return;
+      navigate({ to: (redirect ?? "/voz-protetora") as never, replace: true });
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [navigate, redirect]);
 
   async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
