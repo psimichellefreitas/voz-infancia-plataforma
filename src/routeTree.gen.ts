@@ -28,6 +28,7 @@ import { Route as SejaVozRouteImport } from './routes/seja-voz'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as SolucoesRouteImport } from './routes/solucoes'
 import { Route as TermosDeUsoRouteImport } from './routes/termos-de-uso'
+import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 import { Route as PagamentoAprovadoRouteImport } from './routes/pagamento.aprovado'
 import { Route as PagamentoPendenteRouteImport } from './routes/pagamento.pendente'
 import { Route as PagamentoProcessandoRouteImport } from './routes/pagamento.processando'
@@ -142,6 +143,11 @@ const TermosDeUsoRoute = TermosDeUsoRouteImport.update({
   id: '/termos-de-uso',
   path: '/termos-de-uso',
   getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const PagamentoAprovadoRoute = PagamentoAprovadoRouteImport.update({
   id: '/pagamento/aprovado',
@@ -278,6 +284,7 @@ export interface FileRoutesByFullPath {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/solucoes': typeof SolucoesRoute
   '/termos-de-uso': typeof TermosDeUsoRoute
+  '/admin': typeof AuthenticatedAdminRoute
   '/pagamento/aprovado': typeof PagamentoAprovadoRoute
   '/pagamento/pendente': typeof PagamentoPendenteRoute
   '/pagamento/processando': typeof PagamentoProcessandoRoute
@@ -318,6 +325,7 @@ export interface FileRoutesByTo {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/solucoes': typeof SolucoesRoute
   '/termos-de-uso': typeof TermosDeUsoRoute
+  '/admin': typeof AuthenticatedAdminRoute
   '/pagamento/aprovado': typeof PagamentoAprovadoRoute
   '/pagamento/pendente': typeof PagamentoPendenteRoute
   '/pagamento/processando': typeof PagamentoProcessandoRoute
@@ -360,6 +368,7 @@ export interface FileRoutesById {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/solucoes': typeof SolucoesRoute
   '/termos-de-uso': typeof TermosDeUsoRoute
+  '/_authenticated/admin': typeof AuthenticatedAdminRoute
   '/pagamento/aprovado': typeof PagamentoAprovadoRoute
   '/pagamento/pendente': typeof PagamentoPendenteRoute
   '/pagamento/processando': typeof PagamentoProcessandoRoute
@@ -402,6 +411,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/solucoes'
     | '/termos-de-uso'
+    | '/admin'
     | '/pagamento/aprovado'
     | '/pagamento/pendente'
     | '/pagamento/processando'
@@ -442,6 +452,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/solucoes'
     | '/termos-de-uso'
+    | '/admin'
     | '/pagamento/aprovado'
     | '/pagamento/pendente'
     | '/pagamento/processando'
@@ -483,6 +494,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/solucoes'
     | '/termos-de-uso'
+    | '/_authenticated/admin'
     | '/pagamento/aprovado'
     | '/pagamento/pendente'
     | '/pagamento/processando'
@@ -668,6 +680,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TermosDeUsoRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/admin': {
+      id: '/_authenticated/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AuthenticatedAdminRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/pagamento/aprovado': {
       id: '/pagamento/aprovado'
       path: '/pagamento/aprovado'
@@ -812,6 +831,7 @@ declare module '@tanstack/react-router' {
 }
 
 interface AuthenticatedRouteRouteChildren {
+  AuthenticatedAdminRoute: typeof AuthenticatedAdminRoute
   AuthenticatedVozProtetoraBuscaRoute: typeof AuthenticatedVozProtetoraBuscaRoute
   AuthenticatedVozProtetoraMeuPassoRoute: typeof AuthenticatedVozProtetoraMeuPassoRoute
   AuthenticatedVozProtetoraMinhaAssinaturaRoute: typeof AuthenticatedVozProtetoraMinhaAssinaturaRoute
@@ -829,6 +849,7 @@ interface AuthenticatedRouteRouteChildren {
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedAdminRoute: AuthenticatedAdminRoute,
   AuthenticatedVozProtetoraBuscaRoute: AuthenticatedVozProtetoraBuscaRoute,
   AuthenticatedVozProtetoraMeuPassoRoute:
     AuthenticatedVozProtetoraMeuPassoRoute,
