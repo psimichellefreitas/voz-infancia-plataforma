@@ -2,5 +2,6 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": null,
   "installCommand": "bun install",
-  "buildCommand": "vite build"
+  "buildCommand": "vite build",
+  "crons": [{ "path": "/api/public/keepalive", "schedule": "0 12 * * *" }]
 }

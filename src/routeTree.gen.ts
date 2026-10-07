@@ -44,6 +44,7 @@ import { Route as AuthenticatedVozProtetoraMinhaPresencaRouteImport } from './ro
 import { Route as AuthenticatedVozProtetoraMinhaVozRouteImport } from './routes/_authenticated/voz-protetora.minha-voz'
 import { Route as AuthenticatedVozProtetoraNotificacoesRouteImport } from './routes/_authenticated/voz-protetora.notificacoes'
 import { Route as AuthenticatedVozProtetoraPrecisoDeAjudaRouteImport } from './routes/_authenticated/voz-protetora.preciso-de-ajuda'
+import { Route as ApiPublicKeepaliveRouteImport } from './routes/api/public/keepalive'
 import { Route as AuthenticatedVozProtetoraAconteceuIndexRouteImport } from './routes/_authenticated/voz-protetora.aconteceu.index'
 import { Route as AuthenticatedVozProtetoraAconteceuSlugRouteImport } from './routes/_authenticated/voz-protetora.aconteceu.$slug'
 import { Route as AuthenticatedVozProtetoraFortalecerIndexRouteImport } from './routes/_authenticated/voz-protetora.fortalecer.index'
@@ -236,6 +237,11 @@ const AuthenticatedVozProtetoraPrecisoDeAjudaRoute =
     path: '/voz-protetora/preciso-de-ajuda',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const ApiPublicKeepaliveRoute = ApiPublicKeepaliveRouteImport.update({
+  id: '/api/public/keepalive',
+  path: '/api/public/keepalive',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AuthenticatedVozProtetoraAconteceuIndexRoute =
   AuthenticatedVozProtetoraAconteceuIndexRouteImport.update({
     id: '/voz-protetora/aconteceu/',
@@ -313,6 +319,7 @@ export interface FileRoutesByFullPath {
   '/voz-protetora/minha-voz': typeof AuthenticatedVozProtetoraMinhaVozRoute
   '/voz-protetora/notificacoes': typeof AuthenticatedVozProtetoraNotificacoesRoute
   '/voz-protetora/preciso-de-ajuda': typeof AuthenticatedVozProtetoraPrecisoDeAjudaRoute
+  '/api/public/keepalive': typeof ApiPublicKeepaliveRoute
   '/voz-protetora/': typeof AuthenticatedVozProtetoraIndexRoute
   '/voz-protetora/aconteceu/$slug': typeof AuthenticatedVozProtetoraAconteceuSlugRoute
   '/voz-protetora/fortalecer/$slug': typeof AuthenticatedVozProtetoraFortalecerSlugRoute
@@ -356,6 +363,7 @@ export interface FileRoutesByTo {
   '/voz-protetora/minha-voz': typeof AuthenticatedVozProtetoraMinhaVozRoute
   '/voz-protetora/notificacoes': typeof AuthenticatedVozProtetoraNotificacoesRoute
   '/voz-protetora/preciso-de-ajuda': typeof AuthenticatedVozProtetoraPrecisoDeAjudaRoute
+  '/api/public/keepalive': typeof ApiPublicKeepaliveRoute
   '/voz-protetora': typeof AuthenticatedVozProtetoraIndexRoute
   '/voz-protetora/aconteceu/$slug': typeof AuthenticatedVozProtetoraAconteceuSlugRoute
   '/voz-protetora/fortalecer/$slug': typeof AuthenticatedVozProtetoraFortalecerSlugRoute
@@ -401,6 +409,7 @@ export interface FileRoutesById {
   '/_authenticated/voz-protetora/minha-voz': typeof AuthenticatedVozProtetoraMinhaVozRoute
   '/_authenticated/voz-protetora/notificacoes': typeof AuthenticatedVozProtetoraNotificacoesRoute
   '/_authenticated/voz-protetora/preciso-de-ajuda': typeof AuthenticatedVozProtetoraPrecisoDeAjudaRoute
+  '/api/public/keepalive': typeof ApiPublicKeepaliveRoute
   '/_authenticated/voz-protetora/': typeof AuthenticatedVozProtetoraIndexRoute
   '/_authenticated/voz-protetora/aconteceu/$slug': typeof AuthenticatedVozProtetoraAconteceuSlugRoute
   '/_authenticated/voz-protetora/fortalecer/$slug': typeof AuthenticatedVozProtetoraFortalecerSlugRoute
@@ -446,6 +455,7 @@ export interface FileRouteTypes {
     | '/voz-protetora/minha-voz'
     | '/voz-protetora/notificacoes'
     | '/voz-protetora/preciso-de-ajuda'
+    | '/api/public/keepalive'
     | '/voz-protetora/'
     | '/voz-protetora/aconteceu/$slug'
     | '/voz-protetora/fortalecer/$slug'
@@ -489,6 +499,7 @@ export interface FileRouteTypes {
     | '/voz-protetora/minha-voz'
     | '/voz-protetora/notificacoes'
     | '/voz-protetora/preciso-de-ajuda'
+    | '/api/public/keepalive'
     | '/voz-protetora'
     | '/voz-protetora/aconteceu/$slug'
     | '/voz-protetora/fortalecer/$slug'
@@ -533,6 +544,7 @@ export interface FileRouteTypes {
     | '/_authenticated/voz-protetora/minha-voz'
     | '/_authenticated/voz-protetora/notificacoes'
     | '/_authenticated/voz-protetora/preciso-de-ajuda'
+    | '/api/public/keepalive'
     | '/_authenticated/voz-protetora/'
     | '/_authenticated/voz-protetora/aconteceu/$slug'
     | '/_authenticated/voz-protetora/fortalecer/$slug'
@@ -568,6 +580,7 @@ export interface RootRouteChildren {
   PagamentoProcessandoRoute: typeof PagamentoProcessandoRoute
   PagamentoRecusadoRoute: typeof PagamentoRecusadoRoute
   SolucoesVozProtetoraRoute: typeof SolucoesVozProtetoraRoute
+  ApiPublicKeepaliveRoute: typeof ApiPublicKeepaliveRoute
   ApiPublicWebhooksMercadopagoRoute: typeof ApiPublicWebhooksMercadopagoRoute
 }
 
@@ -818,6 +831,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedVozProtetoraPrecisoDeAjudaRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/api/public/keepalive': {
+      id: '/api/public/keepalive'
+      path: '/api/public/keepalive'
+      fullPath: '/api/public/keepalive'
+      preLoaderRoute: typeof ApiPublicKeepaliveRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_authenticated/voz-protetora/aconteceu/': {
       id: '/_authenticated/voz-protetora/aconteceu/'
       path: '/voz-protetora/aconteceu'
@@ -951,6 +971,7 @@ const rootRouteChildren: RootRouteChildren = {
   PagamentoProcessandoRoute: PagamentoProcessandoRoute,
   PagamentoRecusadoRoute: PagamentoRecusadoRoute,
   SolucoesVozProtetoraRoute: SolucoesVozProtetoraRoute,
+  ApiPublicKeepaliveRoute: ApiPublicKeepaliveRoute,
   ApiPublicWebhooksMercadopagoRoute: ApiPublicWebhooksMercadopagoRoute,
 }
 export const routeTree = rootRouteImport
