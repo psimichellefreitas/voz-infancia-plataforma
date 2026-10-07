@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
-import { Square, Volume2 } from "lucide-react";
+import { Eye, ShieldCheck, Square, Volume2, X } from "lucide-react";
 
 import {
   Accordion,
@@ -343,6 +343,206 @@ function BlocoAjuda({ label, body, interativo }: { label: string; body: string; 
 }
 
 // ---------------------------------------------------------------------------
+// Tratamento visual dos demais blocos (aprovado em 2026-10-07)
+// Só muda a forma de mostrar: as palavras são as do texto aprovado. Quando o texto não tem o
+// formato esperado, o bloco aparece como antes.
+// ---------------------------------------------------------------------------
+
+const ehLista = (paragrafo: string) => paragrafo.split("\n").every((l) => l.startsWith("- "));
+const itensDaLista = (paragrafo: string) => paragrafo.split("\n").map((l) => l.slice(2));
+
+/** "Evite": cada item vira um cartão rosado com um ×. */
+function renderEvite(body: string) {
+  return (
+    <div className="mt-3 space-y-2">
+      {body.split("\n\n").map((paragrafo, i) =>
+        ehLista(paragrafo) ? (
+          <div key={i} className="space-y-2">
+            {itensDaLista(paragrafo).map((item, j) => (
+              <div
+                key={j}
+                className="flex items-start gap-3 rounded-[14px] bg-[#FBEDE9] px-3 py-2.5 dark:bg-[#3A2A2E]"
+              >
+                <span className="mt-0.5 grid h-[22px] w-[22px] shrink-0 place-items-center rounded-full bg-[#B8472F] text-white">
+                  <X className="h-3.5 w-3.5" strokeWidth={3} />
+                </span>
+                <p className="text-[15px] leading-snug text-[#5B2417] dark:text-[#F4EDE0]">
+                  {renderInline(item)}
+                </p>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div key={i} className="text-sm leading-relaxed text-foreground/85">
+            {renderParagraph(paragrafo, i)}
+          </div>
+        ),
+      )}
+    </div>
+  );
+}
+
+const LETRAS_VOZ: Record<string, string> = {
+  V: "bg-primary text-primary-foreground",
+  O: "bg-accent text-accent-foreground",
+  Z: "bg-voz-yellow text-primary",
+};
+
+/** "Como agir?": o V · O · Z vira três linhas com a letra em destaque. */
+function renderComoAgir(body: string) {
+  const padrao = /^- \*\*([VOZ]) · ([^:*]+):\*\*\s*(.+)$/;
+  const paragrafos = body.split("\n\n");
+  const temVOZ = paragrafos.some((p) => p.split("\n").every((l) => padrao.test(l)));
+  if (!temVOZ) return renderBody(body);
+
+  return (
+    <div className="mt-3 space-y-3">
+      {paragrafos.map((paragrafo, i) => {
+        const linhas = paragrafo.split("\n");
+        if (!linhas.every((l) => padrao.test(l))) {
+          return (
+            <div key={i} className="text-sm leading-relaxed text-foreground/85">
+              {renderParagraph(paragrafo, i)}
+            </div>
+          );
+        }
+        return (
+          <div key={i}>
+            {linhas.map((linha, j) => {
+              const [, letra, nome, texto] = linha.match(padrao)!;
+              return (
+                <div
+                  key={j}
+                  className={`flex items-start gap-3 py-3 ${j > 0 ? "border-t border-border" : "pt-0"}`}
+                >
+                  <span
+                    className={`grid h-[38px] w-[38px] shrink-0 place-items-center rounded-xl text-[17px] font-extrabold ${LETRAS_VOZ[letra!]}`}
+                  >
+                    {letra}
+                  </span>
+                  <div className="min-w-0">
+                    <p className="text-xs font-bold uppercase tracking-[0.1em] text-muted-foreground">
+                      {nome}
+                    </p>
+                    <p className="mt-0.5 text-[15px] leading-relaxed text-foreground/85">
+                      {renderInline(texto![0]!.toUpperCase() + texto!.slice(1))}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+/** "O que pode estar acontecendo?": o último parágrafo (o ponto central) ganha uma faixa. */
+function renderOQuePode(body: string) {
+  const paragrafos = body.split("\n\n");
+  if (paragrafos.length < 2 || paragrafos.some(ehLista)) return renderBody(body);
+  return (
+    <div className="mt-3 space-y-3 text-sm leading-relaxed text-foreground/85">
+      {paragrafos.slice(0, -1).map((p, i) => renderParagraph(p, i))}
+      <div className="rounded-r-2xl border-l-4 border-voz-yellow bg-voz-yellow/15 px-3.5 py-3 font-medium text-foreground">
+        {renderParagraph(paragrafos[paragrafos.length - 1]!, 99)}
+      </div>
+    </div>
+  );
+}
+
+/** "Olhar protetor": introdução, perguntas com ícone de olhar e conclusão em caixa. Sem marcar. */
+function renderOlhar(body: string) {
+  const paragrafos = body.split("\n\n");
+  if (!paragrafos.some(ehLista)) return renderBody(body);
+
+  let jaViuLista = false;
+  return (
+    <div className="mt-3 space-y-2">
+      {paragrafos.map((paragrafo, i) => {
+        if (ehLista(paragrafo)) {
+          jaViuLista = true;
+          return (
+            <div key={i}>
+              {itensDaLista(paragrafo).map((item, j) => (
+                <div key={j} className="flex items-start gap-3 py-2">
+                  <span className="mt-0.5 grid h-[26px] w-[26px] shrink-0 place-items-center rounded-full bg-accent/15 text-accent">
+                    <Eye className="h-3.5 w-3.5" />
+                  </span>
+                  <p className="text-[15px] leading-relaxed text-foreground/85">
+                    {renderInline(item)}
+                  </p>
+                </div>
+              ))}
+            </div>
+          );
+        }
+        if (!jaViuLista) {
+          return (
+            <p key={i} className="text-[15px] font-semibold leading-relaxed text-primary">
+              {renderInline(paragrafo)}
+            </p>
+          );
+        }
+        return (
+          <p
+            key={i}
+            className="rounded-2xl bg-primary/10 px-3.5 py-3 text-[15px] leading-relaxed text-foreground/90"
+          >
+            {renderInline(paragrafo)}
+          </p>
+        );
+      })}
+    </div>
+  );
+}
+
+const INICIO_RESPONSABILIDADE = "A responsabilidade de proteger";
+
+/** "O que essa situação ensina?": a frase sobre a responsabilidade do adulto ganha uma caixa. */
+function renderEnsina(body: string) {
+  const paragrafos = body.split("\n\n");
+  if (!paragrafos.some((p) => p.startsWith(INICIO_RESPONSABILIDADE))) return renderBody(body);
+  return (
+    <div className="mt-3 space-y-3 text-sm leading-relaxed text-foreground/85">
+      {paragrafos.map((p, i) =>
+        p.startsWith(INICIO_RESPONSABILIDADE) ? (
+          <div
+            key={i}
+            className="flex items-start gap-3 rounded-[18px] bg-primary px-4 py-3.5 text-primary-foreground"
+          >
+            <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-voz-yellow" />
+            <p className="text-[15px] font-semibold leading-snug">{renderInline(p, "escuro")}</p>
+          </div>
+        ) : (
+          renderParagraph(p, i)
+        ),
+      )}
+    </div>
+  );
+}
+
+/** Escolhe o tratamento visual de cada bloco pela chave. */
+function renderComTratamento(chave: string, body: string) {
+  if (CHAVES_DE_FALAS.includes(chave)) return renderFalas(body);
+  switch (chave) {
+    case "evite":
+      return renderEvite(body);
+    case "como-agir":
+      return renderComoAgir(body);
+    case "o-que-pode":
+      return renderOQuePode(body);
+    case "olhar":
+      return renderOlhar(body);
+    case "ensina":
+      return renderEnsina(body);
+    default:
+      return renderBody(body);
+  }
+}
+
+// ---------------------------------------------------------------------------
 // Ouvir (voz do próprio aparelho)
 // ---------------------------------------------------------------------------
 
@@ -605,11 +805,7 @@ export function OrientationBody({
                       <FaixaEtariaSeletor disponiveis={disponiveis} onChange={setFaixaAtiva} />
                     )}
                     {bodyExibido ? (
-                      CHAVES_DE_FALAS.includes(block.key) ? (
-                        renderFalas(bodyExibido)
-                      ) : (
-                        renderBody(bodyExibido)
-                      )
+                      renderComTratamento(block.key, bodyExibido)
                     ) : (
                       <ConteudoEmProducao />
                     )}
