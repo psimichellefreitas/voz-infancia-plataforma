@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
-import { Eye, ShieldCheck, Square, Volume2, X } from "lucide-react";
+import { Eye, Lightbulb, ShieldCheck, Square, Volume2, X } from "lucide-react";
 
 import {
   Accordion,
@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/button";
 import { usePreviewSearch } from "@/lib/preview-mode";
 import { FAIXAS_ETARIAS, type FaixaEtaria, type OrientationBlock } from "@/lib/voz-protetora/content";
 import { separarFalas } from "@/lib/voz-protetora/falas";
+import { separarItens } from "@/lib/voz-protetora/itens";
 
 const FAIXA_STORAGE_KEY = "voz-protetora:faixa-etaria";
 
@@ -328,33 +329,50 @@ function BlocoAjuda({ label, body, interativo }: { label: string; body: string; 
 const ehLista = (paragrafo: string) => paragrafo.split("\n").every((l) => l.startsWith("- "));
 const itensDaLista = (paragrafo: string) => paragrafo.split("\n").map((l) => l.slice(2));
 
-/** "Evite": cada item vira um cartão rosado com um ×. */
+/** Cartões rosados com um × para os itens de "Evite". */
+function CartoesEvite({ itens }: { itens: string[] }) {
+  return (
+    <div className="space-y-2">
+      {itens.map((item, j) => (
+        <div
+          key={j}
+          className="flex items-start gap-3 rounded-[14px] bg-[#FBEDE9] px-3 py-2.5 dark:bg-[#3A2A2E]"
+        >
+          <span className="mt-0.5 grid h-[22px] w-[22px] shrink-0 place-items-center rounded-full bg-[#B8472F] text-white">
+            <X className="h-3.5 w-3.5" strokeWidth={3} />
+          </span>
+          <p className="text-[15px] leading-snug text-[#5B2417] dark:text-[#F4EDE0]">
+            {renderInline(item)}
+          </p>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+/** "Evite": cada item vira um cartão rosado com um ×, venha em lista ("- ") ou em linha corrida. */
 function renderEvite(body: string) {
   return (
     <div className="mt-3 space-y-2">
-      {body.split("\n\n").map((paragrafo, i) =>
-        ehLista(paragrafo) ? (
-          <div key={i} className="space-y-2">
-            {itensDaLista(paragrafo).map((item, j) => (
-              <div
-                key={j}
-                className="flex items-start gap-3 rounded-[14px] bg-[#FBEDE9] px-3 py-2.5 dark:bg-[#3A2A2E]"
-              >
-                <span className="mt-0.5 grid h-[22px] w-[22px] shrink-0 place-items-center rounded-full bg-[#B8472F] text-white">
-                  <X className="h-3.5 w-3.5" strokeWidth={3} />
-                </span>
-                <p className="text-[15px] leading-snug text-[#5B2417] dark:text-[#F4EDE0]">
-                  {renderInline(item)}
-                </p>
-              </div>
-            ))}
-          </div>
-        ) : (
+      {body.split("\n\n").map((paragrafo, i) => {
+        if (ehLista(paragrafo)) return <CartoesEvite key={i} itens={itensDaLista(paragrafo)} />;
+        const corrida = separarItens(paragrafo);
+        if (corrida) {
+          return (
+            <div key={i} className="space-y-2">
+              {corrida.introducao && (
+                <p className="text-[15px] font-bold text-primary">{corrida.introducao}</p>
+              )}
+              <CartoesEvite itens={corrida.itens} />
+            </div>
+          );
+        }
+        return (
           <div key={i} className="text-sm leading-relaxed text-foreground/85">
             {renderParagraph(paragrafo, i)}
           </div>
-        ),
-      )}
+        );
+      })}
     </div>
   );
 }
@@ -500,6 +518,106 @@ function renderEnsina(body: string) {
   );
 }
 
+/**
+ * Listas escritas em linha corrida ("A; b; c.") viram lista numerada (passos) ou com lâmpada
+ * (o que ensinar). Se o bloco não tiver esse formato, aparece como texto comum.
+ */
+function renderLista(body: string, estilo: "numerada" | "lampada") {
+  const paragrafos = body.split("\n\n");
+  if (!paragrafos.some((p) => separarItens(p))) return renderBody(body);
+
+  return (
+    <div className="mt-3 space-y-3">
+      {paragrafos.map((paragrafo, i) => {
+        const lista = separarItens(paragrafo);
+        if (!lista) {
+          return (
+            <div key={i} className="text-sm leading-relaxed text-foreground/85">
+              {renderParagraph(paragrafo, i)}
+            </div>
+          );
+        }
+        return (
+          <div key={i}>
+            {lista.introducao && (
+              <p className="mb-2.5 text-[15px] font-bold text-primary">{lista.introducao}</p>
+            )}
+            {lista.itens.map((item, j) => (
+              <div
+                key={j}
+                className={`flex items-start gap-3 py-2.5 ${j > 0 ? "border-t border-border" : "pt-0"}`}
+              >
+                {estilo === "numerada" ? (
+                  <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-accent/15 text-[13px] font-extrabold text-accent">
+                    {j + 1}
+                  </span>
+                ) : (
+                  <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-voz-yellow/30 text-[#8A5F00] dark:text-voz-yellow">
+                    <Lightbulb className="h-4 w-4" />
+                  </span>
+                )}
+                <p className="text-[15px] leading-relaxed text-foreground/85">
+                  {renderInline(item)}
+                </p>
+              </div>
+            ))}
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+/** "Por que isso importa?": o texto ganha a faixa amarela de destaque. */
+function renderImporta(body: string) {
+  return (
+    <div className="mt-3 space-y-3 rounded-r-2xl border-l-4 border-voz-yellow bg-voz-yellow/15 px-3.5 py-3 text-[15px] leading-relaxed text-foreground">
+      {body.split("\n\n").map((p, i) => renderParagraph(p, i))}
+    </div>
+  );
+}
+
+const CHAVES_DO_TEMPO = ["antes", "durante", "depois"];
+
+function nomeDaAba(label: string) {
+  const texto = rotuloSemEmoji(label).toLowerCase();
+  return texto.charAt(0).toUpperCase() + texto.slice(1);
+}
+
+/** Vai acontecer: Antes, Durante e Depois como abas, sempre visíveis logo abaixo do passo. */
+function LinhaDoTempo({ blocos }: { blocos: OrientationBlock[] }) {
+  const [ativa, setAtiva] = useState(blocos[0]!.key);
+  const atual = blocos.find((b) => b.key === ativa) ?? blocos[0]!;
+
+  return (
+    <section className="rounded-[24px] bg-card p-4 shadow-[var(--shadow-soft)] sm:p-5">
+      <div role="tablist" aria-label="Momentos" className="flex gap-1 rounded-full bg-secondary p-1">
+        {blocos.map((bloco) => (
+          <button
+            key={bloco.key}
+            type="button"
+            role="tab"
+            id={`aba-${bloco.key}`}
+            aria-selected={bloco.key === ativa}
+            aria-controls="painel-tempo"
+            onClick={() => setAtiva(bloco.key)}
+            className={`flex-1 rounded-full px-2 py-2.5 text-[13.5px] font-bold transition-colors ${
+              bloco.key === ativa
+                ? "bg-card text-primary shadow-sm"
+                : "text-muted-foreground"
+            }`}
+          >
+            {nomeDaAba(bloco.label)}
+          </button>
+        ))}
+      </div>
+      <div role="tabpanel" id="painel-tempo" aria-labelledby={`aba-${atual.key}`} className="mt-1">
+        {atual.body ? renderLista(atual.body, "numerada") : <ConteudoEmProducao />}
+      </div>
+    </section>
+  );
+}
+
 /** Escolhe o tratamento visual de cada bloco pela chave. */
 function renderComTratamento(chave: string, body: string) {
   if (CHAVES_DE_FALAS.includes(chave)) return renderFalas(body);
@@ -514,6 +632,13 @@ function renderComTratamento(chave: string, body: string) {
       return renderOlhar(body);
     case "ensina":
       return renderEnsina(body);
+    case "ensine":
+    case "ensinar":
+      return renderLista(body, "lampada");
+    case "praticar":
+      return renderLista(body, "numerada");
+    case "importa":
+      return renderImporta(body);
     default:
       return renderBody(body);
   }
@@ -705,10 +830,15 @@ export function OrientationBody({
 
   const passo = blocks.find((b) => b.key === "passo");
   const ajuda = blocks.find((b) => b.key === "ajuda");
-  const demaisBlocos = blocks.filter((b) => !DESTAQUE_KEYS.includes(b.key));
+  const tempo = CHAVES_DO_TEMPO.map((chave) => blocks.find((b) => b.key === chave)).filter(
+    (b): b is OrientationBlock => Boolean(b),
+  );
+  const demaisBlocos = blocks.filter(
+    (b) => !DESTAQUE_KEYS.includes(b.key) && !CHAVES_DO_TEMPO.includes(b.key),
+  );
 
   // Ordem de leitura em voz alta: passo, ajuda e depois os demais blocos.
-  const textoParaOuvir = [passo, ajuda, ...demaisBlocos]
+  const textoParaOuvir = [passo, ...tempo, ajuda, ...demaisBlocos]
     .filter((b): b is OrientationBlock => Boolean(b?.body))
     .map((b) => `${rotuloSemEmoji(b.label).toLowerCase()}. ${textoPuro(b.body!)}`)
     .join(" ");
@@ -750,6 +880,9 @@ export function OrientationBody({
             </div>
           </section>
         )}
+
+        {tempo.length > 0 && <LinhaDoTempo blocos={tempo} />}
+
 
         {ajuda &&
           (ajuda.body ? (
