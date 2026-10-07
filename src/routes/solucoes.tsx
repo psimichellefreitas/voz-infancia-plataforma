@@ -1,8 +1,8 @@
-import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { PageShell } from "@/components/voz/PageShell";
+import { ContactForm } from "@/components/voz/ContactForm";
 import { CONTATO_EMAIL } from "@/components/voz/nav";
 
 export const Route = createFileRoute("/solucoes")({
@@ -189,8 +189,8 @@ function SolucoesPage() {
         <section className="border-t border-border pt-14">
           <H2 id="solicitar">Solicitar uma formação</H2>
           <p className="mt-4 max-w-2xl leading-relaxed text-muted-foreground">
-            Preencha os campos abaixo: o botão abre seu programa de e-mail com a mensagem pronta.
-            Ou escreva direto para{" "}
+            Preencha os campos abaixo e a mensagem chega direto para a nossa caixa. Respondemos pelo e-mail que você informar.
+            Se preferir, escreva para{" "}
             <a
               href={`mailto:${CONTATO_EMAIL}`}
               className="font-semibold text-primary hover:text-accent"
@@ -200,115 +200,10 @@ function SolucoesPage() {
             .
           </p>
           <div className="mt-6">
-            <FormacaoRequest />
+            <ContactForm tipo="formacao" />
           </div>
         </section>
       </div>
     </PageShell>
-  );
-}
-
-const FIELD_CLS =
-  "w-full rounded-[8px] border border-input bg-card px-3.5 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus-visible:border-primary focus-visible:outline-none";
-
-function FormacaoRequest() {
-  const [form, setForm] = useState({
-    nome: "",
-    instituicao: "",
-    publico: "",
-    formato: "Palestra",
-    local: "",
-    mensagem: "",
-  });
-
-  function set<K extends keyof typeof form>(k: K, v: string) {
-    setForm((f) => ({ ...f, [k]: v }));
-  }
-
-  function onSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    const subject = `Solicitação de formação${form.instituicao ? `: ${form.instituicao}` : ""}`;
-    const body = [
-      `Nome: ${form.nome}`,
-      `Instituição: ${form.instituicao}`,
-      `Público: ${form.publico}`,
-      `Formato: ${form.formato}`,
-      `Cidade/Estado: ${form.local}`,
-      "",
-      form.mensagem,
-    ].join("\n");
-    window.location.href = `mailto:${CONTATO_EMAIL}?subject=${encodeURIComponent(
-      subject,
-    )}&body=${encodeURIComponent(body)}`;
-  }
-
-  return (
-    <form onSubmit={onSubmit} className="max-w-xl space-y-4" aria-label="Solicitar uma formação">
-      <div className="grid gap-4 sm:grid-cols-2">
-        <label className="block text-sm">
-          <span className="font-medium text-foreground">Seu nome</span>
-          <input
-            className={`mt-1.5 ${FIELD_CLS}`}
-            type="text"
-            value={form.nome}
-            onChange={(e) => set("nome", e.target.value)}
-            autoComplete="name"
-          />
-        </label>
-        <label className="block text-sm">
-          <span className="font-medium text-foreground">Instituição</span>
-          <input
-            className={`mt-1.5 ${FIELD_CLS}`}
-            type="text"
-            value={form.instituicao}
-            onChange={(e) => set("instituicao", e.target.value)}
-          />
-        </label>
-        <label className="block text-sm">
-          <span className="font-medium text-foreground">Público</span>
-          <input
-            className={`mt-1.5 ${FIELD_CLS}`}
-            type="text"
-            placeholder="famílias, educadores, profissionais…"
-            value={form.publico}
-            onChange={(e) => set("publico", e.target.value)}
-          />
-        </label>
-        <label className="block text-sm">
-          <span className="font-medium text-foreground">Formato</span>
-          <select
-            className={`mt-1.5 ${FIELD_CLS}`}
-            value={form.formato}
-            onChange={(e) => set("formato", e.target.value)}
-          >
-            <option>Palestra</option>
-            <option>Formação</option>
-            <option>Formação continuada</option>
-            <option>Ainda não sei</option>
-          </select>
-        </label>
-        <label className="block text-sm sm:col-span-2">
-          <span className="font-medium text-foreground">Cidade / Estado</span>
-          <input
-            className={`mt-1.5 ${FIELD_CLS}`}
-            type="text"
-            value={form.local}
-            onChange={(e) => set("local", e.target.value)}
-          />
-        </label>
-      </div>
-      <label className="block text-sm">
-        <span className="font-medium text-foreground">Mensagem</span>
-        <textarea
-          className={`mt-1.5 ${FIELD_CLS} min-h-[110px] resize-y`}
-          value={form.mensagem}
-          onChange={(e) => set("mensagem", e.target.value)}
-          placeholder="Conte um pouco sobre o contexto e o que a instituição espera."
-        />
-      </label>
-      <Button type="submit" variant="hero" size="lg">
-        Abrir e-mail com a solicitação
-      </Button>
-    </form>
   );
 }

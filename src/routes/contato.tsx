@@ -1,6 +1,7 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { Instagram, Mail } from "lucide-react";
 import { PageShell } from "@/components/voz/PageShell";
+import { ContactForm } from "@/components/voz/ContactForm";
 import { INSTAGRAM_HANDLE, INSTAGRAM_URL, CONTATO_EMAIL } from "@/components/voz/nav";
 
 const EMAIL = CONTATO_EMAIL;
@@ -47,13 +48,30 @@ function ContatoPage() {
         </a>
       </div>
 
+      <div className="mt-10">
+        <h2 className="text-lg font-semibold text-primary">Enviar uma mensagem</h2>
+        <p className="mt-3 max-w-xl text-sm leading-relaxed text-muted-foreground">
+          Escreva abaixo e a mensagem chega direto para a nossa caixa. Respondemos pelo e-mail que
+          você informar.
+        </p>
+        <div className="mt-6">
+          <ContactForm tipo="contato" />
+        </div>
+      </div>
+
       <div className="mt-10 rounded-[12px] border border-border bg-secondary p-6 sm:p-8">
         <h2 className="text-lg font-semibold text-primary">Solicitar uma formação ou palestra</h2>
         <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-          Para agilizar, inclua na mensagem: a instituição, o público (famílias, educadores,
-          profissionais…), o número aproximado de pessoas, o tema de interesse, o formato desejado
-          (encontro único, formação continuada, palestra) e a cidade/estado.
+          Para formações e palestras, use o formulário específico, que já pede instituição, público,
+          formato e cidade.
         </p>
+        <Link
+          to="/solucoes"
+          hash="solicitar"
+          className="mt-4 inline-flex text-sm font-semibold text-primary hover:text-accent"
+        >
+          Ir para o formulário de formação
+        </Link>
       </div>
 
       <p className="mt-8 rounded-[10px] border border-border bg-card p-5 text-sm leading-relaxed text-muted-foreground">
