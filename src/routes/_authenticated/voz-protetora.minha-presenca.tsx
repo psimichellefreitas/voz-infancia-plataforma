@@ -176,7 +176,7 @@ function MinhaPresencaPage() {
               {grupo.perguntas.map((pergunta, index) => {
                 const key = `${grupo.grupo}-${index}`;
                 return (
-                  <div key={key} className="rounded-[12px] border border-border bg-card p-5">
+                  <div key={key} className="rounded-[20px] border border-border/60 shadow-[var(--shadow-soft)] bg-card p-5">
                     <p className="text-sm font-semibold text-foreground/90">{pergunta}</p>
                     <div className="mt-3 flex flex-wrap gap-2">
                       {OPTIONS.map((option) => (
@@ -208,7 +208,7 @@ function MinhaPresencaPage() {
       </Button>
 
       {showResult && (
-        <div className="mt-7 rounded-[12px] border border-border bg-secondary p-6">
+        <div className="mt-7 rounded-[20px] border border-border/60 shadow-[var(--shadow-soft)] bg-secondary p-6">
           <div className="flex items-center justify-between gap-3">
             <h2 className="text-base font-bold uppercase tracking-[0.1em] text-primary">
               Seus próximos passos
@@ -246,7 +246,7 @@ function MinhaPresencaPage() {
                     <Link
                       to={sugestao.to as never}
                       search={previewSearch as never}
-                      className="flex items-start justify-between gap-3 rounded-[12px] border border-border bg-card p-4 shadow-[var(--shadow-soft)] transition-colors hover:border-accent"
+                      className="flex items-start justify-between gap-3 rounded-[20px] border border-border/60 shadow-[var(--shadow-soft)] bg-card p-4 shadow-[var(--shadow-soft)] transition-colors hover:border-accent"
                     >
                       <div>
                         <p className="text-sm font-bold text-primary">{sugestao.label}</p>

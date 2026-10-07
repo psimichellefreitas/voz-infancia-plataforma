@@ -42,7 +42,7 @@ import logoSrc from "@/assets/logo-voz-pela-infancia.png";
 import shotHome from "@/assets/voz-protetora-demo-home.jpg";
 import shotLista from "@/assets/voz-protetora-demo-lista.jpg";
 import shotOrientacao from "@/assets/voz-protetora-demo-orientacao.jpg";
-import shotBusca from "@/assets/voz-protetora-demo-busca.jpg";
+import shotAjuda from "@/assets/voz-protetora-demo-ajuda.jpg";
 
 export const Route = createFileRoute("/solucoes_/voz-protetora")({
   head: () => ({
@@ -179,9 +179,9 @@ const SCREENSHOTS = [
     alt: "Orientação completa para 'A criança não quer abraçar um familiar'",
   },
   {
-    src: shotBusca,
-    legenda: "Busca por palavra-chave",
-    alt: "Resultado da busca pela palavra 'medo'",
+    src: shotAjuda,
+    legenda: "Preciso de ajuda: a rede de proteção",
+    alt: "Tela Preciso de ajuda, com os canais da rede de proteção",
   },
 ];
 
@@ -618,28 +618,20 @@ function VozProtetoraPage() {
               <p className="mx-auto mt-3 max-w-xl text-center text-base text-muted-foreground">
                 Capturas reais da área do produto: é isso que você vai encontrar quando entrar.
               </p>
-              <div className="mt-8 grid gap-5 sm:grid-cols-2">
+              <div className="mt-10 grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-4">
                 {SCREENSHOTS.map((shot) => (
-                  <figure
-                    key={shot.legenda}
-                    className="overflow-hidden rounded-[22px] border border-border bg-card shadow-[var(--shadow-lift)] transition-transform hover:-translate-y-1"
-                  >
-                    <div className="flex items-center gap-1.5 border-b border-border bg-secondary px-4 py-2.5">
-                      <span className="h-2.5 w-2.5 rounded-full bg-voz-yellow/80" />
-                      <span className="h-2.5 w-2.5 rounded-full bg-accent/70" />
-                      <span className="h-2.5 w-2.5 rounded-full bg-primary/40" />
-                    </div>
-                    <div className="aspect-[16/10] overflow-hidden bg-secondary">
+                  <figure key={shot.legenda} className="text-center">
+                    <div className="overflow-hidden rounded-[26px] border-[5px] border-primary bg-primary shadow-[var(--shadow-lift)] transition-transform hover:-translate-y-1">
                       <img
                         src={shot.src}
                         alt={shot.alt}
                         loading="lazy"
-                        width={960}
-                        height={680}
-                        className="h-full w-full object-cover object-top"
+                        width={520}
+                        height={1040}
+                        className="block aspect-[1/2] w-full rounded-[20px] object-cover object-top"
                       />
                     </div>
-                    <figcaption className="border-t border-border px-4 py-3 text-sm font-semibold text-foreground/80">
+                    <figcaption className="mt-3 text-sm font-semibold leading-snug text-foreground/80">
                       {shot.legenda}
                     </figcaption>
                   </figure>

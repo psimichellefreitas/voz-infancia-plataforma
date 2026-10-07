@@ -37,7 +37,7 @@ function FortalecerLista() {
             to="/voz-protetora/fortalecer/$slug"
             params={{ slug: item.slug }}
             search={previewSearch}
-            className="flex items-center justify-between gap-4 rounded-[12px] border border-border bg-card px-5 py-4 transition-colors hover:border-accent"
+            className="flex items-center justify-between gap-4 rounded-[20px] border border-border/60 shadow-[var(--shadow-soft)] bg-card px-5 py-4 transition-colors hover:border-accent"
           >
             <span className="text-sm font-semibold text-foreground/90">
               <span className="mr-2">{item.emoji}</span>

@@ -60,7 +60,7 @@ function NotificacoesPage() {
             return (
               <li
                 key={item.id}
-                className="rounded-[12px] border border-border bg-card p-5 shadow-[var(--shadow-soft)]"
+                className="rounded-[20px] border border-border/60 shadow-[var(--shadow-soft)] bg-card p-5 shadow-[var(--shadow-soft)]"
               >
                 <div className="flex items-start justify-between gap-3">
                   <h2 className="text-sm font-bold text-primary">{item.titulo}</h2>

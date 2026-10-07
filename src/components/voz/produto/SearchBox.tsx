@@ -54,7 +54,7 @@ export function SearchBox({ autoFocus, placeholder }: SearchBoxProps) {
       {showResults && (
         <div className="mt-3 space-y-2">
           {results.length === 0 ? (
-            <div className="rounded-[12px] border border-border bg-card p-4 text-sm text-muted-foreground">
+            <div className="rounded-[20px] border border-border/60 shadow-[var(--shadow-soft)] bg-card p-4 text-sm text-muted-foreground">
               Nenhuma orientação encontrada para "{query}". Se a situação for urgente, veja{" "}
               <Link
                 to="/voz-protetora/preciso-de-ajuda"
@@ -71,7 +71,7 @@ export function SearchBox({ autoFocus, placeholder }: SearchBoxProps) {
                 key={`${result.porta}-${result.slug}`}
                 to={result.to as never}
                 search={previewSearch as never}
-                className="flex items-start gap-3 rounded-[12px] border border-border bg-card p-4 shadow-[var(--shadow-soft)] transition-colors hover:border-accent"
+                className="flex items-start gap-3 rounded-[20px] border border-border/60 shadow-[var(--shadow-soft)] bg-card p-4 shadow-[var(--shadow-soft)] transition-colors hover:border-accent"
               >
                 {result.emoji && <span className="text-lg leading-none">{result.emoji}</span>}
                 <div className="min-w-0">

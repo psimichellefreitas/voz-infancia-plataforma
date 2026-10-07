@@ -105,7 +105,7 @@ function MeuPassoPage() {
       intro="Registre um passo seu. Informação vira atitude. Fica só neste dispositivo: não enviamos este texto para nenhum servidor. Não registre dados sobre crianças."
       backTo={{ to: "/voz-protetora", label: "Voltar ao início" }}
     >
-      <div className="rounded-[12px] border border-border bg-card p-5 shadow-[var(--shadow-soft)] sm:p-6">
+      <div className="rounded-[20px] border border-border/60 shadow-[var(--shadow-soft)] bg-card p-5 shadow-[var(--shadow-soft)] sm:p-6">
         <Textarea
           value={text}
           onChange={(event) => setText(event.target.value)}
@@ -141,7 +141,7 @@ function MeuPassoPage() {
             {steps.map((step) => (
               <li
                 key={step.id}
-                className="flex items-start justify-between gap-3 rounded-[12px] border border-border bg-card px-4 py-3"
+                className="flex items-start justify-between gap-3 rounded-[20px] border border-border/60 shadow-[var(--shadow-soft)] bg-card px-4 py-3"
               >
                 <button
                   onClick={() => handleToggle(step.id)}

@@ -191,7 +191,7 @@ export function OrientationBody({
     <div className="space-y-4">
       <div className="print:hidden space-y-4">
         {passo && (
-          <section className="rounded-[12px] border-2 border-primary bg-primary/5 p-5 shadow-[var(--shadow-soft)] sm:p-6">
+          <section className="rounded-[22px] border-2 border-primary bg-primary/5 p-5 shadow-[var(--shadow-soft)] sm:p-6">
             <h2 className="text-sm font-bold uppercase tracking-[0.1em] text-primary">
               {passo.label}
             </h2>
@@ -200,7 +200,7 @@ export function OrientationBody({
         )}
 
         {ajuda && (
-          <section className="rounded-[12px] border border-accent bg-accent/10 p-5 shadow-[var(--shadow-soft)] sm:p-6">
+          <section className="rounded-[22px] border border-accent bg-accent/10 p-5 shadow-[var(--shadow-soft)] sm:p-6">
             <h2 className="text-sm font-bold uppercase tracking-[0.1em] text-primary">
               {ajuda.label}
             </h2>
@@ -213,7 +213,7 @@ export function OrientationBody({
             type="single"
             collapsible
             defaultValue={demaisBlocos[0]?.key}
-            className="rounded-[12px] border border-border bg-card px-5 shadow-[var(--shadow-soft)] sm:px-6"
+            className="rounded-[20px] border border-border/60 shadow-[var(--shadow-soft)] bg-card px-5 shadow-[var(--shadow-soft)] sm:px-6"
           >
             {demaisBlocos.map((block) => {
               const { temVariante, bodyExibido } = bodyExibidoDe(block);

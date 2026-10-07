@@ -32,7 +32,7 @@ function PrecisoDeAjudaPage() {
       intro="Algumas situações exigem apoio da rede de proteção e de profissionais. O Voz Protetora não substitui esse apoio: ele te ajuda a saber por onde começar."
       backTo={{ to: "/voz-protetora", label: "Voltar ao início" }}
     >
-      <div className="rounded-[12px] border-2 border-destructive/40 bg-destructive/5 p-5 sm:p-6">
+      <div className="rounded-[20px] border-2 border-destructive/40 bg-destructive/5 p-5 sm:p-6">
         <div className="flex items-center gap-2">
           <AlertTriangle className="h-5 w-5 text-destructive" />
           <h2 className="text-base font-bold text-destructive">
@@ -51,7 +51,7 @@ function PrecisoDeAjudaPage() {
         </h2>
         <div className="mt-4 grid gap-3 sm:grid-cols-2">
           {CANAIS_NACIONAIS.map((canal) => (
-            <div key={canal.nome} className="rounded-[12px] border border-border bg-card p-5">
+            <div key={canal.nome} className="rounded-[20px] border border-border/60 shadow-[var(--shadow-soft)] bg-card p-5">
               <div className="flex items-center gap-2">
                 <Phone className="h-4 w-4 text-accent" />
                 <h3 className="text-sm font-bold text-primary">{canal.nome}</h3>
@@ -73,7 +73,7 @@ function PrecisoDeAjudaPage() {
         </h2>
         <div className="mt-4 grid gap-3 sm:grid-cols-2">
           {AJUDA_CONTEUDO.map((item) => (
-            <div key={item.tema} className="rounded-[12px] border border-border bg-card p-5">
+            <div key={item.tema} className="rounded-[20px] border border-border/60 shadow-[var(--shadow-soft)] bg-card p-5">
               <div className="flex items-center gap-2">
                 <AlertTriangle className="h-4 w-4 text-accent" />
                 <h3 className="text-sm font-bold text-primary">{item.tema}</h3>
@@ -86,7 +86,7 @@ function PrecisoDeAjudaPage() {
         </div>
       </div>
 
-      <div className="mt-8 rounded-[12px] border border-border bg-secondary p-5">
+      <div className="mt-8 rounded-[20px] border border-border/60 shadow-[var(--shadow-soft)] bg-secondary p-5">
         <p className="text-sm leading-relaxed text-foreground/85">{AVISO_LEGAL}</p>
         <p className="mt-3 text-sm text-muted-foreground">
           Você não precisa ter certeza para procurar ajuda, e não precisa investigar ou resolver

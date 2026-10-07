@@ -29,7 +29,7 @@ function MinhaVozPage() {
         {MINHA_VOZ.map((item, index) => (
           <li
             key={item.title}
-            className="rounded-[12px] border border-border bg-card p-5 shadow-[var(--shadow-soft)]"
+            className="rounded-[20px] border border-border/60 shadow-[var(--shadow-soft)] bg-card p-5 shadow-[var(--shadow-soft)]"
           >
             <div className="flex items-center gap-3">
               <span className="grid h-8 w-8 place-items-center rounded-full bg-primary/10 text-sm font-bold text-primary">
@@ -44,7 +44,7 @@ function MinhaVozPage() {
         ))}
       </ol>
 
-      <blockquote className="mt-8 rounded-[12px] border-l-4 border-accent bg-card p-6 text-sm leading-relaxed text-foreground/90 sm:text-base">
+      <blockquote className="mt-8 rounded-[20px] border-l-4 border-accent bg-card p-6 text-sm leading-relaxed text-foreground/90 sm:text-base">
         “VER para perceber. OUVIR para compreender. ZELAR para proteger. Uma Voz Protetora não é
         um adulto que sabe tudo, é um adulto disposto a isso.”
       </blockquote>

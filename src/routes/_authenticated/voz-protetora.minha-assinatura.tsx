@@ -47,7 +47,7 @@ function MinhaCompraPage() {
       backTo={{ to: "/voz-protetora", label: "Voltar ao início" }}
     >
       {!hasSession ? (
-        <p className="rounded-[12px] border border-border bg-secondary p-4 text-sm leading-relaxed text-muted-foreground">
+        <p className="rounded-[20px] border border-border/60 shadow-[var(--shadow-soft)] bg-secondary p-4 text-sm leading-relaxed text-muted-foreground">
           Entre com a conta usada na compra para ver seus dados aqui.
         </p>
       ) : isLoading ? (
@@ -58,7 +58,7 @@ function MinhaCompraPage() {
         <p className="text-sm text-muted-foreground">Nenhuma compra aprovada encontrada.</p>
       ) : (
         <div className="space-y-5">
-          <div className="rounded-[12px] border border-border bg-card p-6 shadow-[var(--shadow-soft)]">
+          <div className="rounded-[20px] border border-border/60 shadow-[var(--shadow-soft)] bg-card p-6 shadow-[var(--shadow-soft)]">
             <div className="flex items-center gap-2">
               <CheckCircle2 className="h-5 w-5 text-accent" />
               <h2 className="text-base font-bold text-primary">Compra aprovada</h2>

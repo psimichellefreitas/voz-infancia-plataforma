@@ -44,14 +44,23 @@ function AuthPage() {
   const [email, setEmail] = useState("");
   const [sent, setSent] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [code, setCode] = useState("");
+  const [verifying, setVerifying] = useState(false);
 
   // Quem já tem sessão neste aparelho não precisa pedir link de novo.
   useEffect(() => {
     let cancelled = false;
-    supabase.auth.getSession().then(({ data }) => {
-      if (cancelled || !data.session) return;
-      navigate({ to: (redirect ?? "/voz-protetora") as never, replace: true });
-    });
+    try {
+      supabase.auth
+        .getSession()
+        .then(({ data }) => {
+          if (cancelled || !data.session) return;
+          navigate({ to: (redirect ?? "/voz-protetora") as never, replace: true });
+        })
+        .catch(() => {});
+    } catch {
+      // ambiente sem Supabase configurado (ex.: dev local): segue com o formulário normal
+    }
     return () => {
       cancelled = true;
     };
@@ -92,6 +101,25 @@ function AuthPage() {
     setSent(true);
   }
 
+  // Alternativa ao link: o mesmo e-mail traz um código de números, útil quando o e-mail é lido
+  // em outro aparelho ou quando o app instalado (que guarda o login separado do navegador)
+  // está aberto.
+  async function handleVerifyCode(event: React.FormEvent) {
+    event.preventDefault();
+    setVerifying(true);
+    const { error } = await supabase.auth.verifyOtp({
+      email: email.trim().toLowerCase(),
+      token: code.replace(/\D/g, ""),
+      type: "email",
+    });
+    setVerifying(false);
+    if (error) {
+      toast.error("Código inválido ou vencido. Confira os números ou peça um novo link.");
+      return;
+    }
+    navigate({ to: (redirect ?? "/voz-protetora") as never, replace: true });
+  }
+
 
   return (
     <div className="min-h-screen bg-background">
@@ -104,17 +132,53 @@ function AuthPage() {
           </p>
 
           {sent ? (
-            <div className="mt-8 rounded-[12px] border border-border bg-secondary p-6">
-              <Mail className="h-6 w-6 text-primary" />
-              <p className="mt-3 text-sm font-semibold text-primary">Link enviado.</p>
-              <p className="mt-2 text-sm text-muted-foreground">
-                Verifique sua caixa de entrada e abra o link para acessar o Voz Protetora.
-              </p>
+            <div className="mt-8 space-y-4">
+              <div className="rounded-[20px] border border-border bg-secondary p-6">
+                <Mail className="h-6 w-6 text-primary" />
+                <p className="mt-3 text-sm font-semibold text-primary">Link enviado.</p>
+                <p className="mt-2 text-sm text-muted-foreground">
+                  Verifique sua caixa de entrada (e o spam) e abra o link para acessar o Voz
+                  Protetora.
+                </p>
+              </div>
+              <form
+                onSubmit={handleVerifyCode}
+                className="rounded-[20px] border border-border bg-card p-6 shadow-[var(--shadow-soft)]"
+              >
+                <Label htmlFor="auth-code">Ou digite o código do e-mail</Label>
+                <Input
+                  id="auth-code"
+                  inputMode="numeric"
+                  autoComplete="one-time-code"
+                  maxLength={12}
+                  required
+                  value={code}
+                  onChange={(e) => setCode(e.target.value)}
+                  className="mt-2 text-center text-xl tracking-[0.3em]"
+                  placeholder="000000"
+                />
+                <Button
+                  type="submit"
+                  variant="hero"
+                  size="xl"
+                  className="mt-4 w-full"
+                  disabled={verifying || code.replace(/\D/g, "").length < 6}
+                >
+                  {verifying ? (
+                    <>
+                      <Loader2 className="h-4 w-4 animate-spin" />
+                      ENTRANDO...
+                    </>
+                  ) : (
+                    "ENTRAR COM O CÓDIGO"
+                  )}
+                </Button>
+              </form>
             </div>
           ) : (
             <form
               onSubmit={handleSubmit}
-              className="mt-8 rounded-[12px] border border-border bg-card p-6 shadow-[var(--shadow-soft)]"
+              className="mt-8 rounded-[20px] border border-border bg-card p-6 shadow-[var(--shadow-soft)]"
             >
               <Label htmlFor="auth-email">E-mail</Label>
               <Input
