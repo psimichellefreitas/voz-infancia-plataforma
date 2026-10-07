@@ -75,6 +75,20 @@ function TermosPage() {
           </li>
         </ul>
 
+        <H2>Licença de uso do Voz Protetora e dos bônus</H2>
+        <p>
+          A compra do Voz Protetora concede uma licença pessoal, não exclusiva e intransferível de
+          uso do produto e dos bônus para imprimir, para pessoas responsáveis por proteger crianças
+          (famílias, cuidadores, educadores e profissionais). Não é permitido compartilhar o seu
+          acesso com terceiros, nem reproduzir, vender, redistribuir ou publicar o conteúdo e os
+          bônus, nem usá-los para fins comerciais ou institucionais, sem autorização prévia e
+          expressa. Os bônus são impressos a partir do próprio aplicativo.{" "}
+          <span className="text-muted-foreground/80">
+            [Revisão jurídica: confirmar o alcance da licença, o uso por instituições e as
+            consequências do descumprimento.]
+          </span>
+        </p>
+
         <H2>Links externos</H2>
         <p>
           O site pode conter links para páginas de terceiros. Não nos responsabilizamos pelo

@@ -37,7 +37,7 @@ export function findBonus(slug: string) {
 
 /**
  * Aviso de direitos autorais impresso em todos os bônus. PROPOSTA: texto e alcance de uso
- * (pessoal e familiar) aguardam a aprovação da idealizadora.
+ * (uso pessoal de quem é responsável por proteger crianças, definido em 2026-10-07) seguem para revisão jurídica.
  */
 export const AVISO_DIREITOS =
-  "© 2026 Voz Pela Infância. Todos os direitos reservados. Material para uso pessoal e familiar. Não reproduza, venda ou distribua sem autorização.";
+  "© 2026 Voz Pela Infância. Todos os direitos reservados. Material de uso pessoal de quem é responsável por proteger crianças. Não reproduza, venda ou distribua sem autorização.";
