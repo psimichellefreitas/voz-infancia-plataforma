@@ -116,12 +116,7 @@ function MeusProdutosPage() {
             </div>
           )}
         </div>
-
-        <p className="mt-6 text-center text-sm">
-          <Link to="/solucoes" className="font-semibold text-primary underline">
-            Conheça os outros produtos
-          </Link>
-        </p>
+        {/* "Conheça os outros produtos": entra quando houver o 2º produto publicado (tela Conheça dentro do app). */}
       </div>
 
       <Sheet open={menuOpen} onOpenChange={setMenuOpen}>
