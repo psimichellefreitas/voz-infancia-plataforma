@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
-import { sendContactMessage } from "@/lib/contact.functions";
 import { CONTATO_EMAIL } from "./nav";
 
 const FIELD_CLS =
@@ -37,10 +36,13 @@ export function ContactForm({ tipo }: { tipo: "contato" | "formacao" }) {
     if (!consentimento) return;
     setStatus("sending");
     try {
-      const res = await sendContactMessage({
-        data: { tipo, ...form, consentimento: true },
+      const res = await fetch("/api/contato", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ tipo, ...form, consentimento: true }),
       });
-      setStatus(res.ok ? "sent" : "error");
+      const body = (await res.json().catch(() => ({ ok: false }))) as { ok?: boolean };
+      setStatus(res.ok && body.ok ? "sent" : "error");
     } catch {
       setStatus("error");
     }

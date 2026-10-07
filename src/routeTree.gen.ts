@@ -30,6 +30,7 @@ import { Route as SolucoesRouteImport } from './routes/solucoes'
 import { Route as TermosDeUsoRouteImport } from './routes/termos-de-uso'
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 import { Route as AuthenticatedMeusProdutosRouteImport } from './routes/_authenticated/meus-produtos'
+import { Route as ApiContatoRouteImport } from './routes/api/contato'
 import { Route as PagamentoAprovadoRouteImport } from './routes/pagamento.aprovado'
 import { Route as PagamentoPendenteRouteImport } from './routes/pagamento.pendente'
 import { Route as PagamentoProcessandoRouteImport } from './routes/pagamento.processando'
@@ -160,6 +161,11 @@ const AuthenticatedMeusProdutosRoute =
     path: '/meus-produtos',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const ApiContatoRoute = ApiContatoRouteImport.update({
+  id: '/api/contato',
+  path: '/api/contato',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PagamentoAprovadoRoute = PagamentoAprovadoRouteImport.update({
   id: '/pagamento/aprovado',
   path: '/pagamento/aprovado',
@@ -320,6 +326,7 @@ export interface FileRoutesByFullPath {
   '/termos-de-uso': typeof TermosDeUsoRoute
   '/admin': typeof AuthenticatedAdminRoute
   '/meus-produtos': typeof AuthenticatedMeusProdutosRoute
+  '/api/contato': typeof ApiContatoRoute
   '/pagamento/aprovado': typeof PagamentoAprovadoRoute
   '/pagamento/pendente': typeof PagamentoPendenteRoute
   '/pagamento/processando': typeof PagamentoProcessandoRoute
@@ -366,6 +373,7 @@ export interface FileRoutesByTo {
   '/termos-de-uso': typeof TermosDeUsoRoute
   '/admin': typeof AuthenticatedAdminRoute
   '/meus-produtos': typeof AuthenticatedMeusProdutosRoute
+  '/api/contato': typeof ApiContatoRoute
   '/pagamento/aprovado': typeof PagamentoAprovadoRoute
   '/pagamento/pendente': typeof PagamentoPendenteRoute
   '/pagamento/processando': typeof PagamentoProcessandoRoute
@@ -414,6 +422,7 @@ export interface FileRoutesById {
   '/termos-de-uso': typeof TermosDeUsoRoute
   '/_authenticated/admin': typeof AuthenticatedAdminRoute
   '/_authenticated/meus-produtos': typeof AuthenticatedMeusProdutosRoute
+  '/api/contato': typeof ApiContatoRoute
   '/pagamento/aprovado': typeof PagamentoAprovadoRoute
   '/pagamento/pendente': typeof PagamentoPendenteRoute
   '/pagamento/processando': typeof PagamentoProcessandoRoute
@@ -462,6 +471,7 @@ export interface FileRouteTypes {
     | '/termos-de-uso'
     | '/admin'
     | '/meus-produtos'
+    | '/api/contato'
     | '/pagamento/aprovado'
     | '/pagamento/pendente'
     | '/pagamento/processando'
@@ -508,6 +518,7 @@ export interface FileRouteTypes {
     | '/termos-de-uso'
     | '/admin'
     | '/meus-produtos'
+    | '/api/contato'
     | '/pagamento/aprovado'
     | '/pagamento/pendente'
     | '/pagamento/processando'
@@ -555,6 +566,7 @@ export interface FileRouteTypes {
     | '/termos-de-uso'
     | '/_authenticated/admin'
     | '/_authenticated/meus-produtos'
+    | '/api/contato'
     | '/pagamento/aprovado'
     | '/pagamento/pendente'
     | '/pagamento/processando'
@@ -601,6 +613,7 @@ export interface RootRouteChildren {
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SolucoesRoute: typeof SolucoesRoute
   TermosDeUsoRoute: typeof TermosDeUsoRoute
+  ApiContatoRoute: typeof ApiContatoRoute
   PagamentoAprovadoRoute: typeof PagamentoAprovadoRoute
   PagamentoPendenteRoute: typeof PagamentoPendenteRoute
   PagamentoProcessandoRoute: typeof PagamentoProcessandoRoute
@@ -758,6 +771,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/meus-produtos'
       preLoaderRoute: typeof AuthenticatedMeusProdutosRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/api/contato': {
+      id: '/api/contato'
+      path: '/api/contato'
+      fullPath: '/api/contato'
+      preLoaderRoute: typeof ApiContatoRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/pagamento/aprovado': {
       id: '/pagamento/aprovado'
@@ -1012,6 +1032,7 @@ const rootRouteChildren: RootRouteChildren = {
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   SolucoesRoute: SolucoesRoute,
   TermosDeUsoRoute: TermosDeUsoRoute,
+  ApiContatoRoute: ApiContatoRoute,
   PagamentoAprovadoRoute: PagamentoAprovadoRoute,
   PagamentoPendenteRoute: PagamentoPendenteRoute,
   PagamentoProcessandoRoute: PagamentoProcessandoRoute,
