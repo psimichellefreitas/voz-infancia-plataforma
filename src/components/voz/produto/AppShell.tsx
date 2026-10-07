@@ -1,5 +1,5 @@
 import { useEffect, useState, type ReactNode } from "react";
-import { BookOpen, Download, Printer } from "lucide-react";
+import { BookOpen, Download, Mail, Printer } from "lucide-react";
 import { Link, useNavigate } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
@@ -23,6 +23,7 @@ import { getMyProductAccess } from "@/lib/access.functions";
 import { usePreviewSearch, usePreviewUnlocked } from "@/lib/preview-mode";
 import { useInstalarApp } from "@/lib/use-instalar-app";
 import { useNotificacoes } from "@/lib/voz-protetora/notificacoes";
+import { CONTATO_EMAIL } from "@/components/voz/nav";
 import { cn } from "@/lib/utils";
 
 /**
@@ -185,7 +186,7 @@ function AppTabBar() {
       </nav>
 
       <Sheet open={menuOpen} onOpenChange={setMenuOpen}>
-        <SheetContent side="bottom" className="mx-auto max-w-[520px] rounded-t-3xl">
+        <SheetContent side="bottom" className="mx-auto max-h-[88vh] max-w-[520px] overflow-y-auto rounded-t-3xl">
           <SheetHeader>
             <SheetTitle className="text-left text-primary">Menu</SheetTitle>
           </SheetHeader>
@@ -202,6 +203,20 @@ function AppTabBar() {
                 {item.label}
               </Link>
             ))}
+            {/* Contato: dúvidas sobre o app ou a compra. A linha de risco evita que relatos sensíveis cheguem por e-mail. */}
+            <a
+              href={`mailto:${CONTATO_EMAIL}?subject=${encodeURIComponent("Voz Protetora: dúvida")}`}
+              className="flex items-start gap-3 border-b border-border/70 py-3.5 text-base font-semibold text-foreground/90"
+            >
+              <Mail className="mt-0.5 h-5 w-5 shrink-0 text-accent" />
+              <span>
+                Falar com a gente
+                <span className="block text-sm font-normal text-primary underline">{CONTATO_EMAIL}</span>
+                <span className="mt-0.5 block text-xs font-normal leading-snug text-muted-foreground">
+                  Dúvidas sobre o app ou a compra. Em situação de risco, use Ajuda.
+                </span>
+              </span>
+            </a>
             {instalarApp.disponivel && (
               <>
                 <button
