@@ -29,6 +29,7 @@ import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as SolucoesRouteImport } from './routes/solucoes'
 import { Route as TermosDeUsoRouteImport } from './routes/termos-de-uso'
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
+import { Route as AuthenticatedMeusProdutosRouteImport } from './routes/_authenticated/meus-produtos'
 import { Route as PagamentoAprovadoRouteImport } from './routes/pagamento.aprovado'
 import { Route as PagamentoPendenteRouteImport } from './routes/pagamento.pendente'
 import { Route as PagamentoProcessandoRouteImport } from './routes/pagamento.processando'
@@ -149,6 +150,12 @@ const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
   path: '/admin',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedMeusProdutosRoute =
+  AuthenticatedMeusProdutosRouteImport.update({
+    id: '/meus-produtos',
+    path: '/meus-produtos',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const PagamentoAprovadoRoute = PagamentoAprovadoRouteImport.update({
   id: '/pagamento/aprovado',
   path: '/pagamento/aprovado',
@@ -285,6 +292,7 @@ export interface FileRoutesByFullPath {
   '/solucoes': typeof SolucoesRoute
   '/termos-de-uso': typeof TermosDeUsoRoute
   '/admin': typeof AuthenticatedAdminRoute
+  '/meus-produtos': typeof AuthenticatedMeusProdutosRoute
   '/pagamento/aprovado': typeof PagamentoAprovadoRoute
   '/pagamento/pendente': typeof PagamentoPendenteRoute
   '/pagamento/processando': typeof PagamentoProcessandoRoute
@@ -326,6 +334,7 @@ export interface FileRoutesByTo {
   '/solucoes': typeof SolucoesRoute
   '/termos-de-uso': typeof TermosDeUsoRoute
   '/admin': typeof AuthenticatedAdminRoute
+  '/meus-produtos': typeof AuthenticatedMeusProdutosRoute
   '/pagamento/aprovado': typeof PagamentoAprovadoRoute
   '/pagamento/pendente': typeof PagamentoPendenteRoute
   '/pagamento/processando': typeof PagamentoProcessandoRoute
@@ -369,6 +378,7 @@ export interface FileRoutesById {
   '/solucoes': typeof SolucoesRoute
   '/termos-de-uso': typeof TermosDeUsoRoute
   '/_authenticated/admin': typeof AuthenticatedAdminRoute
+  '/_authenticated/meus-produtos': typeof AuthenticatedMeusProdutosRoute
   '/pagamento/aprovado': typeof PagamentoAprovadoRoute
   '/pagamento/pendente': typeof PagamentoPendenteRoute
   '/pagamento/processando': typeof PagamentoProcessandoRoute
@@ -412,6 +422,7 @@ export interface FileRouteTypes {
     | '/solucoes'
     | '/termos-de-uso'
     | '/admin'
+    | '/meus-produtos'
     | '/pagamento/aprovado'
     | '/pagamento/pendente'
     | '/pagamento/processando'
@@ -453,6 +464,7 @@ export interface FileRouteTypes {
     | '/solucoes'
     | '/termos-de-uso'
     | '/admin'
+    | '/meus-produtos'
     | '/pagamento/aprovado'
     | '/pagamento/pendente'
     | '/pagamento/processando'
@@ -495,6 +507,7 @@ export interface FileRouteTypes {
     | '/solucoes'
     | '/termos-de-uso'
     | '/_authenticated/admin'
+    | '/_authenticated/meus-produtos'
     | '/pagamento/aprovado'
     | '/pagamento/pendente'
     | '/pagamento/processando'
@@ -687,6 +700,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/meus-produtos': {
+      id: '/_authenticated/meus-produtos'
+      path: '/meus-produtos'
+      fullPath: '/meus-produtos'
+      preLoaderRoute: typeof AuthenticatedMeusProdutosRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/pagamento/aprovado': {
       id: '/pagamento/aprovado'
       path: '/pagamento/aprovado'
@@ -832,6 +852,7 @@ declare module '@tanstack/react-router' {
 
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedAdminRoute: typeof AuthenticatedAdminRoute
+  AuthenticatedMeusProdutosRoute: typeof AuthenticatedMeusProdutosRoute
   AuthenticatedVozProtetoraBuscaRoute: typeof AuthenticatedVozProtetoraBuscaRoute
   AuthenticatedVozProtetoraMeuPassoRoute: typeof AuthenticatedVozProtetoraMeuPassoRoute
   AuthenticatedVozProtetoraMinhaAssinaturaRoute: typeof AuthenticatedVozProtetoraMinhaAssinaturaRoute
@@ -850,6 +871,7 @@ interface AuthenticatedRouteRouteChildren {
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedAdminRoute: AuthenticatedAdminRoute,
+  AuthenticatedMeusProdutosRoute: AuthenticatedMeusProdutosRoute,
   AuthenticatedVozProtetoraBuscaRoute: AuthenticatedVozProtetoraBuscaRoute,
   AuthenticatedVozProtetoraMeuPassoRoute:
     AuthenticatedVozProtetoraMeuPassoRoute,

@@ -30,6 +30,7 @@ import { cn } from "@/lib/utils";
  * Mesma regra de acesso da ProdutoShell: a autorização é sempre validada no backend.
  */
 const MENU_ITEMS = [
+  { icon: Home, to: "/meus-produtos", label: "Meus produtos" },
   { icon: Shield, to: "/voz-protetora/minha-voz", label: "Minha Voz Protetora" },
   { icon: ClipboardList, to: "/voz-protetora/minha-presenca", label: "Minha Presença Protetiva" },
   { icon: ArrowRight, to: "/voz-protetora/meu-passo", label: "Meu Passo de Proteção" },
