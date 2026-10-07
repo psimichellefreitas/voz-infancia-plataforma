@@ -25,15 +25,22 @@ const reRotuloComFala = new RegExp(`^\\*\\*(.+?):?\\*\\*:?\\s+${ASPAS_ABRE}(.+)$
 const reFala = new RegExp(`^${ASPAS_ABRE}(.+?)${ASPAS_FECHA}(?:\\s*\\((.+)\\))?\\.?$`);
 const reParaComFala = new RegExp(`^(Para [^:"“]+):\\s*${ASPAS_ABRE}(.+)${ASPAS_FECHA}\\.?$`);
 
-function papelDoRotulo(rotulo?: string): PapelFala {
-  return rotulo && /(outra pessoa|outro adulto|outros adultos|adulto|pessoa)/i.test(rotulo)
-    ? "outro"
-    : "crianca";
+/**
+ * Para quem a fala é dita, pelo começo do rótulo: "Para a criança..." é fala à criança; qualquer outro
+ * "Para ..." (a pessoa, outros adultos, quem trouxe a informação) é fala a um adulto. Rótulos que
+ * não começam com "Para" mantêm o papel anterior.
+ */
+function papelDoRotulo(rotulo: string | undefined, anterior: PapelFala = "crianca"): PapelFala {
+  if (!rotulo) return anterior;
+  if (/^Para (a )?crian[cç]a/i.test(rotulo) || /^À crian[cç]a/i.test(rotulo)) return "crianca";
+  if (/^Para /i.test(rotulo)) return "outro";
+  return anterior;
 }
 
 export function separarFalas(body: string): ElementoFala[] | null {
   const elementos: ElementoFala[] = [];
   let rotuloAtual: string | undefined;
+  let papelAtual: PapelFala = "crianca";
   let achouFala = false;
 
   for (const bruta of body.split("\n")) {
@@ -54,7 +61,8 @@ export function separarFalas(body: string): ElementoFala[] | null {
     const rotuloComFala = linha.match(reRotuloComFala);
     if (rotuloComFala) {
       rotuloAtual = rotuloComFala[1]!;
-      const papel = papelDoRotulo(rotuloAtual);
+      papelAtual = papelDoRotulo(rotuloAtual, papelAtual);
+      const papel = papelAtual;
       elementos.push({ tipo: "rotulo", texto: rotuloAtual, papel });
       elementos.push({ tipo: "fala", texto: rotuloComFala[2]!, papel });
       achouFala = true;
@@ -64,13 +72,15 @@ export function separarFalas(body: string): ElementoFala[] | null {
     const rotuloSozinho = linha.match(reRotuloSozinho);
     if (rotuloSozinho) {
       rotuloAtual = rotuloSozinho[1]!;
-      elementos.push({ tipo: "rotulo", texto: rotuloAtual, papel: papelDoRotulo(rotuloAtual) });
+      papelAtual = papelDoRotulo(rotuloAtual, papelAtual);
+      elementos.push({ tipo: "rotulo", texto: rotuloAtual, papel: papelAtual });
       continue;
     }
 
     const paraComFala = conteudo.match(reParaComFala);
     if (paraComFala) {
-      const papel = papelDoRotulo(paraComFala[1]);
+      const papel = papelDoRotulo(paraComFala[1], papelAtual);
+      papelAtual = papel;
       elementos.push({ tipo: "rotulo", texto: paraComFala[1]!, papel });
       elementos.push({ tipo: "fala", texto: paraComFala[2]!, papel });
       achouFala = true;
@@ -83,7 +93,7 @@ export function separarFalas(body: string): ElementoFala[] | null {
         tipo: "fala",
         texto: fala[1]!,
         nota: fala[2],
-        papel: papelDoRotulo(rotuloAtual),
+        papel: papelAtual,
       });
       achouFala = true;
       continue;
