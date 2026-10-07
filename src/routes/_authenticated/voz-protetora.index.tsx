@@ -5,6 +5,7 @@ import {
   ChevronRight,
   ClipboardList,
   CreditCard,
+  Printer,
   Search,
   Shield,
   Sprout,
@@ -175,6 +176,26 @@ function VozProtetoraHome() {
           </Link>
         ))}
       </div>
+      {/* Bônus para imprimir */}
+      <Link
+        to="/voz-protetora/bonus"
+        search={previewSearch}
+        className="flex items-center gap-4 rounded-[22px] bg-card p-4 shadow-[var(--shadow-soft)] transition-shadow active:scale-[0.99] hover:shadow-[var(--shadow-lift)]"
+      >
+        <span className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-voz-yellow/30 text-[#8A5F00] dark:text-voz-yellow">
+          <Printer className="h-6 w-6" />
+        </span>
+        <span className="min-w-0 flex-1">
+          <span className="block text-[15px] font-bold tracking-wide text-primary">
+            BÔNUS PARA IMPRIMIR
+          </span>
+          <span className="mt-0.5 block text-[13px] leading-snug text-muted-foreground">
+            Materiais para imprimir e usar com a criança e com quem cuida dela.
+          </span>
+        </span>
+        <ChevronRight className="h-5 w-5 shrink-0 text-muted-foreground" />
+      </Link>
+
     </AppShell>
   );
 }

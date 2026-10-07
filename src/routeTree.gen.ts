@@ -47,6 +47,8 @@ import { Route as AuthenticatedVozProtetoraPrecisoDeAjudaRouteImport } from './r
 import { Route as ApiPublicKeepaliveRouteImport } from './routes/api/public/keepalive'
 import { Route as AuthenticatedVozProtetoraAconteceuIndexRouteImport } from './routes/_authenticated/voz-protetora.aconteceu.index'
 import { Route as AuthenticatedVozProtetoraAconteceuSlugRouteImport } from './routes/_authenticated/voz-protetora.aconteceu.$slug'
+import { Route as AuthenticatedVozProtetoraBonusIndexRouteImport } from './routes/_authenticated/voz-protetora.bonus.index'
+import { Route as AuthenticatedVozProtetoraBonusSlugRouteImport } from './routes/_authenticated/voz-protetora.bonus.$slug'
 import { Route as AuthenticatedVozProtetoraFortalecerIndexRouteImport } from './routes/_authenticated/voz-protetora.fortalecer.index'
 import { Route as AuthenticatedVozProtetoraFortalecerSlugRouteImport } from './routes/_authenticated/voz-protetora.fortalecer.$slug'
 import { Route as AuthenticatedVozProtetoraVaiAcontecerIndexRouteImport } from './routes/_authenticated/voz-protetora.vai-acontecer.index'
@@ -254,6 +256,18 @@ const AuthenticatedVozProtetoraAconteceuSlugRoute =
     path: '/voz-protetora/aconteceu/$slug',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedVozProtetoraBonusIndexRoute =
+  AuthenticatedVozProtetoraBonusIndexRouteImport.update({
+    id: '/voz-protetora/bonus/',
+    path: '/voz-protetora/bonus/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedVozProtetoraBonusSlugRoute =
+  AuthenticatedVozProtetoraBonusSlugRouteImport.update({
+    id: '/voz-protetora/bonus/$slug',
+    path: '/voz-protetora/bonus/$slug',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedVozProtetoraFortalecerIndexRoute =
   AuthenticatedVozProtetoraFortalecerIndexRouteImport.update({
     id: '/voz-protetora/fortalecer/',
@@ -322,10 +336,12 @@ export interface FileRoutesByFullPath {
   '/api/public/keepalive': typeof ApiPublicKeepaliveRoute
   '/voz-protetora/': typeof AuthenticatedVozProtetoraIndexRoute
   '/voz-protetora/aconteceu/$slug': typeof AuthenticatedVozProtetoraAconteceuSlugRoute
+  '/voz-protetora/bonus/$slug': typeof AuthenticatedVozProtetoraBonusSlugRoute
   '/voz-protetora/fortalecer/$slug': typeof AuthenticatedVozProtetoraFortalecerSlugRoute
   '/voz-protetora/vai-acontecer/$slug': typeof AuthenticatedVozProtetoraVaiAcontecerSlugRoute
   '/api/public/webhooks/mercadopago': typeof ApiPublicWebhooksMercadopagoRoute
   '/voz-protetora/aconteceu/': typeof AuthenticatedVozProtetoraAconteceuIndexRoute
+  '/voz-protetora/bonus/': typeof AuthenticatedVozProtetoraBonusIndexRoute
   '/voz-protetora/fortalecer/': typeof AuthenticatedVozProtetoraFortalecerIndexRoute
   '/voz-protetora/vai-acontecer/': typeof AuthenticatedVozProtetoraVaiAcontecerIndexRoute
 }
@@ -366,10 +382,12 @@ export interface FileRoutesByTo {
   '/api/public/keepalive': typeof ApiPublicKeepaliveRoute
   '/voz-protetora': typeof AuthenticatedVozProtetoraIndexRoute
   '/voz-protetora/aconteceu/$slug': typeof AuthenticatedVozProtetoraAconteceuSlugRoute
+  '/voz-protetora/bonus/$slug': typeof AuthenticatedVozProtetoraBonusSlugRoute
   '/voz-protetora/fortalecer/$slug': typeof AuthenticatedVozProtetoraFortalecerSlugRoute
   '/voz-protetora/vai-acontecer/$slug': typeof AuthenticatedVozProtetoraVaiAcontecerSlugRoute
   '/api/public/webhooks/mercadopago': typeof ApiPublicWebhooksMercadopagoRoute
   '/voz-protetora/aconteceu': typeof AuthenticatedVozProtetoraAconteceuIndexRoute
+  '/voz-protetora/bonus': typeof AuthenticatedVozProtetoraBonusIndexRoute
   '/voz-protetora/fortalecer': typeof AuthenticatedVozProtetoraFortalecerIndexRoute
   '/voz-protetora/vai-acontecer': typeof AuthenticatedVozProtetoraVaiAcontecerIndexRoute
 }
@@ -412,10 +430,12 @@ export interface FileRoutesById {
   '/api/public/keepalive': typeof ApiPublicKeepaliveRoute
   '/_authenticated/voz-protetora/': typeof AuthenticatedVozProtetoraIndexRoute
   '/_authenticated/voz-protetora/aconteceu/$slug': typeof AuthenticatedVozProtetoraAconteceuSlugRoute
+  '/_authenticated/voz-protetora/bonus/$slug': typeof AuthenticatedVozProtetoraBonusSlugRoute
   '/_authenticated/voz-protetora/fortalecer/$slug': typeof AuthenticatedVozProtetoraFortalecerSlugRoute
   '/_authenticated/voz-protetora/vai-acontecer/$slug': typeof AuthenticatedVozProtetoraVaiAcontecerSlugRoute
   '/api/public/webhooks/mercadopago': typeof ApiPublicWebhooksMercadopagoRoute
   '/_authenticated/voz-protetora/aconteceu/': typeof AuthenticatedVozProtetoraAconteceuIndexRoute
+  '/_authenticated/voz-protetora/bonus/': typeof AuthenticatedVozProtetoraBonusIndexRoute
   '/_authenticated/voz-protetora/fortalecer/': typeof AuthenticatedVozProtetoraFortalecerIndexRoute
   '/_authenticated/voz-protetora/vai-acontecer/': typeof AuthenticatedVozProtetoraVaiAcontecerIndexRoute
 }
@@ -458,10 +478,12 @@ export interface FileRouteTypes {
     | '/api/public/keepalive'
     | '/voz-protetora/'
     | '/voz-protetora/aconteceu/$slug'
+    | '/voz-protetora/bonus/$slug'
     | '/voz-protetora/fortalecer/$slug'
     | '/voz-protetora/vai-acontecer/$slug'
     | '/api/public/webhooks/mercadopago'
     | '/voz-protetora/aconteceu/'
+    | '/voz-protetora/bonus/'
     | '/voz-protetora/fortalecer/'
     | '/voz-protetora/vai-acontecer/'
   fileRoutesByTo: FileRoutesByTo
@@ -502,10 +524,12 @@ export interface FileRouteTypes {
     | '/api/public/keepalive'
     | '/voz-protetora'
     | '/voz-protetora/aconteceu/$slug'
+    | '/voz-protetora/bonus/$slug'
     | '/voz-protetora/fortalecer/$slug'
     | '/voz-protetora/vai-acontecer/$slug'
     | '/api/public/webhooks/mercadopago'
     | '/voz-protetora/aconteceu'
+    | '/voz-protetora/bonus'
     | '/voz-protetora/fortalecer'
     | '/voz-protetora/vai-acontecer'
   id:
@@ -547,10 +571,12 @@ export interface FileRouteTypes {
     | '/api/public/keepalive'
     | '/_authenticated/voz-protetora/'
     | '/_authenticated/voz-protetora/aconteceu/$slug'
+    | '/_authenticated/voz-protetora/bonus/$slug'
     | '/_authenticated/voz-protetora/fortalecer/$slug'
     | '/_authenticated/voz-protetora/vai-acontecer/$slug'
     | '/api/public/webhooks/mercadopago'
     | '/_authenticated/voz-protetora/aconteceu/'
+    | '/_authenticated/voz-protetora/bonus/'
     | '/_authenticated/voz-protetora/fortalecer/'
     | '/_authenticated/voz-protetora/vai-acontecer/'
   fileRoutesById: FileRoutesById
@@ -852,6 +878,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedVozProtetoraAconteceuSlugRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/voz-protetora/bonus/': {
+      id: '/_authenticated/voz-protetora/bonus/'
+      path: '/voz-protetora/bonus'
+      fullPath: '/voz-protetora/bonus/'
+      preLoaderRoute: typeof AuthenticatedVozProtetoraBonusIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/voz-protetora/bonus/$slug': {
+      id: '/_authenticated/voz-protetora/bonus/$slug'
+      path: '/voz-protetora/bonus/$slug'
+      fullPath: '/voz-protetora/bonus/$slug'
+      preLoaderRoute: typeof AuthenticatedVozProtetoraBonusSlugRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/voz-protetora/fortalecer/': {
       id: '/_authenticated/voz-protetora/fortalecer/'
       path: '/voz-protetora/fortalecer'
@@ -903,9 +943,11 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedVozProtetoraPrecisoDeAjudaRoute: typeof AuthenticatedVozProtetoraPrecisoDeAjudaRoute
   AuthenticatedVozProtetoraIndexRoute: typeof AuthenticatedVozProtetoraIndexRoute
   AuthenticatedVozProtetoraAconteceuSlugRoute: typeof AuthenticatedVozProtetoraAconteceuSlugRoute
+  AuthenticatedVozProtetoraBonusSlugRoute: typeof AuthenticatedVozProtetoraBonusSlugRoute
   AuthenticatedVozProtetoraFortalecerSlugRoute: typeof AuthenticatedVozProtetoraFortalecerSlugRoute
   AuthenticatedVozProtetoraVaiAcontecerSlugRoute: typeof AuthenticatedVozProtetoraVaiAcontecerSlugRoute
   AuthenticatedVozProtetoraAconteceuIndexRoute: typeof AuthenticatedVozProtetoraAconteceuIndexRoute
+  AuthenticatedVozProtetoraBonusIndexRoute: typeof AuthenticatedVozProtetoraBonusIndexRoute
   AuthenticatedVozProtetoraFortalecerIndexRoute: typeof AuthenticatedVozProtetoraFortalecerIndexRoute
   AuthenticatedVozProtetoraVaiAcontecerIndexRoute: typeof AuthenticatedVozProtetoraVaiAcontecerIndexRoute
 }
@@ -931,12 +973,16 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedVozProtetoraIndexRoute: AuthenticatedVozProtetoraIndexRoute,
   AuthenticatedVozProtetoraAconteceuSlugRoute:
     AuthenticatedVozProtetoraAconteceuSlugRoute,
+  AuthenticatedVozProtetoraBonusSlugRoute:
+    AuthenticatedVozProtetoraBonusSlugRoute,
   AuthenticatedVozProtetoraFortalecerSlugRoute:
     AuthenticatedVozProtetoraFortalecerSlugRoute,
   AuthenticatedVozProtetoraVaiAcontecerSlugRoute:
     AuthenticatedVozProtetoraVaiAcontecerSlugRoute,
   AuthenticatedVozProtetoraAconteceuIndexRoute:
     AuthenticatedVozProtetoraAconteceuIndexRoute,
+  AuthenticatedVozProtetoraBonusIndexRoute:
+    AuthenticatedVozProtetoraBonusIndexRoute,
   AuthenticatedVozProtetoraFortalecerIndexRoute:
     AuthenticatedVozProtetoraFortalecerIndexRoute,
   AuthenticatedVozProtetoraVaiAcontecerIndexRoute:

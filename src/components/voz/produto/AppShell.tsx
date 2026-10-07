@@ -1,5 +1,5 @@
 import { useEffect, useState, type ReactNode } from "react";
-import { BookOpen, Download } from "lucide-react";
+import { BookOpen, Download, Printer } from "lucide-react";
 import { Link, useNavigate } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
@@ -35,6 +35,7 @@ const MENU_ITEMS = [
   { icon: ClipboardList, to: "/voz-protetora/minha-presenca", label: "Minha Presença Protetiva" },
   { icon: ArrowRight, to: "/voz-protetora/meu-passo", label: "Meu Passo de Proteção" },
   { icon: BookOpen, to: "/voz-protetora/como-usar", label: "Como usar o app" },
+  { icon: Printer, to: "/voz-protetora/bonus", label: "Bônus para imprimir" },
   { icon: CreditCard, to: "/voz-protetora/minha-assinatura", label: "Minha compra" },
 ] as const;
 
@@ -62,8 +63,8 @@ export function AppShell({ children }: { children: ReactNode }) {
   const allowed = previewUnlocked || data?.hasAccess;
 
   return (
-    <div className="min-h-screen bg-[#F7F1E6] text-foreground dark:bg-background print:bg-white">
-      <div className="mx-auto min-h-screen max-w-[520px] px-4 pb-[calc(104px+env(safe-area-inset-bottom,0px))] print:max-w-none print:px-0 print:pb-0">
+    <div className="min-h-screen bg-[#F7F1E6] text-foreground dark:bg-background print:min-h-0 print:bg-white">
+      <div className="mx-auto min-h-screen max-w-[520px] print:min-h-0 px-4 pb-[calc(104px+env(safe-area-inset-bottom,0px))] print:max-w-none print:px-0 print:pb-0">
         <AppTopBar />
         {loading ? (
           <p className="flex items-center gap-3 py-16 text-muted-foreground">

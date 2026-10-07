@@ -203,3 +203,8 @@
 @utility text-balance {
   text-wrap: balance;
 }
+
+/* Impressão em A4 com margem de 12mm (bônus e PDF de bolso das orientações). */
+@media print {
+  @page { size: A4; margin: 12mm; }
+}
