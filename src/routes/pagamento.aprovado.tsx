@@ -71,6 +71,9 @@ function AprovadoPage() {
           <p className="mt-3 text-xs text-muted-foreground">
             Entre com o mesmo e-mail utilizado na compra.
           </p>
+          <p className="mt-3 text-sm font-semibold leading-relaxed text-primary">
+            Dica: depois de entrar, instale o app na tela do seu celular. Você verá como no Menu.
+          </p>
           {emailSent && (
             <p className="mt-6 inline-flex items-center gap-2 rounded-full border border-border bg-secondary px-4 py-2 text-xs font-semibold text-primary">
               <Mail className="h-4 w-4" />

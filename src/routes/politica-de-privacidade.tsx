@@ -58,7 +58,91 @@ function PrivacidadePage() {
             navegador (preferência de tema e do aviso de cookies). Caso venhamos a adotar medição de
             audiência, esta política será atualizada e o consentimento solicitado quando exigido.
           </li>
+          <li>
+            <strong className="text-foreground">Compra e área do Voz Protetora:</strong> veja a
+            seção abaixo.
+          </li>
         </ul>
+
+        <H2>Compra e área do Voz Protetora</H2>
+        <p>
+          <strong className="text-foreground">Dados da compra e do acesso.</strong> Para vender o
+          Voz Protetora e liberar o acesso, tratamos:
+        </p>
+        <ul className="ml-4 list-disc space-y-1.5">
+          <li>nome e e-mail informados na compra;</li>
+          <li>
+            dados da compra: valor, data, situação do pagamento e o código do pagamento;
+          </li>
+          <li>liberação de acesso: o registro de que o e-mail tem acesso ao produto;</li>
+          <li>
+            login: o e-mail usado para entrar, por link ou código enviado por e-mail.
+          </li>
+        </ul>
+        <p>
+          Não pedimos nem guardamos número de cartão.{" "}
+          <strong className="text-foreground">
+            O pagamento é processado pelo Mercado Pago
+          </strong>
+          , que trata os dados de pagamento conforme a política dele. Recebemos apenas a
+          confirmação e a situação do pagamento.
+        </p>
+        <p>
+          <strong className="text-foreground">Dados que ficam só no seu aparelho.</strong> O que
+          você escreve ou escolhe dentro do Voz Protetora fica guardado apenas no navegador do seu
+          aparelho, e não é enviado a nós:
+        </p>
+        <ul className="ml-4 list-disc space-y-1.5">
+          <li>anotações de "Meu Passo de Proteção" e de "Minha Presença Protetiva";</li>
+          <li>quais avisos você leu;</li>
+          <li>a faixa etária escolhida e a preferência de tema claro ou escuro.</li>
+        </ul>
+        <p>
+          Por isso, ao trocar de aparelho ou limpar os dados do navegador, essas informações não
+          acompanham você. Orientamos que não sejam escritos nomes nem dados que identifiquem uma
+          criança.
+        </p>
+        <p>
+          <strong className="text-foreground">Onde os dados ficam e quem os trata.</strong>{" "}
+          Utilizamos provedores de tecnologia para operar o serviço, apenas para essa finalidade:
+        </p>
+        <ul className="ml-4 list-disc space-y-1.5">
+          <li>
+            <strong className="text-foreground">Supabase</strong> (banco de dados e login): nome,
+            e-mail, compra e acesso; servidor em São Paulo (Brasil).
+          </li>
+          <li>
+            <strong className="text-foreground">Mercado Pago</strong> (pagamento): dados de
+            pagamento, com controle próprio sobre esses dados.
+          </li>
+          <li>
+            <strong className="text-foreground">Resend</strong> (envio de e-mails de acesso):
+            e-mail do destinatário e registro de envio.{" "}
+            <span className="text-muted-foreground/80">[a confirmar: localização dos servidores]</span>
+          </li>
+          <li>
+            <strong className="text-foreground">Vercel</strong> (hospedagem do site): dados
+            técnicos de acesso.{" "}
+            <span className="text-muted-foreground/80">[a confirmar: localização dos servidores]</span>
+          </li>
+        </ul>
+        <p className="text-muted-foreground/80">
+          [Revisão jurídica: se algum provedor tratar dados fora do Brasil, incluir a menção à
+          transferência internacional e à base legal correspondente (LGPD, art. 33).]
+        </p>
+        <p>
+          <strong className="text-foreground">Por quanto tempo guardamos a compra.</strong>{" "}
+          <span className="text-muted-foreground/80">[a definir]</span> Os dados da compra e do
+          acesso são guardados enquanto o acesso ao produto existir e pelo prazo exigido em lei.{" "}
+          <span className="text-muted-foreground/80">
+            [Definir prazos e a rotina de exclusão ou anonimização.]
+          </span>
+        </p>
+        <p>
+          <strong className="text-foreground">Crianças e adolescentes.</strong> O Voz Protetora é
+          destinado a adultos. O produto não coleta dados de crianças e orienta o adulto a não
+          registrar nele informações que identifiquem uma criança.
+        </p>
 
         <H2>Para que usamos</H2>
         <p>
@@ -71,13 +155,19 @@ function PrivacidadePage() {
           O envio de novidades ocorre com base no seu <strong className="text-foreground">consentimento</strong>
           {" "}
           (art. 7º, I, da LGPD). O atendimento a contatos ocorre para a realização de diligências a
-          seu pedido (art. 7º, V).
+          seu pedido (art. 7º, V). O tratamento dos dados da compra e do acesso ocorre para a
+          execução do contrato de compra do produto (art. 7º, V), e a guarda de registros de compra
+          pode também decorrer de obrigação legal ou regulatória (art. 7º, II).{" "}
+          <span className="text-muted-foreground/80">
+            [Revisão jurídica: confirmar as bases e os prazos aplicáveis.]
+          </span>
         </p>
 
         <H2>Compartilhamento</H2>
         <p>
           Não vendemos nem compartilhamos dados pessoais para fins comerciais. Utilizamos provedores
-          de tecnologia (hospedagem e, futuramente, envio de e-mail) apenas para operar o serviço,
+          de tecnologia (hospedagem, banco de dados, envio de e-mail e processamento de pagamento)
+          apenas para operar o serviço,
           sob obrigação de confidencialidade e segurança.
         </p>
 

@@ -37,6 +37,7 @@ import { Route as PagamentoRecusadoRouteImport } from './routes/pagamento.recusa
 import { Route as SolucoesVozProtetoraRouteImport } from './routes/solucoes_.voz-protetora'
 import { Route as AuthenticatedVozProtetoraIndexRouteImport } from './routes/_authenticated/voz-protetora.index'
 import { Route as AuthenticatedVozProtetoraBuscaRouteImport } from './routes/_authenticated/voz-protetora.busca'
+import { Route as AuthenticatedVozProtetoraComoUsarRouteImport } from './routes/_authenticated/voz-protetora.como-usar'
 import { Route as AuthenticatedVozProtetoraMeuPassoRouteImport } from './routes/_authenticated/voz-protetora.meu-passo'
 import { Route as AuthenticatedVozProtetoraMinhaAssinaturaRouteImport } from './routes/_authenticated/voz-protetora.minha-assinatura'
 import { Route as AuthenticatedVozProtetoraMinhaPresencaRouteImport } from './routes/_authenticated/voz-protetora.minha-presenca'
@@ -193,6 +194,12 @@ const AuthenticatedVozProtetoraBuscaRoute =
     path: '/voz-protetora/busca',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedVozProtetoraComoUsarRoute =
+  AuthenticatedVozProtetoraComoUsarRouteImport.update({
+    id: '/voz-protetora/como-usar',
+    path: '/voz-protetora/como-usar',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedVozProtetoraMeuPassoRoute =
   AuthenticatedVozProtetoraMeuPassoRouteImport.update({
     id: '/voz-protetora/meu-passo',
@@ -299,6 +306,7 @@ export interface FileRoutesByFullPath {
   '/pagamento/recusado': typeof PagamentoRecusadoRoute
   '/solucoes/voz-protetora': typeof SolucoesVozProtetoraRoute
   '/voz-protetora/busca': typeof AuthenticatedVozProtetoraBuscaRoute
+  '/voz-protetora/como-usar': typeof AuthenticatedVozProtetoraComoUsarRoute
   '/voz-protetora/meu-passo': typeof AuthenticatedVozProtetoraMeuPassoRoute
   '/voz-protetora/minha-assinatura': typeof AuthenticatedVozProtetoraMinhaAssinaturaRoute
   '/voz-protetora/minha-presenca': typeof AuthenticatedVozProtetoraMinhaPresencaRoute
@@ -341,6 +349,7 @@ export interface FileRoutesByTo {
   '/pagamento/recusado': typeof PagamentoRecusadoRoute
   '/solucoes/voz-protetora': typeof SolucoesVozProtetoraRoute
   '/voz-protetora/busca': typeof AuthenticatedVozProtetoraBuscaRoute
+  '/voz-protetora/como-usar': typeof AuthenticatedVozProtetoraComoUsarRoute
   '/voz-protetora/meu-passo': typeof AuthenticatedVozProtetoraMeuPassoRoute
   '/voz-protetora/minha-assinatura': typeof AuthenticatedVozProtetoraMinhaAssinaturaRoute
   '/voz-protetora/minha-presenca': typeof AuthenticatedVozProtetoraMinhaPresencaRoute
@@ -385,6 +394,7 @@ export interface FileRoutesById {
   '/pagamento/recusado': typeof PagamentoRecusadoRoute
   '/solucoes_/voz-protetora': typeof SolucoesVozProtetoraRoute
   '/_authenticated/voz-protetora/busca': typeof AuthenticatedVozProtetoraBuscaRoute
+  '/_authenticated/voz-protetora/como-usar': typeof AuthenticatedVozProtetoraComoUsarRoute
   '/_authenticated/voz-protetora/meu-passo': typeof AuthenticatedVozProtetoraMeuPassoRoute
   '/_authenticated/voz-protetora/minha-assinatura': typeof AuthenticatedVozProtetoraMinhaAssinaturaRoute
   '/_authenticated/voz-protetora/minha-presenca': typeof AuthenticatedVozProtetoraMinhaPresencaRoute
@@ -429,6 +439,7 @@ export interface FileRouteTypes {
     | '/pagamento/recusado'
     | '/solucoes/voz-protetora'
     | '/voz-protetora/busca'
+    | '/voz-protetora/como-usar'
     | '/voz-protetora/meu-passo'
     | '/voz-protetora/minha-assinatura'
     | '/voz-protetora/minha-presenca'
@@ -471,6 +482,7 @@ export interface FileRouteTypes {
     | '/pagamento/recusado'
     | '/solucoes/voz-protetora'
     | '/voz-protetora/busca'
+    | '/voz-protetora/como-usar'
     | '/voz-protetora/meu-passo'
     | '/voz-protetora/minha-assinatura'
     | '/voz-protetora/minha-presenca'
@@ -514,6 +526,7 @@ export interface FileRouteTypes {
     | '/pagamento/recusado'
     | '/solucoes_/voz-protetora'
     | '/_authenticated/voz-protetora/busca'
+    | '/_authenticated/voz-protetora/como-usar'
     | '/_authenticated/voz-protetora/meu-passo'
     | '/_authenticated/voz-protetora/minha-assinatura'
     | '/_authenticated/voz-protetora/minha-presenca'
@@ -756,6 +769,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedVozProtetoraBuscaRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/voz-protetora/como-usar': {
+      id: '/_authenticated/voz-protetora/como-usar'
+      path: '/voz-protetora/como-usar'
+      fullPath: '/voz-protetora/como-usar'
+      preLoaderRoute: typeof AuthenticatedVozProtetoraComoUsarRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/voz-protetora/meu-passo': {
       id: '/_authenticated/voz-protetora/meu-passo'
       path: '/voz-protetora/meu-passo'
@@ -854,6 +874,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedAdminRoute: typeof AuthenticatedAdminRoute
   AuthenticatedMeusProdutosRoute: typeof AuthenticatedMeusProdutosRoute
   AuthenticatedVozProtetoraBuscaRoute: typeof AuthenticatedVozProtetoraBuscaRoute
+  AuthenticatedVozProtetoraComoUsarRoute: typeof AuthenticatedVozProtetoraComoUsarRoute
   AuthenticatedVozProtetoraMeuPassoRoute: typeof AuthenticatedVozProtetoraMeuPassoRoute
   AuthenticatedVozProtetoraMinhaAssinaturaRoute: typeof AuthenticatedVozProtetoraMinhaAssinaturaRoute
   AuthenticatedVozProtetoraMinhaPresencaRoute: typeof AuthenticatedVozProtetoraMinhaPresencaRoute
@@ -873,6 +894,8 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedAdminRoute: AuthenticatedAdminRoute,
   AuthenticatedMeusProdutosRoute: AuthenticatedMeusProdutosRoute,
   AuthenticatedVozProtetoraBuscaRoute: AuthenticatedVozProtetoraBuscaRoute,
+  AuthenticatedVozProtetoraComoUsarRoute:
+    AuthenticatedVozProtetoraComoUsarRoute,
   AuthenticatedVozProtetoraMeuPassoRoute:
     AuthenticatedVozProtetoraMeuPassoRoute,
   AuthenticatedVozProtetoraMinhaAssinaturaRoute:

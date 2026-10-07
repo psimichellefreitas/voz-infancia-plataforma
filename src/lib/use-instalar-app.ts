@@ -4,6 +4,8 @@ interface BeforeInstallPromptEvent extends Event {
   prompt: () => Promise<void>;
 }
 
+export type PlataformaInstalacao = "ios" | "android" | "desktop";
+
 /**
  * Instalação do app na tela inicial (PWA).
  *
@@ -32,7 +34,7 @@ if (typeof window !== "undefined") {
 
 export function useInstalarApp() {
   const [, forcar] = useState(0);
-  const [ios, setIos] = useState(false);
+  const [plataforma, setPlataforma] = useState<PlataformaInstalacao>("desktop");
   const [instalado, setInstalado] = useState(false);
 
   useEffect(() => {
@@ -40,7 +42,8 @@ export function useInstalarApp() {
       window.matchMedia("(display-mode: standalone)").matches ||
       (navigator as Navigator & { standalone?: boolean }).standalone === true;
     setInstalado(standalone);
-    setIos(/iphone|ipad|ipod/i.test(navigator.userAgent));
+    const ua = navigator.userAgent;
+    setPlataforma(/iphone|ipad|ipod/i.test(ua) ? "ios" : /android/i.test(ua) ? "android" : "desktop");
 
     const atualizar = () => forcar((n) => n + 1);
     ouvintes.add(atualizar);
@@ -59,11 +62,12 @@ export function useInstalarApp() {
   }
 
   return {
-    /** Mostra o item "Instalar o app" no menu: sempre, exceto dentro do app já instalado. */
+    /** Mostra o item "Instalar o app": sempre, exceto dentro do app já instalado. */
     disponivel: !instalado,
     /** true quando não há janela nativa para abrir e só dá para orientar a instalação manual. */
     manual: eventoGuardado === null,
-    ios,
+    plataforma,
+    ios: plataforma === "ios",
     instalar,
   };
 }

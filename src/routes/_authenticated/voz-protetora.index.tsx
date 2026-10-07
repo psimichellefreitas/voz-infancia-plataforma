@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 
 import { AppShell } from "@/components/voz/produto/AppShell";
+import { BoasVindas, CartoesIniciais } from "@/components/voz/produto/BoasVindas";
 import { SearchBox } from "@/components/voz/produto/SearchBox";
 import { usePreviewSearch } from "@/lib/preview-mode";
 
@@ -88,6 +89,7 @@ function VozProtetoraHome() {
 
   return (
     <AppShell>
+      <BoasVindas />
       {/* Abertura */}
       <section className="relative overflow-hidden rounded-[24px] bg-primary px-5 pb-5 pt-6 text-primary-foreground">
         <div className="pointer-events-none absolute -right-20 -top-24 h-56 w-56 rounded-full bg-accent opacity-35" />
@@ -104,6 +106,8 @@ function VozProtetoraHome() {
           </div>
         </div>
       </section>
+
+      <CartoesIniciais />
 
       {/* As 3 portas */}
       <div className="flex flex-col gap-3">

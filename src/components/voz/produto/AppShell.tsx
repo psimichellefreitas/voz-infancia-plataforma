@@ -1,5 +1,5 @@
 import { useEffect, useState, type ReactNode } from "react";
-import { Download } from "lucide-react";
+import { BookOpen, Download } from "lucide-react";
 import { Link, useNavigate } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
@@ -34,6 +34,7 @@ const MENU_ITEMS = [
   { icon: Shield, to: "/voz-protetora/minha-voz", label: "Minha Voz Protetora" },
   { icon: ClipboardList, to: "/voz-protetora/minha-presenca", label: "Minha Presença Protetiva" },
   { icon: ArrowRight, to: "/voz-protetora/meu-passo", label: "Meu Passo de Proteção" },
+  { icon: BookOpen, to: "/voz-protetora/como-usar", label: "Como usar o app" },
   { icon: CreditCard, to: "/voz-protetora/minha-assinatura", label: "Minha compra" },
 ] as const;
 
