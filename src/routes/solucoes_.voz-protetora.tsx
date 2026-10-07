@@ -393,7 +393,7 @@ function VozProtetoraPage() {
                 <p className="mt-3 text-base text-muted-foreground">{DEMO_ITEM.title}</p>
               </div>
               <div className="mt-8">
-                <OrientationBody blocks={DEMO_ITEM.blocks ?? []} />
+                <OrientationBody blocks={DEMO_ITEM.blocks ?? []} interativo={false} />
               </div>
               <div className="mt-8 rounded-[12px] border border-border bg-card p-6 text-center sm:p-8">
                 <p className="text-base font-semibold leading-relaxed text-primary">

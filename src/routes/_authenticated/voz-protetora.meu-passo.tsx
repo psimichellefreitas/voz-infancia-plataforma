@@ -19,6 +19,9 @@ export const Route = createFileRoute("/_authenticated/voz-protetora/meu-passo")(
       { name: "robots", content: "noindex" },
     ],
   }),
+  validateSearch: (search: Record<string, unknown>) => ({
+    texto: typeof search["texto"] === "string" ? search["texto"].slice(0, 600) : undefined,
+  }),
   component: MeuPassoPage,
 });
 
@@ -62,7 +65,8 @@ function writeSteps(steps: Step[]) {
 }
 
 function MeuPassoPage() {
-  const [text, setText] = useState("");
+  const { texto: textoInicial } = Route.useSearch();
+  const [text, setText] = useState(textoInicial ?? "");
   const [steps, setSteps] = useState<Step[]>([]);
   const [hydrated, setHydrated] = useState(false);
 
