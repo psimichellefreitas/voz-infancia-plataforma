@@ -6,12 +6,32 @@ interface BeforeInstallPromptEvent extends Event {
 
 /**
  * Instalação do app na tela inicial (PWA).
- * - Android/Chrome: guarda o evento `beforeinstallprompt` e o dispara ao tocar em "Instalar".
- * - iPhone/iPad: o navegador não oferece o evento; o app mostra a instrução manual.
+ *
+ * O navegador envia o `beforeinstallprompt` uma única vez, logo depois que a página carrega,
+ * possivelmente antes de a tela do produto existir. Por isso o evento é guardado aqui, no nível
+ * do módulo, que o `__root` importa no início: a tela só lê o que já foi guardado.
+ *
+ * - Android/Chrome com evento guardado: o botão abre a janela nativa de instalação.
+ * - Sem evento (iPhone, ou Chrome que já mostrou/dispensou o aviso): mostra a instrução manual.
  * - Já instalado (aberto em tela cheia): não oferece nada.
  */
+let eventoGuardado: BeforeInstallPromptEvent | null = null;
+const ouvintes = new Set<() => void>();
+
+if (typeof window !== "undefined") {
+  window.addEventListener("beforeinstallprompt", (e) => {
+    e.preventDefault();
+    eventoGuardado = e as BeforeInstallPromptEvent;
+    ouvintes.forEach((fn) => fn());
+  });
+  window.addEventListener("appinstalled", () => {
+    eventoGuardado = null;
+    ouvintes.forEach((fn) => fn());
+  });
+}
+
 export function useInstalarApp() {
-  const [evento, setEvento] = useState<BeforeInstallPromptEvent | null>(null);
+  const [, forcar] = useState(0);
   const [ios, setIos] = useState(false);
   const [instalado, setInstalado] = useState(false);
 
@@ -22,33 +42,28 @@ export function useInstalarApp() {
     setInstalado(standalone);
     setIos(/iphone|ipad|ipod/i.test(navigator.userAgent));
 
-    const onPrompt = (e: Event) => {
-      e.preventDefault();
-      setEvento(e as BeforeInstallPromptEvent);
-    };
-    const onInstalled = () => {
-      setInstalado(true);
-      setEvento(null);
-    };
-    window.addEventListener("beforeinstallprompt", onPrompt);
-    window.addEventListener("appinstalled", onInstalled);
+    const atualizar = () => forcar((n) => n + 1);
+    ouvintes.add(atualizar);
+    atualizar();
     return () => {
-      window.removeEventListener("beforeinstallprompt", onPrompt);
-      window.removeEventListener("appinstalled", onInstalled);
+      ouvintes.delete(atualizar);
     };
   }, []);
 
   async function instalar() {
-    if (!evento) return;
+    if (!eventoGuardado) return;
+    const evento = eventoGuardado;
+    eventoGuardado = null;
     await evento.prompt();
-    setEvento(null);
+    forcar((n) => n + 1);
   }
 
   return {
-    /** Mostra o item "Instalar o app" no menu. */
-    disponivel: !instalado && (evento !== null || ios),
-    /** true quando só dá para orientar a instalação manual (iPhone/iPad). */
-    manual: ios && evento === null,
+    /** Mostra o item "Instalar o app" no menu: sempre, exceto dentro do app já instalado. */
+    disponivel: !instalado,
+    /** true quando não há janela nativa para abrir e só dá para orientar a instalação manual. */
+    manual: eventoGuardado === null,
+    ios,
     instalar,
   };
 }

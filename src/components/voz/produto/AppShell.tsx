@@ -213,8 +213,9 @@ function AppTabBar() {
                 </button>
                 {instalarApp.manual && mostrarAjudaIos && (
                   <p className="rounded-2xl bg-secondary p-4 text-sm leading-relaxed text-muted-foreground">
-                    No iPhone: toque em Compartilhar (o quadrado com uma seta para cima, na barra
-                    do Safari) e depois em Adicionar à Tela de Início.
+                    {instalarApp.ios
+                      ? "No iPhone: toque em Compartilhar (o quadrado com uma seta para cima, na barra do Safari) e depois em Adicionar à Tela de Início."
+                      : "No Android ou no computador: abra o menu do navegador (os três pontinhos, no canto de cima) e toque em Instalar app ou Adicionar à tela inicial."}
                   </p>
                 )}
               </>
