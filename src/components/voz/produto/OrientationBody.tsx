@@ -11,6 +11,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { usePreviewSearch } from "@/lib/preview-mode";
 import { FAIXAS_ETARIAS, type FaixaEtaria, type OrientationBlock } from "@/lib/voz-protetora/content";
+import { separarFalas } from "@/lib/voz-protetora/falas";
 
 const FAIXA_STORAGE_KEY = "voz-protetora:faixa-etaria";
 
@@ -131,80 +132,56 @@ function textoPuro(body: string) {
 // Falas em balões
 // ---------------------------------------------------------------------------
 
-interface GrupoFalas {
-  rotulo?: string;
-  papel: "crianca" | "outro";
-  falas: string[];
-}
-
-type TrechoFalas = { tipo: "texto"; texto: string } | { tipo: "grupo"; grupo: GrupoFalas };
-
 /**
- * Separa um bloco "O que dizer?" em grupos de falas. Cada grupo é uma linha de rótulo
- * ("**Para a criança:**") seguida de itens entre aspas. Devolve `null` se o bloco não tiver
- * falas entre aspas, e nesse caso o texto é mostrado como antes.
+ * Mostra o bloco "O que dizer?" com as falas em balões: azul para o que se diz à criança, verde-claro
+ * para o que se diz a outra pessoa. Instruções e textos corridos aparecem como antes. Se o bloco
+ * não tiver nenhuma fala entre aspas, é mostrado como texto comum.
  */
-function separarFalas(body: string): TrechoFalas[] | null {
-  const trechos: TrechoFalas[] = [];
-  let achouFala = false;
-
-  for (const paragrafo of body.split("\n\n")) {
-    const linhas = paragrafo.split("\n");
-    const rotuloMatch = linhas[0]?.match(/^\*\*(.+?):?\*\*:?$/);
-    const rotulo = rotuloMatch ? rotuloMatch[1]!.replace(/:$/, "") : undefined;
-    const itens = linhas.slice(rotulo ? 1 : 0);
-    const todosFalas = itens.length > 0 && itens.every((l) => /^- ["“].+["”]\.?$/.test(l));
-
-    if (todosFalas) {
-      achouFala = true;
-      const papel = rotulo && /(outra pessoa|outro adulto|adulto)/i.test(rotulo) ? "outro" : "crianca";
-      trechos.push({
-        tipo: "grupo",
-        grupo: { rotulo, papel, falas: itens.map((l) => l.slice(2)) },
-      });
-    } else {
-      trechos.push({ tipo: "texto", texto: paragrafo });
-    }
-  }
-
-  return achouFala ? trechos : null;
-}
-
 function renderFalas(body: string) {
-  const trechos = separarFalas(body);
-  if (!trechos) return renderBody(body);
+  const elementos = separarFalas(body);
+  if (!elementos) return renderBody(body);
 
   return (
-    <div className="mt-3 space-y-4 text-sm leading-relaxed text-foreground/85">
-      {trechos.map((trecho, i) =>
-        trecho.tipo === "texto" ? (
-          renderParagraph(trecho.texto, i)
-        ) : (
-          <div key={i} className="flex flex-col gap-2">
-            {trecho.grupo.rotulo && (
+    <div className="mt-3 flex flex-col gap-2 text-sm leading-relaxed text-foreground/85">
+      {elementos.map((el, i) => {
+        if (el.tipo === "rotulo") {
+          return (
+            <p
+              key={i}
+              className={`mt-2 text-[11px] font-bold uppercase tracking-[0.08em] text-muted-foreground first:mt-0 ${
+                el.papel === "crianca" ? "self-end text-right" : "self-start"
+              }`}
+            >
+              {el.texto}
+            </p>
+          );
+        }
+        if (el.tipo === "fala") {
+          return (
+            <div
+              key={i}
+              className={`flex max-w-[90%] flex-col gap-1 ${el.papel === "crianca" ? "self-end items-end" : "self-start items-start"}`}
+            >
               <p
-                className={`text-[11px] font-bold uppercase tracking-[0.08em] text-muted-foreground ${
-                  trecho.grupo.papel === "crianca" ? "self-end" : "self-start"
+                className={`rounded-[18px] px-4 py-2.5 text-[15px] font-medium leading-snug ${
+                  el.papel === "crianca"
+                    ? "rounded-br-[5px] bg-primary text-primary-foreground"
+                    : "rounded-bl-[5px] bg-accent/20 text-foreground"
                 }`}
               >
-                {trecho.grupo.rotulo}
+                "{el.texto}"
               </p>
-            )}
-            {trecho.grupo.falas.map((fala, j) => (
-              <p
-                key={j}
-                className={`max-w-[90%] rounded-[18px] px-4 py-2.5 text-[15px] font-medium leading-snug ${
-                  trecho.grupo.papel === "crianca"
-                    ? "self-end rounded-br-[5px] bg-primary text-primary-foreground"
-                    : "self-start rounded-bl-[5px] bg-accent/20 text-foreground"
-                }`}
-              >
-                {fala}
-              </p>
-            ))}
-          </div>
-        ),
-      )}
+              {el.nota && <p className="px-1 text-xs italic text-muted-foreground">({el.nota})</p>}
+            </div>
+          );
+        }
+        return (
+          <p key={i} className={`text-sm leading-relaxed ${el.item ? "pl-4 -indent-4" : ""}`}>
+            {el.item && <span className="mr-2 text-accent">•</span>}
+            {renderInline(el.texto)}
+          </p>
+        );
+      })}
     </div>
   );
 }
