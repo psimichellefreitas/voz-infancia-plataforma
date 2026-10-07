@@ -785,6 +785,74 @@ function FaixaEtariaSeletor({
   );
 }
 
+// ---------------------------------------------------------------------------
+// Tamanho da letra (A− / A+). Preferência de exibição, guardada só neste aparelho.
+// ---------------------------------------------------------------------------
+
+const NIVEIS_DE_LETRA = [0.9, 1, 1.15, 1.3];
+const NIVEL_PADRAO = 1;
+const LETRA_STORAGE_KEY = "voz-protetora:tamanho-letra";
+
+function useTamanhoLetra() {
+  const [nivel, setNivel] = useState(NIVEL_PADRAO);
+
+  useEffect(() => {
+    try {
+      const salvo = Number(window.localStorage.getItem(LETRA_STORAGE_KEY));
+      if (Number.isInteger(salvo) && salvo >= 0 && salvo < NIVEIS_DE_LETRA.length) {
+        setNivel(salvo);
+      }
+    } catch {
+      // sem armazenamento: vale só nesta visita
+    }
+  }, []);
+
+  function definir(novo: number) {
+    const limitado = Math.min(NIVEIS_DE_LETRA.length - 1, Math.max(0, novo));
+    setNivel(limitado);
+    try {
+      window.localStorage.setItem(LETRA_STORAGE_KEY, String(limitado));
+    } catch {
+      // ignora
+    }
+  }
+
+  return { nivel, escala: NIVEIS_DE_LETRA[nivel]!, definir };
+}
+
+function ControlesDeLetra({
+  nivel,
+  definir,
+}: {
+  nivel: number;
+  definir: (novo: number) => void;
+}) {
+  const base =
+    "grid h-9 min-w-[2.5rem] place-items-center rounded-full border border-border bg-card px-3 text-sm font-bold text-primary transition-opacity disabled:opacity-40";
+  return (
+    <div className="ml-auto flex items-center gap-1.5" role="group" aria-label="Tamanho da letra">
+      <button
+        type="button"
+        className={base}
+        onClick={() => definir(nivel - 1)}
+        disabled={nivel === 0}
+        aria-label="Diminuir a letra"
+      >
+        A−
+      </button>
+      <button
+        type="button"
+        className={`${base} text-base`}
+        onClick={() => definir(nivel + 1)}
+        disabled={nivel === NIVEIS_DE_LETRA.length - 1}
+        aria-label="Aumentar a letra"
+      >
+        A+
+      </button>
+    </div>
+  );
+}
+
 interface OrientationBodyProps {
   blocks: OrientationBlock[];
   /**
@@ -814,6 +882,7 @@ export function OrientationBody({
   interativo = true,
 }: OrientationBodyProps) {
   const buscaPreview = usePreviewSearch();
+  const letra = useTamanhoLetra();
   const [faixaAtiva, setFaixaAtiva] = useState<FaixaEtaria | null>(null);
   const disponiveis = variacaoPorIdade
     ? (Object.keys(variacaoPorIdade) as FaixaEtaria[])
@@ -846,11 +915,14 @@ export function OrientationBody({
   return (
     <div className="space-y-4">
       <div className="print:hidden space-y-4">
-        {interativo && textoParaOuvir && (
-          <div>
-            <BotaoOuvir texto={textoParaOuvir} />
+        {interativo && (
+          <div className="flex items-center gap-2">
+            {textoParaOuvir && <BotaoOuvir texto={textoParaOuvir} />}
+            <ControlesDeLetra nivel={letra.nivel} definir={letra.definir} />
           </div>
         )}
+
+        <div className="space-y-4" style={interativo ? { zoom: letra.escala } : undefined}>
 
         {passo && (
           <section className="relative overflow-hidden rounded-[24px] bg-primary p-5 text-primary-foreground shadow-[var(--shadow-soft)] sm:p-6">
@@ -925,6 +997,7 @@ export function OrientationBody({
             })}
           </Accordion>
         )}
+        </div>
       </div>
 
       {/* Versão de impressão/PDF: todos os blocos abertos, sem acordeão nem interação (o "PDF

@@ -95,7 +95,7 @@ function PrivacidadePage() {
         <ul className="ml-4 list-disc space-y-1.5">
           <li>anotações de "Meu Passo de Proteção" e de "Minha Presença Protetiva";</li>
           <li>quais avisos você leu;</li>
-          <li>a faixa etária escolhida e a preferência de tema claro ou escuro.</li>
+          <li>a faixa etária escolhida, o tamanho da letra e a preferência de tema claro ou escuro.</li>
         </ul>
         <p>
           Por isso, ao trocar de aparelho ou limpar os dados do navegador, essas informações não
