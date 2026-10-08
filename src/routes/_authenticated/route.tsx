@@ -15,7 +15,7 @@ export const Route = createFileRoute("/_authenticated")({
     ],
     links: [
       { rel: "manifest", href: "/manifest.webmanifest" },
-      { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
+      { rel: "apple-touch-icon", href: "/apple-touch-icon-v2.png" },
     ],
   }),
   beforeLoad: async ({ location }) => {
