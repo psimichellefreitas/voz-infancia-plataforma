@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /app/
+Disallow: /admin
 
 Sitemap: https://vozpelainfancia.com.br/sitemap.xml

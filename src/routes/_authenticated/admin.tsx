@@ -74,7 +74,7 @@ function AdminPage() {
               <p>Esta página é restrita à administradora do site.</p>
               {data?.email ? <p className="mt-2">Você entrou como {data.email}.</p> : null}
               <p className="mt-4">
-                <Link to="/voz-protetora" className="font-semibold text-primary underline">
+                <Link to="/app/voz-protetora" className="font-semibold text-primary underline">
                   Ir para o Voz Protetora
                 </Link>
               </p>

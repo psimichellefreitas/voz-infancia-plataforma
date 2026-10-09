@@ -5,7 +5,7 @@ import { OrientationBody } from "@/components/voz/produto/OrientationBody";
 import { CompartilharAcoes } from "@/components/voz/produto/CompartilharAcoes";
 import { VAI_ACONTECER, VAI_ACONTECER_STRUCTURE, findItem } from "@/lib/voz-protetora/content";
 
-export const Route = createFileRoute("/_authenticated/voz-protetora/vai-acontecer/$slug")({
+export const Route = createFileRoute("/_authenticated/app/voz-protetora/vai-acontecer/$slug")({
   head: () => ({
     meta: [
       { title: "Preparação: Vai acontecer | Voz Protetora" },
@@ -24,7 +24,7 @@ export const Route = createFileRoute("/_authenticated/voz-protetora/vai-acontece
   notFoundComponent: () => (
     <ProdutoShell
       title="Situação não encontrada"
-      backTo={{ to: "/voz-protetora/vai-acontecer", label: "Voltar" }}
+      backTo={{ to: "/app/voz-protetora/vai-acontecer", label: "Voltar" }}
     >
       <p className="text-sm text-muted-foreground">Escolha uma situação na lista.</p>
     </ProdutoShell>
@@ -33,14 +33,14 @@ export const Route = createFileRoute("/_authenticated/voz-protetora/vai-acontece
 });
 
 function VaiAcontecerDetalhe() {
-  const { slug } = useParams({ from: "/_authenticated/voz-protetora/vai-acontecer/$slug" });
+  const { slug } = useParams({ from: "/_authenticated/app/voz-protetora/vai-acontecer/$slug" });
   const item = findItem(VAI_ACONTECER, slug);
 
   return (
     <ProdutoShell
       eyebrow="Vai acontecer"
       title={`${item?.emoji ?? ""} ${item?.title ?? "Preparação"}`.trim()}
-      backTo={{ to: "/voz-protetora/vai-acontecer", label: "Voltar" }}
+      backTo={{ to: "/app/voz-protetora/vai-acontecer", label: "Voltar" }}
     >
       <OrientationBody
         blocks={item?.blocks ?? VAI_ACONTECER_STRUCTURE}

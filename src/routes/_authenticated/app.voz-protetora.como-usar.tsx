@@ -5,7 +5,7 @@ import { reabrirBoasVindas } from "@/components/voz/produto/BoasVindas";
 import { ProdutoShell } from "@/components/voz/produto/ProdutoShell";
 import { usePreviewSearch } from "@/lib/preview-mode";
 
-export const Route = createFileRoute("/_authenticated/voz-protetora/como-usar")({
+export const Route = createFileRoute("/_authenticated/app/voz-protetora/como-usar")({
   head: () => ({
     meta: [
       { title: "Como usar o app: Voz Protetora" },
@@ -61,7 +61,7 @@ function ComoUsarPage() {
   return (
     <ProdutoShell
       title="Como usar o app"
-      backTo={{ to: "/voz-protetora", label: "Voltar ao início" }}
+      backTo={{ to: "/app/voz-protetora", label: "Voltar ao início" }}
     >
       <ol className="space-y-3">
         {ITENS.map((item, i) => (
@@ -86,7 +86,7 @@ function ComoUsarPage() {
           variant="outline"
           onClick={() => {
             reabrirBoasVindas();
-            navigate({ to: "/voz-protetora", search: previewSearch });
+            navigate({ to: "/app/voz-protetora", search: previewSearch });
           }}
         >
           Rever boas-vindas

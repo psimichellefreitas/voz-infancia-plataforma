@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { PRESENCA_GRUPOS } from "@/lib/voz-protetora/content";
 import { usePreviewSearch } from "@/lib/preview-mode";
 
-export const Route = createFileRoute("/_authenticated/voz-protetora/minha-presenca")({
+export const Route = createFileRoute("/_authenticated/app/voz-protetora/minha-presenca")({
   head: () => ({
     meta: [
       { title: "Minha Presença Protetiva: Voz Protetora" },
@@ -42,30 +42,30 @@ const GRUPO_INTRO: Record<string, string> = {
  * passo, não de rotular quem respondeu.
  */
 const SUGESTAO: Record<string, { label: string; to: string }> = {
-  "VER-0": { label: "Vínculo e presença protetiva", to: "/voz-protetora/fortalecer/vinculo-e-presenca" },
-  "VER-1": { label: "Vínculo e presença protetiva", to: "/voz-protetora/fortalecer/vinculo-e-presenca" },
-  "VER-2": { label: "Vínculo e presença protetiva", to: "/voz-protetora/fortalecer/vinculo-e-presenca" },
+  "VER-0": { label: "Vínculo e presença protetiva", to: "/app/voz-protetora/fortalecer/vinculo-e-presenca" },
+  "VER-1": { label: "Vínculo e presença protetiva", to: "/app/voz-protetora/fortalecer/vinculo-e-presenca" },
+  "VER-2": { label: "Vínculo e presença protetiva", to: "/app/voz-protetora/fortalecer/vinculo-e-presenca" },
   "OUVIR-0": {
     label: "Abrir espaço para conversar",
-    to: "/voz-protetora/fortalecer/abrir-espaco-conversar",
+    to: "/app/voz-protetora/fortalecer/abrir-espaco-conversar",
   },
-  "OUVIR-1": { label: "Ensinar e respeitar o \"não\"", to: "/voz-protetora/fortalecer/respeitar-o-nao" },
+  "OUVIR-1": { label: "Ensinar e respeitar o \"não\"", to: "/app/voz-protetora/fortalecer/respeitar-o-nao" },
   "OUVIR-2": {
     label: "Abrir espaço para conversar",
-    to: "/voz-protetora/fortalecer/abrir-espaco-conversar",
+    to: "/app/voz-protetora/fortalecer/abrir-espaco-conversar",
   },
   "ZELAR-0": {
     label: "Combinar regras e rotinas seguras",
-    to: "/voz-protetora/fortalecer/regras-e-rotinas-seguras",
+    to: "/app/voz-protetora/fortalecer/regras-e-rotinas-seguras",
   },
   "ZELAR-1": {
     label: "Ensinar a criança a pedir ajuda",
-    to: "/voz-protetora/fortalecer/ensinar-a-pedir-ajuda",
+    to: "/app/voz-protetora/fortalecer/ensinar-a-pedir-ajuda",
   },
-  "ZELAR-2": { label: "Preciso de ajuda: por onde começar", to: "/voz-protetora/preciso-de-ajuda" },
+  "ZELAR-2": { label: "Preciso de ajuda: por onde começar", to: "/app/voz-protetora/preciso-de-ajuda" },
   "ZELAR-3": {
     label: "Autoproteção sem responsabilizar a criança",
-    to: "/voz-protetora/fortalecer/postura-do-adulto",
+    to: "/app/voz-protetora/fortalecer/postura-do-adulto",
   },
 };
 
@@ -163,7 +163,7 @@ function MinhaPresencaPage() {
       eyebrow="📋 Minha Presença Protetiva"
       title="Perceba onde você pode fortalecer sua presença."
       intro="Organizada pela Bússola VOZ: Ver · Ouvir · Zelar. Esta reflexão não é um teste psicológico e não gera diagnóstico ou pontuação: serve só para você olhar a própria prática."
-      backTo={{ to: "/voz-protetora", label: "Voltar ao início" }}
+      backTo={{ to: "/app/voz-protetora", label: "Voltar ao início" }}
     >
       <div className="space-y-8">
         {PRESENCA_GRUPOS.map((grupo) => (
@@ -226,7 +226,7 @@ function MinhaPresencaPage() {
               Você marcou "Sim" em todos os pontos. Continue praticando e revisite esta reflexão
               de tempo em tempo, ou explore livremente os temas de{" "}
               <Link
-                to="/voz-protetora/fortalecer"
+                to="/app/voz-protetora/fortalecer"
                 search={previewSearch}
                 className="font-semibold text-primary underline"
               >

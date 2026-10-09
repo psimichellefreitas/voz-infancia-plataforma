@@ -5,7 +5,7 @@ import { ProdutoShell } from "@/components/voz/produto/ProdutoShell";
 import { usePreviewSearch } from "@/lib/preview-mode";
 import { FORTALECER } from "@/lib/voz-protetora/content";
 
-export const Route = createFileRoute("/_authenticated/voz-protetora/fortalecer/")({
+export const Route = createFileRoute("/_authenticated/app/voz-protetora/fortalecer/")({
   head: () => ({
     meta: [
       { title: "Quero fortalecer: Voz Protetora" },
@@ -28,13 +28,13 @@ function FortalecerLista() {
       eyebrow="Quero fortalecer"
       title="Quero fortalecer a proteção. Por onde começo?"
       intro="Escolha um tema para fortalecer sua prática."
-      backTo={{ to: "/voz-protetora", label: "Voltar ao início" }}
+      backTo={{ to: "/app/voz-protetora", label: "Voltar ao início" }}
     >
       <div className="grid gap-3 sm:grid-cols-2">
         {FORTALECER.map((item) => (
           <Link
             key={item.slug}
-            to="/voz-protetora/fortalecer/$slug"
+            to="/app/voz-protetora/fortalecer/$slug"
             params={{ slug: item.slug }}
             search={previewSearch}
             className="flex items-center justify-between gap-4 rounded-[20px] border border-border/60 shadow-[var(--shadow-soft)] bg-card px-5 py-4 transition-colors hover:border-accent"

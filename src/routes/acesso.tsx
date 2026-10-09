@@ -44,7 +44,7 @@ function AcessoPage() {
     const go = () => {
       if (done) return;
       done = true;
-      navigate({ to: (redirect ?? "/meus-produtos") as never, replace: true });
+      navigate({ to: (redirect ?? "/app") as never, replace: true });
     };
 
     const { data: sub } = supabase.auth.onAuthStateChange((_event, session) => {
@@ -78,7 +78,7 @@ function AcessoPage() {
               Links de acesso são de uso único. Peça um novo link com o mesmo e-mail da compra.
             </p>
             <Button asChild variant="hero" size="xl" className="mt-6 w-full">
-              <Link to="/auth" search={{ redirect: "/meus-produtos" }}>
+              <Link to="/auth" search={{ redirect: "/app" }}>
                 RECEBER NOVO LINK
               </Link>
             </Button>

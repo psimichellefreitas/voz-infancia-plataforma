@@ -6,7 +6,7 @@ import { ProdutoShell } from "@/components/voz/produto/ProdutoShell";
 import { usePreviewSearch } from "@/lib/preview-mode";
 import { VAI_ACONTECER } from "@/lib/voz-protetora/content";
 
-export const Route = createFileRoute("/_authenticated/voz-protetora/vai-acontecer/")({
+export const Route = createFileRoute("/_authenticated/app/voz-protetora/vai-acontecer/")({
   head: () => ({
     meta: [
       { title: "Vai acontecer: Voz Protetora" },
@@ -42,7 +42,7 @@ function VaiAcontecerLista() {
       eyebrow="Vai acontecer"
       title="A criança vai viver uma situação. Como posso me preparar?"
       intro="Escolha a situação para ver a preparação protetiva."
-      backTo={{ to: "/voz-protetora", label: "Voltar ao início" }}
+      backTo={{ to: "/app/voz-protetora", label: "Voltar ao início" }}
     >
       {grupos.length > 0 && (
         <div className="mb-5 flex flex-wrap gap-2">
@@ -75,7 +75,7 @@ function VaiAcontecerLista() {
         {filtrados.map((item) => (
           <Link
             key={item.slug}
-            to="/voz-protetora/vai-acontecer/$slug"
+            to="/app/voz-protetora/vai-acontecer/$slug"
             params={{ slug: item.slug }}
             search={previewSearch}
             className="flex items-center justify-between gap-4 rounded-[20px] border border-border/60 shadow-[var(--shadow-soft)] bg-card px-5 py-4 transition-colors hover:border-accent"

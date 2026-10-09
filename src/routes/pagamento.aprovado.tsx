@@ -61,7 +61,7 @@ function AprovadoPage() {
           </p>
           <div className="mt-8">
             <Button asChild variant="hero" size="xl">
-              <Link to="/voz-protetora">ACESSAR MEU VOZ PROTETORA</Link>
+              <Link to="/app/voz-protetora">ACESSAR MEU VOZ PROTETORA</Link>
             </Button>
           </div>
           <p className="mt-5 text-sm leading-relaxed text-muted-foreground">

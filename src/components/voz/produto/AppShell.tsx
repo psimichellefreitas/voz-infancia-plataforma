@@ -31,13 +31,13 @@ import { cn } from "@/lib/utils";
  * Mesma regra de acesso da ProdutoShell: a autorização é sempre validada no backend.
  */
 const MENU_ITEMS = [
-  { icon: Home, to: "/meus-produtos", label: "Meus produtos" },
-  { icon: Shield, to: "/voz-protetora/minha-voz", label: "Minha Voz Protetora" },
-  { icon: ClipboardList, to: "/voz-protetora/minha-presenca", label: "Minha Presença Protetiva" },
-  { icon: ArrowRight, to: "/voz-protetora/meu-passo", label: "Meu Passo de Proteção" },
-  { icon: BookOpen, to: "/voz-protetora/como-usar", label: "Como usar o app" },
-  { icon: Printer, to: "/voz-protetora/bonus", label: "Bônus para imprimir" },
-  { icon: CreditCard, to: "/voz-protetora/minha-assinatura", label: "Minha compra" },
+  { icon: Home, to: "/app", label: "Meus produtos" },
+  { icon: Shield, to: "/app/voz-protetora/minha-voz", label: "Minha Voz Protetora" },
+  { icon: ClipboardList, to: "/app/voz-protetora/minha-presenca", label: "Minha Presença Protetiva" },
+  { icon: ArrowRight, to: "/app/voz-protetora/meu-passo", label: "Meu Passo de Proteção" },
+  { icon: BookOpen, to: "/app/voz-protetora/como-usar", label: "Como usar o app" },
+  { icon: Printer, to: "/app/voz-protetora/bonus", label: "Bônus para imprimir" },
+  { icon: CreditCard, to: "/app/voz-protetora/minha-assinatura", label: "Minha compra" },
 ] as const;
 
 export function AppShell({ children }: { children: ReactNode }) {
@@ -94,7 +94,7 @@ function AppTopBar() {
   return (
     <header className="print:hidden sticky top-0 z-30 -mx-4 flex items-center bg-[#F7F1E6] px-4 py-3 dark:bg-background">
       <Link
-        to="/voz-protetora"
+        to="/app/voz-protetora"
         search={previewSearch}
         className="flex items-center gap-2.5 text-primary"
       >
@@ -135,7 +135,7 @@ function AppTabBar() {
       >
         <div className="mx-auto flex max-w-[520px] px-2">
           <Link
-            to="/voz-protetora"
+            to="/app/voz-protetora"
             search={previewSearch}
             className={TAB_BASE}
             activeProps={{ className: "text-primary", "aria-current": "page" }}
@@ -145,7 +145,7 @@ function AppTabBar() {
             Início
           </Link>
           <Link
-            to="/voz-protetora/busca"
+            to="/app/voz-protetora/busca"
             search={previewSearch}
             className={TAB_BASE}
             activeProps={{ className: "text-primary", "aria-current": "page" }}
@@ -154,7 +154,7 @@ function AppTabBar() {
             Buscar
           </Link>
           <Link
-            to="/voz-protetora/preciso-de-ajuda"
+            to="/app/voz-protetora/preciso-de-ajuda"
             search={previewSearch}
             className={cn(TAB_BASE, "text-[#B8472F] dark:text-[#F08B70]")}
             activeProps={{ "aria-current": "page" }}
@@ -163,7 +163,7 @@ function AppTabBar() {
             Ajuda
           </Link>
           <Link
-            to="/voz-protetora/notificacoes"
+            to="/app/voz-protetora/notificacoes"
             search={previewSearch}
             className={TAB_BASE}
             activeProps={{ className: "text-primary", "aria-current": "page" }}

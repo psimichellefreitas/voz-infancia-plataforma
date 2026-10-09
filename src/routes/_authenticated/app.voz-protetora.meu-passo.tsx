@@ -7,7 +7,7 @@ import { ProdutoShell } from "@/components/voz/produto/ProdutoShell";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 
-export const Route = createFileRoute("/_authenticated/voz-protetora/meu-passo")({
+export const Route = createFileRoute("/_authenticated/app/voz-protetora/meu-passo")({
   head: () => ({
     meta: [
       { title: "Meu Passo de Proteção: Voz Protetora" },
@@ -107,7 +107,7 @@ function MeuPassoPage() {
       eyebrow="➡️ Meu Passo de Proteção"
       title="Transforme uma orientação em uma ação."
       intro="Registre um passo seu. Informação vira atitude. Fica só neste dispositivo: não enviamos este texto para nenhum servidor. Não registre dados sobre crianças."
-      backTo={{ to: "/voz-protetora", label: "Voltar ao início" }}
+      backTo={{ to: "/app/voz-protetora", label: "Voltar ao início" }}
     >
       <div className="rounded-[20px] border border-border/60 shadow-[var(--shadow-soft)] bg-card p-5 shadow-[var(--shadow-soft)] sm:p-6">
         <Textarea

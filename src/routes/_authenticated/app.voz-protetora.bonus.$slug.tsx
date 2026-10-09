@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { usePreviewSearch } from "@/lib/preview-mode";
 import { findBonus } from "@/lib/voz-protetora/bonus";
 
-export const Route = createFileRoute("/_authenticated/voz-protetora/bonus/$slug")({
+export const Route = createFileRoute("/_authenticated/app/voz-protetora/bonus/$slug")({
   head: () => ({
     meta: [
       { title: "Bônus: Voz Protetora" },
@@ -27,7 +27,7 @@ function BonusPagina() {
     <AppShell>
       <div className="flex items-center justify-between gap-3 print:hidden">
         <Link
-          to="/voz-protetora/bonus"
+          to="/app/voz-protetora/bonus"
           search={previewSearch}
           className="inline-flex items-center gap-1.5 rounded-full bg-card px-3.5 py-2 text-sm font-semibold text-primary shadow-[var(--shadow-soft)]"
         >

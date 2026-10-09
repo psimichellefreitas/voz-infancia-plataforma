@@ -185,7 +185,7 @@ export function CartoesIniciais() {
               type="button"
               variant="hero"
               size="sm"
-              onClick={() => navigate({ to: "/voz-protetora/como-usar", search: previewSearch })}
+              onClick={() => navigate({ to: "/app/voz-protetora/como-usar", search: previewSearch })}
             >
               Como usar o app
             </Button>

@@ -13,7 +13,7 @@ import { getMyProductAccess } from "@/lib/access.functions";
 import { usePreviewSearch, usePreviewUnlocked } from "@/lib/preview-mode";
 import { useInstalarApp } from "@/lib/use-instalar-app";
 
-export const Route = createFileRoute("/_authenticated/meus-produtos")({
+export const Route = createFileRoute("/_authenticated/app/")({
   head: () => ({
     meta: [
       { title: "Meus produtos: Voz Pela Infância" },
@@ -100,7 +100,7 @@ function MeusProdutosPage() {
             </p>
           ) : temVozProtetora ? (
             <Link
-              to="/voz-protetora"
+              to="/app/voz-protetora"
               search={previewSearch}
               className="group flex items-center gap-4 rounded-[22px] bg-card p-4 shadow-[var(--shadow-soft)] transition-shadow active:scale-[0.99] hover:shadow-[var(--shadow-lift)]"
             >

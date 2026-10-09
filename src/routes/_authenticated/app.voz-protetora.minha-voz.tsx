@@ -3,7 +3,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ProdutoShell } from "@/components/voz/produto/ProdutoShell";
 import { MINHA_VOZ } from "@/lib/voz-protetora/content";
 
-export const Route = createFileRoute("/_authenticated/voz-protetora/minha-voz")({
+export const Route = createFileRoute("/_authenticated/app/voz-protetora/minha-voz")({
   head: () => ({
     meta: [
       { title: "Minha Voz Protetora: Voz Protetora" },
@@ -23,7 +23,7 @@ function MinhaVozPage() {
     <ProdutoShell
       eyebrow="🛡️ Minha Voz Protetora"
       title="Conheça a postura de uma Voz Protetora."
-      backTo={{ to: "/voz-protetora", label: "Voltar ao início" }}
+      backTo={{ to: "/app/voz-protetora", label: "Voltar ao início" }}
     >
       <ol className="space-y-3">
         {MINHA_VOZ.map((item, index) => (

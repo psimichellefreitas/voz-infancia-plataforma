@@ -9,7 +9,7 @@ import {
   CANAIS_VERIFICADO_EM,
 } from "@/lib/voz-protetora/content";
 
-export const Route = createFileRoute("/_authenticated/voz-protetora/preciso-de-ajuda")({
+export const Route = createFileRoute("/_authenticated/app/voz-protetora/preciso-de-ajuda")({
   head: () => ({
     meta: [
       { title: "Preciso de ajuda: Voz Protetora" },
@@ -30,7 +30,7 @@ function PrecisoDeAjudaPage() {
       eyebrow="🚨 Preciso de ajuda"
       title="Quando a orientação não é suficiente."
       intro="Algumas situações exigem apoio da rede de proteção e de profissionais. O Voz Protetora não substitui esse apoio: ele te ajuda a saber por onde começar."
-      backTo={{ to: "/voz-protetora", label: "Voltar ao início" }}
+      backTo={{ to: "/app/voz-protetora", label: "Voltar ao início" }}
     >
       <div className="rounded-[20px] border-2 border-destructive/40 bg-destructive/5 p-5 sm:p-6">
         <div className="flex items-center gap-2">

@@ -57,7 +57,7 @@ export function SearchBox({ autoFocus, placeholder }: SearchBoxProps) {
             <div className="rounded-[20px] border border-border/60 shadow-[var(--shadow-soft)] bg-card p-4 text-sm text-muted-foreground">
               Nenhuma orientação encontrada para "{query}". Se a situação for urgente, veja{" "}
               <Link
-                to="/voz-protetora/preciso-de-ajuda"
+                to="/app/voz-protetora/preciso-de-ajuda"
                 search={previewSearch}
                 className="font-semibold text-primary underline"
               >

@@ -3,17 +3,17 @@ import { buscar, type FonteBusca, type ResultadoBusca } from "./busca";
 
 /** Busca nas 60 orientações do VOZ PROTETORA (o conteúdo já vem no aplicativo, sem servidor). */
 const FONTES: FonteBusca[] = [
-  { porta: "aconteceu", portaLabel: "ACONTECEU", base: "/voz-protetora/aconteceu", items: ACONTECEU },
+  { porta: "aconteceu", portaLabel: "ACONTECEU", base: "/app/voz-protetora/aconteceu", items: ACONTECEU },
   {
     porta: "vai-acontecer",
     portaLabel: "VAI ACONTECER",
-    base: "/voz-protetora/vai-acontecer",
+    base: "/app/voz-protetora/vai-acontecer",
     items: VAI_ACONTECER,
   },
   {
     porta: "fortalecer",
     portaLabel: "QUERO FORTALECER",
-    base: "/voz-protetora/fortalecer",
+    base: "/app/voz-protetora/fortalecer",
     items: FORTALECER,
   },
 ];

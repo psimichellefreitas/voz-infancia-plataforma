@@ -9,7 +9,7 @@ import { formatBRL } from "@/lib/product";
 import { CONTATO_EMAIL } from "@/components/voz/nav";
 import { useHasSession } from "@/lib/preview-mode";
 
-export const Route = createFileRoute("/_authenticated/voz-protetora/minha-assinatura")({
+export const Route = createFileRoute("/_authenticated/app/voz-protetora/minha-assinatura")({
   head: () => ({
     meta: [
       { title: "Minha compra: Voz Protetora" },
@@ -44,7 +44,7 @@ function MinhaCompraPage() {
     <ProdutoShell
       eyebrow="🛡️ Minha compra"
       title="Dados da sua compra do Voz Protetora."
-      backTo={{ to: "/voz-protetora", label: "Voltar ao início" }}
+      backTo={{ to: "/app/voz-protetora", label: "Voltar ao início" }}
     >
       {!hasSession ? (
         <p className="rounded-[20px] border border-border/60 shadow-[var(--shadow-soft)] bg-secondary p-4 text-sm leading-relaxed text-muted-foreground">

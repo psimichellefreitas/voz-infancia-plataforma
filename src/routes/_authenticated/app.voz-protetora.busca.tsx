@@ -3,7 +3,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ProdutoShell } from "@/components/voz/produto/ProdutoShell";
 import { SearchBox } from "@/components/voz/produto/SearchBox";
 
-export const Route = createFileRoute("/_authenticated/voz-protetora/busca")({
+export const Route = createFileRoute("/_authenticated/app/voz-protetora/busca")({
   head: () => ({
     meta: [
       { title: "Buscar: Voz Protetora" },
@@ -27,7 +27,7 @@ function BuscaPage() {
       eyebrow="🔎 Buscar"
       title="Qual é a sua dúvida?"
       intro="Digite uma palavra ou uma frase: buscamos em todas as situações e temas do Voz Protetora."
-      backTo={{ to: "/voz-protetora", label: "Voltar ao início" }}
+      backTo={{ to: "/app/voz-protetora", label: "Voltar ao início" }}
     >
       <SearchBox autoFocus />
     </ProdutoShell>

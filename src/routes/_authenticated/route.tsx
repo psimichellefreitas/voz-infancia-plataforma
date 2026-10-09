@@ -24,7 +24,7 @@ export const Route = createFileRoute("/_authenticated")({
     const { data, error } = await supabase.auth.getUser();
     if (error || !data.user) {
       // Volta para a página que a pessoa tentou abrir (ex.: /admin), não só para o produto.
-      const destino = location.pathname.startsWith("/") ? location.pathname : "/voz-protetora";
+      const destino = location.pathname.startsWith("/") ? location.pathname : "/app/voz-protetora";
       throw redirect({ to: "/auth", search: { redirect: destino } });
     }
     return { user: data.user };

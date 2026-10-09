@@ -5,7 +5,7 @@ import { ProdutoShell } from "@/components/voz/produto/ProdutoShell";
 import { usePreviewSearch } from "@/lib/preview-mode";
 import { AVISO_DIREITOS, BONUS } from "@/lib/voz-protetora/bonus";
 
-export const Route = createFileRoute("/_authenticated/voz-protetora/bonus/")({
+export const Route = createFileRoute("/_authenticated/app/voz-protetora/bonus/")({
   head: () => ({
     meta: [
       { title: "Bônus para imprimir: Voz Protetora" },
@@ -26,13 +26,13 @@ function BonusLista() {
     <ProdutoShell
       title="Bônus para imprimir"
       intro="Materiais para imprimir e usar com a criança e com quem cuida dela. Abra um bônus e toque em Imprimir."
-      backTo={{ to: "/voz-protetora", label: "Voltar ao início" }}
+      backTo={{ to: "/app/voz-protetora", label: "Voltar ao início" }}
     >
       <ul className="space-y-3">
         {BONUS.map((bonus) => (
           <li key={bonus.slug}>
             <Link
-              to="/voz-protetora/bonus/$slug"
+              to="/app/voz-protetora/bonus/$slug"
               params={{ slug: bonus.slug }}
               search={previewSearch}
               className="group flex items-center gap-4 rounded-[22px] bg-card p-4 shadow-[var(--shadow-soft)] transition-shadow active:scale-[0.99] hover:shadow-[var(--shadow-lift)]"

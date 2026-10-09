@@ -5,7 +5,7 @@ import { OrientationBody } from "@/components/voz/produto/OrientationBody";
 import { CompartilharAcoes } from "@/components/voz/produto/CompartilharAcoes";
 import { FORTALECER, FORTALECER_STRUCTURE, findItem } from "@/lib/voz-protetora/content";
 
-export const Route = createFileRoute("/_authenticated/voz-protetora/fortalecer/$slug")({
+export const Route = createFileRoute("/_authenticated/app/voz-protetora/fortalecer/$slug")({
   head: () => ({
     meta: [
       { title: "Tema: Quero fortalecer | Voz Protetora" },
@@ -24,7 +24,7 @@ export const Route = createFileRoute("/_authenticated/voz-protetora/fortalecer/$
   notFoundComponent: () => (
     <ProdutoShell
       title="Tema não encontrado"
-      backTo={{ to: "/voz-protetora/fortalecer", label: "Voltar" }}
+      backTo={{ to: "/app/voz-protetora/fortalecer", label: "Voltar" }}
     >
       <p className="text-sm text-muted-foreground">Escolha um tema na lista.</p>
     </ProdutoShell>
@@ -33,14 +33,14 @@ export const Route = createFileRoute("/_authenticated/voz-protetora/fortalecer/$
 });
 
 function FortalecerDetalhe() {
-  const { slug } = useParams({ from: "/_authenticated/voz-protetora/fortalecer/$slug" });
+  const { slug } = useParams({ from: "/_authenticated/app/voz-protetora/fortalecer/$slug" });
   const item = findItem(FORTALECER, slug);
 
   return (
     <ProdutoShell
       eyebrow="Quero fortalecer"
       title={`${item?.emoji ?? ""} ${item?.title ?? "Tema"}`.trim()}
-      backTo={{ to: "/voz-protetora/fortalecer", label: "Voltar" }}
+      backTo={{ to: "/app/voz-protetora/fortalecer", label: "Voltar" }}
     >
       <OrientationBody
         blocks={item?.blocks ?? FORTALECER_STRUCTURE}

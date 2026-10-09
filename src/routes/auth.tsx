@@ -55,7 +55,7 @@ function AuthPage() {
         .getSession()
         .then(({ data }) => {
           if (cancelled || !data.session) return;
-          navigate({ to: (redirect ?? "/meus-produtos") as never, replace: true });
+          navigate({ to: (redirect ?? "/app") as never, replace: true });
         })
         .catch(() => {});
     } catch {
@@ -68,7 +68,7 @@ function AuthPage() {
 
   async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
-    const destino = redirect ?? "/meus-produtos";
+    const destino = redirect ?? "/app";
 
     // Acesso aberto: qualquer e-mail entra direto, sem link por e-mail.
     if (ACESSO_ABERTO) {
@@ -117,7 +117,7 @@ function AuthPage() {
       toast.error("Código inválido ou vencido. Confira os números ou peça um novo link.");
       return;
     }
-    navigate({ to: (redirect ?? "/meus-produtos") as never, replace: true });
+    navigate({ to: (redirect ?? "/app") as never, replace: true });
   }
 
 

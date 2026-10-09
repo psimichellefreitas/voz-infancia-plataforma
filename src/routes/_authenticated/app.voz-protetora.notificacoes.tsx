@@ -6,7 +6,7 @@ import { ProdutoShell } from "@/components/voz/produto/ProdutoShell";
 import { usePreviewSearch } from "@/lib/preview-mode";
 import { useNotificacoes } from "@/lib/voz-protetora/notificacoes";
 
-export const Route = createFileRoute("/_authenticated/voz-protetora/notificacoes")({
+export const Route = createFileRoute("/_authenticated/app/voz-protetora/notificacoes")({
   head: () => ({
     meta: [
       { title: "Notificações: Voz Protetora" },
@@ -41,7 +41,7 @@ function NotificacoesPage() {
       eyebrow="🔔 Notificações"
       title="Novidades do Voz Protetora"
       intro="Avisos sobre novos conteúdos e atualizações do produto. Frequência baixa, sem cobrança de uso: você pode desativar quando quiser."
-      backTo={{ to: "/voz-protetora", label: "Voltar ao início" }}
+      backTo={{ to: "/app/voz-protetora", label: "Voltar ao início" }}
     >
       <button
         onClick={() => alternarAtivas(!ativas)}

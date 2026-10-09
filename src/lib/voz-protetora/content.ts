@@ -1435,7 +1435,7 @@ export const NOTIFICACOES: NotificationItem[] = [
     titulo: "Fala adaptada por faixa etária",
     corpo:
       "Em Aconteceu, Vai Acontecer e Quero Fortalecer, você já pode ajustar a fala sugerida pela idade da criança: pequena, média ou grande.",
-    link: { to: "/voz-protetora/aconteceu", label: "Ver Aconteceu" },
+    link: { to: "/app/voz-protetora/aconteceu", label: "Ver Aconteceu" },
   },
   {
     id: "tres-paginas-de-apoio",
@@ -1443,14 +1443,14 @@ export const NOTIFICACOES: NotificationItem[] = [
     titulo: "Preciso de Ajuda, Minha Presença e Meu Passo atualizados",
     corpo:
       "As três páginas de apoio agora têm conteúdo completo: canais de ajuda reais, reflexão de presença protetiva pela Bússola VOZ, e registro pessoal do seu passo de proteção.",
-    link: { to: "/voz-protetora/preciso-de-ajuda", label: "Ver Preciso de Ajuda" },
+    link: { to: "/app/voz-protetora/preciso-de-ajuda", label: "Ver Preciso de Ajuda" },
   },
   {
     id: "busca",
     data: "2026-09-15",
     titulo: "Busca no conteúdo",
     corpo: "Agora você pode buscar por palavra-chave em todas as orientações do produto.",
-    link: { to: "/voz-protetora/busca", label: "Usar a busca" },
+    link: { to: "/app/voz-protetora/busca", label: "Usar a busca" },
   },
   {
     id: "banco-completo",
@@ -1458,7 +1458,7 @@ export const NOTIFICACOES: NotificationItem[] = [
     titulo: "Banco de Situações completo",
     corpo:
       "As 60 orientações do Voz Protetora já estão disponíveis: 20 em Aconteceu, 20 em Vai Acontecer e 20 em Quero Fortalecer.",
-    link: { to: "/voz-protetora", label: "Explorar o produto" },
+    link: { to: "/app/voz-protetora", label: "Explorar o produto" },
   },
 ];
 
@@ -1559,17 +1559,17 @@ const SEARCH_SOURCES: {
   base: string;
   items: ContentItem[];
 }[] = [
-  { porta: "aconteceu", portaLabel: "ACONTECEU", base: "/voz-protetora/aconteceu", items: ACONTECEU },
+  { porta: "aconteceu", portaLabel: "ACONTECEU", base: "/app/voz-protetora/aconteceu", items: ACONTECEU },
   {
     porta: "vai-acontecer",
     portaLabel: "VAI ACONTECER",
-    base: "/voz-protetora/vai-acontecer",
+    base: "/app/voz-protetora/vai-acontecer",
     items: VAI_ACONTECER,
   },
   {
     porta: "fortalecer",
     portaLabel: "QUERO FORTALECER",
-    base: "/voz-protetora/fortalecer",
+    base: "/app/voz-protetora/fortalecer",
     items: FORTALECER,
   },
 ];

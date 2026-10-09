@@ -17,7 +17,7 @@ import { Saudacao } from "@/components/voz/produto/Saudacao";
 import { SearchBox } from "@/components/voz/produto/SearchBox";
 import { usePreviewSearch } from "@/lib/preview-mode";
 
-export const Route = createFileRoute("/_authenticated/voz-protetora/")({
+export const Route = createFileRoute("/_authenticated/app/voz-protetora/")({
   head: () => ({
     meta: [
       { title: "Voz Protetora: Minha área" },
@@ -38,21 +38,21 @@ export const Route = createFileRoute("/_authenticated/voz-protetora/")({
 const PORTAS = [
   {
     icon: Search,
-    to: "/voz-protetora/aconteceu",
+    to: "/app/voz-protetora/aconteceu",
     t: "ACONTECEU",
     d: "Algo aconteceu. Como devo agir?",
     tile: "bg-primary/10 text-primary",
   },
   {
     icon: Shield,
-    to: "/voz-protetora/vai-acontecer",
+    to: "/app/voz-protetora/vai-acontecer",
     t: "VAI ACONTECER",
     d: "A criança vai viver uma situação. Como posso me preparar?",
     tile: "bg-accent/15 text-accent",
   },
   {
     icon: Sprout,
-    to: "/voz-protetora/fortalecer",
+    to: "/app/voz-protetora/fortalecer",
     t: "QUERO FORTALECER",
     d: "Quero fortalecer a proteção. Por onde começo?",
     tile: "bg-voz-yellow/25 text-[#8A5F00] dark:text-voz-yellow",
@@ -62,25 +62,25 @@ const PORTAS = [
 const ATALHOS = [
   {
     icon: Shield,
-    to: "/voz-protetora/minha-voz",
+    to: "/app/voz-protetora/minha-voz",
     t: "MINHA VOZ PROTETORA",
     d: "Conheça a postura de uma Voz Protetora.",
   },
   {
     icon: ClipboardList,
-    to: "/voz-protetora/minha-presenca",
+    to: "/app/voz-protetora/minha-presenca",
     t: "MINHA PRESENÇA PROTETIVA",
     d: "Perceba onde você pode fortalecer sua presença.",
   },
   {
     icon: ArrowRight,
-    to: "/voz-protetora/meu-passo",
+    to: "/app/voz-protetora/meu-passo",
     t: "MEU PASSO DE PROTEÇÃO",
     d: "Transforme uma orientação em uma ação.",
   },
   {
     icon: CreditCard,
-    to: "/voz-protetora/minha-assinatura",
+    to: "/app/voz-protetora/minha-assinatura",
     t: "MINHA COMPRA",
     d: "Veja os dados da sua compra.",
   },
@@ -140,7 +140,7 @@ function VozProtetoraHome() {
 
       {/* Quando a orientação não basta */}
       <Link
-        to="/voz-protetora/preciso-de-ajuda"
+        to="/app/voz-protetora/preciso-de-ajuda"
         search={previewSearch}
         className="flex items-center gap-4 rounded-[22px] bg-[#F6E1DA] p-4 transition-shadow active:scale-[0.99] dark:bg-[#3A2A2E]"
       >
@@ -179,7 +179,7 @@ function VozProtetoraHome() {
       </div>
       {/* Bônus para imprimir */}
       <Link
-        to="/voz-protetora/bonus"
+        to="/app/voz-protetora/bonus"
         search={previewSearch}
         className="flex items-center gap-4 rounded-[22px] bg-card p-4 shadow-[var(--shadow-soft)] transition-shadow active:scale-[0.99] hover:shadow-[var(--shadow-lift)]"
       >

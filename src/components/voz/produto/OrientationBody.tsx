@@ -303,7 +303,7 @@ function BlocoAjuda({ label, body, interativo }: { label: string; body: string; 
               size="sm"
               className="mt-3 bg-[#B8472F] text-white hover:bg-[#9d3a25]"
             >
-              <Link to="/voz-protetora/preciso-de-ajuda" search={previewSearch}>
+              <Link to="/app/voz-protetora/preciso-de-ajuda" search={previewSearch}>
                 Preciso de ajuda
               </Link>
             </Button>
@@ -942,7 +942,7 @@ export function OrientationBody({
               {interativo && passo.body && (
                 <Button asChild size="sm" className="mt-4 bg-voz-yellow text-primary hover:bg-voz-yellow/90">
                   <Link
-                    to="/voz-protetora/meu-passo"
+                    to="/app/voz-protetora/meu-passo"
                     search={{ ...(buscaPreview ?? {}), texto: textoPuro(passo.body) } as never}
                   >
                     ➡️ Levar para Meu Passo de Proteção
