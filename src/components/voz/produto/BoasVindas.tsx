@@ -161,15 +161,16 @@ const PASSOS_INSTALACAO: Record<PlataformaInstalacao, string[]> = {
 };
 
 /** Cartões que aparecem no alto da tela inicial: "Comece por aqui" e "Deixe na tela do celular". */
-export function CartoesIniciais() {
+export function CartoesIniciais({ qual }: { qual: "comeceAqui" | "instalar" }) {
   const [comeceAquiDispensado, dispensarComeceAqui] = useMarca("comeceAqui");
   const [instalarDispensado, dispensarInstalar] = useMarca("instalar");
   const instalarApp = useInstalarApp();
   const previewSearch = usePreviewSearch() as never;
   const navigate = useNavigate();
 
-  const mostrarComeceAqui = comeceAquiDispensado === false;
-  const mostrarInstalar = instalarDispensado === false && instalarApp.disponivel;
+  const mostrarComeceAqui = qual === "comeceAqui" && comeceAquiDispensado === false;
+  const mostrarInstalar =
+    qual === "instalar" && instalarDispensado === false && instalarApp.disponivel;
 
   return (
     <>
@@ -204,7 +205,7 @@ export function CartoesIniciais() {
             </span>
             <div className="min-w-0 flex-1">
               <h2 className="text-base font-bold text-primary">
-                Deixe o Voz Protetora na tela do seu celular.
+                Deixe o Voz Pela Infância na tela do seu celular.
               </h2>
               <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
                 Assim você abre com um toque, em tela cheia, quando precisar.

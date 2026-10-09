@@ -109,7 +109,7 @@ function VozProtetoraHome() {
         </div>
       </section>
 
-      <CartoesIniciais />
+      <CartoesIniciais qual="comeceAqui" />
 
       {/* As 3 portas */}
       <div className="flex flex-col gap-3">

@@ -8,6 +8,7 @@ import { CONTATO_EMAIL } from "@/components/voz/nav";
 
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { supabase } from "@/integrations/supabase/client";
+import { CartoesIniciais } from "@/components/voz/produto/BoasVindas";
 import { FraseDoDia, Saudacao } from "@/components/voz/produto/Saudacao";
 import { getMyProductAccess } from "@/lib/access.functions";
 import { usePreviewSearch, usePreviewUnlocked } from "@/lib/preview-mode";
@@ -123,6 +124,9 @@ function MeusProdutosPage() {
               comprar, aguarde a confirmação do pagamento.
             </div>
           )}
+        </div>
+        <div className="mt-4">
+          <CartoesIniciais qual="instalar" />
         </div>
         {/* "Conheça os outros produtos": entra quando houver o 2º produto publicado (tela Conheça dentro do app). */}
       </div>
