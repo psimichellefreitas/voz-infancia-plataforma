@@ -23,6 +23,16 @@ export const Route = createFileRoute("/api/public/keepalive")({
           console.error("[keepalive] falha ao consultar o banco", error.message);
           return new Response("error", { status: 500 });
         }
+
+        // Retenção das sugestões de tema: apaga o que tem mais de 180 dias.
+        const limite = new Date(Date.now() - 180 * 24 * 60 * 60 * 1000).toISOString();
+        const { error: erroLimpeza } = await supabaseAdmin
+          .from("suggestions")
+          .delete()
+          .lt("created_at", limite);
+        if (erroLimpeza) {
+          console.error("[keepalive] falha ao limpar sugestões antigas", erroLimpeza.message);
+        }
         return new Response("ok", { status: 200 });
       },
     },

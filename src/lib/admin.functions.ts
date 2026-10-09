@@ -1,4 +1,5 @@
 import { createServerFn } from "@tanstack/react-start";
+import { z } from "zod";
 
 import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
 
@@ -88,4 +89,41 @@ export const getAdminSales = createServerFn({ method: "POST" })
       },
       sales,
     };
+  });
+
+/** Sugestões de tema enviadas em "Não achou o que procura?". Só para a administradora. */
+export const getAdminSugestoes = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
+  .handler(async ({ context }) => {
+    const email = String(context.claims["email"] ?? "").toLowerCase();
+    if (!email || !adminEmails().includes(email)) {
+      return { allowed: false as const, itens: [], tabelaAusente: false };
+    }
+
+    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+    const { data, error } = await supabaseAdmin
+      .from("suggestions")
+      .select("id, created_at, busca, mensagem")
+      .order("created_at", { ascending: false })
+      .limit(200);
+
+    if (error) {
+      // Normalmente a tabela ainda não foi criada no Supabase.
+      console.error("[admin] falha ao ler sugestões", error.message);
+      return { allowed: true as const, itens: [], tabelaAusente: true };
+    }
+    return { allowed: true as const, itens: data, tabelaAusente: false };
+  });
+
+export const apagarSugestao = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
+  .inputValidator(z.object({ id: z.string().uuid() }))
+  .handler(async ({ context, data }) => {
+    const email = String(context.claims["email"] ?? "").toLowerCase();
+    if (!email || !adminEmails().includes(email)) throw new Error("Sem permissão.");
+
+    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+    const { error } = await supabaseAdmin.from("suggestions").delete().eq("id", data.id);
+    if (error) throw new Error("Não foi possível apagar agora.");
+    return { ok: true as const };
   });

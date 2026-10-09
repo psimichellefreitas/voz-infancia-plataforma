@@ -140,6 +140,27 @@ export type Database = {
       }
       // Adicionada manualmente para a migração 20260915120000_add_subscriptions.sql —
       // regenerar com `supabase gen types` assim que a migração rodar no projeto real.
+      suggestions: {
+        Row: {
+          busca: string
+          created_at: string
+          id: string
+          mensagem: string
+        }
+        Insert: {
+          busca?: string
+          created_at?: string
+          id?: string
+          mensagem: string
+        }
+        Update: {
+          busca?: string
+          created_at?: string
+          id?: string
+          mensagem?: string
+        }
+        Relationships: []
+      }
       subscriptions: {
         Row: {
           amount: number

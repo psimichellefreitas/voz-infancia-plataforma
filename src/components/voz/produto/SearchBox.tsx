@@ -4,6 +4,7 @@ import { Search, X } from "lucide-react";
 
 import { buscarOrientacoes } from "@/lib/voz-protetora/busca-conteudo";
 import { usePreviewSearch } from "@/lib/preview-mode";
+import { SugerirTema } from "./SugerirTema";
 
 const PORTA_COLOR: Record<string, string> = {
   aconteceu: "text-voz-blue",
@@ -54,7 +55,8 @@ export function SearchBox({ autoFocus, placeholder }: SearchBoxProps) {
       {showResults && (
         <div className="mt-3 space-y-2">
           {results.length === 0 ? (
-            <div className="rounded-[20px] border border-border/60 shadow-[var(--shadow-soft)] bg-card p-4 text-sm text-muted-foreground">
+            <>
+              <div className="rounded-[20px] border border-border/60 shadow-[var(--shadow-soft)] bg-card p-4 text-sm text-muted-foreground">
               Nenhuma orientação encontrada para "{query}". Se a situação for urgente, veja{" "}
               <Link
                 to="/app/voz-protetora/preciso-de-ajuda"
@@ -65,6 +67,8 @@ export function SearchBox({ autoFocus, placeholder }: SearchBoxProps) {
               </Link>
               .
             </div>
+              <SugerirTema key={query.trim()} busca={query.trim()} />
+            </>
           ) : (
             <>
               {results[0]?.parcial && (

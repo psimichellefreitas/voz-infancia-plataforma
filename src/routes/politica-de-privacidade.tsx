@@ -139,6 +139,13 @@ function PrivacidadePage() {
           </span>
         </p>
         <p>
+          <strong className="text-foreground">Sugestão de tema.</strong> Se você enviar o assunto de
+          uma busca sem resultado, guardamos apenas o texto enviado, para decidirmos novas
+          orientações. A mensagem não leva o seu nome nem o seu e-mail e não recebe resposta. Não
+          escreva nomes nem dados que identifiquem uma criança. As mensagens são apagadas depois de
+          180 dias.
+        </p>
+        <p>
           <strong className="text-foreground">Crianças e adolescentes.</strong> O Voz Protetora é
           destinado a adultos. O produto não coleta dados de crianças e orienta o adulto a não
           registrar nele informações que identifiquem uma criança.
