@@ -8,6 +8,7 @@ import { CONTATO_EMAIL } from "@/components/voz/nav";
 
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { supabase } from "@/integrations/supabase/client";
+import { FraseDoDia, Saudacao } from "@/components/voz/produto/Saudacao";
 import { getMyProductAccess } from "@/lib/access.functions";
 import { usePreviewSearch, usePreviewUnlocked } from "@/lib/preview-mode";
 import { useInstalarApp } from "@/lib/use-instalar-app";
@@ -76,7 +77,7 @@ function MeusProdutosPage() {
         <section className="relative mt-1 overflow-hidden rounded-[24px] bg-primary px-5 pb-6 pt-6 text-primary-foreground">
           <div className="pointer-events-none absolute -right-20 -top-24 h-56 w-56 rounded-full bg-accent opacity-35" />
           <div className="relative">
-            <span className="block h-0.5 w-7 rounded-full bg-voz-yellow" />
+            <Saudacao />
             <h1 className="mt-4 font-display text-[1.9rem] font-bold leading-[1.1] text-balance">
               Meus produtos
             </h1>
@@ -85,6 +86,11 @@ function MeusProdutosPage() {
             </p>
           </div>
         </section>
+
+        <div className="mt-5">
+          <FraseDoDia />
+        </div>
+
 
         <div className="mt-5 flex flex-col gap-3">
           {loading ? (

@@ -13,6 +13,7 @@ import {
 
 import { AppShell } from "@/components/voz/produto/AppShell";
 import { BoasVindas, CartoesIniciais } from "@/components/voz/produto/BoasVindas";
+import { Saudacao } from "@/components/voz/produto/Saudacao";
 import { SearchBox } from "@/components/voz/produto/SearchBox";
 import { usePreviewSearch } from "@/lib/preview-mode";
 
@@ -95,7 +96,7 @@ function VozProtetoraHome() {
       <section className="relative overflow-hidden rounded-[24px] bg-primary px-5 pb-5 pt-6 text-primary-foreground">
         <div className="pointer-events-none absolute -right-20 -top-24 h-56 w-56 rounded-full bg-accent opacity-35" />
         <div className="relative">
-          <span className="block h-0.5 w-7 rounded-full bg-voz-yellow" />
+          <Saudacao />
           <h1 className="mt-4 font-display text-[1.9rem] font-bold leading-[1.1] text-balance">
             Como posso ajudar você hoje?
           </h1>

@@ -2,7 +2,7 @@ import { useMemo, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { Search, X } from "lucide-react";
 
-import { searchContent } from "@/lib/voz-protetora/content";
+import { buscarOrientacoes } from "@/lib/voz-protetora/busca-conteudo";
 import { usePreviewSearch } from "@/lib/preview-mode";
 
 const PORTA_COLOR: Record<string, string> = {
@@ -23,7 +23,7 @@ interface SearchBoxProps {
 export function SearchBox({ autoFocus, placeholder }: SearchBoxProps) {
   const [query, setQuery] = useState("");
   const previewSearch = usePreviewSearch();
-  const results = useMemo(() => searchContent(query), [query]);
+  const results = useMemo(() => buscarOrientacoes(query), [query]);
   const showResults = query.trim().length >= 2;
 
   return (
@@ -66,12 +66,18 @@ export function SearchBox({ autoFocus, placeholder }: SearchBoxProps) {
               .
             </div>
           ) : (
-            results.slice(0, 12).map((result) => (
+            <>
+              {results[0]?.parcial && (
+                <p className="px-1 text-xs leading-snug text-muted-foreground">
+                  Não achei todas as palavras juntas. Estes são os resultados mais próximos.
+                </p>
+              )}
+              {results.slice(0, 12).map((result) => (
               <Link
                 key={`${result.porta}-${result.slug}`}
                 to={result.to as never}
                 search={previewSearch as never}
-                className="flex items-start gap-3 rounded-[20px] border border-border/60 shadow-[var(--shadow-soft)] bg-card p-4 shadow-[var(--shadow-soft)] transition-colors hover:border-accent"
+                className="flex items-start gap-3 rounded-[20px] border border-border/60 bg-card p-4 shadow-[var(--shadow-soft)] transition-colors hover:border-accent"
               >
                 {result.emoji && <span className="text-lg leading-none">{result.emoji}</span>}
                 <div className="min-w-0">
@@ -83,9 +89,15 @@ export function SearchBox({ autoFocus, placeholder }: SearchBoxProps) {
                   <p className="mt-1 text-sm font-semibold leading-snug text-foreground">
                     {result.title}
                   </p>
+                  {result.trecho && (
+                    <p className="mt-1 line-clamp-2 text-xs leading-snug text-muted-foreground">
+                      {result.trecho}
+                    </p>
+                  )}
                 </div>
               </Link>
-            ))
+              ))}
+            </>
           )}
         </div>
       )}
