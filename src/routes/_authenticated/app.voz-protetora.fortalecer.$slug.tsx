@@ -23,6 +23,7 @@ export const Route = createFileRoute("/_authenticated/app/voz-protetora/fortalec
   },
   notFoundComponent: () => (
     <ProdutoShell
+      ferramentasDeLeitura={false}
       title="Tema não encontrado"
       backTo={{ to: "/app/voz-protetora/fortalecer", label: "Voltar" }}
     >
@@ -38,6 +39,7 @@ function FortalecerDetalhe() {
 
   return (
     <ProdutoShell
+      ferramentasDeLeitura={false}
       eyebrow="Quero fortalecer"
       title={`${item?.emoji ?? ""} ${item?.title ?? "Tema"}`.trim()}
       backTo={{ to: "/app/voz-protetora/fortalecer", label: "Voltar" }}

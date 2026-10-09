@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
@@ -9,6 +9,11 @@ import { CONTATO_EMAIL } from "@/components/voz/nav";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { supabase } from "@/integrations/supabase/client";
 import { CartoesIniciais } from "@/components/voz/produto/BoasVindas";
+import {
+  BotaoOuvir,
+  ControlesDeLetra,
+  useTamanhoLetra,
+} from "@/components/voz/produto/LeituraFerramentas";
 import { FraseDoDia, Saudacao } from "@/components/voz/produto/Saudacao";
 import { getMyProductAccess } from "@/lib/access.functions";
 import { usePreviewSearch, usePreviewUnlocked } from "@/lib/preview-mode";
@@ -38,6 +43,8 @@ function MeusProdutosPage() {
   const instalarApp = useInstalarApp();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
+  const letra = useTamanhoLetra();
+  const conteudoRef = useRef<HTMLDivElement>(null);
 
   const { data, isPending } = useQuery({
     queryKey: ["voz-protetora-access"],
@@ -75,6 +82,12 @@ function MeusProdutosPage() {
           </button>
         </header>
 
+        <div className="flex items-center gap-2">
+          <BotaoOuvir getTexto={() => conteudoRef.current?.innerText ?? ""} />
+          <ControlesDeLetra nivel={letra.nivel} definir={letra.definir} />
+        </div>
+
+        <div ref={conteudoRef} style={{ zoom: letra.escala }} className="mt-3">
         <section className="relative mt-1 overflow-hidden rounded-[24px] bg-primary px-5 pb-6 pt-6 text-primary-foreground">
           <div className="pointer-events-none absolute -right-20 -top-24 h-56 w-56 rounded-full bg-accent opacity-35" />
           <div className="relative">
@@ -127,6 +140,7 @@ function MeusProdutosPage() {
         </div>
         <div className="mt-4">
           <CartoesIniciais qual="instalar" />
+        </div>
         </div>
         {/* "Conheça os outros produtos": entra quando houver o 2º produto publicado (tela Conheça dentro do app). */}
       </div>

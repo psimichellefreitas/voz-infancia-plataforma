@@ -26,7 +26,7 @@ export function ProdutoShell({
   title,
   intro,
   backTo,
-  ferramentasDeLeitura = false,
+  ferramentasDeLeitura = true,
   children,
 }: ProdutoShellProps) {
   const previewSearch = usePreviewSearch() as never;

@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   AlertTriangle,
@@ -13,6 +14,11 @@ import {
 
 import { AppShell } from "@/components/voz/produto/AppShell";
 import { BoasVindas, CartoesIniciais } from "@/components/voz/produto/BoasVindas";
+import {
+  BotaoOuvir,
+  ControlesDeLetra,
+  useTamanhoLetra,
+} from "@/components/voz/produto/LeituraFerramentas";
 import { Saudacao } from "@/components/voz/produto/Saudacao";
 import { SearchBox } from "@/components/voz/produto/SearchBox";
 import { usePreviewSearch } from "@/lib/preview-mode";
@@ -88,11 +94,19 @@ const ATALHOS = [
 
 function VozProtetoraHome() {
   const previewSearch = usePreviewSearch();
+  const letra = useTamanhoLetra();
+  const conteudoRef = useRef<HTMLDivElement>(null);
 
   return (
     <AppShell>
       <BoasVindas />
       {/* Abertura */}
+      <div className="flex items-center gap-2">
+        <BotaoOuvir getTexto={() => conteudoRef.current?.innerText ?? ""} />
+        <ControlesDeLetra nivel={letra.nivel} definir={letra.definir} />
+      </div>
+
+      <div ref={conteudoRef} style={{ zoom: letra.escala }} className="flex flex-col gap-5">
       <section className="relative overflow-hidden rounded-[24px] bg-primary px-5 pb-5 pt-6 text-primary-foreground">
         <div className="pointer-events-none absolute -right-20 -top-24 h-56 w-56 rounded-full bg-accent opacity-35" />
         <div className="relative">
@@ -196,6 +210,8 @@ function VozProtetoraHome() {
         </span>
         <ChevronRight className="h-5 w-5 shrink-0 text-muted-foreground" />
       </Link>
+
+      </div>
 
     </AppShell>
   );

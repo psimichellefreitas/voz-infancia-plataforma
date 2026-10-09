@@ -14,7 +14,7 @@ import { useInstalarApp, type PlataformaInstalacao } from "@/lib/use-instalar-ap
 const CHAVES = {
   boasVindas: "voz-protetora:boas-vindas-vistas",
   comeceAqui: "voz-protetora:comece-aqui-dispensado",
-  instalar: "voz-protetora:instalar-dispensado",
+  instalar: "voz-protetora:instalar-dispensado-v2",
 } as const;
 
 type Chave = keyof typeof CHAVES;

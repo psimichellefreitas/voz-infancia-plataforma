@@ -23,6 +23,7 @@ export const Route = createFileRoute("/_authenticated/app/voz-protetora/vai-acon
   },
   notFoundComponent: () => (
     <ProdutoShell
+      ferramentasDeLeitura={false}
       title="Situação não encontrada"
       backTo={{ to: "/app/voz-protetora/vai-acontecer", label: "Voltar" }}
     >
@@ -38,6 +39,7 @@ function VaiAcontecerDetalhe() {
 
   return (
     <ProdutoShell
+      ferramentasDeLeitura={false}
       eyebrow="Vai acontecer"
       title={`${item?.emoji ?? ""} ${item?.title ?? "Preparação"}`.trim()}
       backTo={{ to: "/app/voz-protetora/vai-acontecer", label: "Voltar" }}
