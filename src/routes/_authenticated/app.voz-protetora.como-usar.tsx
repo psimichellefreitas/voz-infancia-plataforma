@@ -60,6 +60,7 @@ function ComoUsarPage() {
 
   return (
     <ProdutoShell
+      ferramentasDeLeitura
       title="Como usar o app"
       backTo={{ to: "/app/voz-protetora", label: "Voltar ao início" }}
     >

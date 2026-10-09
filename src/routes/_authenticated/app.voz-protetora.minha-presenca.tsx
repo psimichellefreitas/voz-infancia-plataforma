@@ -160,6 +160,7 @@ function MinhaPresencaPage() {
 
   return (
     <ProdutoShell
+      ferramentasDeLeitura
       eyebrow="📋 Minha Presença Protetiva"
       title="Perceba onde você pode fortalecer sua presença."
       intro="Organizada pela Bússola VOZ: Ver · Ouvir · Zelar. Esta reflexão não é um teste psicológico e não gera diagnóstico ou pontuação: serve só para você olhar a própria prática."

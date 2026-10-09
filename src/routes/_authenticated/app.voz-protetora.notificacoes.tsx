@@ -38,6 +38,7 @@ function NotificacoesPage() {
 
   return (
     <ProdutoShell
+      ferramentasDeLeitura
       eyebrow="🔔 Notificações"
       title="Novidades do Voz Protetora"
       intro="Avisos sobre novos conteúdos e atualizações do produto. Frequência baixa, sem cobrança de uso: você pode desativar quando quiser."

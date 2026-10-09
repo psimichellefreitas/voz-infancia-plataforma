@@ -27,6 +27,7 @@ export const Route = createFileRoute("/_authenticated/app/voz-protetora/preciso-
 function PrecisoDeAjudaPage() {
   return (
     <ProdutoShell
+      ferramentasDeLeitura
       eyebrow="🚨 Preciso de ajuda"
       title="Quando a orientação não é suficiente."
       intro="Algumas situações exigem apoio da rede de proteção e de profissionais. O Voz Protetora não substitui esse apoio: ele te ajuda a saber por onde começar."

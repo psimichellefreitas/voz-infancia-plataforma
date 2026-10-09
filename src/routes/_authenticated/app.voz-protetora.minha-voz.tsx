@@ -21,6 +21,7 @@ export const Route = createFileRoute("/_authenticated/app/voz-protetora/minha-vo
 function MinhaVozPage() {
   return (
     <ProdutoShell
+      ferramentasDeLeitura
       eyebrow="🛡️ Minha Voz Protetora"
       title="Conheça a postura de uma Voz Protetora."
       backTo={{ to: "/app/voz-protetora", label: "Voltar ao início" }}

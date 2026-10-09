@@ -1,15 +1,18 @@
-import type { ReactNode } from "react";
+import { useRef, type ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
 import { ArrowLeft } from "lucide-react";
 
 import { usePreviewSearch } from "@/lib/preview-mode";
 import { AppShell } from "./AppShell";
+import { BotaoOuvir, ControlesDeLetra, useTamanhoLetra } from "./LeituraFerramentas";
 
 interface ProdutoShellProps {
   eyebrow?: string;
   title: string;
   intro?: string;
   backTo?: { to: string; label: string };
+  /** Mostra Ouvir e A−/A+ nesta página (as orientações têm as próprias ferramentas). */
+  ferramentasDeLeitura?: boolean;
   children: ReactNode;
 }
 
@@ -18,8 +21,17 @@ interface ProdutoShellProps {
  * dentro da `AppShell` (coluna única + barra de abas). A autorização continua sendo validada no
  * backend, dentro da `AppShell`.
  */
-export function ProdutoShell({ eyebrow, title, intro, backTo, children }: ProdutoShellProps) {
+export function ProdutoShell({
+  eyebrow,
+  title,
+  intro,
+  backTo,
+  ferramentasDeLeitura = false,
+  children,
+}: ProdutoShellProps) {
   const previewSearch = usePreviewSearch() as never;
+  const letra = useTamanhoLetra();
+  const conteudoRef = useRef<HTMLDivElement>(null);
 
   return (
     <AppShell>
@@ -51,7 +63,17 @@ export function ProdutoShell({ eyebrow, title, intro, backTo, children }: Produt
           <p className="mt-2 text-[15px] leading-relaxed text-muted-foreground">{intro}</p>
         )}
       </header>
-      <div>{children}</div>
+      {ferramentasDeLeitura && (
+        <div className="flex items-center gap-2 print:hidden">
+          <BotaoOuvir
+            getTexto={() => `${title}. ${intro ?? ""} ${conteudoRef.current?.innerText ?? ""}`}
+          />
+          <ControlesDeLetra nivel={letra.nivel} definir={letra.definir} />
+        </div>
+      )}
+      <div ref={conteudoRef} style={ferramentasDeLeitura ? { zoom: letra.escala } : undefined}>
+        {children}
+      </div>
     </AppShell>
   );
 }
